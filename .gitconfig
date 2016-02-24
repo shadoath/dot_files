@@ -1,0 +1,10 @@
+[user]
+	name = Skylar Bolton
+	email = sbolton@bcimedia.com
+[push]
+	default = simple
+[core]
+	editor = /usr/local/bin/vim
+[alias]
+  c = checkout -m
+  pretty = log --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'
