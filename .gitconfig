@@ -1,9 +1,26 @@
+
 [user]
 	name = Skylar Bolton
+	email = sbolton@bcimedia.com
 [push]
 	default = simple
 [core]
 	editor = /usr/local/bin/vim
+	mergeoptions = --no-edit
 [alias]
-  c = checkout -m
+  c = checkout
   pretty = log --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'
+  sla =  log --oneline --decorate --graph --all
+  glog = log -E -i --grep
+  cm = checkout -m
+  ca = checkout -am
+  unstage = reset
+  uncommit = reset --soft HEAD^
+  config = --get-regexp alias
+  aa = add .
+  d = diff
+  b = branch
+  last = log -1 HEAD
+  mup = !git checkout master && git pull
+  squash = rebase -i HEAD~5
+  pr = !hub pull-request
