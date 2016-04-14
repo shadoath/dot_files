@@ -1,0 +1,14 @@
+
+exec rspec spec
+
+#Check for pry leftovers, No desert if you have leftovers
+FILES_PATTERN='\.(rb)(\..+)?$'
+FORBIDDEN='binding.pry'
+
+git diff --cached --name-only | \
+    grep -E $FILES_PATTERN | \
+    GREP_COLOR='4;5;37;41' xargs grep --color --with-filename -n $FORBIDDEN && \
+    echo 'COMMIT REJECTED' && \
+    exit 1
+
+exit 0
