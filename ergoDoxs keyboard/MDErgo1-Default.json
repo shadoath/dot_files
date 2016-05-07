@@ -164,6 +164,10 @@
                 "1": {
                     "key": "G",
                     "label": "G"
+                },
+                "2": {
+                    "key": "T",
+                    "label": "T"
                 }
             }
         },
@@ -181,6 +185,10 @@
                 "1": {
                     "key": "P",
                     "label": "P"
+                },
+                "2": {
+                    "key": "R",
+                    "label": "R"
                 }
             }
         },
@@ -198,6 +206,10 @@
                 "1": {
                     "key": "F",
                     "label": "F"
+                },
+                "2": {
+                    "key": "E",
+                    "label": "E"
                 }
             }
         },
@@ -215,6 +227,10 @@
                 "1": {
                     "key": "W",
                     "label": "W"
+                },
+                "2": {
+                    "key": "W",
+                    "label": "W"
                 }
             }
         },
@@ -230,6 +246,10 @@
                     "label": "Q"
                 },
                 "1": {
+                    "key": "Q",
+                    "label": "Q"
+                },
+                "2": {
                     "key": "Q",
                     "label": "Q"
                 }
@@ -266,6 +286,10 @@
                 "1": {
                     "key": "D",
                     "label": "D"
+                },
+                "2": {
+                    "key": "G",
+                    "label": "G"
                 }
             }
         },
@@ -283,6 +307,10 @@
                 "1": {
                     "key": "T",
                     "label": "T"
+                },
+                "2": {
+                    "key": "F",
+                    "label": "F"
                 }
             }
         },
@@ -300,6 +328,10 @@
                 "1": {
                     "key": "S",
                     "label": "S"
+                },
+                "2": {
+                    "key": "D",
+                    "label": "D"
                 }
             }
         },
@@ -317,6 +349,10 @@
                 "1": {
                     "key": "R",
                     "label": "R"
+                },
+                "2": {
+                    "key": "S",
+                    "label": "S"
                 }
             }
         },
@@ -332,6 +368,10 @@
                     "label": "A"
                 },
                 "1": {
+                    "key": "A",
+                    "label": "A"
+                },
+                "2": {
                     "key": "A",
                     "label": "A"
                 }
@@ -362,12 +402,12 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "CAPSLOCK",
-                    "label": "CAPSLK"
+                    "key": "NEXT LAYER",
+                    "label": "NEXT-\u0192"
                 },
                 "1": {
-                    "key": "CAPSLOCK",
-                    "label": "CAPSLK"
+                    "key": "NEXT LAYER",
+                    "label": "NEXT-\u0192"
                 }
             }
         },
@@ -419,6 +459,10 @@
                 "1": {
                     "key": "B",
                     "label": "B"
+                },
+                "2": {
+                    "key": "B",
+                    "label": "B"
                 }
             }
         },
@@ -434,6 +478,10 @@
                     "label": "V"
                 },
                 "1": {
+                    "key": "V",
+                    "label": "V"
+                },
+                "2": {
                     "key": "V",
                     "label": "V"
                 }
@@ -453,6 +501,10 @@
                 "1": {
                     "key": "C",
                     "label": "C"
+                },
+                "2": {
+                    "key": "C",
+                    "label": "C"
                 }
             }
         },
@@ -470,6 +522,10 @@
                 "1": {
                     "key": "X",
                     "label": "X"
+                },
+                "2": {
+                    "key": "X",
+                    "label": "X"
                 }
             }
         },
@@ -485,6 +541,10 @@
                     "label": "Z"
                 },
                 "1": {
+                    "key": "Z",
+                    "label": "Z"
+                },
+                "2": {
                     "key": "Z",
                     "label": "Z"
                 }
@@ -587,8 +647,12 @@
                     "label": "LGUI"
                 },
                 "1": {
-                    "key": "LGUI",
-                    "label": "LGUI"
+                    "key": "SPACE",
+                    "label": "[&nbsp;]"
+                },
+                "2": {
+                    "key": "SPACE",
+                    "label": "[&nbsp;]"
                 }
             }
         },
@@ -655,8 +719,8 @@
                     "label": "LCTRL"
                 },
                 "1": {
-                    "key": "LCTRL",
-                    "label": "LCTRL"
+                    "key": "LGUI",
+                    "label": "LGUI"
                 }
             }
         },
@@ -1056,12 +1120,16 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "LCK1",
-                    "label": "LOCK-1"
+                    "key": "NEXT LAYER",
+                    "label": "NEXT-\u0192"
                 },
                 "1": {
-                    "key": "LCK1",
-                    "label": "LOCK-1"
+                    "key": "NEXT LAYER",
+                    "label": "NEXT-\u0192"
+                },
+                "2": {
+                    "key": "NEXT LAYER",
+                    "label": "NEXT-\u0192"
                 }
             }
         },
