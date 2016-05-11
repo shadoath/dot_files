@@ -402,12 +402,16 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "NEXT LAYER",
-                    "label": "NEXT-\u0192"
+                    "key": "ENTER",
+                    "label": "\u21b5"
                 },
                 "1": {
-                    "key": "NEXT LAYER",
-                    "label": "NEXT-\u0192"
+                    "key": "ENTER",
+                    "label": "\u21b5"
+                },
+                "2": {
+                    "key": "ENTER",
+                    "label": "\u21b5"
                 }
             }
         },
@@ -647,8 +651,8 @@
                     "label": "LGUI"
                 },
                 "1": {
-                    "key": "SPACE",
-                    "label": "[&nbsp;]"
+                    "key": "LGUI",
+                    "label": "LGUI"
                 },
                 "2": {
                     "key": "SPACE",
@@ -681,12 +685,16 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "SLASH",
-                    "label": "\/"
+                    "key": "SPACE",
+                    "label": "[&nbsp;]"
                 },
                 "1": {
-                    "key": "SLASH",
-                    "label": "\/"
+                    "key": "SPACE",
+                    "label": "[&nbsp;]"
+                },
+                "2": {
+                    "key": "SPACE",
+                    "label": "[&nbsp;]"
                 }
             }
         },
@@ -890,6 +898,10 @@
                 "1": {
                     "key": "J",
                     "label": "J"
+                },
+                "2": {
+                    "key": "DELETE",
+                    "label": "DEL"
                 }
             }
         },
@@ -1008,6 +1020,10 @@
                 "1": {
                     "key": "H",
                     "label": "H"
+                },
+                "2": {
+                    "key": "BACKSPACE",
+                    "label": "BKSP"
                 }
             }
         },
@@ -1181,6 +1197,10 @@
                 "1": {
                     "key": "K",
                     "label": "K"
+                },
+                "2": {
+                    "key": "BACKSPACE",
+                    "label": "BKSP"
                 }
             }
         },
@@ -1352,8 +1372,8 @@
                     "label": "\u21b5"
                 },
                 "2": {
-                    "key": "P0",
-                    "label": "P0"
+                    "key": "ENTER",
+                    "label": "\u21b5"
                 }
             }
         },
@@ -1371,6 +1391,10 @@
                 "1": {
                     "key": "SPACE",
                     "label": "[&nbsp;]"
+                },
+                "2": {
+                    "key": "P0",
+                    "label": "P0"
                 }
             }
         },
