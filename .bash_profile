@@ -9,10 +9,11 @@
 #git
 alias gc='git commit'
 alias gco='git checkout'
+alias gaa='git add .'
 alias gd='git diff'
 alias gba='git branch -a'
 alias gcm='git commit -m '
-alias gca='git commit -am '
+alias gcam='git commit -am '
 alias gcmerge='git commit -m "merge"'
 alias gpo='git pull origin'
 alias gPo='git push origin'
@@ -26,10 +27,12 @@ alias cpd='cap production deploy'
 
 #rails
 alias fixdb='rake db:drop db:create db:migrate db:seed'
+alias fudb='rake db:drop db:create db:migrate'
 alias fixrails='bundle
 fixdb
 rails s'
 alias rs='rails s'
+alias rc='rails c'
 #solr
 alias sunup='rake sunspot:solr:start'
 alias sundown='rake sunspot:solr:stop'
