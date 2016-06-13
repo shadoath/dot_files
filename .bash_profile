@@ -1,3 +1,4 @@
+
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
@@ -10,6 +11,7 @@
 alias gc='git commit'
 alias gco='git checkout'
 alias gaa='git add .'
+alias ga='git add'
 alias gd='git diff'
 alias gba='git branch -a'
 alias gcm='git commit -m '
@@ -20,6 +22,9 @@ alias gPo='git push origin'
 alias gs='git status'
 alias gms='git merge staging'
 alias gmm='git merge master'
+
+#GemFury
+alias gpf='git push fury master'
 
 #capistrano
 alias csd='cap staging deploy'
@@ -38,3 +43,18 @@ alias sunup='rake sunspot:solr:start'
 alias sundown='rake sunspot:solr:stop'
 alias sunburn='rake sunspot:solr:run'
 alias sunset='rake sunspot:solr:reindex'
+
+# Setting PATH for Python 3.5
+# The orginal version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+export PATH
+
+#DNS cache clear IOX 10.9
+alias clear_dns="sudo killall -HUP mDNSResponder echo DNS cleared"
+
+# test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+# Show folder in tabs
+if [ $ITERM_SESSION_ID ]; then
+  export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
+fi
