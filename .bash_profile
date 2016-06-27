@@ -3,15 +3,26 @@
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
-### Added by the Heroku Toolbelt
+alias vi=vim
+alias fucking="sudo"
 
-#export PATH="/usr/local/heroku/bin:$PATH"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+
+# ls aliases
+alias ll='ls -lh'
+alias la='ls -lah'
 
 #git
+alias gl='git log'
 alias gc='git commit'
 alias gco='git checkout'
 alias gaa='git add .'
 alias ga='git add'
+alias gr='git rm'
 alias gd='git diff'
 alias gba='git branch -a'
 alias gcm='git commit -m '
