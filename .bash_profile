@@ -1,4 +1,5 @@
 
+
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
@@ -18,6 +19,7 @@ alias la='ls -lah'
 
 #git
 alias gl='git log'
+alias gs='git status'
 alias gc='git commit'
 alias gco='git checkout'
 alias gaa='git add .'
@@ -25,14 +27,18 @@ alias ga='git add'
 alias gr='git rm'
 alias gd='git diff'
 alias gba='git branch -a'
-alias gcm='git commit -m '
 alias gcam='git commit -am '
 alias gcmerge='git commit -m "merge"'
 alias gpo='git pull origin'
 alias gPo='git push origin'
-alias gs='git status'
+alias gpom='git pull origin master'
+alias gPom='git push origin master'
+alias gpos='git pull origin staging'
+alias gPos='git push origin staging'
 alias gms='git merge staging'
 alias gmm='git merge master'
+alias gcm='git checkout master'
+alias gcs='git checkout staging'
 
 #GemFury
 alias gpf='git push fury master'
