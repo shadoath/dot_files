@@ -1,3 +1,4 @@
+
 "= initial setup
 "==================================================================================:q
   " use Vim settings, rather than Vi settings, required for Vundle
@@ -42,19 +43,24 @@
   Plugin 'vim-perl/vim-perl'                " perl syntax highlighting / indentation
   Plugin 'chriskempson/base16-vim'          " base 16 colorscheme
   Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
-  Plugin 'Valloric/YouCompleteMe'           " auto complete, son
   Plugin 'toyamarinyon/vim-swift'           " swift syntax highlighting / indent
   Plugin 'mxw/vim-jsx'                      " vim syntax highlighting / indent for jsx
   Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
   Plugin 'jordwalke/flatlandia'
-
   "Skylar's Choices"
   Plugin 'tpope/vim-rails'                  " Rails in Vim"
   Plugin 'tpope/vim-fugitive'               " Git in vim"
   Plugin 'christoomey/vim-conflicted'       " Git conflict resolution"
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection"
   Plugin 'nelstrom/vim-textobj-rubyblock'   " Expands upon 'ir' 'ar' to be used in repatition"
-  Plugin 'vim-scripts/vim-auto-save'        " auto save ftw"
+  Plugin 'Valloric/YouCompleteMe'           " auto complete, son
+  Plugin 'ervandew/supertab'                " Tab does it all.
+  Plugin 'dkprice/vim-easygrep'             " Project search
+  "Plugin 'vim-scripts/vim-auto-save'        " auto save ftw DISABLED"
+  " Plugin 'MarcWeber/vim-addon-mw-utils'     " These next three all support tab completion snipmate functionality
+  " Plugin 'tomtom/tlib_vim'
+  " Plugin 'garbas/vim-snipmate'
+  " Plugin 'honza/vim-snippets'
 
   " end Vundle init (required )"
   call vundle#end()
@@ -178,6 +184,13 @@
   " map escape key to jj -- much faster, comments above b/c of Vim's interpretation of them jumping my cursor
   imap jj <Esc>:w<cr>
 
+  " use black hole register
+  noremap x "_x
+  noremap X "_X
+
+  " map escape key to nhh -- much faster
+  nmap <leader>n <Esc>:noh<cr>
+
   " easier window navigation
   nmap <C-h> <C-w>h
   nmap <C-j> <C-w>j
@@ -197,6 +210,8 @@
   " quick reload VIMRC
   nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
+  " quick bundle
+  nmap <silent> <leader>pi :PluginInstall<CR>
   " quick switch file
   nnoremap <leader><leader> <c-^>
 
@@ -204,7 +219,8 @@
   imap <c-l> <space>=><space>
 
   " ruby tags
-  imap <C-r> <% %>jj2hi
+  imap <C-r> <% %>jjhhi
+  imap <C-b> binding.pry
 "= Plugin Settings=================================================================================
 
   "- Syntastic ------------------------------------------------------------------------------------
@@ -227,8 +243,8 @@
   autocmd FileType nerdtree setlocal relativenumber
 
   "- Tabularize  ----------------------------------------------------------------------------------
-  vmap <Leader>= :Tabularize /=<CR>
-  vmap <Leader>{ :Tabularize /{<CR>
+  " vmap <Leader>= :Tabularize /=<CR>
+  " vmap <Leader>{ :Tabularize /{<CR>
 
   "- Control-P ------------------------------------------------------------------------------------
   " Don't use caching
@@ -247,8 +263,8 @@
   let g:ackprg = 'ag --nogroup --nocolor --column'
 
   "- Rspec.vim  -----------------------------------------------------------------------------------
-  let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
-  " let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
+  " let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
+  let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
   let g:rspec_runner = 'os_x_iterm'
   map <Leader>t :call RunCurrentSpecFile()<CR>
   map <Leader>s :call RunNearestSpec()<CR>
@@ -304,6 +320,9 @@
   "- HBARS ------------------------------------------------------------------------------------
   au BufNewFile,BufRead *.hbars set ft=haml       " set syntax to haml, even tho it's not ruby, for hbars files
 
+  "- SnipMate------------------------------------------------------------------------------------
+  " imap <C-c> <Plug>snipMateNextOrTrigger
+  " inoremap <expr> pumvisible() ? "\<C-N>" : "\<C-R>=snipMate#TriggerSnippet()\<CR>"
 "= Enter Key ======================================================================================
 
   function! MapCR()
