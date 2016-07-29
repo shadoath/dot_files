@@ -1,5 +1,3 @@
-
-
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
@@ -23,6 +21,7 @@ alias gs='git status'
 alias gc='git commit'
 alias gco='git checkout'
 alias gaa='git add .'
+alias gaA='git add . --all'
 alias ga='git add'
 alias gr='git rm'
 alias gd='git diff'
@@ -55,6 +54,7 @@ fixdb
 rails s'
 alias rs='rails s'
 alias rc='rails c'
+alias rr='rake routes'
 #solr
 alias sunup='rake sunspot:solr:start'
 alias sundown='rake sunspot:solr:stop'
@@ -67,7 +67,7 @@ PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
 export PATH
 
 #DNS cache clear IOX 10.9
-alias clear_dns="sudo killall -HUP mDNSResponder echo DNS cleared"
+alias clear_dns="sudo killall -HUP mDNSResponder"
 
 # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
