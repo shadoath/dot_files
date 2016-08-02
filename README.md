@@ -3,5 +3,5 @@
 ### Used to keep my computers in sync. 
 
 ## Please feel free to use.
-###Leave comments and lets both get smarter.
+###Leave comments and let's both get smarter.
 
