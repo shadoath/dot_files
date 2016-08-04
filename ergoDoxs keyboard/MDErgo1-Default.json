@@ -362,12 +362,8 @@
             "h": 4,
             "layers": {
                 "0": {
-                    "key": "ENTER",
-                    "label": "\u21b5"
-                },
-                "1": {
-                    "key": "LGUI",
-                    "label": "LGUI"
+                    "key": "NEXT LAYER",
+                    "label": "NEXT-\u0192"
                 }
             }
         },
