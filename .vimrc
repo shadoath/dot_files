@@ -56,6 +56,7 @@
   Plugin 'Valloric/YouCompleteMe'           " auto complete, son
   Plugin 'ervandew/supertab'                " Tab does it all.
   Plugin 'dkprice/vim-easygrep'             " Project search
+  Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands
   "Plugin 'vim-scripts/vim-auto-save'        " auto save ftw DISABLED"
   " Plugin 'MarcWeber/vim-addon-mw-utils'     " These next three all support tab completion snipmate functionality
   " Plugin 'tomtom/tlib_vim'
@@ -157,10 +158,6 @@
     " colorscheme smyck      " smyck colorscheme
     " colorscheme solarized  " solarized colorscheme
     colorscheme flatlandia   " flatlandia colorscheme
-
-    let &colorcolumn=join(range(81,999),",")
-    highlight ColorColumn ctermbg=235 guibg=#2c2d27
-    highlight SignColumn ctermbg=NONE guibg=NONE gui=NONE
 
 "= Utilities ======================================================================================
 
