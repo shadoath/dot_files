@@ -55,6 +55,8 @@ rails s'
 alias rs='rails s'
 alias rc='rails c'
 alias rr='rake routes'
+alias rdbm='rake db:migrate'
+alias rdbs='rake db:seed'
 #solr
 alias sunup='rake sunspot:solr:start'
 alias sundown='rake sunspot:solr:stop'
