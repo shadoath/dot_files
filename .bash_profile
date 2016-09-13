@@ -5,6 +5,11 @@
 alias vi=vim
 alias fucking="sudo"
 
+#servers
+alias ssnr='sudo service nginx restart'
+alias RP='RAILS_ENV=production'
+alias RS='RAILS_ENV=staging'
+
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -30,6 +35,7 @@ alias gcam='git commit -am '
 alias gcN='git commit --no-verify'
 alias gpo='git pull origin'
 alias gPo='git push origin'
+alias gPoN='git push origin --no-verify'
 alias gpom='git pull origin master'
 alias gPom='git push origin master'
 alias gpos='git pull origin staging'
@@ -63,6 +69,7 @@ alias sunup='rake sunspot:solr:start'
 alias sundown='rake sunspot:solr:stop'
 alias sunburn='rake sunspot:solr:run'
 alias sunset='rake sunspot:solr:reindex'
+alias sunps='ps aux | grep solr'
 
 # Setting PATH for Python 3.5
 # The orginal version is saved in .bash_profile.pysave
