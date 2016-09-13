@@ -7,7 +7,7 @@ KLL = "0.3c";
 Date = "2015-09-12";
 Generator = "KIICONF 0.2";
 
-U"EQUALS" : flashMode();
+U"END" : flashMode();
 U"7" : U"NUMLOCK";
 U"8" : U"P/";
 U"9" : U"P*";
@@ -25,7 +25,6 @@ U"K" : U"P5";
 U"L" : U"P6";
 U"SEMICOLON" : U"P+";
 U"QUOTE" : U"P=";
-U"RALT" : U"BACKSPACE";
 U"RCTRL" : U"UP";
 U"N" : U"BACKSPACE";
 U"M" : U"P1";

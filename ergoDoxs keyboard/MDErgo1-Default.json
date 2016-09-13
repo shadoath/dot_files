@@ -24,6 +24,10 @@
                 "1": {
                     "key": "Y",
                     "label": "Y"
+                },
+                "3": {
+                    "key": "#:flashMode()",
+                    "label": "FLASH"
                 }
             }
         },
@@ -126,10 +130,6 @@
                 "1": {
                     "key": "ESCAPE",
                     "label": "ESC"
-                },
-                "2": {
-                    "key": "#:flashMode()",
-                    "label": "FLASH"
                 }
             }
         },
@@ -526,6 +526,10 @@
                 "0": {
                     "key": "END",
                     "label": "END"
+                },
+                "2": {
+                    "key": "#:flashMode()",
+                    "label": "FLASH"
                 }
             }
         },
@@ -650,6 +654,10 @@
                 "0": {
                     "key": "CONS:VOLUMEUP",
                     "label": "VOL+"
+                },
+                "3": {
+                    "key": "#:flashMode()",
+                    "label": "FLASH"
                 }
             }
         },
@@ -1038,14 +1046,6 @@
                 "0": {
                     "key": "NEXT LAYER",
                     "label": "NEXT-\u0192"
-                },
-                "1": {
-                    "key": "BACKSPACE",
-                    "label": "BKSP"
-                },
-                "2": {
-                    "key": "BACKSPACE",
-                    "label": "BKSP"
                 }
             }
         },
