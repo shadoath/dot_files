@@ -57,6 +57,7 @@
   Plugin 'dkprice/vim-easygrep'             " Project search
   Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands
   Plugin 'tpope/vim-repeat'                 " Repeat plugin commands
+  Plugin 'tpope/vim-surround'               " Change Surrounding tags
   "Plugin 'vim-scripts/vim-auto-save'        " auto save ftw DISABLED"
   " Plugin 'MarcWeber/vim-addon-mw-utils'     " These next three all support tab completion snipmate functionality
   " Plugin 'tomtom/tlib_vim'
