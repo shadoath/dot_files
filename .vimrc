@@ -52,17 +52,18 @@
   Plugin 'christoomey/vim-conflicted'       " Git conflict resolution"
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection"
   Plugin 'nelstrom/vim-textobj-rubyblock'   " Expands upon 'ir' 'ar' to be used in repatition"
+  Plugin 'ervandew/supertab'
   Plugin 'Valloric/YouCompleteMe'           " auto complete, son
-  Plugin 'ervandew/supertab'                " Tab does it all.
+  Plugin 'SirVer/ultisnips'
   Plugin 'dkprice/vim-easygrep'             " Project search
   Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands
   Plugin 'tpope/vim-repeat'                 " Repeat plugin commands
   Plugin 'tpope/vim-surround'               " Change Surrounding tags
   "Plugin 'vim-scripts/vim-auto-save'        " auto save ftw DISABLED"
-  " Plugin 'MarcWeber/vim-addon-mw-utils'     " These next three all support tab completion snipmate functionality
-  " Plugin 'tomtom/tlib_vim'
-  " Plugin 'garbas/vim-snipmate'
-  " Plugin 'honza/vim-snippets'
+  Plugin 'MarcWeber/vim-addon-mw-utils'     " These next three all support tab completion snipmate functionality
+  Plugin 'tomtom/tlib_vim'
+  Plugin 'garbas/vim-snipmate'
+  Plugin 'honza/vim-snippets'
 
   " end Vundle init (required )"
   call vundle#end()
@@ -183,7 +184,7 @@
   imap jj <Esc>:w<cr>
 
   " stupid save
-  imap :w <Esc>xx:w<cr>
+  " imap :w <Esc>xx:w<cr>
 
   " use black hole register
   noremap x "_x
@@ -243,9 +244,15 @@
   " make sure relative line numbers are used
   autocmd FileType nerdtree setlocal relativenumber
 
-  "- Tabularize  ----------------------------------------------------------------------------------
-  " vmap <Leader>= :Tabularize /=<CR>
-  " vmap <Leader>{ :Tabularize /{<CR>
+  " make" YCM compatible with UltiSnips (using supertab)
+  let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+  let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+  let g:SuperTabDefaultCompletionType = '<C-n>'
+
+  " better key bindings for UltiSnipsExpandTrigger
+  let g:UltiSnipsExpandTrigger = "<tab>"
+  let g:UltiSnipsJumpForwardTrigger = "<tab>"
+  let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
   "- Control-P ------------------------------------------------------------------------------------
   " Don't use caching
