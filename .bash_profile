@@ -2,6 +2,8 @@
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+export EDITOR=vim
+
 alias vi=vim
 alias fucking="sudo"
 
@@ -19,6 +21,7 @@ alias ......="cd ../../../../.."
 # ls aliases
 alias ll='ls -lh'
 alias la='ls -lah'
+alias ls='ls -la'
 
 #git
 alias gl='git log'
@@ -54,23 +57,25 @@ alias gpf='git push fury master'
 alias csd='cap staging deploy'
 alias cpd='cap production deploy'
 
-#rails
+#rails and rake
 alias fixdb='rake db:drop db:create db:migrate db:seed'
 alias fudb='rake db:drop db:create db:migrate'
 alias fixrails='bundle
 fixdb
 rails s'
-alias rs='rails s'
-alias rc='rails c'
 alias rr='rake routes'
 alias rdbm='rake db:migrate'
+alias rdbr='rake db:rollback'
 alias rdbs='rake db:seed'
+alias rs='rails s'
+alias rc='rails c'
+
 #solr
 alias sunup='rake sunspot:solr:start'
 alias sundown='rake sunspot:solr:stop'
 alias sunburn='rake sunspot:solr:run'
 alias sunset='rake sunspot:solr:reindex'
-alias sunps='ps aux | grep solr'
+alias suns='ps aux | grep solr'
 
 # Setting PATH for Python 3.5
 # The orginal version is saved in .bash_profile.pysave
