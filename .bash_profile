@@ -8,6 +8,8 @@ alias vi=vim
 alias fucking="sudo"
 
 #servers
+alias sshr='sudo service apache2 restart'
+alias sshr='sudo service httpd restart'
 alias ssnr='sudo service nginx restart'
 alias RP='RAILS_ENV=production'
 alias RS='RAILS_ENV=staging'
