@@ -7,6 +7,9 @@ export EDITOR=vim
 alias vi=vim
 alias fucking="sudo"
 
+alias obash="vim ~/.bash_profile"
+alias sbash="source ~/.bash_profile"
+
 #servers
 alias sshr='sudo service apache2 restart'
 alias sshr='sudo service httpd restart'
@@ -79,6 +82,10 @@ alias sunburn='rake sunspot:solr:run'
 alias sunset='rake sunspot:solr:reindex'
 alias suns='ps aux | grep solr'
 
+# Better terminal output
+source ~/.git-prompt.sh
+export PS1="$:\u \e[0;31m\W\e[m\e[0;32m\$(__git_ps1)\[\033[00m\] $\e[m "
+
 # Setting PATH for Python 3.5
 # The orginal version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
@@ -93,3 +100,9 @@ alias clear_dns="sudo killall -HUP mDNSResponder"
 if [ $ITERM_SESSION_ID ]; then
   export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
 fi
+
+# open git directory on github
+function gg() {
+ URL=$(cat .git/config | grep github | sed -E 's/^.*(github\.com):(.*)(\.git)?/http:\/\/\1\/\2/')
+  open $URL
+}
