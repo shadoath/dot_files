@@ -7,11 +7,12 @@ export EDITOR=vim
 alias vi=vim
 alias fucking="sudo"
 
+alias ovim="vim ~/.vimrc"
 alias obash="vim ~/.bash_profile"
 alias sbash="source ~/.bash_profile"
 
 #servers
-alias sshr='sudo service apache2 restart'
+alias ssar='sudo service apache2 restart'
 alias sshr='sudo service httpd restart'
 alias ssnr='sudo service nginx restart'
 alias RP='RAILS_ENV=production'
@@ -33,10 +34,11 @@ alias gl='git log'
 alias gs='git status'
 alias gc='git commit'
 alias gco='git checkout'
+alias ga='git add'
 alias gaa='git add .'
 alias gaA='git add . --all'
-alias ga='git add'
 alias gr='git rm'
+alias grv='git remote -v'
 alias gd='git diff'
 alias gba='git branch -a'
 alias gbp='git fetch origin --prune'
@@ -84,7 +86,18 @@ alias suns='ps aux | grep solr'
 
 # Better terminal output
 source ~/.git-prompt.sh
-export PS1="$:\u \e[0;31m\W\e[m\e[0;32m\$(__git_ps1)\[\033[00m\] $\e[m "
+export PS1="Bolton: \e[0;31m\W\e[m\e[0;32m\$(__git_ps1)\[\033[00m\]$\e[m "
+
+#Git autocomplete
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+   . $(brew --prefix)/etc/bash_completion
+ fi
+
+__git_complete gco _git_checkout
+__git_complete gm _git_checkout
+__git_complete gPo _git_push
+__git_complete gpo _git_pull
+
 
 # Setting PATH for Python 3.5
 # The orginal version is saved in .bash_profile.pysave
@@ -106,3 +119,7 @@ function gg() {
  URL=$(cat .git/config | grep github | sed -E 's/^.*(github\.com):(.*)(\.git)?/http:\/\/\1\/\2/')
   open $URL
 }
+### function opens new tab in same directory. if this functionality starts working again in iterm, then i will no longer need this
+function nt() {
+ open . -a iterm
+ }
