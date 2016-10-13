@@ -64,6 +64,7 @@
   Plugin 'tomtom/tlib_vim'
   Plugin 'garbas/vim-snipmate'
   Plugin 'honza/vim-snippets'
+  Plugin 'tyru/open-browser'
 
   " end Vundle init (required )"
   call vundle#end()
@@ -214,6 +215,7 @@
 
   " quick bundle
   nmap <silent> <leader>pi :PluginInstall<CR>
+  command Pie PluginInstall
   " quick switch file
   nnoremap <leader><leader> <c-^>
 
