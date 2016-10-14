@@ -17,6 +17,7 @@ alias sshr='sudo service httpd restart'
 alias ssnr='sudo service nginx restart'
 alias RP='RAILS_ENV=production'
 alias RS='RAILS_ENV=staging'
+alias RT='RAILS_ENV=test'
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -35,6 +36,7 @@ alias gs='git status'
 alias gc='git commit'
 alias gco='git checkout'
 alias ga='git add'
+alias gap='git add --patch'
 alias gaa='git add .'
 alias gaA='git add . --all'
 alias gr='git rm'
@@ -76,6 +78,7 @@ alias rdbr='rake db:rollback'
 alias rdbs='rake db:seed'
 alias rs='rails s'
 alias rc='rails c'
+alias b='bundle'
 
 #solr
 alias sunup='rake sunspot:solr:start'
