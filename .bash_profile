@@ -35,6 +35,7 @@ alias gl='git log'
 alias gs='git status'
 alias gc='git commit'
 alias gco='git checkout'
+alias gbn='git checkout -b'
 alias ga='git add'
 alias gap='git add --patch'
 alias gaa='git add .'
@@ -98,9 +99,8 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 
 __git_complete gco _git_checkout
 __git_complete gm _git_checkout
-__git_complete gPo _git_push
-__git_complete gpo _git_pull
-
+__git_complete gPo _git_checkout
+__git_complete gpo _git_checkout
 
 # Setting PATH for Python 3.5
 # The orginal version is saved in .bash_profile.pysave
@@ -124,5 +124,5 @@ function gg() {
 }
 ### function opens new tab in same directory. if this functionality starts working again in iterm, then i will no longer need this
 function nt() {
- open . -a iterm
+ open . -a 'iterm 2'
  }
