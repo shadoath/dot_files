@@ -192,7 +192,10 @@
   noremap x "_x
   noremap X "_X
 
-  " map escape key to nhh -- much faster
+  " Yank keeps spot on line
+  vnoremap y myy`y
+  vnoremap Y myY`y
+
   nmap <leader>n <Esc>:noh<cr>
 
   " easier window navigation
