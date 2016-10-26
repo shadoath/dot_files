@@ -64,7 +64,8 @@
   Plugin 'tomtom/tlib_vim'
   Plugin 'garbas/vim-snipmate'
   Plugin 'honza/vim-snippets'
-  Plugin 'tyru/open-browser'
+  Plugin 'tyru/open-browser.vim'            " Open url from vim
+  Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
 
   " end Vundle init (required )"
   call vundle#end()
@@ -212,6 +213,11 @@
   nmap <silent> <leader>ev :e $MYVIMRC<CR>
   " quick reload VIMRC
   nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
+  " Open file in github
+  nmap gtg <Plug>(openbrowser-smart-search)
+  vmap gtg <Plug>(openbrowser-smart-search)
+
 
   " quick bundle
   nmap <silent> <leader>pi :PluginInstall<CR>
