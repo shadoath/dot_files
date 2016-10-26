@@ -196,6 +196,7 @@
   vnoremap y myy`y
   vnoremap Y myY`y
 
+  " map escape key to ,n -- much faster
   nmap <leader>n <Esc>:noh<cr>
 
   " easier window navigation
@@ -224,12 +225,9 @@
 
   " quick bundle
   nmap <silent> <leader>pi :PluginInstall<CR>
-  command Pie PluginInstall
+
   " quick switch file
   nnoremap <leader><leader> <c-^>
-
-  " quick insert hashrocket
-  imap <c-l> <space>=><space>
 
   " ruby tags
   imap <C-r> <% %>jjhhi
