@@ -9,3 +9,7 @@ Leave comments and let's both get smarter.
 
 # Vim 7.4.488 Setup
 Using Vundle https://github.com/VundleVim/Vundle.vim
+
+#.bash_profile
+Oh the aliases
+
