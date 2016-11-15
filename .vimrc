@@ -1,4 +1,4 @@
-"= initial setup
+" initial setup
 "==================================================================================:q
   " use Vim settings, rather than Vi settings, required for Vundle
   set nocompatible
@@ -55,7 +55,7 @@
   Plugin 'ervandew/supertab'
   Plugin 'Valloric/YouCompleteMe'           " auto complete, son
   Plugin 'SirVer/ultisnips'
-  Plugin 'dkprice/vim-easygrep'             " Project search
+  Plugin 'rking/ag.vim'                     " Project search
   Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands
   Plugin 'tpope/vim-repeat'                 " Repeat plugin commands
   Plugin 'tpope/vim-surround'               " Change Surrounding tags
@@ -184,6 +184,9 @@
 
   " map escape key to jj -- much faster, comments above b/c of Vim's interpretation of them jumping my cursor
   imap jj <Esc>:w<cr>
+
+  " finish rails block
+  imap <leader>end <% end %>
 
   " stupid save
   " imap :w <Esc>xx:w<cr>
