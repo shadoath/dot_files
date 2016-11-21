@@ -13,6 +13,8 @@ alias fing="sudo"
 alias ovim=" vim ~/.vimrc"
 alias obash="vim ~/.bash_profile"
 alias sbash="source ~/.bash_profile; clear"
+alias bog="  bundle open"
+alias opry=" vim ~/.pryrc"
 
 #servers
 alias RP="RAILS_ENV=production"
@@ -70,9 +72,9 @@ alias gm="  git merge"
 alias gms=" git merge staging"
 alias gmm=" git merge master"
 alias gl="  git log"
-alias gl="  git log --pretty=format:"%C(Yellow)%h%C(reset) %s""
-alias glm=" git log --author="$(git config user.name)" --pretty=format:"%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s""
-alias glmt="git log --author="$(git config user.name)" --pretty=format:"[%C(green)%ar%C(reset)] %s""
+alias gl="  git log --pretty=format:'%C(Yellow)%h%C(reset) %s'"
+alias glm=" git log --author='$(git config user.name)' --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'"
+alias glmt="git log --author='$(git config user.name)' --pretty=format:'[%C(green)%ar%C(reset)] %s'"
 
 #GemFury
 alias gpf="git push fury master"
@@ -107,7 +109,7 @@ export PS1="Bolton: \e[0;31m\W\e[m\e[0;32m\$(__git_ps1)\[\033[00m\]$\e[m "
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
   __git_complete gco _git_checkout
-  __git_complete gm _git_checkout
+  __git_complete gm  _git_checkout
   __git_complete gPo _git_checkout
   __git_complete gpo _git_checkout
   __git_complete gpn _git_checkout
@@ -151,4 +153,9 @@ function prn(){
 function rsb() {
   IP=$(ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1")
   rails s -b $IP
+}
+function GO() {
+  open . -a "iterm 2" | rs
+  open . -a "iterm 2" | vim
+  open . -a "iterm 2" | gba && gpo
 }
