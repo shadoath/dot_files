@@ -151,7 +151,7 @@ function prn(){
   open "https://github.com/$USER/$REPO/compare/$BRANCH?expand=1"
 }
 function rsb() {
-  IP=$(ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1")
+  IP=$(ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1" | grep -m1 "")
   rails s -b $IP
 }
 function GO() {
