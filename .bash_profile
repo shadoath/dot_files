@@ -93,6 +93,7 @@ alias rdbr=" rake db:rollback"
 alias rdbs=" rake db:seed"
 alias fudb=" rake db:drop db:create db:migrate"
 alias fixdb="rake db:drop db:create db:migrate db:seed"
+alias adubs='rake; rubocop .'
 
 #solr
 alias sunup="  rake sunspot:solr:start"
