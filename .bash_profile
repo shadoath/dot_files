@@ -104,7 +104,7 @@ alias suns="   ps aux | grep solr"
 
 # Better terminal output
 source ~/.git-prompt.sh
-export PS1="Bolton: \e[0;31m\W\e[m\e[0;32m\$(__git_ps1)\[\033[00m\]$\e[m "
+export PS1="Bolton: \e[0;31m\W\e[m\e[0;32m\$(__git_ps1)\[\033[00m\]$ "
 
 #Git autocomplete
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -130,7 +130,7 @@ alias clear_dns="sudo killall -HUP mDNSResponder"
 
 # Show folder in tabs
 if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
-  export PROMPT_COMMAND="echo -ne "\033];${PWD##*/}\007"; ":"$PROMPT_COMMAND";
+  export PROMPT_COMMAND="echo -ne "${PWD##*/}"; ":"$PROMPT_COMMAND";
 fi
 
 # open git directory on github
