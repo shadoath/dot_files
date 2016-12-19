@@ -66,6 +66,8 @@
   Plugin 'honza/vim-snippets'
   Plugin 'tyru/open-browser.vim'            " Open url from vim
   Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
+  Plugin 'tommcdo/vim-exchange'             " Exchange text with Visual and X
+  Plugin 'tpope/vim-abolish'                " Search replace with a touch of magic
 
   " end Vundle init (required )"
   call vundle#end()
@@ -155,6 +157,10 @@
     set smartcase                " case insensitive search
     set incsearch                " incremental search
 
+  "- Movement
+  "
+  nnoremap 0 ^
+
   "- Theme ----------------------------------------------------------------------------------------
 
     set background=dark      " dark background
@@ -193,11 +199,11 @@
 
   " use black hole register
   noremap x "_x
-  noremap X "_X
+  " noremap X "_X
 
   " Yank keeps spot on line
-  vnoremap y myy`y
-  vnoremap Y myY`y
+  " vnoremap y myy`y
+  " vnoremap Y myY`y
 
   " map escape key to ,n -- much faster
   nmap <leader>n <Esc>:noh<cr>
@@ -235,6 +241,11 @@
   " ruby tags
   imap <C-r> <% %>jjhhi
   imap <C-b> binding.pry
+
+  " ,# Surround a word with #{ruby interpolation} NOT WORKING :(
+  " map <leader># ysiw#
+  " vmap <leader># c#{<C-R>"}<ESC>
+
 "= Plugin Settings=================================================================================
 
   "- Syntastic ------------------------------------------------------------------------------------
@@ -273,8 +284,23 @@
   "- JSX ------------------------------------------------------------------------------------
   let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
-  " Custom ignore paths
+  " ================ Completion =======================
+
+  set wildmode=list:longest,full
+  set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
+
+  set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+  set wildignore+=*vim/backups*
+  set wildignore+=*sass-cache*
+  set wildignore+=*DS_Store*
+  set wildignore+=vendor/rails/**
+  set wildignore+=vendor/cache/**
+  set wildignore+=*.gem
+  set wildignore+=log/**
+  set wildignore+=tmp/**
+  set wildignore+=*.png,*.jpg,*.gif
   set wildignore+=*/tmp/*,*/bin/*,*/bower_components/*,*.so,*.swp,*.zip     " MacOSX/Linux
+
   let g:ctrlp_custom_ignore = {
     \ 'dir':  'node_modules',
     \ }
@@ -283,8 +309,8 @@
   let g:ackprg = 'ag --nogroup --nocolor --column'
 
   "- Rspec.vim  -----------------------------------------------------------------------------------
-  " let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
-  let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
+  let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
+  " let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
   let g:rspec_runner = 'os_x_iterm'
   map <Leader>t :call RunCurrentSpecFile()<CR>
   map <Leader>s :call RunNearestSpec()<CR>

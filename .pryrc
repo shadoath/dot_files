@@ -1,10 +1,10 @@
+Pry.config.editor = "vim"
 if Rails
   cc = Rails.cache.clear
   Pry::Commands.block_command 'ia', "Alias for 'SaxotechImporter'" do |args|
      SaxotechImporter::Importer.import_article(args)
   end
 end
-Pry.config.editor = "vim"
 
 if defined?(PryByebug)
   Pry.commands.alias_command "c", "continue"
