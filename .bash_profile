@@ -10,11 +10,12 @@ alias f="find . |grep "
 alias p="ps aux |grep "
 alias fing="sudo"
 
-alias ovim=" vim ~/.vimrc"
-alias obash="vim ~/.bash_profile"
-alias sbash="source ~/.bash_profile; clear"
-alias bog="  bundle open"
-alias opry=" vim ~/.pryrc"
+alias oh='sudo vim /etc/hosts'
+alias ovim="  vim ~/.vimrc"
+alias obash=" vim ~/.bash_profile"
+alias sbash=" source ~/.bash_profile; clear"
+alias bog="   bundle open"
+alias opry="  vim ~/.pryrc"
 
 #servers
 alias RP="RAILS_ENV=production"
@@ -75,6 +76,7 @@ alias gl="  git log"
 alias gl="  git log --pretty=format:'%C(Yellow)%h%C(reset) %s'"
 alias glm=" git log --author='$(git config user.name)' --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'"
 alias glmt="git log --author='$(git config user.name)' --pretty=format:'[%C(green)%ar%C(reset)] %s'"
+alias overview='open "https://github.com/shadoath?tab=overview&from='$(date '+%Y-%m-%d')'"'
 
 #GemFury
 alias gpf="git push fury master"
@@ -104,7 +106,7 @@ alias suns="   ps aux | grep solr"
 
 # Better terminal output
 source ~/.git-prompt.sh
-export PS1="Bolton: \e[0;31m\W\e[m\e[0;32m\$(__git_ps1)\[\033[00m\]$ "
+export PS1="\e[1;36m\]Bolton: \e[0;31m\W\e[m\e[0;32m\$(__git_ps1)\e[0;33m\]$ \e[0;37m\]"
 
 #Git autocomplete
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -160,3 +162,28 @@ function GO() {
   open . -a "iterm 2" | vim
   open . -a "iterm 2" | gba && gpo
 }
+
+tab-color() {
+   echo -ne "\033]6;1;bg;red;brightness;$1\a"
+   echo -ne "\033]6;1;bg;green;brightness;$2\a"
+   echo -ne "\033]6;1;bg;blue;brightness;$3\a"
+}
+alias noc="tab-reset"
+tab-reset() {
+  echo -ne "\033]6;1;bg;*;default\a"
+}
+color-ssh() {
+   if [[ -n "$ITERM_SESSION_ID" ]]; then
+     if [[ "$*" == *"dev"* ]]; then
+       tab-color  255 99 71 # TomAtO
+     elif [[ "$*" == *"db"* ]]; then
+       tab-color 255 51 255 #HOT PINK
+     elif [[ "$*" == *"news"* ]] || [[ "$*" == *"nsr"* ]]; then
+       tab-color 255 51 51 # RED
+     else
+       tab-color  0 255 0 # GREEN
+     fi
+     ssh $*
+   fi
+}
+alias ssh=color-ssh
