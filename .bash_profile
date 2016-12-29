@@ -96,6 +96,9 @@ alias rdbs=" rake db:seed"
 alias fudb=" rake db:drop db:create db:migrate"
 alias fixdb="rake db:drop db:create db:migrate db:seed"
 alias adubs='rake; rubocop .'
+# Newsites
+alias rsj="RAILS_ENV=journal_dev rails s -p 3001 -P 42342"
+alias rsp="RAILS_ENV=prt_dev rails s -p 3002 -P 42344"
 
 #solr
 alias sunup="  rake sunspot:solr:start"
