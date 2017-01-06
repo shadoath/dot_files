@@ -90,21 +90,22 @@ alias b="    bundle"
 alias rs="   rails s"
 alias rc="   rails c"
 alias rr="   rake routes"
-alias rdbm=" rake db:migrate"
-alias rdbr=" rake db:rollback"
-alias rdbs=" rake db:seed"
-alias fudb=" rake db:drop db:create db:migrate"
-alias fixdb="rake db:drop db:create db:migrate db:seed"
+alias bake=" bundle exec rake"
+alias rdbm=" bake db:migrate"
+alias rdbr=" bake db:rollback"
+alias rdbs=" bake db:seed"
+alias fudb=" bake db:drop db:create db:migrate"
+alias fixdb="bake db:drop db:create db:migrate db:seed"
 alias adubs='rake; rubocop .'
 # Newsites
 alias rsj="RAILS_ENV=journal_dev rails s -p 3001 -P 42342"
 alias rsp="RAILS_ENV=prt_dev rails s -p 3002 -P 42344"
 
 #solr
-alias sunup="  rake sunspot:solr:start"
-alias sundown="rake sunspot:solr:stop"
-alias sunburn="rake sunspot:solr:run"
-alias sunset=" rake sunspot:solr:reindex"
+alias sunup="  bake sunspot:solr:start"
+alias sundown="bake sunspot:solr:stop"
+alias sunburn="bake sunspot:solr:run"
+alias sunset=" bake sunspot:solr:reindex"
 alias suns="   ps aux | grep solr"
 
 # Better terminal output
@@ -164,6 +165,12 @@ function GO() {
   open . -a "iterm 2" | rs
   open . -a "iterm 2" | vim
   open . -a "iterm 2" | gba && gpo
+}
+function sdot() {
+  cp ~/.bash_profile ~/code/dot_files/.bash_profile
+  cp ~/.vimrc ~/code/dot_files/.vimrc
+  cp ~/.pryrc ~/code/dot_files/.pryrc
+  cd ~/code/dot_files
 }
 
 tab-color() {
