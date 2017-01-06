@@ -17,15 +17,15 @@
   Plugin 'christoomey/vim-tmux-navigator'   " easy navigation b/w vim & tmux
   Plugin 'tpope/vim-commentary'             " easily use comments
   Plugin 'terryma/vim-multiple-cursors'     " multiple cursors
-  Plugin 'kchmck/vim-coffee-script'         " coffeescript syntax & indent
+  " Plugin 'kchmck/vim-coffee-script'         " coffeescript syntax & indent
   Plugin 'mileszs/ack.vim'                  " searching via :Ack
   Plugin 'vim-ruby/vim-ruby'                " ruby syntax & indent
   Plugin 'tpope/vim-markdown'               " markdown syntax & indent
   Plugin 'pangloss/vim-javascript'          " javascript syntax & indent
   Plugin 'othree/html5.vim'                 " html5 syntax & indent
-  Plugin 'tpope/vim-haml'                   " haml syntax & indent
-  Plugin 'fatih/vim-go'                     " go syntax / indent / plugins
-  Plugin 'mustache/vim-mustache-handlebars' " mustache/handlebars syntax & indent
+  " Plugin 'tpope/vim-haml'                   " haml syntax & indent
+  " Plugin 'fatih/vim-go'                     " go syntax / indent / plugins
+  " Plugin 'mustache/vim-mustache-handlebars' " mustache/handlebars syntax & indent
   Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
   Plugin 'thoughtbot/vim-rspec'             " Vim RSPEC runner
   Plugin 'benmills/vimux'                   " Vim + Tmux Goodness
@@ -115,6 +115,8 @@
     set mouse=a                  " allow mouse usage
     set clipboard=unnamed        " set default yank register to machine clipboard
 
+    set updatetime=250           " How often Vim updates the screen
+
     "folding settings
     set foldmethod=indent   "fold based on indent
     set foldnestmax=10      "deepest fold is 10 levels
@@ -158,8 +160,11 @@
     set incsearch                " incremental search
 
   "- Movement
-  "
+
   nnoremap 0 ^
+
+  "- Lazy command mode
+  nnoremap ; :
 
   "- Theme ----------------------------------------------------------------------------------------
 
