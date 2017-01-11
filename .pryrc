@@ -9,8 +9,8 @@ if Rails
   end
 
   pry_alias("cc", "Rails.cache.clear", desc: "Clear rails cache")
-  pry_alias("ia", "SaxotechImporter::Importer.import_article(args)", desc: "'SaxotechImporter.import_art'")
-  pry_alias("ig", "SaxotechImporter::Importer.import_gallery(args)", desc: "'SaxotechImporter.import_gal'")
+  pry_alias("ia", "SaxotechImporter::Importer.import_article(args)", desc: "'SaxotechImporter.import_article'")
+  pry_alias("ig", "SaxotechImporter::Importer.import_gallery(args)", desc: "'SaxotechImporter.import_gallery'")
 end
 
 if defined?(PryByebug)
