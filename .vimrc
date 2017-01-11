@@ -68,6 +68,10 @@
   Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
   Plugin 'tommcdo/vim-exchange'             " Exchange text with Visual and X
   Plugin 'tpope/vim-abolish'                " Search replace with a touch of magic
+  Plugin 'AndrewRadev/whitespaste.vim'      " Only paste the space that is needved
+  Plugin 'AndrewRadev/switch.vim'           " Swap true for false and MUCH more
+  Plugin 'AndrewRadev/splitjoin.vim'        " Multiline to single and back  gS, gJ
+  Plugin 'AndrewRadev/sideways.vim'         " Swap arguments with :SidewaysLeft and :SidewaysRight
 
   " end Vundle init (required )"
   call vundle#end()
@@ -324,6 +328,13 @@
 
   "- XMPFilter  ------------------------------------------------------------------------------------
   " map <C-b> <Plug>(xmpfilter-mark)<Plug>(xmpfilter-run)
+
+  "- Switch ---------------------------------------------------------------------------------
+  let g:switch_mapping = "-"
+
+  "- Sidways---------------------------------------------------------------------------------
+  map <Leader>s :SidewaysLeft<cr>
+  map <Leader>r :SidewaysRight<cr>
 
   "- Indent Guides ---------------------------------------------------------------------------------
   let g:indent_guides_color_change_percent = 3      " ultra-low-contrast guides
