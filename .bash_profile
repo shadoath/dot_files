@@ -8,6 +8,7 @@ alias vi=vim
 alias h="history|grep "
 alias f="find . |grep "
 alias p="ps aux |grep "
+alias a="alias  |grep "
 alias fing="sudo"
 
 alias oh='sudo vim /etc/hosts'
@@ -25,7 +26,7 @@ alias ssar="sudo service apache2 restart"
 alias sshr="sudo service httpd restart"
 alias ssnr="sudo service nginx restart"
 alias sd="  ssh deploy@dev"
-alias sp="  ssh deploy@nsr"
+alias sp="  ssh ubuntu@aws_news"
 alias retime="sudo ntpdate time.nist.gov"
 alias msttime="sudo rm /etc/localtime; sudo ln -s /usr/share/zoneinfo/America/Denver /etc/localtime"
 
@@ -96,7 +97,8 @@ alias rdbr=" bake db:rollback"
 alias rdbs=" bake db:seed"
 alias fudb=" bake db:drop db:create db:migrate"
 alias fixdb="bake db:drop db:create db:migrate db:seed"
-alias adubs='rake; rubocop .'
+alias adubs="rake; rubocop ."
+alias cop="  rubocop"
 # Newsites
 alias rsj="RAILS_ENV=journal_dev rails s -p 3001 -P 42342"
 alias rsp="RAILS_ENV=prt_dev rails s -p 3002 -P 42344"
