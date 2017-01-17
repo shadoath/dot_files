@@ -11,12 +11,13 @@ alias p="ps aux |grep "
 alias a="alias  |grep "
 alias fing="sudo"
 
-alias oh='sudo vim /etc/hosts'
-alias ovim="  vim ~/.vimrc"
-alias obash=" vim ~/.bash_profile"
-alias sbash=" source ~/.bash_profile; clear"
-alias bog="   bundle open"
-alias opry="  vim ~/.pryrc"
+alias oh='   sudo vim /etc/hosts'
+alias ossh=' sudo vim /Users/sbolton/.ssh/config'
+alias ovim=" vim ~/.vimrc"
+alias obash="vim ~/.bash_profile"
+alias sbash="source ~/.bash_profile; clear"
+alias bog="  bundle open"
+alias opry=" vim ~/.pryrc"
 
 #servers
 alias RP="RAILS_ENV=production"
@@ -97,7 +98,7 @@ alias rdbr=" bake db:rollback"
 alias rdbs=" bake db:seed"
 alias fudb=" bake db:drop db:create db:migrate"
 alias fixdb="bake db:drop db:create db:migrate db:seed"
-alias adubs="rake; rubocop ."
+alias adubs="bundle exec rspec; rubocop ."
 alias cop="  rubocop"
 # Newsites
 alias rsj="RAILS_ENV=journal_dev rails s -p 3001 -P 42342"
