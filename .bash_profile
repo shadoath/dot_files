@@ -176,6 +176,13 @@ function sdot() {
   cd ~/code/dot_files
 }
 
+function redot() {
+  cp ~/code/dot_files/.bash_profile ~/.bash_profile
+  cp ~/code/dot_files/.vimrc ~/.vimrc
+  cp ~/code/dot_files/.pryrc ~/.pryrc
+  cd ~/
+}
+
 tab-color() {
    echo -ne "\033]6;1;bg;red;brightness;$1\a"
    echo -ne "\033]6;1;bg;green;brightness;$2\a"
