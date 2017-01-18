@@ -20,9 +20,6 @@ alias bog="  bundle open"
 alias opry=" vim ~/.pryrc"
 
 #servers
-alias RP="RAILS_ENV=production"
-alias RS="RAILS_ENV=staging"
-alias RT="RAILS_ENV=test"
 alias ssar="sudo service apache2 restart"
 alias sshr="sudo service httpd restart"
 alias ssnr="sudo service nginx restart"
@@ -30,6 +27,7 @@ alias sd="  ssh deploy@dev"
 alias sp="  ssh ubuntu@aws_news"
 alias retime="sudo ntpdate time.nist.gov"
 alias msttime="sudo rm /etc/localtime; sudo ln -s /usr/share/zoneinfo/America/Denver /etc/localtime"
+alias fixtime="sudo timedatectl set-timezone America/Denver"
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -88,6 +86,9 @@ alias csd="cap staging deploy"
 alias cpd="cap production deploy"
 
 #rails and rake
+alias RP="   RAILS_ENV=production"
+alias RS="   RAILS_ENV=staging"
+alias RT="   RAILS_ENV=test"
 alias b="    bundle"
 alias rs="   rails s"
 alias rc="   rails c"
