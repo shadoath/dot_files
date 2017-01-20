@@ -207,6 +207,9 @@
   " map escape key to ,n -- much faster
   nmap <leader>n <Esc>:noh<cr>
 
+  "- Lazy macro repeat
+  nmap <leader>m @@
+
   " easier window navigation
   nmap <C-h> <C-w>h
   nmap <C-j> <C-w>j
