@@ -17,33 +17,23 @@
   Plugin 'christoomey/vim-tmux-navigator'   " easy navigation b/w vim & tmux
   Plugin 'tpope/vim-commentary'             " easily use comments
   Plugin 'terryma/vim-multiple-cursors'     " multiple cursors
-  " Plugin 'kchmck/vim-coffee-script'         " coffeescript syntax & indent
   Plugin 'mileszs/ack.vim'                  " searching via :Ack
   Plugin 'vim-ruby/vim-ruby'                " ruby syntax & indent
   Plugin 'tpope/vim-markdown'               " markdown syntax & indent
   Plugin 'pangloss/vim-javascript'          " javascript syntax & indent
   Plugin 'othree/html5.vim'                 " html5 syntax & indent
-  " Plugin 'tpope/vim-haml'                   " haml syntax & indent
   " Plugin 'fatih/vim-go'                     " go syntax / indent / plugins
-  " Plugin 'mustache/vim-mustache-handlebars' " mustache/handlebars syntax & indent
   Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
   Plugin 'thoughtbot/vim-rspec'             " Vim RSPEC runner
   Plugin 'benmills/vimux'                   " Vim + Tmux Goodness
   Plugin 'nathanaelkane/vim-indent-guides'  " Indent guides to keep your code aligned
   Plugin 'groenewege/vim-less'              " Less syntax highlighting / indentation
   Plugin 'tpope/vim-endwise'                " auto end addition in ruby
-  " Plugin 't9md/vim-ruby-xmpfilter'          " inline ruby completion
   Plugin 'wesQ3/vim-windowswap'             " window swapping
   Plugin 'bling/vim-airline'                " nice looking footer bar
-  Plugin 'wting/rust.vim'                   " rust syntax & indent
   Plugin 'godlygeek/csapprox'               " better gvim color support
-  Plugin 'guns/vim-clojure-static'          " clojure syntax highlighting / indentation
-  Plugin 'briancollins/vim-jst'             " JST / EJS syntax
-  Plugin 'vim-perl/vim-perl'                " perl syntax highlighting / indentation
   Plugin 'chriskempson/base16-vim'          " base 16 colorscheme
   Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
-  Plugin 'toyamarinyon/vim-swift'           " swift syntax highlighting / indent
-  Plugin 'mxw/vim-jsx'                      " vim syntax highlighting / indent for jsx
   Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
   Plugin 'jordwalke/flatlandia'
   "Skylar's Choices"
