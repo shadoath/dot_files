@@ -8,15 +8,11 @@
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
 
-  " Plugin 'fatih/vim-go'                     " go syntax / indent / plugins
+  Plugin 'airblade/vim-gitgutter'           " git diff in gutter
   Plugin 'andrewRadev/sideways.vim'         " Swap arguments with :SidewaysLeft and :SidewaysRight
   Plugin 'andrewRadev/splitjoin.vim'        " Multiline to single and back  gS, gJ
   Plugin 'andrewRadev/switch.vim'           " Swap true for false and MUCH more
   Plugin 'andrewRadev/whitespaste.vim'      " Only paste the space that is needved
-  Plugin 'marcWeber/vim-addon-mw-utils'     " These next three all support tab completion snipmate functionality
-  Plugin 'sirVer/ultisnips'
-  Plugin 'Valloric/YouCompleteMe'           " auto complete, son
-  Plugin 'airblade/vim-gitgutter'           " git diff in gutter
   Plugin 'benmills/vimux'                   " Vim + Tmux Goodness
   Plugin 'bling/vim-airline'                " nice looking footer bar
   Plugin 'chriskempson/base16-vim'          " base 16 colorscheme
@@ -34,6 +30,7 @@
   Plugin 'honza/vim-snippets'
   Plugin 'jordwalke/flatlandia'
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection"
+  Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
   Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
   Plugin 'mileszs/ack.vim'                  " searching via :Ack
   Plugin 'nathanaelkane/vim-indent-guides'  " Indent guides to keep your code aligned
@@ -43,6 +40,7 @@
   Plugin 'rking/ag.vim'                     " Project search
   Plugin 'scrooloose/nerdtree'              " file menu
   Plugin 'scrooloose/syntastic'             " syntax checker
+  Plugin 'sirVer/ultisnips'
   Plugin 'terryma/vim-multiple-cursors'     " multiple cursors
   Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
   Plugin 'thoughtbot/vim-rspec'             " Vim RSPEC runner
@@ -60,6 +58,7 @@
   Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands
   Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
   Plugin 'tyru/open-browser.vim'            " Open url from vim
+  Plugin 'valloric/YouCompleteMe'           " auto complete, son
   Plugin 'vim-ruby/vim-ruby'                " ruby syntax & indent
   Plugin 'wesQ3/vim-windowswap'             " window swapping
 
@@ -175,9 +174,9 @@
   autocmd BufWritePre * :%s/\s\+$//e " auto strip whitespace on save
   runtime macros/matchit.vim
   runtime macros/
-  let g:auto_save = 1  " enable AutoSave on Vim startup
+  let g:auto_save                = 1  " enable AutoSave on Vim startup
   let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
-  let g:auto_save_silent = 1  " do not display the auto-save notification
+  let g:auto_save_silent         = 1  " do not display the auto-save notification
 "= Keys ===========================================================================================
 
   let mapleader = ','                       " set <Leader>
@@ -219,10 +218,8 @@
   " kill the trailing whitespace
   nnoremap <leader>rtw :%s/\s\+$//e<CR>
 
-  " toggle Paste mode, comments above b/c of Vim's interpretation of them jumping my cursor
-  nnoremap <F6> :set paste!<cr>
-  " toggle No Highlight mode, comments above b/c of Vim's interpretation of them jumping my cursor
-  nnoremap <F7> :noh<cr>
+  " toggle Paste mode
+  nnoremap <leader>p :set paste!<cr>
 
   " quick edit VIMRC
   nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -232,7 +229,6 @@
   " Open file in github
   nmap gtg <Plug>(openbrowser-smart-search)
   vmap gtg <Plug>(openbrowser-smart-search)
-
 
   " quick bundle
   nmap <silent> <leader>pi :PluginInstall<CR>
