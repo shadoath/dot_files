@@ -10,7 +10,7 @@
 
   Plugin 'airblade/vim-gitgutter'           " git diff in gutter
   Plugin 'andrewRadev/sideways.vim'         " Swap arguments with :SidewaysLeft and :SidewaysRight
-  Plugin 'andrewRadev/splitjoin.vim'        " Multiline to single and back  gS, gJ
+  Plugin 'andrewRadev/splitjoin.vim'        " Multiline to single and back  gS, gJ  TODO Change to new key binding
   Plugin 'andrewRadev/switch.vim'           " Swap true for false and MUCH more
   Plugin 'andrewRadev/whitespaste.vim'      " Only paste the space that is needved
   Plugin 'benmills/vimux'                   " Vim + Tmux Goodness
@@ -119,6 +119,9 @@
 
     :au FocusLost *   :set norelativenumber<cr>:set number<cr>
     :au FocusGained * :set relativenumber
+
+    set modeline
+    set modelines=5
   "- Wrapping -------------------------------------------------------------------------------------
 
     set nowrap                   " don't softwrap text
@@ -140,7 +143,11 @@
 
     if has("autocmd")
       filetype indent plugin on
+      augroup bashalias
+        autocmd BufRead,BufNewFile *_aliases set filetype=sh
+      augroup END
     endif
+
     autocmd FileType html setlocal indentkeys-=*<Return>
     autocmd FileType html.handlebars setlocal indentkeys-=*<Return>
     autocmd FileType eruby setlocal indentkeys-=*<Return>
@@ -237,7 +244,6 @@
   nnoremap <leader><leader> <c-^>
 
   " ruby tags
-  imap <C-r> <% %>jjhhi
   imap <C-b> binding.pry
 
   " ,# Surround a word with #{ruby interpolation} NOT WORKING :(
@@ -322,8 +328,8 @@
   let g:switch_mapping = "-"
 
   "- Sidways---------------------------------------------------------------------------------
-  map <Leader>s :SidewaysLeft<cr>
-  map <Leader>r :SidewaysRight<cr>
+  map <Leader>S :SidewaysLeft<cr>
+  map <Leader>R :SidewaysRight<cr>
 
   "- Indent Guides ---------------------------------------------------------------------------------
   let g:indent_guides_color_change_percent = 3      " ultra-low-contrast guides
