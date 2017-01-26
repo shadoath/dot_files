@@ -1,0 +1,17 @@
+# vim: set filetype=bash
+
+alias RP="   RAILS_ENV=production"
+alias RS="   RAILS_ENV=staging"
+alias RT="   RAILS_ENV=test"
+alias b="    bundle"
+alias rs="   rails s"
+alias rc="   rails c"
+alias rr="   rake routes"
+alias bake=" bundle exec rake"
+alias rdbm=" bake db:migrate"
+alias rdbr=" bake db:rollback"
+alias rdbs=" bake db:seed"
+alias fudb=" bake db:drop db:create db:migrate"
+alias fixdb="bake db:drop db:create db:migrate db:seed"
+alias adubs="bundle exec rspec; rubocop ."
+alias cop="  rubocop"
