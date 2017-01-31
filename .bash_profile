@@ -31,11 +31,14 @@ alias retime="sudo ntpdate time.nist.gov"
 alias msttime="sudo rm /etc/localtime; sudo ln -s /usr/share/zoneinfo/America/Denver /etc/localtime"
 alias fixtime="sudo timedatectl set-timezone America/Denver"
 
+# Movement
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
+alias .......="cd ../../../../../.."
+alias ........="cd ../../../../../../.."
 
 # ls aliases
 alias ll="ls -lh"
@@ -66,18 +69,6 @@ alias suns="   ps aux | grep solr"
 # Better terminal output
 source ~/.git-prompt.sh
 export PS1="\e[1;36m\]Bolton: \e[0;31m\W\e[m\e[0;32m\$(__git_ps1)\e[0;33m\]$ \e[0;37m\]"
-
-#Git autocomplete
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-  __git_complete gco _git_checkout
-  __git_complete gm  _git_checkout
-  __git_complete gPo _git_checkout
-  __git_complete gpo _git_checkout
-  __git_complete gpn _git_checkout
-  __git_complete gbd _git_checkout
-fi
-
 
 # Setting PATH for Python 3.5
 # The orginal version is saved in .bash_profile.pysave

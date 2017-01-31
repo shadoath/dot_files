@@ -36,3 +36,17 @@ alias gl="  git log --pretty=format:'%C(Yellow)%h%C(reset) %s'"
 alias glm=" git log --author='$(git config user.name)' --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'"
 alias glmt="git log --author='$(git config user.name)' --pretty=format:'[%C(green)%ar%C(reset)] %s'"
 alias overview='open "https://github.com/shadoath?tab=overview&from='$(date '+%Y-%m-%d')'"'
+# GemFury
+alias gpf="git push fury master"
+
+# Git autocomplete
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+  __git_complete gco _git_checkout
+  __git_complete gm  _git_checkout
+  __git_complete gPo _git_checkout
+  __git_complete gpo _git_checkout
+  __git_complete gpn _git_checkout
+  __git_complete gbd _git_checkout
+fi
+
