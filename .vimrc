@@ -266,11 +266,19 @@
   " toggle NerdTree (ControlK + ControlB)
   nnoremap <C-k><C-b> :NERDTreeToggle<CR>
   let NERDTreeShowHidden     =1 " show hidden files
-  let NERDTreeQuitOnOpen     =1 " Hide NERDTree when opening a file
+  let NERDTreeQuitOnOpen     =0 " Hide NERDTree when opening a file
   let NERDTreeShowLineNumbers=1 " enable line numbers
   " make sure relative line numbers are used
   autocmd FileType nerdtree setlocal relativenumber
+  " open on vim start and newtab open
+  autocmd BufWinEnter * NERDTreeMirror
+  autocmd VimEnter * NERDTree
+  " Go to previous (last accessed) window.
+  autocmd VimEnter * wincmd p
+  " close nerdtree if it is the only window left
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+  "- YouCompleteMe-------------------------------------------------------------------------------------
   " make" YCM compatible with UltiSnips (using supertab)
   let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
   let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
