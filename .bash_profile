@@ -2,8 +2,8 @@
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+# Required
 export EDITOR=vim
-
 alias vi=vim
 alias h="history|grep "
 alias f="find . |grep "
@@ -11,6 +11,7 @@ alias p="ps aux |grep "
 alias a="alias  |grep "
 alias fing="sudo"
 
+# Quick edit
 alias oh='   sudo vim /etc/hosts'
 alias ossh=' sudo vim /Users/sbolton/.ssh/config'
 alias ovim=" vim ~/.vimrc"
@@ -19,12 +20,13 @@ alias sbash="source ~/.bash_profile; clear"
 alias bog="  bundle open"
 alias opry=" vim ~/.pryrc"
 
-#servers
-alias ssar="sudo service apache2 restart"
-alias sshr="sudo service httpd restart"
+# Servers
 alias ssnr="sudo service nginx restart"
+alias sshr="sudo service httpd restart"
+alias ssar="sudo service apache2 restart"
 alias sd="  ssh deploy@dev"
 alias sp="  ssh ubuntu@aws_news"
+# Time
 alias retime="sudo ntpdate time.nist.gov"
 alias msttime="sudo rm /etc/localtime; sudo ln -s /usr/share/zoneinfo/America/Denver /etc/localtime"
 alias fixtime="sudo timedatectl set-timezone America/Denver"
@@ -79,13 +81,11 @@ fi
 
 # Setting PATH for Python 3.5
 # The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
-export PATH
+# PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+# export PATH
 
-#DNS cache clear IOX 10.9
+#DNS cache clear ioX 10.9
 alias clear_dns="sudo killall -HUP mDNSResponder"
-
-# test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
 # Show folder in tabs
 if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
