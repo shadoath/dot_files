@@ -92,14 +92,14 @@ if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
   export PROMPT_COMMAND="echo -ne "${PWD##*/}"; ":"$PROMPT_COMMAND";
 fi
 
+### function opens new tab in same directory. if this functionality starts working again in iterm, then i will no longer need this
+function nt() {
+  open . -a "iterm 2"
+}
 # open git directory on github
 function gg() {
   URL=$(cat .git/config | grep github | sed -E "s/^.*(github\.com):(.*)(\.git)?/http:\/\/\1\/\2/")
   open $URL
-}
-### function opens new tab in same directory. if this functionality starts working again in iterm, then i will no longer need this
-function nt() {
-  open . -a "iterm 2"
 }
 function pr() {
   open "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+user%3ABallantineDigitalMedia"
@@ -110,6 +110,7 @@ function prn(){
   BRANCH=$(__git_ps1 | tr -d "()" | tr -d "[:space:]")
   open "https://github.com/$USER/$REPO/compare/$BRANCH?expand=1"
 }
+
 function rsb() {
   IP=$(ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1" | grep -m1 "")
   rails s -b $IP
@@ -119,6 +120,7 @@ function GO() {
   open . -a "iterm 2" | vim
   open . -a "iterm 2" | gba && gpo
 }
+
 function sdot() {
   cp ~/.bash_profile ~/dot_files/.bash_profile
   cp ~/.vimrc        ~/dot_files/.vimrc
@@ -127,7 +129,9 @@ function sdot() {
 }
 
 symlink() {
-  ln -sv dotfiles/$1 $1
+  cd ~
+  rm $1
+  ln -sv dot_files/$1 $1
 }
 
 tab-color() {
@@ -135,7 +139,6 @@ tab-color() {
    echo -ne "\033]6;1;bg;green;brightness;$2\a"
    echo -ne "\033]6;1;bg;blue;brightness;$3\a"
 }
-alias noc="tab-reset"
 tab-reset() {
   echo -ne "\033]6;1;bg;*;default\a"
 }
@@ -154,3 +157,4 @@ color-ssh() {
    fi
 }
 alias ssh=color-ssh
+alias noc="tab-reset"
