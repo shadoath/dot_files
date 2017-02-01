@@ -28,6 +28,7 @@
   Plugin 'groenewege/vim-less'              " Less syntax highlighting / indentation
   Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
   Plugin 'honza/vim-snippets'
+  Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
   Plugin 'jordwalke/flatlandia'
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection"
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
@@ -62,6 +63,7 @@
   Plugin 'valloric/YouCompleteMe'           " auto complete, son
   Plugin 'vim-ruby/vim-ruby'                " ruby syntax & indent
   Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects
+                                            " https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
   Plugin 'wesQ3/vim-windowswap'             " window swapping
 
   " end Vundle init (required )"
@@ -213,7 +215,7 @@
   " vnoremap Y myY`y
 
   " map escape key to ,n -- much faster
-  nmap <leader>n <Esc>:noh<cr>
+  nmap <leader>N <Esc>:noh<cr>
 
   "- Lazy macro repeat
   nmap <leader>M @@
@@ -229,6 +231,7 @@
 
   " toggle Paste mode
   nnoremap <leader>p :set paste!<cr>
+  nnoremap <leader>np :set nopaste!<cr>
 
   " quick edit VIMRC
   nmap <silent> <leader>ev :e $MYVIMRC<CR>
