@@ -54,12 +54,14 @@
   Plugin 'tpope/vim-markdown'               " markdown syntax & indent
   Plugin 'tpope/vim-rails'                  " Rails in Vim"
   Plugin 'tpope/vim-repeat'                 " Repeat plugin commands
+  Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
   Plugin 'tpope/vim-surround'               " Change Surrounding tags
   Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands
   Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
   Plugin 'tyru/open-browser.vim'            " Open url from vim
   Plugin 'valloric/YouCompleteMe'           " auto complete, son
   Plugin 'vim-ruby/vim-ruby'                " ruby syntax & indent
+  Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects
   Plugin 'wesQ3/vim-windowswap'             " window swapping
 
   " end Vundle init (required )"
@@ -214,7 +216,7 @@
   nmap <leader>n <Esc>:noh<cr>
 
   "- Lazy macro repeat
-  nmap <leader>m @@
+  nmap <leader>M @@
 
   " easier window navigation
   nmap <C-h> <C-w>h
