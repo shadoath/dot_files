@@ -54,12 +54,14 @@
   Plugin 'tpope/vim-markdown'               " markdown syntax & indent
   Plugin 'tpope/vim-rails'                  " Rails in Vim"
   Plugin 'tpope/vim-repeat'                 " Repeat plugin commands
+  Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
   Plugin 'tpope/vim-surround'               " Change Surrounding tags
   Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands
   Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
   Plugin 'tyru/open-browser.vim'            " Open url from vim
   Plugin 'valloric/YouCompleteMe'           " auto complete, son
   Plugin 'vim-ruby/vim-ruby'                " ruby syntax & indent
+  Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects
   Plugin 'wesQ3/vim-windowswap'             " window swapping
 
   " end Vundle init (required )"
@@ -214,7 +216,7 @@
   nmap <leader>n <Esc>:noh<cr>
 
   "- Lazy macro repeat
-  nmap <leader>m @@
+  nmap <leader>M @@
 
   " easier window navigation
   nmap <C-h> <C-w>h
@@ -266,11 +268,19 @@
   " toggle NerdTree (ControlK + ControlB)
   nnoremap <C-k><C-b> :NERDTreeToggle<CR>
   let NERDTreeShowHidden     =1 " show hidden files
-  let NERDTreeQuitOnOpen     =1 " Hide NERDTree when opening a file
+  let NERDTreeQuitOnOpen     =0 " Hide NERDTree when opening a file
   let NERDTreeShowLineNumbers=1 " enable line numbers
   " make sure relative line numbers are used
   autocmd FileType nerdtree setlocal relativenumber
+  " open on vim start and newtab open
+  autocmd BufWinEnter * NERDTreeMirror
+  autocmd VimEnter * NERDTree
+  " Go to previous (last accessed) window.
+  autocmd VimEnter * wincmd p
+  " close nerdtree if it is the only window left
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+  "- YouCompleteMe-------------------------------------------------------------------------------------
   " make" YCM compatible with UltiSnips (using supertab)
   let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
   let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
