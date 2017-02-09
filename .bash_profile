@@ -40,44 +40,7 @@ alias ll="ls -lh"
 alias la="ls -lah"
 alias ls="ls -la"
 
-#git                                     #Think this when Typing
-alias gs="  git status"
-alias gd="  git diff"
-alias gc="  git commit"
-alias gcam="git commit -am "
-alias gcN=" git commit --no-verify"
-alias gco=" git checkout"
-alias gbn=" git checkout -b"             #Git Branch New
-alias gcm=" git checkout master"
-alias gcs=" git checkout staging"
-alias ga="  git add"
-alias gap=" git add --patch"
-alias gaa=" git add ."
-alias gaA=" git add . --all"
-alias gr="  git rm"
-alias gu="  git unstage"
-alias grv=" git remote -v"
-alias gba=" git branch -a"
-alias gbd=" git branch -d"
-alias gbD=" git branch -D"
-alias gbp=" git fetch origin --prune"
-alias gpo=" git pull origin"
-alias gpom="git pull origin master"
-alias gpos="git pull origin staging"
-alias gPom="git push origin master"
-alias gPos="git push origin staging"
-alias gPo=" git push origin"
-alias gPoN="git push origin --no-verify"
-alias gpn=" git push --set-upstream origin --no-verify"
-alias gm="  git merge"
-alias gms=" git merge staging"
-alias gmm=" git merge master"
-alias gl="  git log"
-alias gl="  git log --pretty=format:'%C(Yellow)%h%C(reset) %s'"
-alias glm=" git log --author='$(git config user.name)' --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'"
-alias glmt="git log --author='$(git config user.name)' --pretty=format:'[%C(green)%ar%C(reset)] %s'"
-alias overview='open "https://github.com/shadoath?tab=overview&from='$(date '+%Y-%m-%d')'"'
-
+[[ -s "$HOME/dot_files/include/git_aliases" ]] && source "$HOME/dot_files/include/git_aliases" # Load the default .profile
 #GemFury
 alias gpf="git push fury master"
 
@@ -85,22 +48,8 @@ alias gpf="git push fury master"
 alias csd="cap staging deploy"
 alias cpd="cap production deploy"
 
-#rails and rake
-alias RP="   RAILS_ENV=production"
-alias RS="   RAILS_ENV=staging"
-alias RT="   RAILS_ENV=test"
-alias b="    bundle"
-alias rs="   rails s"
-alias rc="   rails c"
-alias rr="   rake routes"
-alias bake=" bundle exec rake"
-alias rdbm=" bake db:migrate"
-alias rdbr=" bake db:rollback"
-alias rdbs=" bake db:seed"
-alias fudb=" bake db:drop db:create db:migrate"
-alias fixdb="bake db:drop db:create db:migrate db:seed"
-alias adubs="bundle exec rspec; rubocop ."
-alias cop="  rubocop"
+[[ -s "$HOME/dot_files/include/rails_aliases" ]] && source "$HOME/dot_files/include/rails_aliases" # Load the default .profile
+
 # Newsites
 alias rsj="RAILS_ENV=journal_dev rails s -p 3001 -P 42342"
 alias rsp="RAILS_ENV=prt_dev rails s -p 3002 -P 42344"
@@ -171,17 +120,14 @@ function GO() {
   open . -a "iterm 2" | gba && gpo
 }
 function sdot() {
-  cp ~/.bash_profile ~/code/dot_files/.bash_profile
-  cp ~/.vimrc ~/code/dot_files/.vimrc
-  cp ~/.pryrc ~/code/dot_files/.pryrc
-  cd ~/code/dot_files
+  cp ~/.bash_profile ~/dot_files/.bash_profile
+  cp ~/.vimrc        ~/dot_files/.vimrc
+  cp ~/.pryrc        ~/dot_files/.pryrc
+  cd ~/dot_files
 }
 
-function redot() {
-  cp ~/code/dot_files/.bash_profile ~/.bash_profile
-  cp ~/code/dot_files/.vimrc ~/.vimrc
-  cp ~/code/dot_files/.pryrc ~/.pryrc
-  cd ~/
+symlink() {
+  ln -sv dotfiles/$1 $1
 }
 
 tab-color() {
@@ -196,7 +142,7 @@ tab-reset() {
 color-ssh() {
    if [[ -n "$ITERM_SESSION_ID" ]]; then
      if [[ "$*" == *"dev"* ]]; then
-       tab-color  255 99 71 # TomAtO
+       tab-color  255 99 71 # Tomato
      elif [[ "$*" == *"db"* ]]; then
        tab-color 255 51 255 #HOT PINK
      elif [[ "$*" == *"news"* ]] || [[ "$*" == *"nsr"* ]]; then
