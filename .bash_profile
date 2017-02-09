@@ -54,8 +54,9 @@ alias cpd="cap production deploy"
 [[ -s "$HOME/dot_files/include/rails_aliases" ]] && source "$HOME/dot_files/include/rails_aliases" # Load the default .profile
 
 # Newsites
-alias rsj="RAILS_ENV=journal_dev rails s -p 3001 -P 42342"
-alias rsp="RAILS_ENV=prt_dev rails s -p 3002 -P 42344"
+alias rsj="   RAILS_ENV=journal_dev rails s -p 3001 -P 42342"
+alias rsp="   RAILS_ENV=prt_dev     rails s -p 3002 -P 42344"
+alias saxo_m="bundle exec rake saxotech_importer_engine:install:migrations"
 
 #solr
 alias sunup="  bake sunspot:solr:start"
