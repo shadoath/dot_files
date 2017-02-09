@@ -47,6 +47,9 @@ alias ls="ls -la"
 
 [[ -s "$HOME/dot_files/include/git_aliases" ]] && source "$HOME/dot_files/include/git_aliases" # Load the default .profile
 
+#GemFury
+alias gpf="git push fury master"
+
 #capistrano
 alias csd="cap staging deploy"
 alias cpd="cap production deploy"
