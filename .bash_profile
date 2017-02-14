@@ -46,19 +46,29 @@ alias la="ls -lah"
 alias ls="ls -la"
 
 [[ -s "$HOME/dot_files/include/git_aliases" ]] && source "$HOME/dot_files/include/git_aliases" # Load the default .profile
-
+[[ -s "$HOME/dot_files/include/rails_aliases" ]] && source "$HOME/dot_files/include/rails_aliases" # Load the default .profile
 #GemFury
 alias gpf="git push fury master"
 
 #capistrano
 alias csd="cap staging deploy"
 alias cpd="cap production deploy"
-
-[[ -s "$HOME/dot_files/include/rails_aliases" ]] && source "$HOME/dot_files/include/rails_aliases" # Load the default .profile
+alias jcsd="cap journal_staging deploy"
+alias jcpd="cap journal_production deploy"
+alias pcsd="cap prt_staging deploy"
+alias pcpd="cap prt_production deploy"
 
 # Newsites
-alias rsj="   RAILS_ENV=journal_dev rails s -p 3001 -P 42342"
-alias rsp="   RAILS_ENV=prt_dev     rails s -p 3002 -P 42344"
+alias JRD=" RAILS_ENV=journal_dev"
+alias JRS=" RAILS_ENV=journal_staging"
+alias JRP=" RAILS_ENV=journal_production"
+alias jrs=" JRD rails s -p 3001 -P 42342"
+
+alias PRD=" RAILS_ENV=prt_dev"
+alias PRS=" RAILS_ENV=prt_staging"
+alias PRP=" RAILS_ENV=prt_production"
+alias prs=" PRD rails s -p 3002 -P 42344"
+
 alias saxo_m="bundle exec rake saxotech_importer_engine:install:migrations"
 
 #solr
