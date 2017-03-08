@@ -26,6 +26,7 @@ alias sshr="sudo service httpd restart"
 alias ssar="sudo service apache2 restart"
 alias sd="  ssh deploy@dev"
 alias sp="  ssh ubuntu@aws_news"
+alias jsp=" ssh ubuntu@aws_tj"
 # Time
 alias retime="sudo ntpdate time.nist.gov"
 alias msttime="sudo rm /etc/localtime; sudo ln -s /usr/share/zoneinfo/America/Denver /etc/localtime"
@@ -118,6 +119,9 @@ function rsb() {
   IP=$(ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1" | grep -m1 "")
   rails s -b $IP
 }
+
+
+
 function GO() {
   open . -a "iterm 2" | rs
   open . -a "iterm 2" | vim
