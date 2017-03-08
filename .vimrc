@@ -199,6 +199,7 @@
 
   " map escape key to jj -- much faster, comments above b/c of Vim's interpretation of them jumping my cursor
   imap jj <Esc>:w<cr>
+  imap nn <Esc>:w<cr>
 
   " finish rails block
   imap <leader>end <% end %>
@@ -214,7 +215,7 @@
   " vnoremap y myy`y
   " vnoremap Y myY`y
 
-  " map escape key to ,n -- much faster
+  " map escape key to ,N -- much faster
   nmap <leader>N <Esc>:noh<cr>
 
   "- Lazy macro repeat
