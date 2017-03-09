@@ -16,26 +16,26 @@
   Plugin 'benmills/vimux'                   " Vim + Tmux Goodness
   Plugin 'bling/vim-airline'                " nice looking footer bar
   Plugin 'chriskempson/base16-vim'          " base 16 colorscheme
-  Plugin 'christoomey/vim-conflicted'       " Git conflict resolution"
+  Plugin 'christoomey/vim-conflicted'       " Git conflict resolution
   Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs
   Plugin 'christoomey/vim-tmux-navigator'   " easy navigation b/w vim & tmux
   Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
   Plugin 'ervandew/supertab'
-  Plugin 'garbas/vim-snipmate'
+  Plugin 'garbas/vim-snipmate'              " expand code snippits with <tab>
   Plugin 'gmarik/Vundle.vim'                " let Vundle manage Vundle, required
   Plugin 'godlygeek/csapprox'               " better gvim color support
   Plugin 'godlygeek/tabular'                " for indentation
   Plugin 'groenewege/vim-less'              " Less syntax highlighting / indentation
   Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
-  Plugin 'honza/vim-snippets'
+  Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
   Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
   Plugin 'jordwalke/flatlandia'
-  Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection"
+  Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
   Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
   Plugin 'mileszs/ack.vim'                  " searching via :Ack
   Plugin 'nathanaelkane/vim-indent-guides'  " Indent guides to keep your code aligned
-  Plugin 'nelstrom/vim-textobj-rubyblock'   " Expands upon 'ir' 'ar' to be used in repatition"
+  Plugin 'nelstrom/vim-textobj-rubyblock'   " Expands upon 'ir' 'ar' to be used in repatition
   Plugin 'othree/html5.vim'                 " html5 syntax & indent
   Plugin 'pangloss/vim-javascript'          " javascript syntax & indent
   Plugin 'rking/ag.vim'                     " Project search
@@ -51,9 +51,9 @@
   Plugin 'tpope/vim-characterize'           " Advanced Character info with ga
   Plugin 'tpope/vim-commentary'             " easily use comments
   Plugin 'tpope/vim-endwise'                " auto end addition in ruby
-  Plugin 'tpope/vim-fugitive'               " Git in vim"
+  Plugin 'tpope/vim-fugitive'               " Git in vim
   Plugin 'tpope/vim-markdown'               " markdown syntax & indent
-  Plugin 'tpope/vim-rails'                  " Rails in Vim"
+  Plugin 'tpope/vim-rails'                  " Rails in Vim
   Plugin 'tpope/vim-repeat'                 " Repeat plugin commands
   Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
   Plugin 'tpope/vim-surround'               " Change Surrounding tags
