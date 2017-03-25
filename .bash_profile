@@ -2,6 +2,11 @@
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+# Show folder in tabs
+if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
+  # export PROMPT_COMMAND="echo -ne "${PWD##*/}"; ":"$PROMPT_COMMAND";
+  export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
+fi
 # Required
 export EDITOR=vim
 alias vi=vim
@@ -73,11 +78,12 @@ alias prs=" PRD rails s -p 3002 -P 42344"
 alias saxo_m="bundle exec rake saxotech_importer_engine:install:migrations"
 
 #solr
-alias sunup="  bake sunspot:solr:start"
-alias sundown="bake sunspot:solr:stop"
-alias sunburn="bake sunspot:solr:run"
-alias sunset=" bake sunspot:solr:reindex"
-alias suns="   ps aux | grep solr"
+alias sunup="   bake sunspot:solr:start"
+alias sundown=" bake sunspot:solr:stop"
+alias sunburn=" bake sunspot:solr:run"
+alias sunset="  bake sunspot:solr:reindex"
+alias suns="    ps aux | grep solr"
+alias sunblock='find . -type f -name write.lock -delete'
 
 # Better terminal output
 source ~/.git-prompt.sh
@@ -91,10 +97,6 @@ export PS1="\e[1;36m\]Bolton: \e[0;31m\W\e[m\e[0;32m\$(__git_ps1)\e[0;33m\]$ \e[
 #DNS cache clear ioX 10.9
 alias clear_dns="sudo killall -HUP mDNSResponder"
 
-# Show folder in tabs
-if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
-  export PROMPT_COMMAND="echo -ne "${PWD##*/}"; ":"$PROMPT_COMMAND";
-fi
 
 ### function opens new tab in same directory. if this functionality starts working again in iterm, then i will no longer need this
 function nt() {
