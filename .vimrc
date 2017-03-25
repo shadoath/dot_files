@@ -252,6 +252,9 @@
   " ruby tags
   imap <C-b> binding.pry
 
+  " Run Ag on current word
+  noremap <leader>A :Ag! -Q <C-r>=expand('<cword>')<CR><CR>
+
   " ,# Surround a word with #{ruby interpolation} NOT WORKING :(
   " map <leader># ysiw#
   " vmap <leader># c#{<C-R>"}<ESC>
@@ -277,8 +280,8 @@
   " make sure relative line numbers are used
   autocmd FileType nerdtree setlocal relativenumber
   " open on vim start and newtab open
-  autocmd BufWinEnter * NERDTreeMirror
-  autocmd VimEnter * NERDTree
+  " autocmd BufWinEnter * NERDTreeMirror
+  " autocmd VimEnter * NERDTree
   " Go to previous (last accessed) window.
   autocmd VimEnter * wincmd p
   " close nerdtree if it is the only window left
