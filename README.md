@@ -4,7 +4,15 @@ Used to keep my computers and mind in sync.
 
 ## Setup
 cd $HOME
+``` bash
 git clone $this_repo dot_files
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim :PluginInstall
+
+cd ~/.vim/bundle/YouCompleteMe
+./install.py
+```
+
 symlink the dotfiles you would like to use
 ln -sv dot_files/[
   '.bash_profile'
