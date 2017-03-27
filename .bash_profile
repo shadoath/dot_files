@@ -58,7 +58,7 @@ alias gpf="git push fury master"
 
 #capistrano
 alias csd="cap staging deploy"
-alias cpd="cap production deploy"
+alias cpd="date && cap production deploy && date"
 alias jcsd="cap journal_staging deploy"
 alias jcpd="cap journal_production deploy"
 alias pcsd="cap prt_staging deploy"
