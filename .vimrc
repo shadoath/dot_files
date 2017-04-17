@@ -5,8 +5,8 @@
   filetype off
 
   " initialize Vundle and rebuild helptags
-  set rtp+=~/.vim/bundle/Vundle.vim
-  call vundle#begin()
+  set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
+  call vundle#begin('$HOME/vimfiles/bundle/')
 
   Plugin 'airblade/vim-gitgutter'           " git diff in gutter
   Plugin 'andrewRadev/sideways.vim'         " Swap arguments with :SidewaysLeft and :SidewaysRight
@@ -41,7 +41,7 @@
   Plugin 'rking/ag.vim'                     " Project search
   Plugin 'scrooloose/nerdtree'              " file menu
   Plugin 'scrooloose/syntastic'             " syntax checker
-  Plugin 'sirVer/ultisnips'
+  " Plugin 'sirVer/ultisnips'
   Plugin 'terryma/vim-multiple-cursors'     " multiple cursors
   Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
   Plugin 'thoughtbot/vim-rspec'             " Vim RSPEC runner
@@ -60,7 +60,7 @@
   Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands
   Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
   Plugin 'tyru/open-browser.vim'            " Open url from vim
-  Plugin 'valloric/YouCompleteMe'           " auto complete, son
+  " Plugin 'valloric/YouCompleteMe'           " auto complete, son
   Plugin 'vim-ruby/vim-ruby'                " ruby syntax & indent
   Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects
                                             " https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
