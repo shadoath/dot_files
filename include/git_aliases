@@ -3,7 +3,7 @@
 alias gs="  git status"
 alias gd="  git diff"
 alias gc="  git commit"
-alias gcam="git commit -am "
+alias gcam="git commit --amend "
 alias gcN=" git commit --no-verify"
 alias gco=" git checkout"
 alias gbn=" git checkout -b"             #Git Branch New
