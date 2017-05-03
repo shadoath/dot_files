@@ -1,0 +1,53 @@
+# vim: set filetype=bash
+
+alias gs="  git status"
+alias gd="  git diff"
+alias gc="  git commit"
+alias gcam="git commit --amend "
+alias gcN=" git commit --no-verify"
+alias gco=" git checkout"
+alias gbn=" git checkout -b"             #Git Branch New
+alias gcm=" git checkout master"
+alias gcs=" git checkout staging"
+alias ga="  git add"
+alias gap=" git add --patch"
+alias gaa=" git add ."
+alias gaA=" git add . --all"
+alias gr="  git rm"
+alias gu="  git unstage"
+alias grv=" git remote -v"
+alias gb="  git branch"
+alias gba=" git branch -a"
+alias gbd=" git branch -d"
+alias gbD=" git branch -D"
+alias gbp=" git fetch origin --prune"
+alias gpo=" git pull origin"
+alias gpom="git pull origin master"
+alias gpos="git pull origin staging"
+alias gPom="git push origin master"
+alias gPos="git push origin staging"
+alias gPo=" git push origin"
+alias gPoN="git push origin --no-verify"
+alias gpn=" git push --set-upstream origin --no-verify"
+alias gm="  git merge"
+alias gms=" git merge staging"
+alias gmm=" git merge master"
+alias gl="  git log"
+alias gl="  git log --pretty=format:'%C(Yellow)%h%C(reset) %s'"
+alias glm=" git log --author='$(git config user.name)' --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'"
+alias glmt="git log --author='$(git config user.name)' --pretty=format:'[%C(green)%ar%C(reset)] %s'"
+alias overview='open "https://github.com/shadoath?tab=overview&from='$(date '+%Y-%m-%d')'"'
+# GemFury
+alias gpf="git push fury master"
+
+# Git autocomplete
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+  __git_complete gco _git_checkout
+  __git_complete gm  _git_checkout
+  __git_complete gPo _git_checkout
+  __git_complete gpo _git_checkout
+  __git_complete gpn _git_checkout
+  __git_complete gbd _git_checkout
+fi
+

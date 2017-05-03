@@ -8,70 +8,63 @@
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
 
-  Plugin 'gmarik/Vundle.vim'                " let Vundle manage Vundle, required
-  Plugin 'scrooloose/nerdtree'              " file menu
-  Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
-  Plugin 'scrooloose/syntastic'             " syntax checker
-  Plugin 'godlygeek/tabular'                " for indentation
   Plugin 'airblade/vim-gitgutter'           " git diff in gutter
-  Plugin 'christoomey/vim-tmux-navigator'   " easy navigation b/w vim & tmux
-  Plugin 'tpope/vim-commentary'             " easily use comments
-  Plugin 'terryma/vim-multiple-cursors'     " multiple cursors
-  " Plugin 'kchmck/vim-coffee-script'         " coffeescript syntax & indent
-  Plugin 'mileszs/ack.vim'                  " searching via :Ack
-  Plugin 'vim-ruby/vim-ruby'                " ruby syntax & indent
-  Plugin 'tpope/vim-markdown'               " markdown syntax & indent
-  Plugin 'pangloss/vim-javascript'          " javascript syntax & indent
-  Plugin 'othree/html5.vim'                 " html5 syntax & indent
-  " Plugin 'tpope/vim-haml'                   " haml syntax & indent
-  " Plugin 'fatih/vim-go'                     " go syntax / indent / plugins
-  " Plugin 'mustache/vim-mustache-handlebars' " mustache/handlebars syntax & indent
-  Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
-  Plugin 'thoughtbot/vim-rspec'             " Vim RSPEC runner
+  Plugin 'andrewRadev/sideways.vim'         " Swap arguments with :SidewaysLeft and :SidewaysRight
+  Plugin 'andrewRadev/splitjoin.vim'        " Multiline to single and back  gS, gJ  TODO Change to new key binding
+  Plugin 'andrewRadev/switch.vim'           " Swap true for false and MUCH more
+  " Plugin 'andrewRadev/whitespaste.vim'      " Only paste the space that is needved
   Plugin 'benmills/vimux'                   " Vim + Tmux Goodness
-  Plugin 'nathanaelkane/vim-indent-guides'  " Indent guides to keep your code aligned
-  Plugin 'groenewege/vim-less'              " Less syntax highlighting / indentation
-  Plugin 'tpope/vim-endwise'                " auto end addition in ruby
-  " Plugin 't9md/vim-ruby-xmpfilter'          " inline ruby completion
-  Plugin 'wesQ3/vim-windowswap'             " window swapping
   Plugin 'bling/vim-airline'                " nice looking footer bar
-  Plugin 'wting/rust.vim'                   " rust syntax & indent
-  Plugin 'godlygeek/csapprox'               " better gvim color support
-  Plugin 'guns/vim-clojure-static'          " clojure syntax highlighting / indentation
-  Plugin 'briancollins/vim-jst'             " JST / EJS syntax
-  Plugin 'vim-perl/vim-perl'                " perl syntax highlighting / indentation
   Plugin 'chriskempson/base16-vim'          " base 16 colorscheme
-  Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
-  Plugin 'toyamarinyon/vim-swift'           " swift syntax highlighting / indent
-  Plugin 'mxw/vim-jsx'                      " vim syntax highlighting / indent for jsx
-  Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
-  Plugin 'jordwalke/flatlandia'
-  "Skylar's Choices"
-  Plugin 'tpope/vim-rails'                  " Rails in Vim"
-  Plugin 'tpope/vim-fugitive'               " Git in vim"
-  Plugin 'christoomey/vim-conflicted'       " Git conflict resolution"
-  Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection"
-  Plugin 'nelstrom/vim-textobj-rubyblock'   " Expands upon 'ir' 'ar' to be used in repatition"
+  Plugin 'christoomey/vim-conflicted'       " Git conflict resolution
+  Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs
+  Plugin 'christoomey/vim-tmux-navigator'   " easy navigation b/w vim & tmux
+  Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
   Plugin 'ervandew/supertab'
-  Plugin 'Valloric/YouCompleteMe'           " auto complete, son
-  Plugin 'SirVer/ultisnips'
+  Plugin 'garbas/vim-snipmate'              " expand code snippits with <tab>
+  Plugin 'gmarik/Vundle.vim'                " let Vundle manage Vundle, required
+  Plugin 'godlygeek/csapprox'               " better gvim color support
+  Plugin 'godlygeek/tabular'                " for indentation
+  Plugin 'groenewege/vim-less'              " Less syntax highlighting / indentation
+  Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
+  Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
+  Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
+  Plugin 'jordwalke/flatlandia'
+  Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
+  Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
+  Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
+  Plugin 'mileszs/ack.vim'                  " searching via :Ack
+  Plugin 'nathanaelkane/vim-indent-guides'  " Indent guides to keep your code aligned
+  Plugin 'nelstrom/vim-textobj-rubyblock'   " Expands upon 'ir' 'ar' to be used in repatition
+  Plugin 'othree/html5.vim'                 " html5 syntax & indent
+  Plugin 'pangloss/vim-javascript'          " javascript syntax & indent
   Plugin 'rking/ag.vim'                     " Project search
-  Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands
-  Plugin 'tpope/vim-repeat'                 " Repeat plugin commands
-  Plugin 'tpope/vim-surround'               " Change Surrounding tags
-  Plugin 'tpope/vim-characterize'           " Advanced Character info with ga
-  Plugin 'MarcWeber/vim-addon-mw-utils'     " These next three all support tab completion snipmate functionality
-  Plugin 'tomtom/tlib_vim'
-  Plugin 'garbas/vim-snipmate'
-  Plugin 'honza/vim-snippets'
-  Plugin 'tyru/open-browser.vim'            " Open url from vim
-  Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
+  Plugin 'scrooloose/nerdtree'              " file menu
+  Plugin 'scrooloose/syntastic'             " syntax checker
+  Plugin 'sirVer/ultisnips'
+  Plugin 'terryma/vim-multiple-cursors'     " multiple cursors
+  Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
+  Plugin 'thoughtbot/vim-rspec'             " Vim RSPEC runner
   Plugin 'tommcdo/vim-exchange'             " Exchange text with Visual and X
+  Plugin 'tomtom/tlib_vim'
   Plugin 'tpope/vim-abolish'                " Search replace with a touch of magic
-  Plugin 'AndrewRadev/whitespaste.vim'      " Only paste the space that is needved
-  Plugin 'AndrewRadev/switch.vim'           " Swap true for false and MUCH more
-  Plugin 'AndrewRadev/splitjoin.vim'        " Multiline to single and back  gS, gJ
-  Plugin 'AndrewRadev/sideways.vim'         " Swap arguments with :SidewaysLeft and :SidewaysRight
+  Plugin 'tpope/vim-characterize'           " Advanced Character info with ga
+  Plugin 'tpope/vim-commentary'             " easily use comments
+  Plugin 'tpope/vim-endwise'                " auto end addition in ruby
+  Plugin 'tpope/vim-fugitive'               " Git in vim
+  Plugin 'tpope/vim-markdown'               " markdown syntax & indent
+  Plugin 'tpope/vim-rails'                  " Rails in Vim
+  Plugin 'tpope/vim-repeat'                 " Repeat plugin commands
+  Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
+  Plugin 'tpope/vim-surround'               " Change Surrounding tags
+  Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands
+  Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
+  Plugin 'tyru/open-browser.vim'            " Open url from vim
+  Plugin 'valloric/YouCompleteMe'           " auto complete, son
+  Plugin 'vim-ruby/vim-ruby'                " ruby syntax & indent
+  Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects
+                                            " https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
+  Plugin 'wesQ3/vim-windowswap'             " window swapping
 
   " end Vundle init (required )"
   call vundle#end()
@@ -130,6 +123,9 @@
 
     :au FocusLost *   :set norelativenumber<cr>:set number<cr>
     :au FocusGained * :set relativenumber
+
+    set modeline
+    set modelines=5
   "- Wrapping -------------------------------------------------------------------------------------
 
     set nowrap                   " don't softwrap text
@@ -151,7 +147,11 @@
 
     if has("autocmd")
       filetype indent plugin on
+      augroup bashalias
+        autocmd BufRead,BufNewFile *_aliases set filetype=sh
+      augroup END
     endif
+
     autocmd FileType html setlocal indentkeys-=*<Return>
     autocmd FileType html.handlebars setlocal indentkeys-=*<Return>
     autocmd FileType eruby setlocal indentkeys-=*<Return>
@@ -185,9 +185,9 @@
   autocmd BufWritePre * :%s/\s\+$//e " auto strip whitespace on save
   runtime macros/matchit.vim
   runtime macros/
-  let g:auto_save = 1  " enable AutoSave on Vim startup
+  let g:auto_save                = 1  " enable AutoSave on Vim startup
   let g:auto_save_in_insert_mode = 0  " do not save while in insert mode
-  let g:auto_save_silent = 1  " do not display the auto-save notification
+  let g:auto_save_silent         = 1  " do not display the auto-save notification
 "= Keys ===========================================================================================
 
   let mapleader = ','                       " set <Leader>
@@ -214,8 +214,11 @@
   " vnoremap y myy`y
   " vnoremap Y myY`y
 
-  " map escape key to ,n -- much faster
-  nmap <leader>n <Esc>:noh<cr>
+  " map escape key to ,N -- much faster
+  nmap <leader>N <Esc>:noh<cr>
+
+  "- Lazy macro repeat
+  nmap <leader>M @@
 
   " easier window navigation
   nmap <C-h> <C-w>h
@@ -226,10 +229,9 @@
   " kill the trailing whitespace
   nnoremap <leader>rtw :%s/\s\+$//e<CR>
 
-  " toggle Paste mode, comments above b/c of Vim's interpretation of them jumping my cursor
-  nnoremap <F6> :set paste!<cr>
-  " toggle No Highlight mode, comments above b/c of Vim's interpretation of them jumping my cursor
-  nnoremap <F7> :noh<cr>
+  " toggle Paste mode
+  nnoremap <leader>p :set paste!<cr>
+  nnoremap <leader>np :set nopaste!<cr>
 
   " quick edit VIMRC
   nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -240,7 +242,6 @@
   nmap gtg <Plug>(openbrowser-smart-search)
   vmap gtg <Plug>(openbrowser-smart-search)
 
-
   " quick bundle
   nmap <silent> <leader>pi :PluginInstall<CR>
 
@@ -248,8 +249,10 @@
   nnoremap <leader><leader> <c-^>
 
   " ruby tags
-  imap <C-r> <% %>jjhhi
   imap <C-b> binding.pry
+
+  " Run Ag on current word
+  noremap <leader>A :Ag! -Q <C-r>=expand('<cword>')<CR><CR>
 
   " ,# Surround a word with #{ruby interpolation} NOT WORKING :(
   " map <leader># ysiw#
@@ -270,12 +273,20 @@
   "- NerdTree -------------------------------------------------------------------------------------
   " toggle NerdTree (ControlK + ControlB)
   nnoremap <C-k><C-b> :NERDTreeToggle<CR>
-  let NERDTreeShowHidden=1      " show hidden files
-  let NERDTreeQuitOnOpen = 1    " Hide NERDTree when opening a file
+  let NERDTreeShowHidden     =1 " show hidden files
+  let NERDTreeQuitOnOpen     =0 " Hide NERDTree when opening a file
   let NERDTreeShowLineNumbers=1 " enable line numbers
   " make sure relative line numbers are used
   autocmd FileType nerdtree setlocal relativenumber
+  " open on vim start and newtab open
+  " autocmd BufWinEnter * NERDTreeMirror
+  " autocmd VimEnter * NERDTree
+  " Go to previous (last accessed) window.
+  autocmd VimEnter * wincmd p
+  " close nerdtree if it is the only window left
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+  "- YouCompleteMe-------------------------------------------------------------------------------------
   " make" YCM compatible with UltiSnips (using supertab)
   let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
   let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
@@ -311,15 +322,15 @@
   set wildignore+=*/tmp/*,*/bin/*,*/bower_components/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
   let g:ctrlp_custom_ignore = {
-    \ 'dir':  'node_modules',
-    \ }
-
+    \ 'dir':  '\.git\|bin\|log\|public\|solr\|tmp\|vendor\|node_modules',
+    \ 'file': '\.DS_Store\|\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.min\.js$' }
+  "
   "- Ack ------------------------------------------------------------------------------------------
-  let g:ackprg = 'ag --nogroup --nocolor --column'
+  let g:ackprg = 'ag --nogroup --color --column'
 
   "- Rspec.vim  -----------------------------------------------------------------------------------
-  let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
-  " let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
+  " let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
+  let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
   let g:rspec_runner = 'os_x_iterm'
   map <Leader>t :call RunCurrentSpecFile()<CR>
   map <Leader>s :call RunNearestSpec()<CR>
@@ -333,8 +344,8 @@
   let g:switch_mapping = "-"
 
   "- Sidways---------------------------------------------------------------------------------
-  map <Leader>s :SidewaysLeft<cr>
-  map <Leader>r :SidewaysRight<cr>
+  map <Leader>S :SidewaysLeft<cr>
+  map <Leader>R :SidewaysRight<cr>
 
   "- Indent Guides ---------------------------------------------------------------------------------
   let g:indent_guides_color_change_percent = 3      " ultra-low-contrast guides

@@ -2,15 +2,22 @@
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
+# Show folder in tabs
+if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
+  # export PROMPT_COMMAND="echo -ne "${PWD##*/}"; ":"$PROMPT_COMMAND";
+  export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
+fi
+# Required
 export EDITOR=vim
-
 alias vi=vim
 alias h="history|grep "
 alias f="find . |grep "
 alias p="ps aux |grep "
 alias a="alias  |grep "
+alias c="clear"
 alias fing="sudo"
 
+# Quick edit
 alias oh='   sudo vim /etc/hosts'
 alias ossh=' sudo vim /Users/sbolton/.ssh/config'
 alias ovim=" vim ~/.vimrc"
@@ -19,137 +26,96 @@ alias sbash="source ~/.bash_profile; clear"
 alias bog="  bundle open"
 alias opry=" vim ~/.pryrc"
 
-#servers
-alias RP="RAILS_ENV=production"
-alias RS="RAILS_ENV=staging"
-alias RT="RAILS_ENV=test"
-alias ssar="sudo service apache2 restart"
-alias sshr="sudo service httpd restart"
+# Servers
 alias ssnr="sudo service nginx restart"
+alias sshr="sudo service httpd restart"
+alias ssar="sudo service apache2 restart"
+alias saws="ssh ec2-user@aws"
 alias sd="  ssh deploy@dev"
 alias sp="  ssh ubuntu@aws_news"
+alias jsp=" ssh ubuntu@aws_tj"
+# Time
 alias retime="sudo ntpdate time.nist.gov"
 alias msttime="sudo rm /etc/localtime; sudo ln -s /usr/share/zoneinfo/America/Denver /etc/localtime"
+alias fixtime="sudo timedatectl set-timezone America/Denver"
 
+# Movement
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
+alias .......="cd ../../../../../.."
+alias ........="cd ../../../../../../.."
 
 # ls aliases
 alias ll="ls -lh"
 alias la="ls -lah"
 alias ls="ls -la"
 
-#git                                     #Think this when Typing
-alias gs="  git status"
-alias gd="  git diff"
-alias gc="  git commit"
-alias gcam="git commit -am "
-alias gcN=" git commit --no-verify"
-alias gco=" git checkout"
-alias gbn=" git checkout -b"             #Git Branch New
-alias gcm=" git checkout master"
-alias gcs=" git checkout staging"
-alias ga="  git add"
-alias gap=" git add --patch"
-alias gaa=" git add ."
-alias gaA=" git add . --all"
-alias gr="  git rm"
-alias gu="  git unstage"
-alias grv=" git remote -v"
-alias gba=" git branch -a"
-alias gbd=" git branch -d"
-alias gbD=" git branch -D"
-alias gbp=" git fetch origin --prune"
-alias gpo=" git pull origin"
-alias gpom="git pull origin master"
-alias gpos="git pull origin staging"
-alias gPom="git push origin master"
-alias gPos="git push origin staging"
-alias gPo=" git push origin"
-alias gPoN="git push origin --no-verify"
-alias gpn=" git push --set-upstream origin --no-verify"
-alias gm="  git merge"
-alias gms=" git merge staging"
-alias gmm=" git merge master"
-alias gl="  git log"
-alias gl="  git log --pretty=format:'%C(Yellow)%h%C(reset) %s'"
-alias glm=" git log --author='$(git config user.name)' --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'"
-alias glmt="git log --author='$(git config user.name)' --pretty=format:'[%C(green)%ar%C(reset)] %s'"
-alias overview='open "https://github.com/shadoath?tab=overview&from='$(date '+%Y-%m-%d')'"'
-
+[[ -s "$HOME/dot_files/include/git_aliases" ]] && source "$HOME/dot_files/include/git_aliases" # Load the default .profile
+[[ -s "$HOME/dot_files/include/rails_aliases" ]] && source "$HOME/dot_files/include/rails_aliases" # Load the default .profile
 #GemFury
 alias gpf="git push fury master"
 
 #capistrano
-alias csd="cap staging deploy"
-alias cpd="cap production deploy"
+alias csd=" cap staging deploy"
+alias cpd=" date && cap production deploy && date"
+alias cpdl="date && cap production deploy launch=true && date"
+alias cpdL="cap production deploy:symlink:launch_release resque:stop solr:stop solr:start resque:start deploy:restart_nginx deploy:cleanup"
 
-#rails and rake
-alias b="    bundle"
-alias rs="   rails s"
-alias rc="   rails c"
-alias rr="   rake routes"
-alias bake=" bundle exec rake"
-alias rdbm=" bake db:migrate"
-alias rdbr=" bake db:rollback"
-alias rdbs=" bake db:seed"
-alias fudb=" bake db:drop db:create db:migrate"
-alias fixdb="bake db:drop db:create db:migrate db:seed"
-alias adubs="bundle exec rspec; rubocop ."
-alias cop="  rubocop"
+alias jcsd=" cap journal_staging deploy"
+alias jcpd=" date && cap journal_production deploy && date"
+alias jcpdl="date && cap journal_production deploy launch=true && date"
+alias jcpdL="cap journal_production deploy:symlink:launch_release resque:stop solr:stop solr:start resque:start deploy:restart_nginx deploy:cleanup"
+
+alias pcsd=" cap prt_staging deploy"
+alias pcpd=" date && cap prt_production deploy && date"
+alias pcpdl="date && cap prt_production deploy launch=true && date"
+alias pcpdL="cap prt_production deploy:symlink:launch_release resque:stop solr:stop solr:start resque:start deploy:restart_nginx deploy:cleanup"
+
 # Newsites
-alias rsj="RAILS_ENV=journal_dev rails s -p 3001 -P 42342"
-alias rsp="RAILS_ENV=prt_dev rails s -p 3002 -P 42344"
+alias JRD=" RAILS_ENV=journal_dev"
+alias JRS=" RAILS_ENV=journal_staging"
+alias JRP=" RAILS_ENV=journal_production"
+alias jrs=" JRD rails s -p 3001 -P 42342"
+
+alias PRD=" RAILS_ENV=prt_dev"
+alias PRS=" RAILS_ENV=prt_staging"
+alias PRP=" RAILS_ENV=prt_production"
+alias prs=" PRD rails s -p 3002 -P 42344"
+
+alias saxo_m="bundle exec rake saxotech_importer_engine:install:migrations"
 
 #solr
-alias sunup="  bake sunspot:solr:start"
-alias sundown="bake sunspot:solr:stop"
-alias sunburn="bake sunspot:solr:run"
-alias sunset=" bake sunspot:solr:reindex"
-alias suns="   ps aux | grep solr"
+alias sunup="   bake sunspot:solr:start"
+alias sundown=" bake sunspot:solr:stop"
+alias sunburn=" bake sunspot:solr:run"
+alias sunset="  bake sunspot:solr:reindex"
+alias suns="    ps aux | grep solr"
+alias sunblock='find . -type f -name write.lock -delete'
 
 # Better terminal output
 source ~/.git-prompt.sh
 export PS1="\e[1;36m\]Bolton: \e[0;31m\W\e[m\e[0;32m\$(__git_ps1)\e[0;33m\]$ \e[0;37m\]"
 
-#Git autocomplete
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-  __git_complete gco _git_checkout
-  __git_complete gm  _git_checkout
-  __git_complete gPo _git_checkout
-  __git_complete gpo _git_checkout
-  __git_complete gpn _git_checkout
-  __git_complete gbd _git_checkout
-fi
-
-
 # Setting PATH for Python 3.5
 # The orginal version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
-export PATH
+# PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+# export PATH
 
-#DNS cache clear IOX 10.9
+#DNS cache clear ioX 10.9
 alias clear_dns="sudo killall -HUP mDNSResponder"
 
-# test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
-# Show folder in tabs
-if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
-  export PROMPT_COMMAND="echo -ne "${PWD##*/}"; ":"$PROMPT_COMMAND";
-fi
-
+### function opens new tab in same directory. if this functionality starts working again in iterm, then i will no longer need this
+function nt() {
+  open . -a "iterm 2"
+}
 # open git directory on github
 function gg() {
   URL=$(cat .git/config | grep github | sed -E "s/^.*(github\.com):(.*)(\.git)?/http:\/\/\1\/\2/")
   open $URL
-}
-### function opens new tab in same directory. if this functionality starts working again in iterm, then i will no longer need this
-function nt() {
-  open . -a "iterm 2"
 }
 function pr() {
   open "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+user%3ABallantineDigitalMedia"
@@ -160,27 +126,31 @@ function prn(){
   BRANCH=$(__git_ps1 | tr -d "()" | tr -d "[:space:]")
   open "https://github.com/$USER/$REPO/compare/$BRANCH?expand=1"
 }
+
 function rsb() {
   IP=$(ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1" | grep -m1 "")
   rails s -b $IP
 }
+
+
+
 function GO() {
   open . -a "iterm 2" | rs
   open . -a "iterm 2" | vim
   open . -a "iterm 2" | gba && gpo
 }
+
 function sdot() {
-  cp ~/.bash_profile ~/code/dot_files/.bash_profile
-  cp ~/.vimrc ~/code/dot_files/.vimrc
-  cp ~/.pryrc ~/code/dot_files/.pryrc
-  cd ~/code/dot_files
+  cp ~/.bash_profile ~/dot_files/.bash_profile
+  cp ~/.vimrc        ~/dot_files/.vimrc
+  cp ~/.pryrc        ~/dot_files/.pryrc
+  cd ~/dot_files
 }
 
-function redot() {
-  cp ~/code/dot_files/.bash_profile ~/.bash_profile
-  cp ~/code/dot_files/.vimrc ~/.vimrc
-  cp ~/code/dot_files/.pryrc ~/.pryrc
-  cd ~/
+symlink() {
+  cd ~
+  rm $1
+  ln -sv dot_files/$1 $1
 }
 
 tab-color() {
@@ -188,14 +158,13 @@ tab-color() {
    echo -ne "\033]6;1;bg;green;brightness;$2\a"
    echo -ne "\033]6;1;bg;blue;brightness;$3\a"
 }
-alias noc="tab-reset"
 tab-reset() {
   echo -ne "\033]6;1;bg;*;default\a"
 }
 color-ssh() {
    if [[ -n "$ITERM_SESSION_ID" ]]; then
      if [[ "$*" == *"dev"* ]]; then
-       tab-color  255 99 71 # TomAtO
+       tab-color  255 99 71 # Tomato
      elif [[ "$*" == *"db"* ]]; then
        tab-color 255 51 255 #HOT PINK
      elif [[ "$*" == *"news"* ]] || [[ "$*" == *"nsr"* ]]; then
@@ -207,3 +176,4 @@ color-ssh() {
    fi
 }
 alias ssh=color-ssh
+alias noc="tab-reset"
