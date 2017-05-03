@@ -19,6 +19,7 @@ alias grv=" git remote -v"
 alias gb="  git branch"
 alias gba=" git branch -a"
 alias gbd=" git branch -d"
+alias gbdm='git branch --merged | egrep -v "(^\*|master|staging)" | xargs git branch -d'
 alias gbD=" git branch -D"
 alias gbp=" git fetch origin --prune"
 alias gpo=" git pull origin"
