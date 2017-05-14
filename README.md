@@ -1,6 +1,6 @@
 # .files
 You know the files under ~/ that begin with .
-Used to keep my computers and mind in sync.
+Keeps my computers and mind in sync.
 
 ## Setup
 cd $HOME
@@ -15,23 +15,21 @@ cd ~/.vim/bundle/YouCompleteMe
 
 symlink the dotfiles you would like to use
 ln -sv dot_files/[
-  '.bash_profile'
-  '.vimrc'
-  '.git-completion.bash'
-  '.git-prompt.sh'
-  '.pryrc'
-]
+  '.bash_profile',
+  '.vimrc',
+  '.git-completion.bash',
+  '.git-prompt.sh',
+  '.pryrc']
 
-after my .bash_profile reached 200+ lines it was split into the includes folder.
+## Includes
+.bash_profile is kepts small by spliting into multiple files in the includes folder.
+*git_aliass* and *rails_aliases*
+
 
 #### Also ErgoDocs keyboard layout using Colemak
 
 ### Please feel free to use.
 Leave comments and let's both get smarter.
 
-# Vim 7.4.488 Setup
-Using Vundle https://github.com/VundleVim/Vundle.vim
-
 #.bash_profile
 Oh the aliases
-
