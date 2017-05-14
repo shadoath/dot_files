@@ -14,6 +14,7 @@ alias h="history|grep "
 alias f="find . |grep "
 alias p="ps aux |grep "
 alias a="alias  |grep "
+alias c="clear"
 alias fing="sudo"
 
 # Quick edit
@@ -29,6 +30,7 @@ alias opry=" vim ~/.pryrc"
 alias ssnr="sudo service nginx restart"
 alias sshr="sudo service httpd restart"
 alias ssar="sudo service apache2 restart"
+alias saws="ssh ec2-user@aws"
 alias sd="  ssh deploy@dev"
 alias sp="  ssh ubuntu@aws_news"
 alias jsp=" ssh ubuntu@aws_tj"
@@ -57,12 +59,20 @@ alias ls="ls -la"
 alias gpf="git push fury master"
 
 #capistrano
-alias csd="cap staging deploy"
-alias cpd="date && cap production deploy && date"
-alias jcsd="cap journal_staging deploy"
-alias jcpd="cap journal_production deploy"
-alias pcsd="cap prt_staging deploy"
-alias pcpd="cap prt_production deploy"
+alias csd=" cap staging deploy"
+alias cpd=" date && cap production deploy && date"
+alias cpdl="date && cap production deploy launch=true && date"
+alias cpdL="cap production deploy:symlink:launch_release resque:stop solr:stop solr:start resque:start deploy:restart_nginx deploy:cleanup"
+
+alias jcsd=" cap journal_staging deploy"
+alias jcpd=" date && cap journal_production deploy && date"
+alias jcpdl="date && cap journal_production deploy launch=true && date"
+alias jcpdL="cap journal_production deploy:symlink:launch_release resque:stop solr:stop solr:start resque:start deploy:restart_nginx deploy:cleanup"
+
+alias pcsd=" cap prt_staging deploy"
+alias pcpd=" date && cap prt_production deploy && date"
+alias pcpdl="date && cap prt_production deploy launch=true && date"
+alias pcpdL="cap prt_production deploy:symlink:launch_release resque:stop solr:stop solr:start resque:start deploy:restart_nginx deploy:cleanup"
 
 # Newsites
 alias JRD=" RAILS_ENV=journal_dev"

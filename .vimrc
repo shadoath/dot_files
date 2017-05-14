@@ -199,7 +199,6 @@
 
   " map escape key to jj -- much faster, comments above b/c of Vim's interpretation of them jumping my cursor
   imap jj <Esc>:w<cr>
-  imap nn <Esc>:w<cr>
 
   " finish rails block
   imap <leader>end <% end %>
@@ -323,15 +322,15 @@
   set wildignore+=*/tmp/*,*/bin/*,*/bower_components/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
   let g:ctrlp_custom_ignore = {
-    \ 'dir':  'node_modules',
-    \ }
-
+    \ 'dir':  '\.git\|bin\|log\|public\|solr\|tmp\|vendor\|node_modules',
+    \ 'file': '\.DS_Store\|\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.min\.js$' }
+  "
   "- Ack ------------------------------------------------------------------------------------------
-  let g:ackprg = 'ag --nogroup --nocolor --column'
+  let g:ackprg = 'ag --nogroup --color --column'
 
   "- Rspec.vim  -----------------------------------------------------------------------------------
-  let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
-  " let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
+  " let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
+  let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
   let g:rspec_runner = 'os_x_iterm'
   map <Leader>t :call RunCurrentSpecFile()<CR>
   map <Leader>s :call RunNearestSpec()<CR>
