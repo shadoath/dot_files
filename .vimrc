@@ -168,7 +168,7 @@
   nnoremap 0 ^
 
   "- Lazy command mode
-  nnoremap ; :
+  " nnoremap ; :
 
   "- Theme ----------------------------------------------------------------------------------------
 
@@ -253,6 +253,7 @@
 
   " Run Ag on current word
   noremap <leader>A :Ag! -Q <C-r>=expand('<cword>')<CR><CR>
+  " nnoremap :a<CR> :Ag! -Q <C-r>=expand('<cword>')<CR><CR>
 
   " ,# Surround a word with #{ruby interpolation} NOT WORKING :(
   " map <leader># ysiw#
@@ -276,6 +277,8 @@
   let NERDTreeShowHidden     =1 " show hidden files
   let NERDTreeQuitOnOpen     =0 " Hide NERDTree when opening a file
   let NERDTreeShowLineNumbers=1 " enable line numbers
+  nmap <leader>O :NERDTreeFind<CR>
+
   " make sure relative line numbers are used
   autocmd FileType nerdtree setlocal relativenumber
   " open on vim start and newtab open
