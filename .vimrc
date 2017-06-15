@@ -202,7 +202,6 @@
 
   " finish rails block
   imap <leader>end <% end %>
-
   " stupid save
   " imap :w <Esc>xx:w<cr>
 
@@ -210,6 +209,8 @@
   noremap x "_x
   " noremap X "_X
 
+  nmap <leader>b <C-w>11>
+  nmap <leader>B <C-w>11<
   " Yank keeps spot on line
   " vnoremap y myy`y
   " vnoremap Y myY`y
@@ -219,6 +220,8 @@
 
   "- Lazy macro repeat
   nmap <leader>M @@
+  nmap <leader>. @@
+  " nnoremap <buffer> <leader>. :call MacroDo(input('Param: '))<CR>
 
   " easier window navigation
   nmap <C-h> <C-w>h
@@ -368,6 +371,11 @@
 
   "- Golang ---------------------------------------------------------------------------------------
   let g:go_fmt_command = 'goimports'     " use gofmt on save w/ go commands (from go plugin)
+
+  " com -nargs=1 H call WebHeader(<f-args>)
+  " function! WebHeader(size)
+  "   exe ':s/\(.*\)/<H' . a:size . '>\1<\/H' . a:size . '>/'
+  " endfunction
 
   function! ExecuteGoCode()              " for running Golang on enter
     exec ":!clear && go run " . @%
