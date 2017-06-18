@@ -80,8 +80,12 @@
     filetype indent on           " enable loading 'indent files' for filetypes
 
     set synmaxcol=400            " no syntax highlighting for lines longer than 200 cols
+    set history=9001             " History is important.
+    set undolevels=1000          " Oops saftey
 
     set laststatus=2             " show status bar
+    set showmatch                "
+    set matchtime=2
 
     set visualbell               " use visual bell
     set number                   " display line numbers
@@ -256,6 +260,7 @@
 
   " Run Ag on current word
   noremap <leader>A :Ag! -Q <C-r>=expand('<cword>')<CR><CR>
+  nnoremap <leader>H :help <C-r>=expand('<cword>')<CR><CR>
   " nnoremap :a<CR> :Ag! -Q <C-r>=expand('<cword>')<CR><CR>
 
   " ,# Surround a word with #{ruby interpolation} NOT WORKING :(
@@ -325,6 +330,8 @@
   set wildignore+=log/**
   set wildignore+=tmp/**
   set wildignore+=*.png,*.jpg,*.gif
+  set wildignore+=*.min.css
+  set wildignore+=*.min.js
   set wildignore+=*/tmp/*,*/bin/*,*/bower_components/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
   let g:ctrlp_custom_ignore = {
