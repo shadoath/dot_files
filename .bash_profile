@@ -7,6 +7,10 @@ if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
   # export PROMPT_COMMAND="echo -ne "${PWD##*/}"; ":"$PROMPT_COMMAND";
   export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
 fi
+# don't put duplicate lines or lines starting with space in the history.
+HISTCONTROL=ignoreboth
+shopt -s histappend dotglob
+
 
 # Required
 export EDITOR=vim
