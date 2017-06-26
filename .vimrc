@@ -17,7 +17,7 @@
   Plugin 'bling/vim-airline'                " nice looking footer bar
   Plugin 'chriskempson/base16-vim'          " base 16 colorscheme
   Plugin 'christoomey/vim-conflicted'       " Git conflict resolution
-  Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs
+  Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
   Plugin 'christoomey/vim-tmux-navigator'   " easy navigation b/w vim & tmux
   Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
   Plugin 'ervandew/supertab'
