@@ -1,5 +1,5 @@
 # .files
-You know the files under ~/ that begin with a .
+You know, the basic files under ~/ that begin with a .
 
 Used to keep my computers and mind in sync.
 
@@ -15,9 +15,9 @@ vim +PluginInstall +qall
 cd ~/.vim/bundle/YouCompleteMe
 ./install.py
 ```
-You will also need `cmake` installed
+You will also need `cmake` installed.
 
-symlink the dotfiles you would like to use
+symlink the dotfiles you would like to use:
 ```
 ln -sv dot_files/[
   '.bash_profile'
@@ -29,12 +29,12 @@ ln -sv dot_files/[
 ```
 
 View the /includes folder for extended functionality.
-* Functions       --  New terminals, Pull requests, tab-color, and IP binding
+* Functions --------- New terminals, Pull requests, tab-color, and IP binding.
   * Aliases
-    * Capistrano  -- Deploying Rails
-    * Git         -- Short and sweet is the way to git. Also auto complete branch names
-    * Rails       -- ENV, custom ports, bake and more
-    * Solr        -- Tell the sun what to do
+    * Capistrano ---- Deploying Rails.
+    * Git ----------- Short and sweet is the way to git. Also auto complete branch names.
+    * Rails --------- ENV, custom ports, bake and more.
+    * Solr ---------- Tell the sun what to do.
 
 ### [ErgoDocs keyboard](https://input.club/configurator-ergodox/) layout using [Colemak](https://colemak.com/Learn)
 
