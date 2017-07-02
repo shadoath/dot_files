@@ -173,6 +173,8 @@
   "- Movement
 
   nnoremap 0 ^
+  nnoremap <tab> :<C-U>call <SNR>20_Match_wrapper('',1,'n') <CR>
+  vnoremap <tab> :<C-U>call <SNR>20_Match_wrapper('',1,'v') <CR>m'gv``
 
   "- Lazy command mode
   " nnoremap ; :

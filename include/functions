@@ -54,8 +54,8 @@ tab-reset() {
 }
 color-ssh() {
    if [[ -n "$ITERM_SESSION_ID" ]]; then
-     if [[ "$*" == *"dev"* ]]; then
-       tab-color  255 99 71 # Tomato
+     if [[ "$*" == *"dev"* ]] || [[ "$*" == *"34.209.33.85"* ]]; then
+       tab-color  0 128 255 # BLUE
      elif [[ "$*" == *"db"* ]]; then
        tab-color 255 51 255 #HOT PINK
      elif [[ "$*" == *"news"* ]] || [[ "$*" == *"nsr"* ]]; then
