@@ -83,6 +83,7 @@
     set synmaxcol=400            " no syntax highlighting for lines longer than 200 cols
     set history=9001             " History is important.
     set undolevels=1000          " Oops saftey
+    " set undofile
 
     set laststatus=2             " show status bar
     set showmatch                "
@@ -95,6 +96,7 @@
     set background=dark          " Dark background
     set laststatus=2             " Fix for statusbar toggling
     set encoding=utf-8           " Fix special character encoding
+    scriptencoding utf-8
     set t_Co=256                 " MOAR COLORS
 
     "set cursorline               " show cursor line
@@ -174,6 +176,10 @@
 
   "- Lazy command mode
   " nnoremap ; :
+  "
+  " Unsudo my screen
+  nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
+
 
   "- Theme ----------------------------------------------------------------------------------------
 
@@ -328,6 +334,8 @@
 
   " ================ Completion =======================
 
+  set list
+  set listchars=tab:▸\
   set wildmode=list:longest,full
   set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
 
@@ -355,11 +363,11 @@
   "- Rspec.vim  -----------------------------------------------------------------------------------
   " let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
   let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
-  let g:rspec_runner = 'os_x_iterm'
-  map <Leader>t :call RunCurrentSpecFile()<CR>
-  map <Leader>s :call RunNearestSpec()<CR>
-  map <Leader>l :call RunLastSpec()<CR>
-  map <Leader>a :call RunAllSpecs()<CR>
+  let g:rspec_runner  = 'os_x_iterm'
+  " map <Leader>t :call RunCurrentSpecFile()<CR>
+  " map <Leader>s :call RunNearestSpec()<CR>
+  " map <Leader>l :call RunLastSpec()<CR>
+  " map <Leader>a :call RunAllSpecs()<CR>
 
   "- XMPFilter  ------------------------------------------------------------------------------------
   " map <C-b> <Plug>(xmpfilter-mark)<Plug>(xmpfilter-run)
