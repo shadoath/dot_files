@@ -24,7 +24,8 @@
   Plugin 'garbas/vim-snipmate'              " expand code snippits with <tab>
   Plugin 'gmarik/Vundle.vim'                " let Vundle manage Vundle, required
   Plugin 'godlygeek/csapprox'               " better gvim color support
-  Plugin 'godlygeek/tabular'                " for indentation
+  " Plugin 'godlygeek/tabular'                " for indentation
+  Plugin 'tommcdo/vim-lion'                  " For more better indentation
   Plugin 'groenewege/vim-less'              " Less syntax highlighting / indentation
   Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
   Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
@@ -268,6 +269,16 @@
   " vmap <leader># c#{<C-R>"}<ESC>
 
 "= Plugin Settings=================================================================================
+
+  " if exists(":Tabularize")
+  "   nmap <Leader>a= :Tabularize /=<CR>
+  "   vmap <Leader>a= :Tabularize /=<CR>
+  "   nmap <Leader>a: :Tabularize /:\zsl1<CR>
+  "   vmap <Leader>a: :Tabularize /:\zsl1<CR>
+  "   nmap <Leader>a, :Tabularize /,\zsl1<CR>
+  "   vmap <Leader>a, :Tabularize /,\zsl1<CR>
+
+  " endif
 
   "- Syntastic ------------------------------------------------------------------------------------
   let g:syntastic_mode_map={ 'mode': 'active',
