@@ -257,6 +257,9 @@
   nnoremap <leader>p :set paste!<cr>
   nnoremap <leader>np :set nopaste!<cr>
 
+  " Select the last pasted text
+  nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+
   " quick edit VIMRC
   nmap <silent> <leader>ev :e $MYVIMRC<CR>
   " quick reload VIMRC
@@ -426,6 +429,10 @@
   function! ExecuteRustCode()
     exec ':Shell rustc ' . @% . ' -o file && ./file'
   endfunction
+
+  "- MD
+  "Markdown-----------------------------------------------------------------------------------
+  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
   "- ES6---------------------------------------------------------------------------------------
   autocmd BufRead,BufNewFile *.es6 setfiletype javascript
