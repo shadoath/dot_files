@@ -1,6 +1,6 @@
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session
 
 # Show folder in tabs
 if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
