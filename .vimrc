@@ -83,7 +83,8 @@
     set synmaxcol=400            " no syntax highlighting for lines longer than 200 cols
     set history=9001             " History is important.
     set undolevels=1000          " Oops saftey
-    " set undofile
+    set undofile
+    set undodir=~/.vim/undo_dir
 
     set laststatus=2             " show status bar
     set showmatch                "
@@ -99,7 +100,7 @@
     scriptencoding utf-8
     set t_Co=256                 " MOAR COLORS
 
-    "set cursorline               " show cursor line
+    set cursorline cursorcolumn  " set the crosshairs
     set ruler                    " cursor position in the lower right corner
 
     match ErrorMsg '\s\+$'       " highlight trailing whitespace
@@ -241,6 +242,10 @@
   nmap <C-j> <C-w>j
   nmap <C-k> <C-w>k
   nmap <C-l> <C-w>l
+
+  " Crosshair mode
+  nnoremap <Leader>ch :set cursorline! cursorcolumn!<CR>
+
 
   " kill the trailing whitespace
   nnoremap <leader>rtw :%s/\s\+$//e<CR>
