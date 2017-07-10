@@ -20,6 +20,7 @@
   Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
   Plugin 'christoomey/vim-tmux-navigator'   " easy navigation b/w vim & tmux
   Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
+  Plugin 'dahu/vim-fanfingtastic'           " Extend tT and fF to multiple lines
   Plugin 'ervandew/supertab'
   Plugin 'garbas/vim-snipmate'              " expand code snippits with <tab>
   Plugin 'gmarik/Vundle.vim'                " let Vundle manage Vundle, required
