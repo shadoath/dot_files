@@ -31,6 +31,7 @@
   Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
   Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
   Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
+  Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
   Plugin 'jordwalke/flatlandia'
   Plugin 'johngrib/vim-game-code-break'     " Pong for Vim, just run :VimGameCodeBreak
   Plugin 'justinmk/vim-sneak'               " Sneaky movement s{char}{char}
@@ -433,7 +434,7 @@
 
   "- MD
   "Markdown-----------------------------------------------------------------------------------
-  autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+  autocmd BufNewFile,BufReadPost *.md set filetype=ghmarkdown
 
   "- ES6---------------------------------------------------------------------------------------
   autocmd BufRead,BufNewFile *.es6 setfiletype javascript
