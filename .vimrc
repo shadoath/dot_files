@@ -96,11 +96,26 @@ let s:bundle_dir = $v.'/bundle'
     filetype plugin on           " enable loading plugins for filetypes
     filetype indent on           " enable loading 'indent files' for filetypes
 
-    set synmaxcol=400            " no syntax highlighting for lines longer than 200 cols
-    set history=9001             " History is important.
-    set undolevels=1000          " Oops saftey
+    set synmaxcol=200            " no syntax highlighting for lines longer than 200 cols
+    set titlestring   =VIM:\ %f
+
+
+    " backup settings
+    set backup
+    set backupext =-vimbackup
+    set backupdir =$v/files/backup
+    set directory =$v/files/swap//
+
+    " undo settings
     set undofile
-    set undodir=~/.vim/undo_dir
+    set history    =501          " History is important.
+    set undolevels =501          " Oops saftey
+    set undodir    =$v/files/undo
+    set viewdir    =$v/files/view
+
+    " Vim settings between close and open
+    set viminfo ='100,/42,:100,n$v/files/info/viminfo
+    " https://stackoverflow.com/a/23036077/1418337
 
     set laststatus=2             " show status bar
     set showmatch                "
@@ -163,6 +178,7 @@ let s:bundle_dir = $v.'/bundle'
     set smartindent              "   ↑ but do it smartly
     set smarttab                 " <Tab> in front of a line inserts 'shiftwidth' blanks
     set shiftwidth=2             "   ↑ use 2 blanks for above
+    set shiftround               " Round indent to multiple of shiftwidth
     set tabstop=2                " display a <Tab> as 2 spaces
     set softtabstop=2            " use 2 spaces for a <Tab>
     set expandtab
