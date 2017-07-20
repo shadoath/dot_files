@@ -1,3 +1,15 @@
+" OS setup
+
+let s:is_win = has('win32')
+let $v = $HOME.(s:is_win ? '\vimfiles' : '/.vim')
+
+if s:is_win
+  set shell=cmd.exe
+  set shellcmdflag=/c
+  set encoding=utf-8
+endif
+
+let s:bundle_dir = $v.'/bundle'
 " initial setup
 "==================================================================================:q
   " use Vim settings, rather than Vi settings, required for Vundle
