@@ -207,8 +207,8 @@ let s:bundle_dir = $v.'/bundle'
 
   nnoremap 0 ^
   vnoremap 0 ^
-  nnoremap <tab> :<C-U>call <SNR>20_Match_wrapper('',1,'n') <CR>
-  vnoremap <tab> :<C-U>call <SNR>20_Match_wrapper('',1,'v') <CR>m'gv``
+  " nnoremap <tab> :<C-U>call <SNR>20_Match_wrapper('',1,'n') <CR>
+  " vnoremap <tab> :<C-U>call <SNR>20_Match_wrapper('',1,'v') <CR>m'gv``
 
   "- Lazy command mode
   " nnoremap ; :
@@ -407,10 +407,10 @@ let s:bundle_dir = $v.'/bundle'
   " let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
   let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
   let g:rspec_runner  = 'os_x_iterm'
-  " map <Leader>t :call RunCurrentSpecFile()<CR>
-  " map <Leader>s :call RunNearestSpec()<CR>
+  map <Leader>t :call RunCurrentSpecFile()<CR>
+  map <Leader>s :call RunNearestSpec()<CR>
   " map <Leader>l :call RunLastSpec()<CR>
-  " map <Leader>a :call RunAllSpecs()<CR>
+  map <Leader>a :call RunAllSpecs()<CR>
 
   "- XMPFilter  ------------------------------------------------------------------------------------
   " map <C-b> <Plug>(xmpfilter-mark)<Plug>(xmpfilter-run)
