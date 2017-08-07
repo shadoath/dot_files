@@ -28,6 +28,11 @@ ln -sv dot_files/[
 ]
 ```
 
+Set up vim folders:
+```
+mkdir ~/.vim/files/{backup,info,swap,undo}
+```
+
 View the /includes folder for extended functionality.
 * Functions --------- New terminals, Pull requests, tab-color, and IP binding.
   * Aliases
@@ -38,4 +43,4 @@ View the /includes folder for extended functionality.
 
 ### [ErgoDocs keyboard](https://input.club/configurator-ergodox/) layout using [Colemak](https://colemak.com/Learn)
 
-### Please comment and let's both get smarter.
+### Comment and let's both get smarter.
