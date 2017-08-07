@@ -33,21 +33,22 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'christoomey/vim-tmux-navigator'   " easy navigation b/w vim & tmux
   Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
   Plugin 'dahu/vim-fanfingtastic'           " Extend tT and fF to multiple lines
+  Plugin 'elixir-lang/vim-elixir'
   Plugin 'ervandew/supertab'
   Plugin 'garbas/vim-snipmate'              " expand code snippits with <tab>
   Plugin 'gmarik/Vundle.vim'                " let Vundle manage Vundle, required
   Plugin 'godlygeek/csapprox'               " better gvim color support
   " Plugin 'godlygeek/tabular'                " for indentation
-  Plugin 'tommcdo/vim-lion'                  " For more better indentation
   Plugin 'groenewege/vim-less'              " Less syntax highlighting / indentation
   Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
   Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
   Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
-  Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
-  Plugin 'jordwalke/flatlandia'
   Plugin 'johngrib/vim-game-code-break'     " Pong for Vim, just run :VimGameCodeBreak
+  Plugin 'jordwalke/flatlandia'
+  Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
   Plugin 'justinmk/vim-sneak'               " Sneaky movement s{char}{char}
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
+  Plugin 'lifepillar/vim-cheat40'           " 40 column cheat sheet, open with <leader>?
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
   Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
   Plugin 'mileszs/ack.vim'                  " searching via :Ack
@@ -58,6 +59,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'rking/ag.vim'                     " Project search
   Plugin 'scrooloose/nerdtree'              " file menu
   Plugin 'scrooloose/syntastic'             " syntax checker
+  Plugin 'tommcdo/vim-lion'                  " For more better indentation
   " Plugin 'sirVer/ultisnips'
   Plugin 'terryma/vim-multiple-cursors'     " multiple cursors
   Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
