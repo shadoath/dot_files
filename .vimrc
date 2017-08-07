@@ -96,7 +96,7 @@ let s:bundle_dir = $v.'/bundle'
     filetype plugin on           " enable loading plugins for filetypes
     filetype indent on           " enable loading 'indent files' for filetypes
 
-    set synmaxcol=200            " no syntax highlighting for lines longer than 200 cols
+    set synmaxcol=266            " no syntax highlighting for lines longer than 266 cols
     set titlestring   =VIM:\ %f
 
 
@@ -104,7 +104,7 @@ let s:bundle_dir = $v.'/bundle'
     set backup
     set backupext =-vimbackup
     set backupdir =$v/files/backup
-    set directory =$v/files/swap//
+    set directory =$v/files/swap// " Adding two // tells vim to use % stucture: %code%4flag%config%deploy.rb
 
     " undo settings
     set undofile
@@ -114,7 +114,7 @@ let s:bundle_dir = $v.'/bundle'
     set viewdir    =$v/files/view
 
     " Vim settings between close and open
-    set viminfo ='100,/42,:100,n$v/files/info/viminfo
+    set viminfo ='100,<50,s10,h,n$v/files/info/viminfo
     " https://stackoverflow.com/a/23036077/1418337
 
     set laststatus=2             " show status bar
