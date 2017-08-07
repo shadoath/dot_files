@@ -307,6 +307,7 @@ let s:bundle_dir = $v.'/bundle'
 
   " ruby tags
   imap <C-b> binding.pry
+  nnoremap <leader>bp O<% binding.pry %><esc>
 
   " Run Ag on current word
   noremap <leader>A :Ag! -Q <C-r>=expand('<cword>')<CR><CR>
