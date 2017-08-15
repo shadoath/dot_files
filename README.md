@@ -19,7 +19,7 @@ You will also need `cmake` installed.
 
 symlink the dotfiles you would like to use:
 ```
-ln -sv dot_files/[
+ln -s dot_files/[
   '.bash_profile'
   '.vimrc'
   '.git-completion.bash'
