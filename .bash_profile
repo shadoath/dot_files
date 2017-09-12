@@ -24,7 +24,7 @@ alias fing="sudo"
 
 # Quick edit
 alias oh='   sudo vim /etc/hosts'
-alias ossh=' sudo vim /Users/sbolton/.ssh/config'
+alias ossh=' sudo vim ~/.ssh/config'
 alias ovim=" vim ~/.vimrc"
 alias obash="vim ~/.bash_profile"
 alias sbash="source ~/.bash_profile; clear"
@@ -68,8 +68,17 @@ alias ls="ls -la"
 #[[ -s "$HOME/dot_files/include/_aliases" ]] && source "$HOME/dot_files/include/_aliases"
 
 # Better terminal output
+cyan=$(tput setaf 6) #36
+white=$(tput setaf 7) #37
+red=$(tput setaf 1)  #31
+green=$(tput setaf 2) #32
+yellow=$(tput setaf 3) #33
+
 source ~/.git-prompt.sh
-export PS1="\e[1;36m\]Bolton: \e[0;31m\W\e[m\e[0;32m\$(__git_ps1)\e[0;33m\]$ \e[0;37m\]"
+#export PS1="\e[1;36m\]Bolton: \e[0;31m\W\e[m\e[0;32m\$(__git_ps1)\e[0;33m\]$ \e[0;37m\]"
+# correct PS1 so it doesn't overwrite long command lines and now does word wrap
+# allow for generic user instead of hard coding
+export PS1="[$cyan\]`whoami`: \[$red\]\W\[\e[m\]\[$green\]\$(__git_ps1):\[$yellow\]\$ \[$white\]"
 
 #DNS cache clear ioX 10.9
 alias clear_dns="sudo killall -HUP mDNSResponder"
