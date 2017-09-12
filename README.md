@@ -25,6 +25,7 @@ ln -s dot_files/[
   '.git-completion.bash'
   '.git-prompt.sh'
   '.pryrc'
+  '.agignore'
 ]
 ```
 
