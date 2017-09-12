@@ -407,8 +407,8 @@ let s:bundle_dir = $v.'/bundle'
   let g:ackprg = 'ag --nogroup --color --column'
 
   "- Rspec.vim  -----------------------------------------------------------------------------------
-  " let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
-  let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
+  let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
+  " let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
   let g:rspec_runner  = 'os_x_iterm'
   map <Leader>t :call RunCurrentSpecFile()<CR>
   map <Leader>s :call RunNearestSpec()<CR>
