@@ -24,7 +24,7 @@ alias fing="sudo"
 
 # Quick edit
 alias oh='   sudo vim /etc/hosts'
-alias ossh=' sudo vim /Users/sbolton/.ssh/config'
+alias ossh=' sudo vim ~/.ssh/config'
 alias ovim=" vim ~/.vimrc"
 alias obash="vim ~/.bash_profile"
 alias sbash="source ~/.bash_profile; clear"
