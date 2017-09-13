@@ -11,7 +11,6 @@ fi
 HISTCONTROL=ignoreboth
 shopt -s histappend dotglob
 
-
 # Required
 export EDITOR=vim
 alias vi=vim
@@ -75,9 +74,7 @@ green=$(tput setaf 2) #32
 yellow=$(tput setaf 3) #33
 
 source ~/.git-prompt.sh
-#export PS1="\e[1;36m\]Bolton: \e[0;31m\W\e[m\e[0;32m\$(__git_ps1)\e[0;33m\]$ \e[0;37m\]"
-# correct PS1 so it doesn't overwrite long command lines and now does word wrap
-# allow for generic user instead of hard coding
+# PS1 uses [] so it doesn't overwrite long command lines and now does word wrap
 export PS1="\[$cyan\]`whoami` \[$red\]\W\[\e[m\]\[$green\]\$(__git_ps1)\[$yellow\]\$ \[$white\]"
 
 #DNS cache clear ioX 10.9
