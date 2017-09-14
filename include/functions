@@ -20,6 +20,16 @@ function prn(){
   open "https://github.com/$USER/$REPO/compare/$BRANCH?expand=1"
 }
 
+# yml sync
+function ymlP() {
+  REPO=$(basename -s .git `git config --get remote.origin.url`)
+  aws s3 cp config/application.yml s3://ballantine-dev/YMLs/$REPO/application.yml --sse
+}
+function yml() {
+  REPO=$(basename -s .git `git config --get remote.origin.url`)
+  aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml config/application.yml
+}
+
 function rsb() {
   IP=$(ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1" | grep -m1 "")
   rails s -b $IP
