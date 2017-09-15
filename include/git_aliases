@@ -1,10 +1,11 @@
 # vim: set filetype=bash
 
 alias gs="  git status"
-alias gd="  git diff"
+alias gd="  clear && git diff"
 alias gc="  git commit"
 alias gcam="git commit --amend "
 alias gcN=" git commit --no-verify"
+alias N="--no-verify"
 alias gco=" git checkout"
 alias gbn=" git pull origin && git checkout -b"
 alias gcm=" git checkout master"
