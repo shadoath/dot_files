@@ -1,5 +1,3 @@
-[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
-
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session
 
 # Show folder in tabs
@@ -46,7 +44,6 @@ alias msttime="sudo rm /etc/localtime; sudo ln -s /usr/share/zoneinfo/America/De
 alias fixtime="sudo timedatectl set-timezone America/Denver"
 
 # Movement
-alias cdg="cd ~/git"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -54,6 +51,8 @@ alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 alias .......="cd ../../../../../.."
 alias ........="cd ../../../../../../.."
+alias cdg="cd ~/git"
+alias cdd="cd ~/dot_files"
 
 # ls aliases
 alias ll="ls -lh"
