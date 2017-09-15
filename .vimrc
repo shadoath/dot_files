@@ -11,7 +11,7 @@ endif
 
 let s:bundle_dir = $v.'/bundle'
 " initial setup
-"==================================================================================:q
+"==================================================================================
   " use Vim settings, rather than Vi settings, required for Vundle
   set nocompatible
   filetype off
@@ -207,6 +207,9 @@ let s:bundle_dir = $v.'/bundle'
 
   "- Movement
 
+  nnoremap <Home> ^
+  vnoremap <Home> ^
+  inoremap <Home> <esc>^i
   nnoremap 0 ^
   vnoremap 0 ^
   " nnoremap <tab> :<C-U>call <SNR>20_Match_wrapper('',1,'n') <CR>
