@@ -10,14 +10,24 @@ function gg() {
   URL=$(cat .git/config | grep github | sed -E "s/^.*(github\.com):(.*)(\.git)?/http:\/\/\1\/\2/")
   open $URL
 }
-function pr() {
+function lpr() {
   open "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+user%3ABallantineDigitalMedia"
 }
-function prn(){
+function pr(){
   USER=$(cat .git/config | grep github | sed -E "s/^.*(github\.com):(.*)\/(.*)\.git?/\2/")
   REPO=$(cat .git/config | grep github | sed -E "s/^.*(github\.com):(.*)\/(.*)\.git?/\3/")
   BRANCH=$(__git_ps1 | tr -d "()" | tr -d "[:space:]")
   open "https://github.com/$USER/$REPO/compare/$BRANCH?expand=1"
+}
+
+# yml sync
+function ymlP() {
+  REPO=$(basename -s .git `git config --get remote.origin.url`)
+  aws s3 cp config/application.yml s3://ballantine-dev/YMLs/$REPO/application.yml --sse
+}
+function yml() {
+  REPO=$(basename -s .git `git config --get remote.origin.url`)
+  aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml config/application.yml
 }
 
 function rsb() {
