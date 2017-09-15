@@ -24,6 +24,7 @@ ln -s dot_files/[
   '.vimrc'
   '.git-completion.bash'
   '.git-prompt.sh'
+  '.gitignore_global'
   '.pryrc'
   '.agignore'
 ]
