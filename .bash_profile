@@ -1,6 +1,7 @@
-[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
-
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session
+
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # Show folder in tabs
 if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
@@ -19,6 +20,7 @@ alias f="find . |grep "
 alias p="ps aux |grep "
 alias a="alias  |grep "
 alias c="clear"
+alias bs="bundle show |grep "
 alias fing="sudo"
 
 # Quick edit
@@ -29,6 +31,7 @@ alias obash="vim ~/.bash_profile"
 alias sbash="source ~/.bash_profile; clear"
 alias bog="  bundle open"
 alias opry=" vim ~/.pryrc"
+
 
 # Servers
 alias ssnr="sudo service nginx restart"
@@ -53,6 +56,7 @@ alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 alias .......="cd ../../../../../.."
 alias ........="cd ../../../../../../.."
+alias cdd="  cd ~/dot_files"
 
 # ls aliases
 alias ll="ls -lh"
@@ -76,6 +80,3 @@ yellow=$(tput setaf 3) #33
 source ~/.git-prompt.sh
 # PS1 uses [] so it doesn't overwrite long command lines and now does word wrap
 export PS1="\[$cyan\]`whoami` \[$red\]\W\[\e[m\]\[$green\]\$(__git_ps1)\[$yellow\]\$ \[$white\]"
-
-#DNS cache clear ioX 10.9
-alias clear_dns="sudo killall -HUP mDNSResponder"
