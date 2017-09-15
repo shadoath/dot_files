@@ -46,6 +46,7 @@ alias msttime="sudo rm /etc/localtime; sudo ln -s /usr/share/zoneinfo/America/De
 alias fixtime="sudo timedatectl set-timezone America/Denver"
 
 # Movement
+alias cdg="cd ~/git"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
