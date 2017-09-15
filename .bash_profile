@@ -36,9 +36,9 @@ alias ssrn="sudo systemctl restart nginx"
 alias sshr="sudo service httpd restart"
 alias ssar="sudo service apache2 restart"
 alias saws="ssh ec2-user@aws"
-alias sd="  ssh ubuntu@34.209.33.85"
-alias sp="  ssh ubuntu@aws_news"
-alias jsp=" ssh ubuntu@aws_tj"
+alias sd="  ssh ubuntu@dev"
+alias sp="  ssh ubuntu@nsr"
+alias jsp=" ssh ubuntu@journal"
 
 # Time
 alias retime="sudo ntpdate time.nist.gov"
