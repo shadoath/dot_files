@@ -60,7 +60,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'scrooloose/nerdtree'              " file menu
   Plugin 'scrooloose/syntastic'             " syntax checker
   Plugin 'tommcdo/vim-lion'                  " For more better indentation
-  " Plugin 'sirVer/ultisnips'
+  Plugin 'sirVer/ultisnips'
   Plugin 'terryma/vim-multiple-cursors'     " multiple cursors
   Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
   Plugin 'thoughtbot/vim-rspec'             " Vim RSPEC runner
@@ -362,14 +362,16 @@ let s:bundle_dir = $v.'/bundle'
 
   "- YouCompleteMe-------------------------------------------------------------------------------------
   " make" YCM compatible with UltiSnips (using supertab)
-  let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-  let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-  let g:SuperTabDefaultCompletionType = '<C-n>'
+  " let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+  " let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+  " let g:SuperTabDefaultCompletionType = '<C-n>'
 
   " better key bindings for UltiSnipsExpandTrigger
   let g:UltiSnipsExpandTrigger = "<tab>"
-  let g:UltiSnipsJumpForwardTrigger = "<tab>"
-  let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+  let g:UltiSnipsJumpForwardTrigger = "<c-b>"
+  let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
+  let g:UltiSnipsEditSplit="vertical"
+
 
   "- Control-P ------------------------------------------------------------------------------------
   " Don't use caching
