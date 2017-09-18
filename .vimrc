@@ -1,3 +1,15 @@
+" OS setup
+
+let s:is_win = has('win32')
+let $v = $HOME.(s:is_win ? '\vimfiles' : '/.vim')
+
+if s:is_win
+  set shell=cmd.exe
+  set shellcmdflag=/c
+  set encoding=utf-8
+endif
+
+let s:bundle_dir = $v.'/bundle'
 " initial setup
 "==================================================================================:q
   " use Vim settings, rather than Vi settings, required for Vundle
@@ -17,20 +29,26 @@
   Plugin 'bling/vim-airline'                " nice looking footer bar
   Plugin 'chriskempson/base16-vim'          " base 16 colorscheme
   Plugin 'christoomey/vim-conflicted'       " Git conflict resolution
-  Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs
+  Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
   Plugin 'christoomey/vim-tmux-navigator'   " easy navigation b/w vim & tmux
   Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
+  Plugin 'dahu/vim-fanfingtastic'           " Extend tT and fF to multiple lines
+  Plugin 'elixir-lang/vim-elixir'
   Plugin 'ervandew/supertab'
   Plugin 'garbas/vim-snipmate'              " expand code snippits with <tab>
   Plugin 'gmarik/Vundle.vim'                " let Vundle manage Vundle, required
   Plugin 'godlygeek/csapprox'               " better gvim color support
-  Plugin 'godlygeek/tabular'                " for indentation
+  " Plugin 'godlygeek/tabular'                " for indentation
   Plugin 'groenewege/vim-less'              " Less syntax highlighting / indentation
   Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
   Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
   Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
+  Plugin 'johngrib/vim-game-code-break'     " Pong for Vim, just run :VimGameCodeBreak
   Plugin 'jordwalke/flatlandia'
+  Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
+  Plugin 'justinmk/vim-sneak'               " Sneaky movement s{char}{char}
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
+  Plugin 'lifepillar/vim-cheat40'           " 40 column cheat sheet, open with <leader>?
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
   Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
   Plugin 'mileszs/ack.vim'                  " searching via :Ack
@@ -41,7 +59,8 @@
   Plugin 'rking/ag.vim'                     " Project search
   Plugin 'scrooloose/nerdtree'              " file menu
   Plugin 'scrooloose/syntastic'             " syntax checker
-  " Plugin 'sirVer/ultisnips'
+  Plugin 'tommcdo/vim-lion'                  " For more better indentation
+  Plugin 'sirVer/ultisnips'
   Plugin 'terryma/vim-multiple-cursors'     " multiple cursors
   Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
   Plugin 'thoughtbot/vim-rspec'             " Vim RSPEC runner
@@ -79,9 +98,30 @@
     filetype plugin on           " enable loading plugins for filetypes
     filetype indent on           " enable loading 'indent files' for filetypes
 
-    set synmaxcol=400            " no syntax highlighting for lines longer than 200 cols
+    set synmaxcol=266            " no syntax highlighting for lines longer than 266 cols
+    set titlestring   =VIM:\ %f
+
+
+    " backup settings
+    set backup
+    set backupext =-vimbackup
+    set backupdir =$v/files/backup
+    set directory =$v/files/swap// " Adding two // tells vim to use % stucture: %code%4flag%config%deploy.rb
+
+    " undo settings
+    set undofile
+    set history    =501          " History is important.
+    set undolevels =501          " Oops saftey
+    set undodir    =$v/files/undo
+    set viewdir    =$v/files/view
+
+    " Vim settings between close and open
+    set viminfo ='100,<50,s10,h,n$v/files/info/viminfo
+    " https://stackoverflow.com/a/23036077/1418337
 
     set laststatus=2             " show status bar
+    set showmatch                "
+    set matchtime=2
 
     set visualbell               " use visual bell
     set number                   " display line numbers
@@ -90,9 +130,10 @@
     set background=dark          " Dark background
     set laststatus=2             " Fix for statusbar toggling
     set encoding=utf-8           " Fix special character encoding
+    scriptencoding utf-8
     set t_Co=256                 " MOAR COLORS
 
-    "set cursorline               " show cursor line
+    set cursorline cursorcolumn  " set the crosshairs
     set ruler                    " cursor position in the lower right corner
 
     match ErrorMsg '\s\+$'       " highlight trailing whitespace
@@ -139,6 +180,7 @@
     set smartindent              "   ↑ but do it smartly
     set smarttab                 " <Tab> in front of a line inserts 'shiftwidth' blanks
     set shiftwidth=2             "   ↑ use 2 blanks for above
+    set shiftround               " Round indent to multiple of shiftwidth
     set tabstop=2                " display a <Tab> as 2 spaces
     set softtabstop=2            " use 2 spaces for a <Tab>
     set expandtab
@@ -166,9 +208,16 @@
   "- Movement
 
   nnoremap 0 ^
+  vnoremap 0 ^
+  " nnoremap <tab> :<C-U>call <SNR>20_Match_wrapper('',1,'n') <CR>
+  " vnoremap <tab> :<C-U>call <SNR>20_Match_wrapper('',1,'v') <CR>m'gv``
 
   "- Lazy command mode
   " nnoremap ; :
+  "
+  " Unsudo my screen
+  nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
+
 
   "- Theme ----------------------------------------------------------------------------------------
 
@@ -202,7 +251,6 @@
 
   " finish rails block
   imap <leader>end <% end %>
-
   " stupid save
   " imap :w <Esc>xx:w<cr>
 
@@ -210,6 +258,8 @@
   noremap x "_x
   " noremap X "_X
 
+  nmap <leader>b <C-w>11>
+  nmap <leader>B <C-w>11<
   " Yank keeps spot on line
   " vnoremap y myy`y
   " vnoremap Y myY`y
@@ -219,6 +269,8 @@
 
   "- Lazy macro repeat
   nmap <leader>M @@
+  nmap <leader>. @@
+  " nnoremap <buffer> <leader>. :call MacroDo(input('Param: '))<CR>
 
   " easier window navigation
   nmap <C-h> <C-w>h
@@ -226,12 +278,19 @@
   nmap <C-k> <C-w>k
   nmap <C-l> <C-w>l
 
+  " Crosshair mode
+  nnoremap <Leader>ch :set cursorline! cursorcolumn!<CR>
+
+
   " kill the trailing whitespace
   nnoremap <leader>rtw :%s/\s\+$//e<CR>
 
   " toggle Paste mode
   nnoremap <leader>p :set paste!<cr>
   nnoremap <leader>np :set nopaste!<cr>
+
+  " Select the last pasted text
+  nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 
   " quick edit VIMRC
   nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -250,9 +309,11 @@
 
   " ruby tags
   imap <C-b> binding.pry
+  nnoremap <leader>bp O<% binding.pry %><esc>
 
   " Run Ag on current word
   noremap <leader>A :Ag! -Q <C-r>=expand('<cword>')<CR><CR>
+  nnoremap <leader>H :help <C-r>=expand('<cword>')<CR><CR>
   " nnoremap :a<CR> :Ag! -Q <C-r>=expand('<cword>')<CR><CR>
 
   " ,# Surround a word with #{ruby interpolation} NOT WORKING :(
@@ -260,6 +321,16 @@
   " vmap <leader># c#{<C-R>"}<ESC>
 
 "= Plugin Settings=================================================================================
+
+  " if exists(":Tabularize")
+  "   nmap <Leader>a= :Tabularize /=<CR>
+  "   vmap <Leader>a= :Tabularize /=<CR>
+  "   nmap <Leader>a: :Tabularize /:\zsl1<CR>
+  "   vmap <Leader>a: :Tabularize /:\zsl1<CR>
+  "   nmap <Leader>a, :Tabularize /,\zsl1<CR>
+  "   vmap <Leader>a, :Tabularize /,\zsl1<CR>
+
+  " endif
 
   "- Syntastic ------------------------------------------------------------------------------------
   let g:syntastic_mode_map={ 'mode': 'active',
@@ -291,14 +362,16 @@
 
   "- YouCompleteMe-------------------------------------------------------------------------------------
   " make" YCM compatible with UltiSnips (using supertab)
-  let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-  let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-  let g:SuperTabDefaultCompletionType = '<C-n>'
+  " let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+  " let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+  " let g:SuperTabDefaultCompletionType = '<C-n>'
 
   " better key bindings for UltiSnipsExpandTrigger
   let g:UltiSnipsExpandTrigger = "<tab>"
-  let g:UltiSnipsJumpForwardTrigger = "<tab>"
-  let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+  let g:UltiSnipsJumpForwardTrigger = "<c-b>"
+  let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
+  let g:UltiSnipsEditSplit="vertical"
+
 
   "- Control-P ------------------------------------------------------------------------------------
   " Don't use caching
@@ -309,6 +382,8 @@
 
   " ================ Completion =======================
 
+  set list
+  set listchars=tab:▸\
   set wildmode=list:longest,full
   set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
 
@@ -322,6 +397,8 @@
   set wildignore+=log/**
   set wildignore+=tmp/**
   set wildignore+=*.png,*.jpg,*.gif
+  set wildignore+=*.min.css
+  set wildignore+=*.min.js
   set wildignore+=*/tmp/*,*/bin/*,*/bower_components/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
   let g:ctrlp_custom_ignore = {
@@ -332,12 +409,12 @@
   let g:ackprg = 'ag --nogroup --color --column'
 
   "- Rspec.vim  -----------------------------------------------------------------------------------
-  " let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
-  let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
-  let g:rspec_runner = 'os_x_iterm'
+  let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
+  " let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
+  let g:rspec_runner  = 'os_x_iterm'
   map <Leader>t :call RunCurrentSpecFile()<CR>
   map <Leader>s :call RunNearestSpec()<CR>
-  map <Leader>l :call RunLastSpec()<CR>
+  " map <Leader>l :call RunLastSpec()<CR>
   map <Leader>a :call RunAllSpecs()<CR>
 
   "- XMPFilter  ------------------------------------------------------------------------------------
@@ -369,6 +446,11 @@
   "- Golang ---------------------------------------------------------------------------------------
   let g:go_fmt_command = 'goimports'     " use gofmt on save w/ go commands (from go plugin)
 
+  " com -nargs=1 H call WebHeader(<f-args>)
+  " function! WebHeader(size)
+  "   exe ':s/\(.*\)/<H' . a:size . '>\1<\/H' . a:size . '>/'
+  " endfunction
+
   function! ExecuteGoCode()              " for running Golang on enter
     exec ":!clear && go run " . @%
   endfunction
@@ -382,6 +464,10 @@
   function! ExecuteRustCode()
     exec ':Shell rustc ' . @% . ' -o file && ./file'
   endfunction
+
+  "- MD
+  "Markdown-----------------------------------------------------------------------------------
+  autocmd BufNewFile,BufReadPost *.md set filetype=ghmarkdown
 
   "- ES6---------------------------------------------------------------------------------------
   autocmd BufRead,BufNewFile *.es6 setfiletype javascript

@@ -1,12 +1,16 @@
-[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
 # Show folder in tabs
 if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
   # export PROMPT_COMMAND="echo -ne "${PWD##*/}"; ":"$PROMPT_COMMAND";
   export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
 fi
+# don't put duplicate lines or lines starting with space in the history.
+HISTCONTROL=ignoreboth
+shopt -s histappend dotglob
 
 # Required
 export EDITOR=vim
@@ -16,16 +20,18 @@ alias f="find . |grep "
 alias p="ps aux |grep "
 alias a="alias  |grep "
 alias c="clear"
+alias bs="bundle show |grep "
 alias fing="sudo"
 
 # Quick edit
 alias oh='   sudo vim /etc/hosts'
-alias ossh=' sudo vim /Users/sbolton/.ssh/config'
+alias ossh=' sudo vim ~/.ssh/config'
 alias ovim=" vim ~/.vimrc"
 alias obash="vim ~/.bash_profile"
 alias sbash="source ~/.bash_profile; clear"
 alias bog="  bundle open"
 alias opry=" vim ~/.pryrc"
+
 
 # Servers
 alias ssnr="sudo service nginx restart"
@@ -50,6 +56,7 @@ alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 alias .......="cd ../../../../../.."
 alias ........="cd ../../../../../../.."
+alias cdd="  cd ~/dot_files"
 
 # ls aliases
 alias ll="ls -lh"
@@ -64,8 +71,12 @@ alias ls="ls -la"
 #[[ -s "$HOME/dot_files/include/_aliases" ]] && source "$HOME/dot_files/include/_aliases"
 
 # Better terminal output
-source ~/.git-prompt.sh
-export PS1="\e[1;36m\]Bolton: \e[0;31m\W\e[m\e[0;32m\$(__git_ps1)\e[0;33m\]$ \e[0;37m\]"
+cyan=$(tput setaf 6) #36
+white=$(tput setaf 7) #37
+red=$(tput setaf 1)  #31
+green=$(tput setaf 2) #32
+yellow=$(tput setaf 3) #33
 
-#DNS cache clear ioX 10.9
-alias clear_dns="sudo killall -HUP mDNSResponder"
+source ~/.git-prompt.sh
+# PS1 uses [] so it doesn't overwrite long command lines and now does word wrap
+export PS1="\[$cyan\]`whoami` \[$red\]\W\[\e[m\]\[$green\]\$(__git_ps1)\[$yellow\]\$ \[$white\]"

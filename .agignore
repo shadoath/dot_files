@@ -1,0 +1,7 @@
+.DS_Store
+*.min.*
+*.json
+/.bundle
+/public/*
+/.git/*
+

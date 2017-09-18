@@ -1,12 +1,12 @@
 
 [user]
-	name = Skylar Bolton
-	email = sbolton@bcimedia.com
+  name = Skylar Bolton
+  email = sbolton@bcimedia.com
 [push]
-	default = simple
+  default = simple
 [core]
-	editor = /usr/local/bin/vim
-	mergeoptions = --no-edit
+  editor = /usr/local/bin/vim
+  mergeoptions = --no-edit
 [alias]
   c = checkout
   pretty = log --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'
@@ -24,3 +24,9 @@
   mup = !git checkout master && git pull
   squash = rebase -i HEAD~5
   pr = !hub pull-request
+[diff]
+  tool = bc3
+[merge]
+  tool = bc3
+[mergetool "bc3"]
+  trustExitCode = true
