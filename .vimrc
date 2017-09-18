@@ -40,6 +40,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'godlygeek/csapprox'               " better gvim color support
   " Plugin 'godlygeek/tabular'                " for indentation
   Plugin 'groenewege/vim-less'              " Less syntax highlighting / indentation
+  Plugin 'hdima/python-syntax'               " self expanitory
   Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
   Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
   Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
@@ -57,6 +58,8 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'othree/html5.vim'                 " html5 syntax & indent
   Plugin 'pangloss/vim-javascript'          " javascript syntax & indent
   Plugin 'rking/ag.vim'                     " Project search
+  Plugin 'Rykka/riv.vim'                    " RST text formtting
+  Plugin 'Rykka/InstantRst'                 " RST instant preview
   Plugin 'scrooloose/nerdtree'              " file menu
   Plugin 'scrooloose/syntastic'             " syntax checker
   Plugin 'tommcdo/vim-lion'                  " For more better indentation
