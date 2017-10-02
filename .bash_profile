@@ -81,3 +81,5 @@ yellow=$(tput setaf 3) #33
 source ~/.git-prompt.sh
 # PS1 uses [] so it doesn't overwrite long command lines and now does word wrap
 export PS1="\[$cyan\]`whoami` \[$red\]\W\[\e[m\]\[$green\]\$(__git_ps1)\[$yellow\]\$ \[$white\]"
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"

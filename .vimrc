@@ -20,54 +20,69 @@ let s:bundle_dir = $v.'/bundle'
   set rtp+=~/.vim/bundle/Vundle.vim
   call vundle#begin()
 
+  "Level 11 Vim
+  Plugin 'wikitopian/hardmode'              " No arrow keys, +, _, or hjkl
+
+  " Most important
+  Plugin 'scrooloose/nerdtree'              " file menu
+  Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
   Plugin 'airblade/vim-gitgutter'           " git diff in gutter
-  Plugin 'andrewRadev/sideways.vim'         " Swap arguments with :SidewaysLeft and :SidewaysRight
-  Plugin 'andrewRadev/splitjoin.vim'        " Multiline to single and back  gS, gJ  TODO Change to new key binding
   Plugin 'andrewRadev/switch.vim'           " Swap true for false and MUCH more
-  " Plugin 'andrewRadev/whitespaste.vim'      " Only paste the space that is needved
-  Plugin 'benmills/vimux'                   " Vim + Tmux Goodness
   Plugin 'bling/vim-airline'                " nice looking footer bar
   Plugin 'chriskempson/base16-vim'          " base 16 colorscheme
-  Plugin 'christoomey/vim-conflicted'       " Git conflict resolution
-  Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
-  Plugin 'christoomey/vim-tmux-navigator'   " easy navigation b/w vim & tmux
-  Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
+  Plugin 'mileszs/ack.vim'                  " searching via :Ack
+  Plugin 'rking/ag.vim'                     " Project search
+  Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
+  Plugin 'valloric/YouCompleteMe'           " auto complete, son
+
+  " Real useful
   Plugin 'dahu/vim-fanfingtastic'           " Extend tT and fF to multiple lines
-  Plugin 'elixir-lang/vim-elixir'
-  Plugin 'ervandew/supertab'
   Plugin 'garbas/vim-snipmate'              " expand code snippits with <tab>
-  Plugin 'gmarik/Vundle.vim'                " let Vundle manage Vundle, required
-  Plugin 'godlygeek/csapprox'               " better gvim color support
-  " Plugin 'godlygeek/tabular'                " for indentation
-  Plugin 'groenewege/vim-less'              " Less syntax highlighting / indentation
-  Plugin 'hdima/python-syntax'               " self expanitory
-  Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
   Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
   Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
-  Plugin 'johngrib/vim-game-code-break'     " Pong for Vim, just run :VimGameCodeBreak
-  Plugin 'jordwalke/flatlandia'
-  Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
-  Plugin 'justinmk/vim-sneak'               " Sneaky movement s{char}{char}
+  Plugin 'ervandew/supertab'
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
-  Plugin 'lifepillar/vim-cheat40'           " 40 column cheat sheet, open with <leader>?
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
-  Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
-  Plugin 'mileszs/ack.vim'                  " searching via :Ack
+
+  " Nice to have
+  Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
+  Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
+  Plugin 'tommcdo/vim-exchange'             " Exchange text with Visual and X
+
+  " Required
+  Plugin 'gmarik/Vundle.vim'                " let Vundle manage Vundle, required
+  Plugin 'jordwalke/flatlandia'
+
+
+  " Extras
+  " Plugin 'andrewRadev/sideways.vim'         " Swap arguments with :SidewaysLeft and :SidewaysRight
+  " Plugin 'andrewRadev/splitjoin.vim'        " Multiline to single and back  gS, gJ  TODO Change to new key binding
+  " Plugin 'andrewRadev/whitespaste.vim'      " Only paste the space that is needved
+  " Plugin 'benmills/vimux'                   " Vim + Tmux Goodness
+  " Plugin 'christoomey/vim-conflicted'       " Git conflict resolution
+  " Plugin 'christoomey/vim-tmux-navigator'   " easy navigation b/w vim & tmux
+  " Plugin 'elixir-lang/vim-elixir'
+  " Plugin 'godlygeek/csapprox'               " better gvim color support
+  " Plugin 'godlygeek/tabular'                " for indentation
+  " Plugin 'groenewege/vim-less'              " Less syntax highlighting / indentation
+  " Plugin 'hdima/python-syntax'               " self expanitory
+  " Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
+  " Plugin 'johngrib/vim-game-code-break'     " Pong for Vim, just run :VimGameCodeBreak
+  " Plugin 'justinmk/vim-sneak'               " Sneaky movement s{char}{char}
+  " Plugin 'lifepillar/vim-cheat40'           " 40 column cheat sheet, open with <leader>?
+  " Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
   Plugin 'nathanaelkane/vim-indent-guides'  " Indent guides to keep your code aligned
   Plugin 'nelstrom/vim-textobj-rubyblock'   " Expands upon 'ir' 'ar' to be used in repatition
   Plugin 'othree/html5.vim'                 " html5 syntax & indent
   Plugin 'pangloss/vim-javascript'          " javascript syntax & indent
-  Plugin 'rking/ag.vim'                     " Project search
   Plugin 'Rykka/riv.vim'                    " RST text formtting
   Plugin 'Rykka/InstantRst'                 " RST instant preview
-  Plugin 'scrooloose/nerdtree'              " file menu
   Plugin 'scrooloose/syntastic'             " syntax checker
-  Plugin 'tommcdo/vim-lion'                  " For more better indentation
+  Plugin 'tommcdo/vim-lion'                 " For more better indentation
   Plugin 'sirVer/ultisnips'
-  Plugin 'terryma/vim-multiple-cursors'     " multiple cursors
+  " Plugin 'terryma/vim-multiple-cursors'     " multiple cursors
   Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
   Plugin 'thoughtbot/vim-rspec'             " Vim RSPEC runner
-  Plugin 'tommcdo/vim-exchange'             " Exchange text with Visual and X
   Plugin 'tomtom/tlib_vim'
   Plugin 'tpope/vim-abolish'                " Search replace with a touch of magic
   Plugin 'tpope/vim-characterize'           " Advanced Character info with ga
@@ -77,12 +92,10 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'tpope/vim-markdown'               " markdown syntax & indent
   Plugin 'tpope/vim-rails'                  " Rails in Vim
   Plugin 'tpope/vim-repeat'                 " Repeat plugin commands
-  Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
   Plugin 'tpope/vim-surround'               " Change Surrounding tags
   Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands
   Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
   Plugin 'tyru/open-browser.vim'            " Open url from vim
-  Plugin 'valloric/YouCompleteMe'           " auto complete, son
   Plugin 'vim-ruby/vim-ruby'                " ruby syntax & indent
   Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects
                                             " https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
@@ -309,6 +322,9 @@ let s:bundle_dir = $v.'/bundle'
 
   " quick switch file
   nnoremap <leader><leader> <c-^>
+  "
+  " quick replace word under cursor
+  noremap <leader>R :%s/<C-r>=expand('<cword>')<CR>/
 
   " ruby tags
   imap <C-b> binding.pry
@@ -325,6 +341,10 @@ let s:bundle_dir = $v.'/bundle'
 
 "= Plugin Settings=================================================================================
 
+  " HARD MODE
+  autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+  nnoremap <leader>NH <Esc>:call ToggleHardMode()<CR>
+
   " if exists(":Tabularize")
   "   nmap <Leader>a= :Tabularize /=<CR>
   "   vmap <Leader>a= :Tabularize /=<CR>
@@ -334,6 +354,9 @@ let s:bundle_dir = $v.'/bundle'
   "   vmap <Leader>a, :Tabularize /,\zsl1<CR>
 
   " endif
+  " Python Settings
+  " let python_highlight_all = 1
+
 
   "- Syntastic ------------------------------------------------------------------------------------
   let g:syntastic_mode_map={ 'mode': 'active',
@@ -412,8 +435,8 @@ let s:bundle_dir = $v.'/bundle'
   let g:ackprg = 'ag --nogroup --color --column'
 
   "- Rspec.vim  -----------------------------------------------------------------------------------
-  let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
-  " let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
+  " let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
+  let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
   let g:rspec_runner  = 'os_x_iterm'
   map <Leader>t :call RunCurrentSpecFile()<CR>
   map <Leader>s :call RunNearestSpec()<CR>
@@ -427,8 +450,8 @@ let s:bundle_dir = $v.'/bundle'
   let g:switch_mapping = "-"
 
   "- Sidways---------------------------------------------------------------------------------
-  map <Leader>S :SidewaysLeft<cr>
-  map <Leader>R :SidewaysRight<cr>
+  " map <Leader>S :SidewaysLeft<cr>
+  " map <Leader>R :SidewaysRight<cr>
 
   "- Indent Guides ---------------------------------------------------------------------------------
   let g:indent_guides_color_change_percent = 3      " ultra-low-contrast guides
