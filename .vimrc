@@ -449,7 +449,7 @@ let s:bundle_dir = $v.'/bundle'
   set wildignore+=*/tmp/*,*/bin/*,*/bower_components/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
   let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git\|bin\|log\|public\|solr\|tmp\|vendor\|node_modules',
+    \ 'dir':  '\.git\|bin\|public\|solr\|tmp\|vendor\|node_modules',
     \ 'file': '\.DS_Store\|\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.min\.js$' }
   "
   "- Ack ------------------------------------------------------------------------------------------
