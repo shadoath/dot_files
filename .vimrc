@@ -26,8 +26,7 @@ let s:bundle_dir = $v.'/bundle'
   " Level 11 Vim skillz
   " Plugin 'wikitopian/hardmode'              " No arrow keys, +, _, or hjkl
   " Level 9 Vim skills
-  Plugin 'kbarrette/mediummode'             " Hard mode but two levels easier
-  " Plugin 'takac/vim-hardtime'               " Can't use a key twice in X time
+  Plugin 'takac/vim-hardtime'               " Can't use a key twice in X time
 
   " Most important
   Plugin 'scrooloose/nerdtree'              " file menu
@@ -354,8 +353,17 @@ let s:bundle_dir = $v.'/bundle'
 "= Plugin Settings=================================================================================
 
   " HARD MODE
-  autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-  nnoremap <leader>NH <Esc>:call ToggleHardMode()<CR>
+  " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+  " nnoremap <leader>NH <Esc>:call ToggleHardMode()<CR>
+  " Hardtime
+  let g:hardtime_default_on = 1
+  let g:hardtime_maxcount = 3
+  let g:hardtime_showmsg = 1
+  let g:hardtime_ignore_buffer_patterns = [ "NERD.*" ]
+  let g:hardtime_ignore_quickfix = 1
+  let g:list_of_normal_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+  let g:list_of_visual_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+
 
   " if exists(":Tabularize")
   "   nmap <Leader>a= :Tabularize /=<CR>
