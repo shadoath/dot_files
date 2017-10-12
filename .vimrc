@@ -51,6 +51,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
 
   " Syntax
+  Plugin 'martinda/Jenkinsfile-vim-syntax'  " Jenkins
   Plugin 'nathanaelkane/vim-indent-guides'  " Indent guides to keep your code aligned
   Plugin 'tommcdo/vim-lion'                 " For more better indentation
   Plugin 'scrooloose/syntastic'             " syntax checker
