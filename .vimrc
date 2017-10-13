@@ -30,6 +30,7 @@ let s:bundle_dir = $v.'/bundle'
 
   " Most important
   Plugin 'scrooloose/nerdtree'              " file menu
+  Plugin 'Xuyuanp/nerdtree-git-plugin'      " Changes via git
   Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
   Plugin 'airblade/vim-gitgutter'           " git diff in gutter
   Plugin 'andrewRadev/switch.vim'           " Swap true for false and MUCH more
@@ -67,6 +68,8 @@ let s:bundle_dir = $v.'/bundle'
                                             " https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
   " Color
   Plugin 'jordwalke/flatlandia'
+  Plugin 'ryanoasis/vim-devicons'
+  Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 
   " Language specific
   Plugin 'nelstrom/vim-textobj-rubyblock'   " Expands upon 'ir' 'ar' to be used in repatition
@@ -181,7 +184,7 @@ let s:bundle_dir = $v.'/bundle'
     set mouse=a                  " allow mouse usage
     set clipboard=unnamed        " set default yank register to machine clipboard
 
-    set updatetime=1500          " How often vim writes to swap and 'cursorhold' event is fired
+    set updatetime=200          " How often vim writes to swap and 'cursorhold' event is fired
 
     "folding settings
     set foldmethod=indent   "fold based on indent
@@ -358,7 +361,7 @@ let s:bundle_dir = $v.'/bundle'
   " nnoremap <leader>NH <Esc>:call ToggleHardMode()<CR>
   " Hardtime
   let g:hardtime_default_on = 1
-  let g:hardtime_maxcount = 3
+  let g:hardtime_maxcount = 5
   let g:hardtime_showmsg = 1
   let g:hardtime_ignore_buffer_patterns = [ "NERD.*" ]
   let g:hardtime_ignore_quickfix = 1
@@ -479,6 +482,28 @@ let s:bundle_dir = $v.'/bundle'
   let g:indent_guides_guide_size = 2                " between 0 and 'shiftwidth'
   let g:indent_guides_start_level = 1               " don't show guides until the third indent
 
+  "= File Icons =====================================================================================
+  " let g:WebDevIconsNerdTreeGitPluginForceVAlign on
+
+  let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+  let g:webdevicons_enable_nerdtree = 1
+
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rake'] = 'ƛ'
+
+  let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+  let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+
+  " let g:NERDTreeFileExtensionHighlightFullName = 1
+  let g:NERDTreeExactMatchHighlightFullName = 1
+  let g:NERDTreePatternMatchHighlightFullName = 1
+
+  let s:orange = "D4843E"
+
+  let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+  let g:NERDTreeExtensionHighlightColor['rake'] = s:orange " sets the color of css files to blue
+
+
   "= Airline ========================================================================================
   let g:airline_powerline_fonts = 1
 
@@ -573,3 +598,6 @@ function! s:ExecuteInShell(command)
   wincmd k
 endfunction
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
+if exists("g:loaded_webdevicons")
+  call webdevicons#refresh()
+endif
