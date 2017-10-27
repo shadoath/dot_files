@@ -79,6 +79,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'Rykka/riv.vim'                    " RST text formtting
   Plugin 'thoughtbot/vim-rspec'             " Vim RSPEC runner
   Plugin 'chriskempson/base16-vim'          " base 16 colorscheme
+  Plugin 'vim-scripts/nginx.vim'            " Nginx files
   " Plugin 'elixir-lang/vim-elixir'
   " Plugin 'hdima/python-syntax'
 
