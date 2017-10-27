@@ -432,6 +432,13 @@ let s:bundle_dir = $v.'/bundle'
   "- Control-P ------------------------------------------------------------------------------------
   " Don't use caching
   let g:ctrlp_use_caching = 0
+  " let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+  if executable('ag')
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  endif
+  let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\.git\|bin\|public\|solr\|tmp\|vendor\|node_modules',
+    \ 'file': '\.DS_Store\|\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.min\.js$' }
 
   "- JSX ------------------------------------------------------------------------------------
   let g:jsx_ext_required = 0 " Allow JSX in normal JS files
