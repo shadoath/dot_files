@@ -292,6 +292,9 @@ let s:bundle_dir = $v.'/bundle'
   noremap x "_x
   " noremap X "_X
 
+  " Add the date
+  " imap <leader>xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+
   nmap <leader>b <C-w>11>
   nmap <leader>B <C-w>11<
   " Yank keeps spot on line
