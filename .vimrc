@@ -464,16 +464,13 @@ let s:bundle_dir = $v.'/bundle'
   set wildignore+=*.min.js
   set wildignore+=*/tmp/*,*/bin/*,*/bower_components/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
-  let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git\|bin\|public\|solr\|tmp\|vendor\|node_modules',
-    \ 'file': '\.DS_Store\|\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.min\.js$' }
   "
   "- Ack ------------------------------------------------------------------------------------------
   let g:ackprg = 'ag --nogroup --color --column'
 
   "- Rspec.vim  -----------------------------------------------------------------------------------
-  " let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
-  let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
+  let g:rspec_command = '!bundle exec bin/rspec {spec}'  " use spring w/ rspec runner
+  " let g:rspec_command = '!bundle exec rspec {spec}'      " dont use spring w/ rspec runner
   let g:rspec_runner  = 'os_x_iterm'
   map <Leader>t :call RunCurrentSpecFile()<CR>
   map <Leader>s :call RunNearestSpec()<CR>
@@ -499,15 +496,30 @@ let s:bundle_dir = $v.'/bundle'
   " let g:WebDevIconsNerdTreeGitPluginForceVAlign on
 
   let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
-  let g:webdevicons_enable_nerdtree = 1
+  " let g:webdevicons_enable_nerdtree = 1
 
   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rake'] = 'ƛ'
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bash'] = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['DS_Store'] = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['eot']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['svg']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ttf']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['woff'] = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['otf']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['yml']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css']  = ''
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gitignore']  = ''
+  " to enter Unicode: (in insert mode) <ctrl-v>u(uncode)
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = 'M'
+  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['diff'] = ''
 
   let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
   let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 
-  " let g:NERDTreeFileExtensionHighlightFullName = 1
+  let g:NERDTreeFileExtensionHighlightFullName = 1
   let g:NERDTreeExactMatchHighlightFullName = 1
   let g:NERDTreePatternMatchHighlightFullName = 1
 
