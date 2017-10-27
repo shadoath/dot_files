@@ -244,6 +244,8 @@ let s:bundle_dir = $v.'/bundle'
   " nnoremap <tab> :<C-U>call <SNR>20_Match_wrapper('',1,'n') <CR>
   " vnoremap <tab> :<C-U>call <SNR>20_Match_wrapper('',1,'v') <CR>m'gv``
 
+  " Write to the write protected files
+  " command W w !sudo tee % > /dev/null
   "- Lazy command mode
   " nnoremap ; :
   "
