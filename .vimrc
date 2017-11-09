@@ -149,8 +149,6 @@ let s:bundle_dir = $v.'/bundle'
     " https://stackoverflow.com/a/23036077/1418337
 
     set laststatus=2             " show status bar
-    set showmatch                "
-    set matchtime=2
 
     set showcmd
     set noerrorbells                " No beeps
@@ -285,6 +283,7 @@ let s:bundle_dir = $v.'/bundle'
 
   " finish rails block
   imap <leader>end <% end %>
+  imap <leader>con Oconsole.log(": ");
   " stupid save
   " imap :w <Esc>xx:w<cr>
 
@@ -431,8 +430,9 @@ let s:bundle_dir = $v.'/bundle'
 
   "- Control-P ------------------------------------------------------------------------------------
   " Don't use caching
-  let g:ctrlp_use_caching = 0
-  " let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+  " let g:ctrlp_use_caching = 0
+  let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+  " :CtrlPClearCache
   if executable('ag')
     let g:ctrlp_user_command = 'ag %s -l -i --nocolor --hidden -U -g ""'
   endif
