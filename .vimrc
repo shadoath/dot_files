@@ -434,7 +434,7 @@ let s:bundle_dir = $v.'/bundle'
   let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
   " :CtrlPClearCache
   if executable('ag')
-    let g:ctrlp_user_command = 'ag %s -l -i --nocolor --hidden -U -g ""'
+    let g:ctrlp_user_command = 'Ag %s -l -i --hidden -g ""'
   endif
   let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git\|bin\|public\|solr\|tmp\|vendor\|node_modules',
