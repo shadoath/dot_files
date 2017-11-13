@@ -4,4 +4,5 @@
 /.bundle
 /public/*
 /.git/*
-
+/tmp/*
+!/config/application.yml

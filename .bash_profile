@@ -1,11 +1,12 @@
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session
 
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+
+export PATH="/Users/sbolton/.rvm/gems/ruby-2.3.1/bin:$PATH"
+export PATH="/usr/local/bin/vim:$PATH"
+eval "$(pyenv init -)"
 
 # Show folder in tabs
 if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
-  # export PROMPT_COMMAND="echo -ne "${PWD##*/}"; ":"$PROMPT_COMMAND";
   export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
 fi
 # don't put duplicate lines or lines starting with space in the history.
@@ -80,3 +81,5 @@ yellow=$(tput setaf 3) #33
 source ~/.git-prompt.sh
 # PS1 uses [] so it doesn't overwrite long command lines and now does word wrap
 export PS1="\[$cyan\]`whoami` \[$red\]\W\[\e[m\]\[$green\]\$(__git_ps1)\[$yellow\]\$ \[$white\]"
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
