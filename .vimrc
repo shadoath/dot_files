@@ -394,12 +394,14 @@ let s:bundle_dir = $v.'/bundle'
   "- Markdown ------------------------------------------------------------------------------------
   let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass']
 
-  "- NerdTree -------------------------------------------------------------------------------------
+  "- NerdTree ----------------------Use ? for info-------------------------------------------------
   " toggle NerdTree (ControlK + ControlB)
   nnoremap <C-k><C-b> :NERDTreeToggle<CR>
   let NERDTreeShowHidden     =1 " show hidden files
   let NERDTreeQuitOnOpen     =0 " Hide NERDTree when opening a file
   let NERDTreeShowLineNumbers=1 " enable line numbers
+  let NERDTreeShowBookmarks  =1 " Show bookmarks at top of nerd tree
+  let NERDTreeMarkBookmarks  =1 " Mark folders with bookmarks
   nmap <leader>O :NERDTreeFind<CR>
 
   " make sure relative line numbers are used
