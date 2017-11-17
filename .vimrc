@@ -433,7 +433,7 @@ let s:bundle_dir = $v.'/bundle'
   let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
   " :CtrlPClearCache
   if executable('ag')
-    let g:ctrlp_user_command = 'Ag %s -l -i --hidden -g ""'
+    let g:ctrlp_user_command = 'Ag %s -l -i -U --hidden -g ""'
   endif
   let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git\|bin\|public\|solr\|tmp\|vendor\|node_modules',
@@ -579,8 +579,9 @@ let s:bundle_dir = $v.'/bundle'
   au BufNewFile,BufRead *.hbars set ft=haml       " set syntax to haml, even tho it's not ruby, for hbars files
 
   "- SnipMate------------------------------------------------------------------------------------
-  " imap <C-c> <Plug>snipMateNextOrTrigger
+  imap <tab> <Plug>snipMateNextOrTrigger
   " inoremap <expr> pumvisible() ? "\<C-N>" : "\<C-R>=snipMate#TriggerSnippet()\<CR>"
+
 "= Enter Key ======================================================================================
 
   function! MapCR()
