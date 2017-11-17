@@ -281,7 +281,6 @@ let s:bundle_dir = $v.'/bundle'
   " map escape key to jj -- much faster, comments above b/c of Vim's interpretation of them jumping my cursor
   imap jj <Esc>:w<cr>
 
-  " finish rails block
   imap <leader>end <% end %>
   imap <leader>con Oconsole.log(": ");
   " stupid save
@@ -294,8 +293,6 @@ let s:bundle_dir = $v.'/bundle'
   " Add the date
   " imap <leader>xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 
-  nmap <leader>b <C-w>11>
-  nmap <leader>B <C-w>11<
   " Yank keeps spot on line
   " vnoremap y myy`y
   " vnoremap Y myY`y
