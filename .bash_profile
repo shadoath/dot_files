@@ -43,6 +43,8 @@ alias saws="ssh ec2-user@aws"
 alias sd="  ssh ubuntu@34.209.33.85"
 alias sp="  ssh ubuntu@aws_news"
 alias jsp=" ssh ubuntu@aws_tj"
+alias spr=" ssh ubuntu@dgomag.com"
+
 
 # Time
 alias retime="sudo ntpdate time.nist.gov"
