@@ -23,6 +23,7 @@ alias a="alias  |grep "
 alias c="clear"
 alias bs="bundle show |grep "
 alias fing="sudo"
+alias Kill="sudo kill -s SIGTERM "
 
 # Quick edit
 alias oh='   sudo vim /etc/hosts'
@@ -39,11 +40,13 @@ alias ssnr="sudo service nginx restart"
 alias ssrn="sudo systemctl restart nginx"
 alias sshr="sudo service httpd restart"
 alias ssar="sudo service apache2 restart"
+
+# SSH to AWS
 alias saws="ssh ec2-user@aws"
 alias sd="  ssh ubuntu@34.209.33.85"
 alias sp="  ssh ubuntu@aws_news"
 alias jsp=" ssh ubuntu@aws_tj"
-alias spr=" ssh ubuntu@dgomag.com"
+alias spr=" ssh ubuntu@rails"
 
 
 # Time
