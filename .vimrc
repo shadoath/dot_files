@@ -50,6 +50,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'ervandew/supertab'
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
+  Plugin 'statox/GOD.vim'                   " Get vim doc link in markdown => :GOD mark
 
   " Syntax
   Plugin 'martinda/Jenkinsfile-vim-syntax'  " Jenkins
@@ -416,9 +417,9 @@ let s:bundle_dir = $v.'/bundle'
 
   "- YouCompleteMe-------------------------------------------------------------------------------------
   " make" YCM compatible with UltiSnips (using supertab)
-  " let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-  " let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-  " let g:SuperTabDefaultCompletionType = '<C-n>'
+  let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+  let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+  let g:SuperTabDefaultCompletionType = '<C-n>'
 
   " better key bindings for UltiSnipsExpandTrigger
   let g:UltiSnipsExpandTrigger = "<tab>"
