@@ -438,9 +438,9 @@ let s:bundle_dir = $v.'/bundle'
   " let g:ctrlp_use_caching = 0
   let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
   " :CtrlPClearCache
-  if executable('ag')
-    let g:ctrlp_user_command = 'Ag %s -l -i -U --hidden -g ""'
-  endif
+  " if executable('ag')
+  "   let g:ctrlp_user_command = 'Ag %s -l -i -U --hidden -g ""'
+  " endif
   let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git\|bin\|public\|solr\|tmp\|vendor\|node_modules',
     \ 'file': '\.DS_Store\|\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.min\.js$' }
@@ -536,12 +536,6 @@ let s:bundle_dir = $v.'/bundle'
 
   "= Airline ========================================================================================
   let g:airline_powerline_fonts = 1
-
-  "= Goyo & Limelight ===============================================================================
-  autocmd User GoyoEnter Limelight
-  autocmd User GoyoLeave Limelight!
-  let g:goyo_width = 120
-  nnoremap <Leader>G :Goyo<CR>
 
 "= Language Specific Settings======================================================================
 
