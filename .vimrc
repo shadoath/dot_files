@@ -351,6 +351,7 @@ let s:bundle_dir = $v.'/bundle'
   " Run Ag on current word
   noremap <leader>A :Ag! -Q <C-r>=expand('<cword>')<CR><CR>
   nnoremap <leader>H :help <C-r>=expand('<cword>')<CR><CR>
+  nnoremap <leader>G vy :GOD <c-r>"<CR>
   " nnoremap :a<CR> :Ag! -Q <C-r>=expand('<cword>')<CR><CR>
 
   " ,# Surround a word with #{ruby interpolation} NOT WORKING :(
@@ -358,6 +359,10 @@ let s:bundle_dir = $v.'/bundle'
   " vmap <leader># c#{<C-R>"}<ESC>
 
 "= Plugin Settings=================================================================================
+
+  " GOD
+  let g:god_close_help_buffer = 1
+
 
   " HARD MODE
   " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
