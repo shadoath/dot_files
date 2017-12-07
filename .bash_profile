@@ -1,6 +1,5 @@
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session
 
-
 export PATH="/Users/sbolton/.rvm/gems/ruby-2.3.1/bin:$PATH"
 export PATH="/usr/local/bin/vim:$PATH"
 eval "$(pyenv init -)"
@@ -34,7 +33,6 @@ alias sbash="source ~/.bash_profile; clear"
 alias bog="  bundle open"
 alias opry=" vim ~/.pryrc"
 
-
 # Servers
 alias ssnr="sudo service nginx restart"
 alias ssrn="sudo systemctl restart nginx"
@@ -48,11 +46,13 @@ alias sp="  ssh ubuntu@aws_news"
 alias jsp=" ssh ubuntu@aws_tj"
 alias spr=" ssh ubuntu@rails"
 
-
 # Time
 alias retime="sudo ntpdate time.nist.gov"
 alias msttime="sudo rm /etc/localtime; sudo ln -s /usr/share/zoneinfo/America/Denver /etc/localtime"
 alias fixtime="sudo timedatectl set-timezone America/Denver"
+
+# Mac OS 10.12.6 (16G29)
+alias clear_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
 
 # Movement
 alias ..="cd .."
@@ -87,4 +87,4 @@ source ~/.git-prompt.sh
 # PS1 uses [] so it doesn't overwrite long command lines and now does word wrap
 export PS1="\[$cyan\]`whoami` \[$red\]\W\[\e[m\]\[$green\]\$(__git_ps1)\[$yellow\]\$ \[$white\]"
 
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+# test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
