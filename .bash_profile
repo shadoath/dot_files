@@ -1,8 +1,11 @@
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session
-
-export PATH="/Users/sbolton/.rvm/gems/ruby-2.3.1/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+# export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+# export PATH="/usr/local/bin/python:$PATH"
+export PATH="/Users/sbolton/.rvm/gems/ruby-2.4.1/bin:$PATH"
 export PATH="/usr/local/bin/vim:$PATH"
-eval "$(pyenv init -)"
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+# eval "$(pyenv init -)"
 
 # Show folder in tabs
 if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
@@ -20,6 +23,7 @@ alias f="find . |grep "
 alias p="ps aux |grep "
 alias a="alias  |grep "
 alias c="clear"
+alias :q="exit"
 alias bs="bundle show |grep "
 alias fing="sudo"
 alias Kill="sudo kill -s SIGTERM "
@@ -88,3 +92,8 @@ source ~/.git-prompt.sh
 export PS1="\[$cyan\]`whoami` \[$red\]\W\[\e[m\]\[$green\]\$(__git_ps1)\[$yellow\]\$ \[$white\]"
 
 # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+# Setting PATH for Python 2.7
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+export PATH
