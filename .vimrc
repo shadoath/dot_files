@@ -38,7 +38,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'mileszs/ack.vim'                  " searching via :Ack
   Plugin 'rking/ag.vim'                     " Project search
   Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
-  Plugin 'valloric/YouCompleteMe'           " auto complete, son
+  " Plugin 'valloric/YouCompleteMe'           " auto complete, son
 
   " Real useful
   Plugin 'wesQ3/vim-windowswap'             " window swapping
@@ -435,8 +435,8 @@ let s:bundle_dir = $v.'/bundle'
 
   "- Control-P ------------------------------------------------------------------------------------
   " Don't use caching
-  " let g:ctrlp_use_caching = 0
-  let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+  let g:ctrlp_use_caching = 0
+  " let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
   " :CtrlPClearCache
   " if executable('ag')
   "   let g:ctrlp_user_command = 'Ag %s -l -i -U --hidden -g ""'
