@@ -38,7 +38,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'mileszs/ack.vim'                  " searching via :Ack
   Plugin 'rking/ag.vim'                     " Project search
   Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
-  Plugin 'valloric/YouompleteMe'           " auto complete, son
+  " Plugin 'valloric/YouCompleteMe'           " auto complete, son
 
   " Real useful
   Plugin 'wesQ3/vim-windowswap'             " window swapping
@@ -50,6 +50,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'ervandew/supertab'
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
+  Plugin 'statox/GOD.vim'                   " Get vim doc link in markdown => :GOD mark
 
   " Syntax
   Plugin 'martinda/Jenkinsfile-vim-syntax'  " Jenkins
@@ -279,7 +280,6 @@ let s:bundle_dir = $v.'/bundle'
   " map escape key to jj -- much faster, comments above b/c of Vim's interpretation of them jumping my cursor
   imap jj <Esc>:w<cr>
 
-  " finish rails block
   imap <leader>end <% end %>
   imap <leader>con Oconsole.log(": ");
   " stupid save
@@ -292,8 +292,6 @@ let s:bundle_dir = $v.'/bundle'
   " Add the date
   " imap <leader>xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 
-  nmap <leader>b <C-w>11>
-  nmap <leader>B <C-w>11<
   " Yank keeps spot on line
   " vnoremap y myy`y
   " vnoremap Y myY`y
@@ -351,6 +349,7 @@ let s:bundle_dir = $v.'/bundle'
   " Run Ag on current word
   noremap <leader>A :Ag! -Q <C-r>=expand('<cword>')<CR><CR>
   nnoremap <leader>H :help <C-r>=expand('<cword>')<CR><CR>
+  nnoremap <leader>G vy :GOD <c-r>"<CR>
   " nnoremap :a<CR> :Ag! -Q <C-r>=expand('<cword>')<CR><CR>
 
   " ,# Surround a word with #{ruby interpolation} NOT WORKING :(
@@ -359,6 +358,10 @@ let s:bundle_dir = $v.'/bundle'
 
 "= Plugin Settings=================================================================================
 
+  " GOD
+  let g:god_close_help_buffer = 1
+
+
   " HARD MODE
   " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
   " nnoremap <leader>NH <Esc>:call ToggleHardMode()<CR>
@@ -366,7 +369,7 @@ let s:bundle_dir = $v.'/bundle'
   let g:hardtime_default_on = 1
   let g:hardtime_maxcount = 5
   let g:hardtime_showmsg = 1
-  let g:hardtime_ignore_buffer_patterns = [ "NERD.*" ]
+  let g:hardtime_ignore_buffer_patterns = [ "NERD.*", "*.txt" ]  " Ignore NerdTree buffer, and help.txt files
   let g:hardtime_ignore_quickfix = 1
   let g:list_of_normal_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
   let g:list_of_visual_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
@@ -395,12 +398,14 @@ let s:bundle_dir = $v.'/bundle'
   "- Markdown ------------------------------------------------------------------------------------
   let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass']
 
-  "- NerdTree -------------------------------------------------------------------------------------
+  "- NerdTree ----------------------Use ? for info-------------------------------------------------
   " toggle NerdTree (ControlK + ControlB)
   nnoremap <C-k><C-b> :NERDTreeToggle<CR>
   let NERDTreeShowHidden     =1 " show hidden files
   let NERDTreeQuitOnOpen     =0 " Hide NERDTree when opening a file
   let NERDTreeShowLineNumbers=1 " enable line numbers
+  let NERDTreeShowBookmarks  =1 " Show bookmarks at top of nerd tree
+  let NERDTreeMarkBookmarks  =1 " Mark folders with bookmarks
   nmap <leader>O :NERDTreeFind<CR>
 
   " make sure relative line numbers are used
@@ -415,9 +420,9 @@ let s:bundle_dir = $v.'/bundle'
 
   "- YouCompleteMe-------------------------------------------------------------------------------------
   " make" YCM compatible with UltiSnips (using supertab)
-  " let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-  " let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-  " let g:SuperTabDefaultCompletionType = '<C-n>'
+  let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+  let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+  let g:SuperTabDefaultCompletionType = '<C-n>'
 
   " better key bindings for UltiSnipsExpandTrigger
   let g:UltiSnipsExpandTrigger = "<tab>"
@@ -428,12 +433,12 @@ let s:bundle_dir = $v.'/bundle'
 
   "- Control-P ------------------------------------------------------------------------------------
   " Don't use caching
-  " let g:ctrlp_use_caching = 0
-  let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+  let g:ctrlp_use_caching = 0
+  " let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
   " :CtrlPClearCache
-  if executable('ag')
-    let g:ctrlp_user_command = 'Ag %s -l -i --hidden -g ""'
-  endif
+  " if executable('ag')
+  "   let g:ctrlp_user_command = 'Ag %s -l -i -U --hidden -g ""'
+  " endif
   let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git\|bin\|public\|solr\|tmp\|vendor\|node_modules',
     \ 'file': '\.DS_Store\|\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.min\.js$' }
@@ -530,12 +535,6 @@ let s:bundle_dir = $v.'/bundle'
   "= Airline ========================================================================================
   let g:airline_powerline_fonts = 1
 
-  "= Goyo & Limelight ===============================================================================
-  autocmd User GoyoEnter Limelight
-  autocmd User GoyoLeave Limelight!
-  let g:goyo_width = 120
-  nnoremap <Leader>G :Goyo<CR>
-
 "= Language Specific Settings======================================================================
 
   "- Golang ---------------------------------------------------------------------------------------
@@ -578,8 +577,9 @@ let s:bundle_dir = $v.'/bundle'
   au BufNewFile,BufRead *.hbars set ft=haml       " set syntax to haml, even tho it's not ruby, for hbars files
 
   "- SnipMate------------------------------------------------------------------------------------
-  " imap <C-c> <Plug>snipMateNextOrTrigger
+  imap <tab> <Plug>snipMateNextOrTrigger
   " inoremap <expr> pumvisible() ? "\<C-N>" : "\<C-R>=snipMate#TriggerSnippet()\<CR>"
+
 "= Enter Key ======================================================================================
 
   function! MapCR()

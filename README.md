@@ -43,5 +43,10 @@ View the /includes folder for extended functionality.
     * Solr ---------- Tell the sun what to do.
 
 ### [ErgoDocs keyboard](https://input.club/configurator-ergodox/) layout using [Colemak](https://colemak.com/Learn)
+To install on [OSX](https://github.com/kiibohd/controller/wiki/Loading-DFU-Firmware#mac-osx):
+ - Put Keyboard into debug (paperclip + button on bottom)
+ - Run dfu-util -D <.dfu.bin> on each KB (left/right)
+ - ???
+ - Profit
 
 ### Comment and let's both get smarter.
