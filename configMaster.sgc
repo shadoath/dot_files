@@ -1,0 +1,44 @@
+section: screens
+	DESKTOP-KVTH3AD:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		switchCorners = none
+		switchCornerSize = 0
+	BCIs-MacBook-Pro-Skylar-2.local:
+		halfDuplexCapsLock = false
+		halfDuplexNumLock = false
+		halfDuplexScrollLock = false
+		xtestIsXineramaUnaware = false
+		switchCorners = none
+		switchCornerSize = 0
+end
+
+section: aliases
+end
+
+section: links
+	DESKTOP-KVTH3AD:
+		left(0,50) = BCIs-MacBook-Pro-Skylar-2.local(51,100)
+		left(51,100) = BCIs-MacBook-Pro-Skylar-2.local(0,55)
+
+		right(0,50) = BCIs-MacBook-Pro-Skylar-2.local(0,55)  #Left most to center
+		right(51,100) = BCIs-MacBook-Pro-Skylar-2.local(55,100)
+	BCIs-MacBook-Pro-Skylar-2.local:
+		left(0,55) = DESKTOP-KVTH3AD(0,50)
+		left(55,100) = DESKTOP-KVTH3AD(51,100)
+
+		right(0,55) = DESKTOP-KVTH3AD(51,100)
+		right(55,100) = DESKTOP-KVTH3AD(0,50)
+end
+
+section: options
+	relativeMouseMoves = false
+	screenSaverSync = true
+	win32KeepForeground = false
+	clipboardSharing = true
+	switchCorners = none
+	switchCornerSize = 0
+end
+
