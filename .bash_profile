@@ -2,7 +2,7 @@
 export PATH="/usr/local/bin:$PATH"
 # export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 # export PATH="/usr/local/bin/python:$PATH"
-export PATH="/Users/sbolton/.rvm/gems/ruby-2.4.1/bin:$PATH"
+# export PATH="/Users/sbolton/.rvm/gems/ruby-2.4.1/bin:$PATH"
 export PATH="/usr/local/bin/vim:$PATH"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 # eval "$(pyenv init -)"
