@@ -44,10 +44,10 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'wesQ3/vim-windowswap'             " window swapping
   Plugin 'dahu/vim-fanfingtastic'           " Extend tT and fF to multiple lines
   Plugin 'garbas/vim-snipmate'              " expand code snippits with <tab>
-  Plugin 'tomtom/tlib_vim'                  " Used by snipmates
+  Plugin 'tomtom/tlib_vim'                  " Used by snipmate
   Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
   Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
-  Plugin 'ervandew/supertab'
+  Plugin 'ervandew/supertab'                " The best autocompletion based on words in file
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
   Plugin 'statox/GOD.vim'                   " Get vim doc link in markdown => :GOD mark
@@ -233,7 +233,7 @@ let s:bundle_dir = $v.'/bundle'
 
     set hlsearch                 " highlight searching
     set ignorecase               " case insensitive search
-    set smartcase                " case insensitive search
+    set smartcase                " case insensitive search Unless using Capital Letters
     set incsearch                " incremental search
 
   "- Movement
@@ -442,7 +442,7 @@ let s:bundle_dir = $v.'/bundle'
   "   let g:ctrlp_user_command = 'Ag %s -l -i -U --hidden -g ""'
   " endif
   let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git\|bin\|public\|solr\|tmp\|vendor\|node_modules',
+    \ 'dir':  '\.git\|bin\|public\|bundle\|solr\|tmp\|vendor\|node_modules',
     \ 'file': '\.DS_Store\|\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.min\.js$' }
 
   "- JSX ------------------------------------------------------------------------------------
