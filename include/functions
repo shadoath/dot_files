@@ -50,18 +50,22 @@ function ymlP() {
 function yml() {
   REPO=$(basename -s .git `git config --get remote.origin.url`)
   cur_version=$(sed -n '2p' config/application.yml | egrep -o '[0-9]+\.[0-9]+')
-  cloud_version=$(aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml - | sed -n '2p' | egrep -o '[0-9]+\.[0-9]+')
-  if (( $(echo "$cur_version < $cloud_version" | bc -l))) || [[ $@ == "--force" ]]; then
-    echo "Downloading:" $cloud_version
-    aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml config/application.yml
+  if [[ $@ == "--version" ]]; then
+    echo "You are at:" $cur_version
   else
-    if (( $(echo "$cur_version == $cloud_version" | bc -l))); then
-      echo "You are up to date."
+    cloud_version=$(aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml - | sed -n '2p' | egrep -o '[0-9]+\.[0-9]+')
+    if (( $(echo "$cur_version < $cloud_version" | bc -l))) || [[ $@ == "--force" ]]; then
+      echo "Downloading:" $cloud_version
+      aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml config/application.yml
     else
-      echo "You have a newer version."
+      if (( $(echo "$cur_version == $cloud_version" | bc -l))); then
+        echo "You are up to date."
+      else
+        echo "You have a newer version."
+      fi
+      echo "Local:" $cur_version
+      echo "Cloud:" $cloud_version
     fi
-    echo "Local:" $cur_version
-    echo "Cloud:" $cloud_version
   fi
 }
 
