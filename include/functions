@@ -15,18 +15,18 @@ function lpr() {
   open "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+user%3A"+$USER
 }
 function pr(){
- SERVICE=$(cat .git/config | grep url\ = -m 1 | sed -E "s/^.*@(.*)\.(org|com).*/\1/")
- BRANCH=$(__git_ps1 | tr -d "()" | tr -d "[:space:]")
- if [ "${SERVICE}" == "github" ]
- then
-   USER=$(cat .git/config | grep github | sed -E "s/^.*(github\.com):(.*)\/(.*)\.git?/\2/")
-   REPO=$(cat .git/config | grep github | sed -E "s/^.*(github\.com):(.*)\/(.*)\.git?/\3/")
-   open "https://github.com/$USER/$REPO/compare/$BRANCH?expand=1"
- else
-   USER=$(cat .git/config | grep bitbucket | sed -E "s/^.*(bitbucket\.org)\/(.*)\/(.*)\.git?/\2/")
-   REPO=$(cat .git/config | grep bitbucket | sed -E "s/^.*(bitbucket\.org)\/(.*)\/(.*)\.git?/\3/")
-   open "https://bitbucket.org/$USER/$REPO/pull-requests/new?source=$USER/$REPO%3A%3A$BRANCH&event_source=branch_list"
- fi
+  SERVICE=$(cat .git/config | grep url\ = -m 1 | sed -E "s/^.*@(.*)\.(org|com).*/\1/")
+  BRANCH=$(__git_ps1 | tr -d "()" | tr -d "[:space:]")
+  if [ "${SERVICE}" == "github" ]
+  then
+    USER=$(cat .git/config | grep github | sed -E "s/^.*(github\.com):(.*)\/(.*)\.git?/\2/")
+    REPO=$(cat .git/config | grep github | sed -E "s/^.*(github\.com):(.*)\/(.*)\.git?/\3/")
+    open "https://github.com/$USER/$REPO/compare/$BRANCH?expand=1"
+  else
+    USER=$(cat .git/config | grep bitbucket | sed -E "s/^.*(bitbucket\.org)\/(.*)\/(.*)\.git?/\2/")
+    REPO=$(cat .git/config | grep bitbucket | sed -E "s/^.*(bitbucket\.org)\/(.*)\/(.*)\.git?/\3/")
+    open "https://bitbucket.org/$USER/$REPO/pull-requests/new?source=$USER/$REPO%3A%3A$BRANCH&event_source=branch_list"
+  fi
 }
 
 # yml sync
@@ -50,10 +50,11 @@ function ymlP() {
 function yml() {
   REPO=$(basename -s .git `git config --get remote.origin.url`)
   cur_version=$(sed -n '2p' config/application.yml | egrep -o '[0-9]+\.[0-9]+')
-  if [[ $@ == "--version" ]]; then
-    echo "You are at:" $cur_version
+  cloud_version=$(aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml - | sed -n '2p' | egrep -o '[0-9]+\.[0-9]+')
+  if [[ $@ == "--version" ]] || [[ $@ == "-v" ]]; then
+    echo "Local:" $cur_version
+    echo "Cloud:" $cloud_version
   else
-    cloud_version=$(aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml - | sed -n '2p' | egrep -o '[0-9]+\.[0-9]+')
     if (( $(echo "$cur_version < $cloud_version" | bc -l))) || [[ $@ == "--force" ]]; then
       echo "Downloading:" $cloud_version
       aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml config/application.yml
@@ -69,11 +70,57 @@ function yml() {
   fi
 }
 
+# hosts sync
+function hostsP() {
+  build_hosts
+  cur_version=$(sed -n '1p' ~/hosts.base | egrep -o '[0-9]+\.[0-9]+')
+  cloud_version=$(aws s3 cp s3://ballantine-dev/hosts.base - | sed -n '1p' | egrep -o '[0-9]+\.[0-9]+')
+  if (( $(echo "$cur_version > $cloud_version" | bc -l))) || [[ $@ == "--force" ]]; then
+    echo "Uploading:" $cur_version
+    aws s3 cp ~/hosts.base s3://ballantine-dev/hosts.base --sse
+  else
+    if (( $(echo "$cur_version == $cloud_version" | bc -l))); then
+      echo "The cloud already has your version."
+    else
+      echo "You are behind the times."
+    fi
+    echo "Local:" $cur_version
+    echo "Cloud:" $cloud_version
+  fi
+}
+function hosts() {
+  cur_version=$(sed -n '1p' ~/hosts.base | egrep -o '[0-9]+\.[0-9]+')
+  cloud_version=$(aws s3 cp s3://ballantine-dev/hosts.base - | sed -n '1p' | egrep -o '[0-9]+\.[0-9]+')
+  if [[ $@ == "--version" ]] || [[ $@ == "-v" ]]; then
+    echo "Local:" $cur_version
+    echo "Cloud:" $cloud_version
+  else
+    build_hosts
+    if (( $(echo "$cur_version < $cloud_version" | bc -l))) || [[ $@ == "--force" ]]; then
+      echo "Downloading:" $cloud_version
+      aws s3 cp s3://ballantine-dev/hosts.base ~/hosts.base
+    else
+      if (( $(echo "$cur_version == $cloud_version" | bc -l))); then
+        echo "You are up to date."
+      else
+        echo "You have a newer version."
+      fi
+      echo "Local:" $cur_version
+      echo "Cloud:" $cloud_version
+    fi
+  fi
+}
+function build_hosts() {
+  sudo sh -c "cat ~/hosts.base ~/hosts.personal > /etc/hosts"
+}
+
 function rsb() {
   IP=$(ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1" | grep -m1 "")
   rails s -b $IP
 }
-
+function speedtest() {
+  curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -
+}
 function GO() {
   open . -a "iterm 2" | rs
   open . -a "iterm 2" | vim
