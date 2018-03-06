@@ -12,7 +12,7 @@ function gg() {
 function lpr() {
   USER=$1
   : ${USER:="BallantineDigitalMedia"}
-  open "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+user%3A"+$USER
+  open "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+user%3A"$USER
 }
 function pr(){
   SERVICE=$(cat .git/config | grep url\ = -m 1 | sed -E "s/^.*@(.*)\.(org|com).*/\1/")
@@ -52,8 +52,20 @@ function yml() {
   cur_version=$(sed -n '2p' config/application.yml | egrep -o '[0-9]+\.[0-9]+')
   cloud_version=$(aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml - | sed -n '2p' | egrep -o '[0-9]+\.[0-9]+')
   if [[ $@ == "--version" ]] || [[ $@ == "-v" ]]; then
+    if (( $(echo "$cur_version < $cloud_version" | bc -l))); then
+      echo "You are behind the times."
+    else
+      if (( $(echo "$cur_version == $cloud_version" | bc -l))); then
+        echo "You are up to date."
+      else
+        echo "You have a newer version."
+      fi
+    fi
     echo "Local:" $cur_version
     echo "Cloud:" $cloud_version
+  elif [[ $@ == "--diff" ]] || [[ $@ == "-d" ]]; then
+    diff=$(aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml - | diff config/application.yml -)
+    echo "$diff"
   else
     if (( $(echo "$cur_version < $cloud_version" | bc -l))) || [[ $@ == "--force" ]]; then
       echo "Downloading:" $cloud_version
@@ -92,13 +104,22 @@ function hosts() {
   cur_version=$(sed -n '1p' ~/hosts.base | egrep -o '[0-9]+\.[0-9]+')
   cloud_version=$(aws s3 cp s3://ballantine-dev/hosts.base - | sed -n '1p' | egrep -o '[0-9]+\.[0-9]+')
   if [[ $@ == "--version" ]] || [[ $@ == "-v" ]]; then
+    if (( $(echo "$cur_version < $cloud_version" | bc -l))); then
+      echo "You are behind the times."
+    else
+      if (( $(echo "$cur_version == $cloud_version" | bc -l))); then
+        echo "You are up to date."
+      else
+        echo "You have a newer version."
+      fi
+    fi
     echo "Local:" $cur_version
     echo "Cloud:" $cloud_version
   else
-    build_hosts
     if (( $(echo "$cur_version < $cloud_version" | bc -l))) || [[ $@ == "--force" ]]; then
       echo "Downloading:" $cloud_version
       aws s3 cp s3://ballantine-dev/hosts.base ~/hosts.base
+      build_hosts
     else
       if (( $(echo "$cur_version == $cloud_version" | bc -l))); then
         echo "You are up to date."
