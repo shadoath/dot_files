@@ -14,6 +14,10 @@ vim +PluginInstall +qall
 
 cd ~/.vim/bundle/YouCompleteMe
 ./install.py
+
+brew install the_silver_searcher
+or
+sudo  apt-get install silversearcher-ag
 ```
 You will also need `cmake` installed.
 
@@ -36,7 +40,7 @@ mkdir ~/.vim/files/{backup,info,swap,undo}
 ```
 
 View the /includes folder for extended functionality.
-* Functions --------- New terminals, Pull requests, tab-color, and IP binding.
+* Functions --------- New terminals, Pull requests, YML updates, tab-color, and rails IP binding.
   * Aliases
     * Capistrano ---- Deploying Rails.
     * Git ----------- Short and sweet is the way to git. Also auto complete branch names.

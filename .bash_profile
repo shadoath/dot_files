@@ -49,6 +49,7 @@ alias sd="  ssh ubuntu@34.209.33.85"
 alias sp="  ssh ubuntu@aws_news"
 alias jsp=" ssh ubuntu@aws_tj"
 alias spr=" ssh ubuntu@rails"
+alias rsp=" ssh ubuntu@rails"
 
 # Time
 alias retime="sudo ntpdate time.nist.gov"
@@ -97,3 +98,4 @@ export PS1="\[$cyan\]`whoami` \[$red\]\W\[\e[m\]\[$green\]\$(__git_ps1)\[$yellow
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 export PATH
+cd code
