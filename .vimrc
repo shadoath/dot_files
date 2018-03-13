@@ -259,6 +259,8 @@ let s:bundle_dir = $v.'/bundle'
     " colorscheme smyck      " smyck colorscheme
     " colorscheme solarized  " solarized colorscheme
     colorscheme flatlandia   " flatlandia colorscheme
+    "hi Comment guifg=#005969 guibg=NONE guisp=NONE gui=NONE ctermfg=105 ctermbg=NONE cterm=NONE
+    hi LineNr guifg=#515253 guibg=#2c2f31 guisp=#2c2f31 gui=NONE ctermfg=107 ctermbg=237 cterm=NONE
 
 "= Utilities ======================================================================================
 

@@ -33,6 +33,7 @@ alias oh='   sudo vim /etc/hosts'
 alias ossh=' sudo vim ~/.ssh/config'
 alias ovim=" vim ~/.vimrc"
 alias obash="vim ~/.bash_profile"
+alias ofunc="vim ~/dot_files/include/functions"
 alias sbash="source ~/.bash_profile; clear"
 alias bog="  bundle open"
 alias opry=" vim ~/.pryrc"
