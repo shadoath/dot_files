@@ -18,6 +18,8 @@ let s:bundle_dir = $v.'/bundle'
 
   " initialize Vundle and rebuild helptags
   set rtp+=~/.vim/bundle/Vundle.vim
+  set rtp+=/usr/local/opt/fzf
+
   call vundle#begin()
 
   " Required
@@ -31,13 +33,14 @@ let s:bundle_dir = $v.'/bundle'
   " Most important
   Plugin 'scrooloose/nerdtree'              " file menu
   Plugin 'Xuyuanp/nerdtree-git-plugin'      " Changes via git
-  Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
+  " Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
   Plugin 'airblade/vim-gitgutter'           " git diff in gutter
   Plugin 'andrewRadev/switch.vim'           " Swap true for false and MUCH more
   Plugin 'bling/vim-airline'                " nice looking footer bar
   Plugin 'mileszs/ack.vim'                  " searching via :Ack
   Plugin 'rking/ag.vim'                     " Project search
   Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
+  Plugin 'junegunn/fzf.vim'
   " Plugin 'valloric/YouCompleteMe'           " auto complete, son
 
   " Real useful
@@ -435,20 +438,24 @@ let s:bundle_dir = $v.'/bundle'
   let g:UltiSnipsEditSplit="vertical"
 
 
-  "- Control-P ------------------------------------------------------------------------------------
-  " Don't use caching
-  let g:ctrlp_use_caching = 0
-  " let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-  " :CtrlPClearCache
-  " if executable('ag')
-  "   let g:ctrlp_user_command = 'Ag %s -l -i -U --hidden -g ""'
-  " endif
-  let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git\|bin\|public\|bundle\|solr\|tmp\|vendor\|node_modules',
-    \ 'file': '\.DS_Store\|\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.min\.js$' }
+ "= FZF =========================================================================
+      let g:fzf_buffers_jump = 1
 
-  "- JSX ------------------------------------------------------------------------------------
-  let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+      " Open FZF
+      noremap <C-p> :Files<CR>
+
+      " Default fzf layout
+      " - down / up / left / right
+      let g:fzf_layout = { 'down': '~30%' }
+
+      "- Control-P ------------------------------------------------------------------------------------
+      " Don't use caching
+      " let g:ctrlp_custom_ignore = {
+      "       \ 'dir':  '\.git\|bin\|public\|bundle\|solr\|tmp\|vendor\|node_modules',
+      "       \ 'file': '\.DS_Store\|\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.min\.js$' }
+
+      "- JSX ------------------------------------------------------------------------------------
+      " let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
   " ================ Completion =======================
 
