@@ -2,7 +2,7 @@
 
 ### function opens new tab in same directory. if this functionality starts working again in iterm, then i will no longer need this
 function nt() {
-  open . -a "iterm 2"
+  open . -a "iterm"
 }
 # open git directory on github
 function gg() {
