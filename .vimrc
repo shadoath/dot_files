@@ -18,7 +18,8 @@ let s:bundle_dir = $v.'/bundle'
 
   " initialize Vundle and rebuild helptags
   set rtp+=~/.vim/bundle/Vundle.vim
-  set rtp+=/usr/local/opt/fzf
+  set rtp+=~/.fzf
+
 
   call vundle#begin()
 
@@ -41,6 +42,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'rking/ag.vim'                     " Project search
   Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
   Plugin 'junegunn/fzf.vim'
+
   " Plugin 'valloric/YouCompleteMe'           " auto complete, son
 
   " Real useful
@@ -439,14 +441,14 @@ let s:bundle_dir = $v.'/bundle'
 
 
  "= FZF =========================================================================
-      let g:fzf_buffers_jump = 1
+  let g:fzf_buffers_jump = 1
 
-      " Open FZF
-      noremap <C-p> :Files<CR>
+  " Open FZF
+  noremap <C-p> :Files<CR>
 
-      " Default fzf layout
-      " - down / up / left / right
-      let g:fzf_layout = { 'down': '~30%' }
+  " Default fzf layout
+  " - down / up / left / right
+  let g:fzf_layout = { 'down': '~30%' }
 
       "- Control-P ------------------------------------------------------------------------------------
       " Don't use caching
