@@ -18,6 +18,8 @@ let s:bundle_dir = $v.'/bundle'
 
   " initialize Vundle and rebuild helptags
   set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
+  set rtp+=/usr/local/opt/fzf
+
   call vundle#begin('$HOME/vimfiles/bundle/')
 
   " Required
@@ -31,23 +33,24 @@ let s:bundle_dir = $v.'/bundle'
   " Most important
   Plugin 'scrooloose/nerdtree'              " file menu
   Plugin 'Xuyuanp/nerdtree-git-plugin'      " Changes via git
-  Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
+  " Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
   Plugin 'airblade/vim-gitgutter'           " git diff in gutter
   Plugin 'andrewRadev/switch.vim'           " Swap true for false and MUCH more
   Plugin 'bling/vim-airline'                " nice looking footer bar
   Plugin 'mileszs/ack.vim'                  " searching via :Ack
   Plugin 'rking/ag.vim'                     " Project search
   Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
+  Plugin 'junegunn/fzf.vim'
   " Plugin 'valloric/YouCompleteMe'           " auto complete, son
 
   " Real useful
   Plugin 'wesQ3/vim-windowswap'             " window swapping
   Plugin 'dahu/vim-fanfingtastic'           " Extend tT and fF to multiple lines
   Plugin 'garbas/vim-snipmate'              " expand code snippits with <tab>
-  Plugin 'tomtom/tlib_vim'                  " Used by snipmates
+  Plugin 'tomtom/tlib_vim'                  " Used by snipmate
   Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
   Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
-  Plugin 'ervandew/supertab'
+  Plugin 'ervandew/supertab'                " The best autocompletion based on words in file
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
   Plugin 'statox/GOD.vim'                   " Get vim doc link in markdown => :GOD mark
@@ -230,7 +233,7 @@ let s:bundle_dir = $v.'/bundle'
 
     set hlsearch                 " highlight searching
     set ignorecase               " case insensitive search
-    set smartcase                " case insensitive search
+    set smartcase                " case insensitive search Unless using Capital Letters
     set incsearch                " incremental search
 
   "- Movement
@@ -256,8 +259,9 @@ let s:bundle_dir = $v.'/bundle'
     " colorscheme smyck      " smyck colorscheme
     " colorscheme solarized  " solarized colorscheme
     colorscheme flatlandia   " flatlandia colorscheme
-    hi Comment guifg=#005969 guibg=NONE guisp=NONE gui=NONE ctermfg=105 ctermbg=NONE cterm=NONE
-    hi LineNr guifg=#515253 guibg=#ffffff guisp=#ffffff gui=NONE ctermfg=157 ctermbg=287 cterm=NONE
+    "hi Comment guifg=#005969 guibg=NONE guisp=NONE gui=NONE ctermfg=105 ctermbg=NONE cterm=NONE
+    hi LineNr guifg=#515253 guibg=#2c2f31 guisp=#2c2f31 gui=NONE ctermfg=107 ctermbg=237 cterm=NONE
+
 "= Utilities ======================================================================================
 
   set noswapfile                     " don't create swap files
@@ -431,20 +435,24 @@ let s:bundle_dir = $v.'/bundle'
   let g:UltiSnipsEditSplit="vertical"
 
 
-  "- Control-P ------------------------------------------------------------------------------------
-  " Don't use caching
-  let g:ctrlp_use_caching = 0
-  " let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-  " :CtrlPClearCache
-  " if executable('ag')
-  "   let g:ctrlp_user_command = 'Ag %s -l -i -U --hidden -g ""'
-  " endif
-  let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git\|bin\|public\|solr\|tmp\|vendor\|node_modules',
-    \ 'file': '\.DS_Store\|\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.min\.js$' }
+ "= FZF =========================================================================
+      let g:fzf_buffers_jump = 1
 
-  "- JSX ------------------------------------------------------------------------------------
-  let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+      " Open FZF
+      noremap <C-p> :Files<CR>
+
+      " Default fzf layout
+      " - down / up / left / right
+      let g:fzf_layout = { 'down': '~30%' }
+
+      "- Control-P ------------------------------------------------------------------------------------
+      " Don't use caching
+      " let g:ctrlp_custom_ignore = {
+      "       \ 'dir':  '\.git\|bin\|public\|bundle\|solr\|tmp\|vendor\|node_modules',
+      "       \ 'file': '\.DS_Store\|\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.min\.js$' }
+
+      "- JSX ------------------------------------------------------------------------------------
+      " let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
   " ================ Completion =======================
 

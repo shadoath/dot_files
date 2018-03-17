@@ -2,7 +2,7 @@
 export PATH="/usr/local/bin:$PATH"
 # export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 # export PATH="/usr/local/bin/python:$PATH"
-export PATH="/Users/sbolton/.rvm/gems/ruby-2.4.1/bin:$PATH"
+# export PATH="/Users/sbolton/.rvm/gems/ruby-2.4.1/bin:$PATH"
 export PATH="/usr/local/bin/vim:$PATH"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 # eval "$(pyenv init -)"
@@ -33,6 +33,7 @@ alias oh='   sudo vim /etc/hosts'
 alias ossh=' sudo vim ~/.ssh/config'
 alias ovim=" vim ~/.vimrc"
 alias obash="vim ~/.bash_profile"
+alias ofunc="vim ~/dot_files/include/functions"
 alias sbash="source ~/.bash_profile; clear"
 alias bog="  bundle open"
 alias opry=" vim ~/.pryrc"
@@ -49,6 +50,7 @@ alias sd="  ssh ubuntu@34.209.33.85"
 alias sp="  ssh ubuntu@aws_news"
 alias jsp=" ssh ubuntu@aws_tj"
 alias spr=" ssh ubuntu@rails"
+alias rsp=" ssh ubuntu@rails"
 
 # Time
 alias retime="sudo ntpdate time.nist.gov"
@@ -97,3 +99,4 @@ export PS1="\[$cyan\]`whoami` \[$red\]\W\[\e[m\]\[$green\]\$(__git_ps1)\[$yellow
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 export PATH
+cd "code"
