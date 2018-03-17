@@ -38,6 +38,9 @@ Set up vim folders:
 mkdir ~/.vim/files/{backup,info,swap,undo}
 ```
 
+##Windows specific
+https://chocolatey.org/install
+
 View the /includes folder for extended functionality.
 * Functions --------- New terminals, Pull requests, YML updates, tab-color, and rails IP binding.
   * Aliases
