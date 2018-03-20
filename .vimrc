@@ -445,14 +445,14 @@ let s:bundle_dir = $v.'/bundle'
 
 
  "= FZF =========================================================================
-      let g:fzf_buffers_jump = 1
+  let g:fzf_buffers_jump = 1
 
-      " Open FZF
-      noremap <C-p> :Files<CR>
+  " Open FZF
+  noremap <C-p> :Files<CR>
 
-      " Default fzf layout
-      " - down / up / left / right
-      let g:fzf_layout = { 'down': '~30%' }
+  " Default fzf layout
+  " - down / up / left / right
+  let g:fzf_layout = { 'down': '~25%' }
 
       "- Control-P ------------------------------------------------------------------------------------
       " Don't use caching
