@@ -68,12 +68,14 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'tommcdo/vim-exchange'             " Exchange text with Visual and X
   Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
   Plugin 'tyru/open-browser.vim'            " Open url from vim
-  Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects
-                                            " https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
+  Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
+  " Plugin 'severin-lemaignan/vim-minimap'    " Minimap
+
   " Color
   Plugin 'jordwalke/flatlandia'
   Plugin 'ryanoasis/vim-devicons'
   Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+  Plugin 'KabbAmine/vCoolor.vim'                   " Color Picker, find with <leader>g
 
   " Language specific
   Plugin 'nelstrom/vim-textobj-rubyblock'   " Expands upon 'ir' 'ar' to be used in repatition
@@ -256,14 +258,18 @@ let s:bundle_dir = $v.'/bundle'
 
 
   "- Theme ----------------------------------------------------------------------------------------
+  " More options: http://vimcolors.com/
+  " More colors: https://vignette.wikia.nocookie.net/vim/images/1/16/Xterm-color-table.png/revision/latest?cb=20110121055231
 
     set background=dark      " dark background
     syntax enable
-    " colorscheme smyck      " smyck colorscheme
-    " colorscheme solarized  " solarized colorscheme
     colorscheme flatlandia   " flatlandia colorscheme
-    "hi Comment guifg=#005969 guibg=NONE guisp=NONE gui=NONE ctermfg=105 ctermbg=NONE cterm=NONE
-    hi LineNr guifg=#515253 guibg=#2c2f31 guisp=#2c2f31 gui=NONE ctermfg=107 ctermbg=237 cterm=NONE
+    hi Comment guifg=#005969 guibg=NONE    guisp=NONE    gui=NONE ctermfg=105 ctermbg=NONE cterm=NONE
+    hi LineNr  guifg=#515253 guibg=#2c2f31 guisp=#2c2f31 gui=NONE ctermfg=107 ctermbg=237  cterm=NONE
+
+    " Color picker
+    let g:vcoolor_map = '<leader>g'
+    let g:vcoolor_lowercase = 1
 
 "= Utilities ======================================================================================
 
