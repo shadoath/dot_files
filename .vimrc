@@ -40,7 +40,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'mileszs/ack.vim'                  " searching via :Ack
   Plugin 'rking/ag.vim'                     " Project search
   Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
-  Plugin 'junegunn/fzf.vim'
+  Plugin 'junegunn/fzf.vim'                 " Fuzzy search https://github.com/junegunn/fzf#search-syntax
   " Plugin 'valloric/YouCompleteMe'           " auto complete, son
 
   " Real useful
@@ -67,7 +67,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
   Plugin 'tommcdo/vim-exchange'             " Exchange text with Visual and X
   Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
-  Plugin 'tyru/open-browser.vim'            " Open url from vim
+  Plugin 'tyru/open-browser.vim'            " Open url from vim use: gx while on URL
   Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
   " Plugin 'severin-lemaignan/vim-minimap'    " Minimap
 
@@ -156,8 +156,8 @@ let s:bundle_dir = $v.'/bundle'
 
     set laststatus=2             " show status bar
 
-    set showcmd
-    set noerrorbells                " No beeps
+    set showcmd                  " Show (partial) command in status line.
+    set noerrorbells             " No beeps
     set vb t_vb=                 " Disable all bells.  I hate ringing/flashing.
     set visualbell               " use visual bell
     set number                   " display line numbers
@@ -469,16 +469,15 @@ let s:bundle_dir = $v.'/bundle'
   set listchars=tab:▸\
   set wildmode=list:longest,full
   set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-
-  set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-  set wildignore+=*vim/backups*
-  set wildignore+=*sass-cache*
-  set wildignore+=*DS_Store*
-  set wildignore+=vendor/rails/**
-  set wildignore+=vendor/cache/**
+  "
+  " stuff to ignore when tab completing
+  set wildignore=*.o,*.obj,*~
+  set wildignore+=*vim/backups*    " History files
+  set wildignore+=*sass-cache*     " Sass
+  set wildignore+=*DS_Store*       " IOS Image stores
+  set wildignore+=vendor/rails/**,vendor/cache/**
   set wildignore+=*.gem
-  set wildignore+=log/**
-  set wildignore+=tmp/**
+  set wildignore+=log/**,tmp/**
   set wildignore+=*.png,*.jpg,*.gif
   set wildignore+=*.min.css
   set wildignore+=*.min.js
