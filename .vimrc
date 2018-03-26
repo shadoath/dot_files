@@ -264,8 +264,9 @@ let s:bundle_dir = $v.'/bundle'
     set background=dark      " dark background
     syntax enable
     colorscheme flatlandia   " flatlandia colorscheme
-    hi Comment guifg=#005969 guibg=NONE    guisp=NONE    gui=NONE ctermfg=105 ctermbg=NONE cterm=NONE
-    hi LineNr  guifg=#515253 guibg=#2c2f31 guisp=#2c2f31 gui=NONE ctermfg=107 ctermbg=237  cterm=NONE
+    hi Comment guifg=#005969 guibg=NONE guisp=NONE gui=NONE ctermfg=105 ctermbg=NONE cterm=NONE
+    hi LineNr  guifg=#515253 guibg=NONE guisp=NONE gui=NONE ctermfg=107 ctermbg=237  cterm=NONE
+    hi Todo    guifg=#798188 guibg=NONE guisp=NONE gui=bold ctermfg=15  ctermbg=2    cterm=bold
 
     " Color picker
     let g:vcoolor_map = '<leader>g'
