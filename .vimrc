@@ -11,14 +11,15 @@ endif
 
 let s:bundle_dir = $v.'/bundle'
 " initial setup
-"==================================================================================:q
+"==================================================================================
   " use Vim settings, rather than Vi settings, required for Vundle
   set nocompatible
   filetype off
 
   " initialize Vundle and rebuild helptags
   set rtp+=~/.vim/bundle/Vundle.vim
-  set rtp+=/usr/local/opt/fzf
+  " set rtp+=/usr/local/opt/fzf
+  set rtp+=~/.fzf
 
   call vundle#begin()
 
@@ -295,7 +296,7 @@ let s:bundle_dir = $v.'/bundle'
   imap jj <Esc>:w<cr>
 
   imap <leader>end <% end %>
-  imap <leader>con Oconsole.log(": ");
+  imap <leader>con console.log(": ");
   " stupid save
   " imap :w <Esc>xx:w<cr>
 
@@ -305,6 +306,10 @@ let s:bundle_dir = $v.'/bundle'
 
   " Add the date
   " imap <leader>xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+
+  " Adjust splitscreen size
+    nmap <leader>b <C-w>11>
+  nmap <leader>B <C-w>11<
 
   " Yank keeps spot on line
   " vnoremap y myy`y
@@ -420,6 +425,8 @@ let s:bundle_dir = $v.'/bundle'
   let NERDTreeShowLineNumbers=1 " enable line numbers
   let NERDTreeShowBookmarks  =1 " Show bookmarks at top of nerd tree
   let NERDTreeMarkBookmarks  =1 " Mark folders with bookmarks
+  let NERDTreeWinSize        =42
+
   nmap <leader>O :NERDTreeFind<CR>
 
   " make sure relative line numbers are used
@@ -455,14 +462,7 @@ let s:bundle_dir = $v.'/bundle'
   " - down / up / left / right
   let g:fzf_layout = { 'down': '~25%' }
 
-      "- Control-P ------------------------------------------------------------------------------------
-      " Don't use caching
-      " let g:ctrlp_custom_ignore = {
-      "       \ 'dir':  '\.git\|bin\|public\|bundle\|solr\|tmp\|vendor\|node_modules',
-      "       \ 'file': '\.DS_Store\|\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.min\.js$' }
-
-      "- JSX ------------------------------------------------------------------------------------
-      " let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+  let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
   " ================ Completion =======================
 
