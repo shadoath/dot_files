@@ -41,8 +41,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'mileszs/ack.vim'                  " searching via :Ack
   Plugin 'rking/ag.vim'                     " Project search
   Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
-  Plugin 'junegunn/fzf.vim'
-
+  Plugin 'junegunn/fzf.vim'                 " Fuzzy search https://github.com/junegunn/fzf#search-syntax
   " Plugin 'valloric/YouCompleteMe'           " auto complete, son
 
   " Real useful
@@ -69,13 +68,15 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
   Plugin 'tommcdo/vim-exchange'             " Exchange text with Visual and X
   Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
-  Plugin 'tyru/open-browser.vim'            " Open url from vim
-  Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects
-                                            " https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
+  Plugin 'tyru/open-browser.vim'            " Open url from vim use: gx while on URL
+  Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
+  " Plugin 'severin-lemaignan/vim-minimap'    " Minimap
+
   " Color
   Plugin 'jordwalke/flatlandia'
   Plugin 'ryanoasis/vim-devicons'
   Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+  Plugin 'KabbAmine/vCoolor.vim'                   " Color Picker, find with <leader>g
 
   " Language specific
   Plugin 'nelstrom/vim-textobj-rubyblock'   " Expands upon 'ir' 'ar' to be used in repatition
@@ -156,8 +157,8 @@ let s:bundle_dir = $v.'/bundle'
 
     set laststatus=2             " show status bar
 
-    set showcmd
-    set noerrorbells                " No beeps
+    set showcmd                  " Show (partial) command in status line.
+    set noerrorbells             " No beeps
     set vb t_vb=                 " Disable all bells.  I hate ringing/flashing.
     set visualbell               " use visual bell
     set number                   " display line numbers
@@ -258,14 +259,19 @@ let s:bundle_dir = $v.'/bundle'
 
 
   "- Theme ----------------------------------------------------------------------------------------
+  " More options: http://vimcolors.com/
+  " More colors: https://vignette.wikia.nocookie.net/vim/images/1/16/Xterm-color-table.png/revision/latest?cb=20110121055231
 
     set background=dark      " dark background
     syntax enable
-    " colorscheme smyck      " smyck colorscheme
-    " colorscheme solarized  " solarized colorscheme
     colorscheme flatlandia   " flatlandia colorscheme
-    "hi Comment guifg=#005969 guibg=NONE guisp=NONE gui=NONE ctermfg=105 ctermbg=NONE cterm=NONE
-    hi LineNr guifg=#515253 guibg=#2c2f31 guisp=#2c2f31 gui=NONE ctermfg=107 ctermbg=237 cterm=NONE
+    hi Comment guifg=#005969 guibg=NONE guisp=NONE gui=NONE ctermfg=105 ctermbg=NONE cterm=NONE
+    hi LineNr  guifg=#515253 guibg=NONE guisp=NONE gui=NONE ctermfg=107 ctermbg=237  cterm=NONE
+    hi Todo    guifg=#798188 guibg=NONE guisp=NONE gui=bold ctermfg=15  ctermbg=2    cterm=bold
+
+    " Color picker
+    let g:vcoolor_map = '<leader>g'
+    let g:vcoolor_lowercase = 1
 
 "= Utilities ======================================================================================
 
@@ -376,9 +382,9 @@ let s:bundle_dir = $v.'/bundle'
   " nnoremap <leader>NH <Esc>:call ToggleHardMode()<CR>
   " Hardtime
   let g:hardtime_default_on = 1
-  let g:hardtime_maxcount = 5
+  let g:hardtime_maxcount = 6
   let g:hardtime_showmsg = 1
-  let g:hardtime_ignore_buffer_patterns = [ "NERD.*", "*.txt" ]  " Ignore NerdTree buffer, and help.txt files
+  let g:hardtime_ignore_buffer_patterns = [ "NERD.*", "*.txt", "*.json"]  " Ignore NerdTree buffer, *.txt, and *.json files
   let g:hardtime_ignore_quickfix = 1
   let g:list_of_normal_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
   let g:list_of_visual_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
@@ -448,7 +454,7 @@ let s:bundle_dir = $v.'/bundle'
 
   " Default fzf layout
   " - down / up / left / right
-  let g:fzf_layout = { 'down': '~30%' }
+  let g:fzf_layout = { 'down': '~25%' }
 
       "- Control-P ------------------------------------------------------------------------------------
       " Don't use caching
@@ -465,16 +471,15 @@ let s:bundle_dir = $v.'/bundle'
   set listchars=tab:▸\
   set wildmode=list:longest,full
   set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-
-  set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-  set wildignore+=*vim/backups*
-  set wildignore+=*sass-cache*
-  set wildignore+=*DS_Store*
-  set wildignore+=vendor/rails/**
-  set wildignore+=vendor/cache/**
+  "
+  " stuff to ignore when tab completing
+  set wildignore=*.o,*.obj,*~
+  set wildignore+=*vim/backups*    " History files
+  set wildignore+=*sass-cache*     " Sass
+  set wildignore+=*DS_Store*       " IOS Image stores
+  set wildignore+=vendor/rails/**,vendor/cache/**
   set wildignore+=*.gem
-  set wildignore+=log/**
-  set wildignore+=tmp/**
+  set wildignore+=log/**,tmp/**
   set wildignore+=*.png,*.jpg,*.gif
   set wildignore+=*.min.css
   set wildignore+=*.min.js
