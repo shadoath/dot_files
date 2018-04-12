@@ -49,8 +49,9 @@ alias saws="ssh ec2-user@aws"
 alias sd="  ssh ubuntu@34.209.33.85"
 alias sp="  ssh ubuntu@aws_news"
 alias jsp=" ssh ubuntu@aws_tj"
-alias spr=" ssh ubuntu@rails"
+alias tsp=" ssh ec2-user@test"
 alias rsp=" ssh ubuntu@rails"
+alias sbwd=" ssh ubuntu@bwd"
 
 # Time
 alias retime="sudo ntpdate time.nist.gov"
