@@ -308,8 +308,10 @@ let s:bundle_dir = $v.'/bundle'
   " imap <leader>xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 
   " Adjust splitscreen size
-    nmap <leader>b <C-w>11>
+  nmap <leader>b <C-w>11>
   nmap <leader>B <C-w>11<
+  nmap <leader>d <C-w>11+
+  nmap <leader>D <C-w>11-
 
   " Yank keeps spot on line
   " vnoremap y myy`y
