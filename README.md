@@ -61,11 +61,15 @@ View the /includes folder for extended functionality.
     * Rails --------- ENV, custom ports, bake and more.
     * Solr ---------- Tell the sun what to do.
 
-##Additional Files
+## Additional Files
 ### [ErgoDocs keyboard](https://input.club/configurator-ergodox/) layout using [Colemak](https://colemak.com/Learn)
 To install on [OSX](https://github.com/kiibohd/controller/wiki/Loading-DFU-Firmware#mac-osx):
  - Put Keyboard into debug (paperclip + button on bottom)
  - Run dfu-util -D <.dfu.bin> on each KB (left/right)
-### Font kit for nerd fonts
+[PNG](https://github.com/shadoath/dot_files/blob/master/vim-colemak.jpg) for reference
 
-### Comment/PR and let's both get smarter.
+### OTF [Font kit](https://github.com/shadoath/dot_files/blob/master/include/Droid%20Sans%20Mono%20for%20Powerline%20Nerd%20Font%20Complete.otf) for [nerd fonts](https://github.com/ryanoasis/nerd-fonts)
+
+### Synergy config for home Windows/OSX screen setup
+
+Comment/PR and let's both get smarter.
