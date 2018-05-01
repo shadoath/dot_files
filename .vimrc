@@ -76,7 +76,7 @@ let s:bundle_dir = $v.'/bundle'
   " Color
   Plugin 'jordwalke/flatlandia'
   Plugin 'ryanoasis/vim-devicons'
-  Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+  " Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plugin 'KabbAmine/vCoolor.vim'                   " Color Picker, find with <leader>g
 
   " Language specific
@@ -393,6 +393,8 @@ let s:bundle_dir = $v.'/bundle'
   let g:hardtime_showmsg = 1
   let g:hardtime_ignore_buffer_patterns = [ "NERD.*", "*.txt", "*.json"]  " Ignore NerdTree buffer, *.txt, and *.json files
   let g:hardtime_ignore_quickfix = 1
+  let g:hardtime_timeout = 600
+  let g:hardtime_allow_different_key = 1
   let g:list_of_normal_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
   let g:list_of_visual_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 
@@ -481,6 +483,7 @@ let s:bundle_dir = $v.'/bundle'
   set wildignore+=*DS_Store*       " IOS Image stores
   set wildignore+=vendor/rails/**,vendor/cache/**
   set wildignore+=*.gem
+  set wildignore+=tmp/cache/**
   set wildignore+=log/**,tmp/**
   set wildignore+=*.png,*.jpg,*.gif
   set wildignore+=*.min.css
