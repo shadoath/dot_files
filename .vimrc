@@ -76,7 +76,7 @@ let s:bundle_dir = $v.'/bundle'
   " Color
   Plugin 'jordwalke/flatlandia'
   Plugin 'ryanoasis/vim-devicons'
-  " Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+  " Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'  "Slows Vim WAY down
   Plugin 'KabbAmine/vCoolor.vim'                   " Color Picker, find with <leader>g
 
   " Language specific
