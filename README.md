@@ -1,10 +1,9 @@
 # .files
-You know, the basic files under ~/ that begin with a .
+You know, the basic files under `~/` that begin with a `.`
 
 Used to keep my computers and mind in sync.
 
-# Vim 8.0.118
-## Setup
+## Setup for Vim 8
 Using Vundle https://github.com/VundleVim/Vundle.vim
 ``` bash
 cd $HOME
@@ -21,37 +20,56 @@ sudo  apt-get install silversearcher-ag
 ```
 You will also need `cmake` installed.
 
-symlink the dotfiles you would like to use:
-```
-ln -s dot_files/[
-  '.bash_profile'
-  '.vimrc'
-  '.git-completion.bash'
-  '.git-prompt.sh'
-  '.gitignore_global'
-  '.pryrc'
-  '.agignore'
-]
+From your `~/` home directory, symlink the dot_files:
+```bash
+ln -s dot_files/.bash_profile
+ln -s dot_files/.vimrc
+ln -s dot_files/.gitconfig
+ln -s dot_files/.gitignore_global
+ln -s dot_files/.git-prompt.sh
+ln -s dot_files/.git-completion.bash
+ln -s dot_files/.pryrc
+ln -s dot_files/.agignore
 ```
 
 Set up vim folders:
 ```
-mkdir ~/.vim/files/{backup,info,swap,undo}
+mkdir ~/.vim/files && mkdir ~/.vim/files/{backup,info,swap,undo}
+```
+
+Install fzf (fuzzy find)
+```bash
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+```
+
+Install all vim plugins:
+```bash
+vim +PluginInstall +qall
+```
+
+Load your profile settings:
+```bash
+source ~/.bash_profile
 ```
 
 View the /includes folder for extended functionality.
-* Functions --------- New terminals, Pull requests, YML updates, tab-color, and rails IP binding.
+* Functions --------- New terminals, Pull requests, YML/hosts s3 sync, tab-color, and IP binding.
   * Aliases
     * Capistrano ---- Deploying Rails.
     * Git ----------- Short and sweet is the way to git. Also auto complete branch names.
     * Rails --------- ENV, custom ports, bake and more.
     * Solr ---------- Tell the sun what to do.
 
+## Additional Files
 ### [ErgoDocs keyboard](https://input.club/configurator-ergodox/) layout using [Colemak](https://colemak.com/Learn)
 To install on [OSX](https://github.com/kiibohd/controller/wiki/Loading-DFU-Firmware#mac-osx):
  - Put Keyboard into debug (paperclip + button on bottom)
  - Run dfu-util -D <.dfu.bin> on each KB (left/right)
- - ???
- - Profit
+[PNG](https://github.com/shadoath/dot_files/blob/master/vim-colemak.jpg) for reference
 
-### Comment and let's both get smarter.
+### OTF [Font kit](https://github.com/shadoath/dot_files/blob/master/include/Droid%20Sans%20Mono%20for%20Powerline%20Nerd%20Font%20Complete.otf) for [nerd fonts](https://github.com/ryanoasis/nerd-fonts)
+
+### Synergy config for home Windows/OSX screen setup
+
+Comment/PR and let's both get smarter.

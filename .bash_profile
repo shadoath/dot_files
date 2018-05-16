@@ -40,7 +40,8 @@ alias sshr="sudo service httpd restart"
 alias ssar="sudo service apache2 restart"
 
 # SSH to AWS
-alias saws="ssh ec2-user@aws"
+alias saws="ssh ec2-user@hostdragon"
+alias sawsold="ssh ec2-user@aws"
 alias sd="  ssh ubuntu@34.209.33.85"
 alias sp="  ssh ubuntu@aws_news"
 alias jsp=" ssh ubuntu@aws_tj"
