@@ -103,6 +103,7 @@ let s:bundle_dir = $v.'/bundle'
   " Plugin 'groenewege/vim-less'              " Less syntax highlighting / indentation
   " Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
   " Plugin 'johngrib/vim-game-code-break'     " Pong for Vim, just run :VimGameCodeBreak
+  " https://github.com/jmoon018/PacVim        " brew install pacvim
   " Plugin 'justinmk/vim-sneak'               " Sneaky movement s{char}{char}
   " Plugin 'lifepillar/vim-cheat40'           " 40 column cheat sheet, open with <leader>?
   " Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
