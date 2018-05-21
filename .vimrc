@@ -148,8 +148,8 @@ let s:bundle_dir = $v.'/bundle'
 
     " undo settings
     set undofile
-    set history    =501          " History is important.
-    set undolevels =501          " Oops saftey
+    set history    =9999          " History is important.
+    set undolevels =432           " Oops saftey
     set undodir    =$v/files/undo
     set viewdir    =$v/files/view
 
