@@ -58,10 +58,11 @@ let s:bundle_dir = $v.'/bundle'
   " Syntax
   Plugin 'martinda/Jenkinsfile-vim-syntax'  " Jenkins
   Plugin 'nathanaelkane/vim-indent-guides'  " Indent guides to keep your code aligned
-  Plugin 'tommcdo/vim-lion'                 " For more better indentation
+  Plugin 'tommcdo/vim-lion'                 " For more better indentation use gl and gL, gl to add space before, gL to add space after. glip= add space before = around paragraph
   Plugin 'scrooloose/syntastic'             " syntax checker
   Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
-  Plugin 'm-kat/aws-vim'                    " AWS Cloudformation
+  " Plugin 'guns/vim-sexp'                    " precision editing to S-expressions
+  " Plugin 'm-kat/aws-vim'                    " AWS Cloudformation
 
   " Nice to have
   Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
@@ -102,6 +103,7 @@ let s:bundle_dir = $v.'/bundle'
   " Plugin 'groenewege/vim-less'              " Less syntax highlighting / indentation
   " Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
   " Plugin 'johngrib/vim-game-code-break'     " Pong for Vim, just run :VimGameCodeBreak
+  " https://github.com/jmoon018/PacVim        " brew install pacvim
   " Plugin 'justinmk/vim-sneak'               " Sneaky movement s{char}{char}
   " Plugin 'lifepillar/vim-cheat40'           " 40 column cheat sheet, open with <leader>?
   " Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
@@ -243,7 +245,6 @@ let s:bundle_dir = $v.'/bundle'
     set incsearch                " incremental search
 
   "- Movement
-
   nnoremap 0 ^
   vnoremap 0 ^
   " nnoremap <tab> :<C-U>call <SNR>20_Match_wrapper('',1,'n') <CR>
@@ -516,6 +517,9 @@ let s:bundle_dir = $v.'/bundle'
   let g:indent_guides_color_change_percent = 3      " ultra-low-contrast guides
   let g:indent_guides_guide_size = 2                " between 0 and 'shiftwidth'
   let g:indent_guides_start_level = 1               " don't show guides until the third indent
+
+  " Lion, glip= will reduce space to single char
+  let b:lion_squeeze_spaces = 1
 
   "= File Icons =====================================================================================
   " let g:WebDevIconsNerdTreeGitPluginForceVAlign on
