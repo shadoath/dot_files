@@ -64,8 +64,9 @@ function yml() {
     echo "Local:" $cur_version
     echo "Cloud:" $cloud_version
   elif [[ $@ == "--diff" ]] || [[ $@ == "-d" ]]; then
-    diff=$(aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml - | diff config/application.yml -)
-    echo "$diff"
+    aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml yml.tmp
+    git --no-pager diff --color=auto --no-ext-diff --no-index config/application.yml yml.tmp
+    rm yml.tmp
   else
     if (( $(echo "$cur_version < $cloud_version" | bc -l))) || [[ $@ == "--force" ]]; then
       echo "Downloading:" $cloud_version
