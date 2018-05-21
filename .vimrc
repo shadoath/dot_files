@@ -62,7 +62,8 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'tommcdo/vim-lion'                 " For more better indentation use gl and gL, gl to add space before, gL to add space after. glip= add space before = around paragraph
   Plugin 'scrooloose/syntastic'             " syntax checker
   Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
-  Plugin 'm-kat/aws-vim'                    " AWS Cloudformation
+  " Plugin 'guns/vim-sexp'                    " precision editing to S-expressions
+  " Plugin 'm-kat/aws-vim'                    " AWS Cloudformation
 
   " Nice to have
   Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
