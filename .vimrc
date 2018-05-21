@@ -59,7 +59,7 @@ let s:bundle_dir = $v.'/bundle'
   " Syntax
   Plugin 'martinda/Jenkinsfile-vim-syntax'  " Jenkins
   Plugin 'nathanaelkane/vim-indent-guides'  " Indent guides to keep your code aligned
-  Plugin 'tommcdo/vim-lion'                 " For more better indentation
+  Plugin 'tommcdo/vim-lion'                 " For more better indentation use gl and gL, gl to add space before, gL to add space after. glip= add space before = around paragraph
   Plugin 'scrooloose/syntastic'             " syntax checker
   Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
   Plugin 'm-kat/aws-vim'                    " AWS Cloudformation
@@ -244,7 +244,6 @@ let s:bundle_dir = $v.'/bundle'
     set incsearch                " incremental search
 
   "- Movement
-
   nnoremap 0 ^
   vnoremap 0 ^
   " nnoremap <tab> :<C-U>call <SNR>20_Match_wrapper('',1,'n') <CR>
@@ -517,6 +516,9 @@ let s:bundle_dir = $v.'/bundle'
   let g:indent_guides_color_change_percent = 3      " ultra-low-contrast guides
   let g:indent_guides_guide_size = 2                " between 0 and 'shiftwidth'
   let g:indent_guides_start_level = 1               " don't show guides until the third indent
+
+  " Lion, glip= will reduce space to single char
+  let b:lion_squeeze_spaces = 1
 
   "= File Icons =====================================================================================
   " let g:WebDevIconsNerdTreeGitPluginForceVAlign on
