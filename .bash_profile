@@ -24,7 +24,9 @@ alias fing="sudo"
 alias Kill="sudo kill -s SIGTERM "
 
 # Quick edit
-alias oh='   sudo vim /etc/hosts'
+alias oh='   sudo vim ~/hosts.base'
+alias ohp='  sudo vim ~/hosts.personal'
+alias bh='   build_hosts'
 alias ossh=' sudo vim ~/.ssh/config'
 alias ovim=" vim ~/.vimrc"
 alias obash="vim ~/.bash_profile"
@@ -45,9 +47,9 @@ alias sawsold="ssh ec2-user@aws"
 alias sd="  ssh ubuntu@34.209.33.85"
 alias sp="  ssh ubuntu@aws_news"
 alias jsp=" ssh ubuntu@aws_tj"
-alias jsp2=" ssh ubuntu@54.200.48.115"
 alias tsp=" ssh ec2-user@test"
 alias rsp=" ssh ubuntu@rails"
+alias rsp2=" ssh ubuntu@18.237.143.24"
 alias sbwd=" ssh ubuntu@bwd"
 
 # Time

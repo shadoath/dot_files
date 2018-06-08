@@ -9,16 +9,8 @@ Using Vundle https://github.com/VundleVim/Vundle.vim
 cd $HOME
 git clone https://github.com/shadoath/dot_files
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
-
-cd ~/.vim/bundle/YouCompleteMe
-./install.py
-
-brew install the_silver_searcher
-or
-sudo  apt-get install silversearcher-ag
 ```
-You will also need `cmake` installed.
+
 
 From your `~/` home directory, symlink the dot_files:
 ```bash
@@ -30,7 +22,17 @@ ln -s dot_files/.git-prompt.sh
 ln -s dot_files/.git-completion.bash
 ln -s dot_files/.pryrc
 ln -s dot_files/.agignore
+
+cd ~/.vim/bundle/YouCompleteMe
+./install.py
+
+brew install the_silver_searcher
+or
+sudo apt-get install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
+sudo apt-get install silversearcher-ag
 ```
+You will also need `cmake` installed.
+
 
 Set up vim folders:
 ```
