@@ -2,10 +2,6 @@
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# Show folder in tabs
-if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
-  export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
-fi
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
 shopt -s histappend dotglob
@@ -37,6 +33,7 @@ alias opry=" vim ~/.pryrc"
 
 # Servers
 alias ssnr="sudo service nginx restart"
+alias ssmr="sudo service mysql restart"
 alias ssrn="sudo systemctl restart nginx"
 alias sshr="sudo service httpd restart"
 alias ssar="sudo service apache2 restart"
