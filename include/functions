@@ -163,19 +163,3 @@ tab-color() {
 tab-reset() {
   echo -ne "\033]6;1;bg;*;default\a"
 }
-color-ssh() {
-   if [[ -n "$ITERM_SESSION_ID" ]]; then
-     if [[ "$*" == *"dev"* ]] || [[ "$*" == *"35.162.254.200"* ]] || [[ "$*" == *"34.209.33.85"* ]]; then
-       tab-color  0 128 255 # BLUE
-     elif [[ "$*" == *"db"* ]]; then
-       tab-color 255 51 255 #HOT PINK
-     elif [[ "$*" == *"news"* ]] || [[ "$*" == *"nsr"* ]]; then
-       tab-color 255 51 51 # RED
-     else
-       tab-color  0 255 0 # GREEN
-     fi
-     ssh $*
-   fi
-}
-alias ssh=color-ssh
-alias noc="tab-reset"
