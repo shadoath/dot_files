@@ -15,12 +15,12 @@ alias gaa="  git add ."
 alias gaA="  git add . --all"
 alias gf="   git fetch"
 alias gr="   git rm"
-alias gu="   git unstage"
+alias gu="   git reset --soft"
 alias grv="  git remote -v"
 alias gb="   git branch"
 alias gba="  git branch -a"
 alias gbd="  git branch -d"
-alias gbdm=' git branch --merged | egrep -v "(^\*|master|staging)" | xargs git branch -d'
+alias gbdm=' git branch --merged | egrep -v "(^\*|master|staging)" | xargs git branch -d && gbp'
 alias gbD="  git branch -D"
 alias gbp="  git fetch origin --prune"
 alias gbn="  git pull origin && git checkout -b"
@@ -52,4 +52,3 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   __git_complete gpn _git_checkout
   __git_complete gbd _git_checkout
 fi
-
