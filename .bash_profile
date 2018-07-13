@@ -51,6 +51,7 @@ alias jsp=" ssh ubuntu@aws_tj"
 alias tsp=" ssh ec2-user@test"
 alias rsp=" ssh ubuntu@rails"
 alias rsp2=" ssh ubuntu@18.237.143.24"
+alias swowza=" ssh ubuntu@52.25.237.216"
 alias sbwd=" ssh ubuntu@bwd"
 
 # Time
