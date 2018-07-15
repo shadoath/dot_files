@@ -11,14 +11,15 @@ endif
 
 let s:bundle_dir = $v.'/bundle'
 " initial setup
-"==================================================================================:q
+"==================================================================================
   " use Vim settings, rather than Vi settings, required for Vundle
   set nocompatible
   filetype off
 
   " initialize Vundle and rebuild helptags
   set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
-  set rtp+=/usr/local/opt/fzf
+  " set rtp+=/usr/local/opt/fzf
+  " set rtp+=~/.fzf
 
   call vundle#begin('$HOME/vimfiles/bundle/')
 
@@ -40,7 +41,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'mileszs/ack.vim'                  " searching via :Ack
   Plugin 'rking/ag.vim'                     " Project search
   Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
-  Plugin 'junegunn/fzf.vim'
+  Plugin 'junegunn/fzf.vim'                 " Fuzzy search https://github.com/junegunn/fzf#search-syntax
   " Plugin 'valloric/YouCompleteMe'           " auto complete, son
 
   " Real useful
@@ -58,22 +59,26 @@ let s:bundle_dir = $v.'/bundle'
   " Syntax
   Plugin 'martinda/Jenkinsfile-vim-syntax'  " Jenkins
   Plugin 'nathanaelkane/vim-indent-guides'  " Indent guides to keep your code aligned
-  Plugin 'tommcdo/vim-lion'                 " For more better indentation
+  Plugin 'tommcdo/vim-lion'                 " For more better indentation use gl and gL, gl to add space before, gL to add space after. glip= add space before = around paragraph
   Plugin 'scrooloose/syntastic'             " syntax checker
   Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
+  " Plugin 'guns/vim-sexp'                    " precision editing to S-expressions
+  " Plugin 'm-kat/aws-vim'                    " AWS Cloudformation
 
   " Nice to have
   Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
   Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
   Plugin 'tommcdo/vim-exchange'             " Exchange text with Visual and X
   Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
-  Plugin 'tyru/open-browser.vim'            " Open url from vim
-  Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects
-                                            " https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
+  Plugin 'tyru/open-browser.vim'            " Open url from vim use: gx while on URL
+  Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
+  " Plugin 'severin-lemaignan/vim-minimap'    " Minimap
+
   " Color
   Plugin 'jordwalke/flatlandia'
   Plugin 'ryanoasis/vim-devicons'
-  Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+  " Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'  "Slows Vim WAY down
+  Plugin 'KabbAmine/vCoolor.vim'                   " Color Picker, find with <leader>g
 
   " Language specific
   Plugin 'nelstrom/vim-textobj-rubyblock'   " Expands upon 'ir' 'ar' to be used in repatition
@@ -99,6 +104,7 @@ let s:bundle_dir = $v.'/bundle'
   " Plugin 'groenewege/vim-less'              " Less syntax highlighting / indentation
   " Plugin 'heartsentwined/vim-emblem'        " emblem syntax & indent
   " Plugin 'johngrib/vim-game-code-break'     " Pong for Vim, just run :VimGameCodeBreak
+  " https://github.com/jmoon018/PacVim        " brew install pacvim
   " Plugin 'justinmk/vim-sneak'               " Sneaky movement s{char}{char}
   " Plugin 'lifepillar/vim-cheat40'           " 40 column cheat sheet, open with <leader>?
   " Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
@@ -135,24 +141,24 @@ let s:bundle_dir = $v.'/bundle'
     " backup settings
     set backup
     set backupext =-vimbackup
-    set backupdir =$v/files/backup
-    set directory =$v/files/swap// " Adding two // tells vim to use % stucture: %code%4flag%config%deploy.rb
+    set backupdir =$v\files\backup
+    set directory =$v\files\swap// " Adding two // tells vim to use % stucture: %code%4flag%config%deploy.rb
 
     " undo settings
     set undofile
-    set history    =501          " History is important.
-    set undolevels =501          " Oops saftey
-    set undodir    =$v/files/undo
-    set viewdir    =$v/files/view
+    set history    =9999          " History is important.
+    set undolevels =9999          " Oops saftey
+    set undodir    =$v\files\undo
+    set viewdir    =$v\files\view
 
     " Vim settings between close and open
-    set viminfo ='100,<50,s10,h,n$v/files/info/viminfo
+    set viminfo ='100,<50,s10,h,n$v\files\info\viminfo
     " https://stackoverflow.com/a/23036077/1418337
 
     set laststatus=2             " show status bar
 
-    set showcmd
-    set noerrorbells                " No beeps
+    set showcmd                  " Show (partial) command in status line.
+    set noerrorbells             " No beeps
     set vb t_vb=                 " Disable all bells.  I hate ringing/flashing.
     set visualbell               " use visual bell
     set number                   " display line numbers
@@ -237,7 +243,6 @@ let s:bundle_dir = $v.'/bundle'
     set incsearch                " incremental search
 
   "- Movement
-
   nnoremap 0 ^
   vnoremap 0 ^
   " nnoremap <tab> :<C-U>call <SNR>20_Match_wrapper('',1,'n') <CR>
@@ -253,14 +258,19 @@ let s:bundle_dir = $v.'/bundle'
 
 
   "- Theme ----------------------------------------------------------------------------------------
+  " More options: http://vimcolors.com/
+  " More colors: https://vignette.wikia.nocookie.net/vim/images/1/16/Xterm-color-table.png/revision/latest?cb=20110121055231
 
     set background=dark      " dark background
     syntax enable
-    " colorscheme smyck      " smyck colorscheme
-    " colorscheme solarized  " solarized colorscheme
     colorscheme flatlandia   " flatlandia colorscheme
-    "hi Comment guifg=#005969 guibg=NONE guisp=NONE gui=NONE ctermfg=105 ctermbg=NONE cterm=NONE
-    hi LineNr guifg=#515253 guibg=#2c2f31 guisp=#2c2f31 gui=NONE ctermfg=107 ctermbg=237 cterm=NONE
+    hi Comment guifg=#005969 guibg=NONE guisp=NONE gui=NONE ctermfg=105 ctermbg=NONE cterm=NONE
+    hi LineNr  guifg=#515253 guibg=NONE guisp=NONE gui=NONE ctermfg=107 ctermbg=237  cterm=NONE
+    hi Todo    guifg=#798188 guibg=NONE guisp=NONE gui=bold ctermfg=15  ctermbg=2    cterm=bold
+
+    " Color picker
+    let g:vcoolor_map = '<leader>g'
+    let g:vcoolor_lowercase = 1
 
 "= Utilities ======================================================================================
 
@@ -285,7 +295,7 @@ let s:bundle_dir = $v.'/bundle'
   imap jj <Esc>:w<cr>
 
   imap <leader>end <% end %>
-  imap <leader>con Oconsole.log(": ");
+  imap <leader>con console.log(": ");
   " stupid save
   " imap :w <Esc>xx:w<cr>
 
@@ -295,6 +305,12 @@ let s:bundle_dir = $v.'/bundle'
 
   " Add the date
   " imap <leader>xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
+
+  " Adjust splitscreen size
+  nmap <leader>b <C-w>11>
+  nmap <leader>B <C-w>11<
+  nmap <leader>d <C-w>11+
+  nmap <leader>D <C-w>11-
 
   " Yank keeps spot on line
   " vnoremap y myy`y
@@ -371,10 +387,12 @@ let s:bundle_dir = $v.'/bundle'
   " nnoremap <leader>NH <Esc>:call ToggleHardMode()<CR>
   " Hardtime
   let g:hardtime_default_on = 1
-  let g:hardtime_maxcount = 5
+  let g:hardtime_maxcount = 6
   let g:hardtime_showmsg = 1
-  let g:hardtime_ignore_buffer_patterns = [ "NERD.*", "*.txt" ]  " Ignore NerdTree buffer, and help.txt files
+  let g:hardtime_ignore_buffer_patterns = [ "NERD.*", "*.txt", "*.json"]  " Ignore NerdTree buffer, *.txt, and *.json files
   let g:hardtime_ignore_quickfix = 1
+  let g:hardtime_timeout = 600
+  let g:hardtime_allow_different_key = 1
   let g:list_of_normal_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
   let g:list_of_visual_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 
@@ -410,6 +428,8 @@ let s:bundle_dir = $v.'/bundle'
   let NERDTreeShowLineNumbers=1 " enable line numbers
   let NERDTreeShowBookmarks  =1 " Show bookmarks at top of nerd tree
   let NERDTreeMarkBookmarks  =1 " Mark folders with bookmarks
+  let NERDTreeWinSize        =42
+
   nmap <leader>O :NERDTreeFind<CR>
 
   " make sure relative line numbers are used
@@ -436,23 +456,16 @@ let s:bundle_dir = $v.'/bundle'
 
 
  "= FZF =========================================================================
-      let g:fzf_buffers_jump = 1
+  let g:fzf_buffers_jump = 1
 
-      " Open FZF
-      noremap <C-p> :Files<CR>
+  " Open FZF
+  noremap <C-p> :Files<CR>
 
-      " Default fzf layout
-      " - down / up / left / right
-      let g:fzf_layout = { 'down': '~30%' }
+  " Default fzf layout
+  " - down / up / left / right
+  let g:fzf_layout = { 'down': '~25%' }
 
-      "- Control-P ------------------------------------------------------------------------------------
-      " Don't use caching
-      " let g:ctrlp_custom_ignore = {
-      "       \ 'dir':  '\.git\|bin\|public\|bundle\|solr\|tmp\|vendor\|node_modules',
-      "       \ 'file': '\.DS_Store\|\.exe$\|\.so$\|\.dll$\|\.pyc$\|\.min\.js$' }
-
-      "- JSX ------------------------------------------------------------------------------------
-      " let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+  let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
   " ================ Completion =======================
 
@@ -460,16 +473,16 @@ let s:bundle_dir = $v.'/bundle'
   set listchars=tab:▸\
   set wildmode=list:longest,full
   set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-
-  set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-  set wildignore+=*vim/backups*
-  set wildignore+=*sass-cache*
-  set wildignore+=*DS_Store*
-  set wildignore+=vendor/rails/**
-  set wildignore+=vendor/cache/**
+  "
+  " stuff to ignore when tab completing
+  set wildignore=*.o,*.obj,*~
+  set wildignore+=*vim/backups*    " History files
+  set wildignore+=*sass-cache*     " Sass
+  set wildignore+=*DS_Store*       " IOS Image stores
+  set wildignore+=vendor/rails/**,vendor/cache/**
   set wildignore+=*.gem
-  set wildignore+=log/**
-  set wildignore+=tmp/**
+  set wildignore+=tmp/cache/**
+  set wildignore+=log/**,tmp/**
   set wildignore+=*.png,*.jpg,*.gif
   set wildignore+=*.min.css
   set wildignore+=*.min.js
@@ -502,6 +515,9 @@ let s:bundle_dir = $v.'/bundle'
   let g:indent_guides_color_change_percent = 3      " ultra-low-contrast guides
   let g:indent_guides_guide_size = 2                " between 0 and 'shiftwidth'
   let g:indent_guides_start_level = 1               " don't show guides until the third indent
+
+  " Lion, glip= will reduce space to single char
+  let b:lion_squeeze_spaces = 1
 
   "= File Icons =====================================================================================
   " let g:WebDevIconsNerdTreeGitPluginForceVAlign on

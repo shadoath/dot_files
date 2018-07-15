@@ -1,10 +1,9 @@
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session
-export PATH="/usr/local/bin:$PATH"
-# export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-# export PATH="/usr/local/bin/python:$PATH"
-# export PATH="/Users/sbolton/.rvm/gems/ruby-2.4.1/bin:$PATH"
+export PATH="/Users/sbolton/.rvm/rubies/ruby-2.4.2/bin/:$PATH"
+# export PATH="/Users/sbolton/.rvm/rubies/ruby-2.5.0/bin/:$PATH"
 export PATH="/usr/local/bin/vim:$PATH"
 export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
 # eval "$(pyenv init -)"
 
 # Show folder in tabs
@@ -23,13 +22,15 @@ alias f="find . |grep "
 alias p="ps aux |grep "
 alias a="alias  |grep "
 alias c="clear"
-alias :q="exit"
+alias {:q,:Q,:qa}="exit"
 alias bs="bundle show |grep "
 alias fing="sudo"
 alias Kill="sudo kill -s SIGTERM "
 
 # Quick edit
-alias oh='   sudo vim /etc/hosts'
+alias oh='   sudo vim ~/hosts.base'
+alias ohp='  sudo vim ~/hosts.personal'
+alias bh='   build_hosts'
 alias ossh=' sudo vim ~/.ssh/config'
 alias ovim=" vim ~/.vimrc"
 alias obash="vim ~/.bash_profile"
@@ -45,12 +46,17 @@ alias sshr="sudo service httpd restart"
 alias ssar="sudo service apache2 restart"
 
 # SSH to AWS
-alias saws="ssh ec2-user@aws"
+alias saws="ssh ec2-user@hostdragon"
+alias saws2="ssh ec2-user@52.27.43.136"
+alias sawsold="ssh ec2-user@aws"
 alias sd="  ssh ubuntu@34.209.33.85"
+alias sd2="  ssh ubuntu@54.68.179.233"
 alias sp="  ssh ubuntu@aws_news"
 alias jsp=" ssh ubuntu@aws_tj"
-alias spr=" ssh ubuntu@rails"
+alias tsp=" ssh ec2-user@test"
 alias rsp=" ssh ubuntu@rails"
+alias rsp2=" ssh ubuntu@18.237.143.24"
+alias sbwd=" ssh ubuntu@bwd"
 
 # Time
 alias retime="sudo ntpdate time.nist.gov"
@@ -93,10 +99,4 @@ source ~/.git-prompt.sh
 # PS1 uses [] so it doesn't overwrite long command lines and now does word wrap
 export PS1="\[$cyan\]`whoami` \[$red\]\W\[\e[m\]\[$green\]\$(__git_ps1)\[$yellow\]\$ \[$white\]"
 
-# test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
-# Setting PATH for Python 2.7
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-export PATH
 cd "code"
