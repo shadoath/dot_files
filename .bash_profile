@@ -28,8 +28,8 @@ alias fing="sudo"
 alias Kill="sudo kill -s SIGTERM "
 
 # Quick edit
-alias oh='   sudo vim ~/hosts.base'
-alias ohp='  sudo vim ~/hosts.personal'
+alias oh='   sudo vim ~/hosts.base && build_hosts'
+alias ohp='  sudo vim ~/hosts.personal && build_hosts'
 alias bh='   build_hosts'
 alias ossh=' sudo vim ~/.ssh/config'
 alias ovim=" vim ~/.vimrc"
@@ -56,13 +56,14 @@ alias sp="  ssh ubuntu@aws_news"
 alias sp2="  ssh ubuntu@35.167.109.154"
 alias jsp=" ssh ubuntu@aws_tj"
 alias tsp=" ssh ec2-user@test"
+alias swp=" ssh ec2-user@52.25.237.216" #WP client
 alias rsp=" ssh ubuntu@rails"
 alias rsp2=" ssh ubuntu@18.237.143.24"
 alias swowza=" ssh ubuntu@52.25.237.216"
 alias sbwd=" ssh ubuntu@bwd"
 # Max Ave
-alias smaxwp=" ssh -t sbolton@lish-fremont.linode.com WebApp"
-alias smaxapi="ssh -t sbolton@lish-fremont.linode.com API"
+alias smaxwp=" ssh -t root@198.58.126.101"
+alias smaxapi="ssh -t root@45.79.108.188"
 
 # Time
 alias retime="sudo ntpdate time.nist.gov"
