@@ -123,7 +123,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'tpope/vim-rails'                  " Rails in Vim
   Plugin 'tpope/vim-repeat'                 " Repeat plugin commands
   Plugin 'tpope/vim-surround'               " Change Surrounding tags
-  Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands
+  Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands ([<SPACE> will add space above)
 
 
   " end Vundle init (required )"
@@ -476,6 +476,7 @@ let s:bundle_dir = $v.'/bundle'
   " Default fzf layout
   " - down / up / left / right
   let g:fzf_layout = { 'down': '~25%' }
+  let $FZF_DEFAULT_COMMAND= 'ag -U -g ""'
 
   let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
