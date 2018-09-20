@@ -51,7 +51,11 @@ alias jsp=" ssh ubuntu@aws_tj"
 alias tsp=" ssh ec2-user@test"
 alias rsp=" ssh ubuntu@rails"
 alias rsp2=" ssh ubuntu@18.237.143.24"
+alias swowza=" ssh ubuntu@52.25.237.216"
 alias sbwd=" ssh ubuntu@bwd"
+# Max Ave
+alias smaxwp=" ssh -t sbolton@lish-fremont.linode.com WebApp"
+alias smaxapi="ssh -t sbolton@lish-fremont.linode.com API"
 
 # Time
 alias retime="sudo ntpdate time.nist.gov"

@@ -30,6 +30,8 @@ brew install the_silver_searcher
 or
 sudo apt-get install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
 sudo apt-get install silversearcher-ag
+or
+[manual](https://gist.github.com/rkaneko/988c3964a3177eb69b75)
 ```
 You will also need `cmake` installed.
 
