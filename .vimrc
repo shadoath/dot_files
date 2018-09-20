@@ -41,6 +41,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'rking/ag.vim'                     " Project search
   Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
   Plugin 'junegunn/fzf.vim'                 " Fuzzy search https://github.com/junegunn/fzf#search-syntax
+  " Plugin 'm-kat/aws-vim'                    " AWS Cloudformation
   " Plugin 'valloric/YouCompleteMe'           " auto complete, son
 
   " Real useful
@@ -54,6 +55,8 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
   Plugin 'statox/GOD.vim'                   " Get vim doc link in markdown => :GOD mark
+  Plugin 'moll/vim-bbye'                    " Buffers are not so finicky when being closed
+  " Plugin 'maxbrunsfeld/vim-yankstack'       " Turns p and y into [stacks], nav with meta-p and meta-shift-p
 
   " Syntax
   Plugin 'martinda/Jenkinsfile-vim-syntax'  " Jenkins
@@ -62,7 +65,6 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'scrooloose/syntastic'             " syntax checker
   Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
   " Plugin 'guns/vim-sexp'                    " precision editing to S-expressions
-  " Plugin 'm-kat/aws-vim'                    " AWS Cloudformation
 
   " Nice to have
   Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
@@ -120,7 +122,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'tpope/vim-rails'                  " Rails in Vim
   Plugin 'tpope/vim-repeat'                 " Repeat plugin commands
   Plugin 'tpope/vim-surround'               " Change Surrounding tags
-  Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands
+  Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands ([<SPACE> will add space above)
 
 
   " end Vundle init (required )"
@@ -296,6 +298,9 @@ let s:bundle_dir = $v.'/bundle'
   " map escape key to jj -- much faster, comments above b/c of Vim's interpretation of them jumping my cursor
   imap jj <Esc>:w<cr>
 
+  " un/comment line and next line (Gemfile, fury => local)
+  nmap gC gcc<ESC>j<ESC>gcc
+
   imap <leader>end <% end %>
   imap <leader>con console.log(": ");
   " stupid save
@@ -313,6 +318,10 @@ let s:bundle_dir = $v.'/bundle'
   nmap <leader>B <C-w>11<
   nmap <leader>d <C-w>11+
   nmap <leader>D <C-w>11-
+
+
+  " Closes current buffer leaving splits as is
+  nnoremap <Leader>q :Bdelete<CR>
 
   " Yank keeps spot on line
   " vnoremap y myy`y
@@ -388,15 +397,15 @@ let s:bundle_dir = $v.'/bundle'
   " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
   " nnoremap <leader>NH <Esc>:call ToggleHardMode()<CR>
   " Hardtime
-  let g:hardtime_default_on = 0
+  let g:hardtime_default_on = 1
   let g:hardtime_maxcount = 6
   let g:hardtime_showmsg = 1
   let g:hardtime_ignore_buffer_patterns = [ "NERD.*", "*.txt", "*.json"]  " Ignore NerdTree buffer, *.txt, and *.json files
   let g:hardtime_ignore_quickfix = 1
   let g:hardtime_timeout = 600
   let g:hardtime_allow_different_key = 1
-  let g:list_of_normal_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
-  let g:list_of_visual_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+  let g:list_of_normal_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+  let g:list_of_visual_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 
 
   " if exists(":Tabularize")
@@ -466,6 +475,7 @@ let s:bundle_dir = $v.'/bundle'
   " Default fzf layout
   " - down / up / left / right
   let g:fzf_layout = { 'down': '~25%' }
+  let $FZF_DEFAULT_COMMAND= 'ag -U -g ""'
 
   let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
