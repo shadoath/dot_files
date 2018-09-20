@@ -75,7 +75,7 @@ let s:bundle_dir = $v.'/bundle'
 
   " Color
   Plugin 'jordwalke/flatlandia'
-  Plugin 'ryanoasis/vim-devicons'
+  " Plugin 'ryanoasis/vim-devicons'
   " Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'  "Slows Vim WAY down
   Plugin 'KabbAmine/vCoolor.vim'                   " Color Picker, find with <leader>g
 
@@ -647,6 +647,6 @@ function! s:ExecuteInShell(command)
   wincmd k
 endfunction
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
-if exists("g:loaded_webdevicons")
-  call webdevicons#refresh()
-endif
+" if exists("g:loaded_webdevicons")
+"   call webdevicons#refresh()
+" endif
