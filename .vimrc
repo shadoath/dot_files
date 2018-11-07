@@ -91,6 +91,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'thoughtbot/vim-rspec'             " Vim RSPEC runner
   Plugin 'chriskempson/base16-vim'          " base 16 colorscheme
   Plugin 'vim-scripts/nginx.vim'            " Nginx files
+  Plugin '2072/PHP-Indenting-for-VIm'       " PHP indentation
   " Plugin 'elixir-lang/vim-elixir'
   " Plugin 'hdima/python-syntax'
 
@@ -112,6 +113,8 @@ let s:bundle_dir = $v.'/bundle'
   " Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
   " Plugin 'Rykka/InstantRst'                 " RST instant preview
   " Plugin 'terryma/vim-multiple-cursors'     " multiple cursors
+  " Odballs
+  Plugin 'uguu-org/vim-matrix-screensaver'    " Type :Matrix
 
   " The great tpope
   Plugin 'tpope/vim-abolish'                " Search replace with a touch of magic
