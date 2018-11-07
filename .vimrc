@@ -50,7 +50,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'dahu/vim-fanfingtastic'           " Extend tT and fF to multiple lines
   Plugin 'garbas/vim-snipmate'              " expand code snippits with <tab>
   Plugin 'tomtom/tlib_vim'                  " Used by snipmate
-  Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
+  " Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
   Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
   Plugin 'ervandew/supertab'                " The best autocompletion based on words in file
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
