@@ -2,11 +2,14 @@ Name = "MDErgo1";
 Layout = "Default";
 Base = "Blank";
 Version = "0.1";
-Author = "HaaTa (Jacob Alexander) 2015";
+Author = "Shadoath (Skylar Bolton)";
 KLL = "0.3c";
-Date = "2015-09-12";
+Date = "2015-10-08";
 Generator = "KIICONF 0.2";
+Variant = "";
 
 U"ESC" : flashMode();
 U"FUNCTION6" : flashMode();
+
+
 

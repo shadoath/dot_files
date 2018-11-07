@@ -4,11 +4,15 @@
         "Layout": "Default",
         "Base": "Blank",
         "Version": "0.1",
-        "Author": "HaaTa (Jacob Alexander) 2015",
+        "Author": "Shadoath (Skylar Bolton)",
         "KLL": "0.3c",
-        "Date": "2015-09-12",
-        "Generator": "KIICONF 0.2"
+        "Date": "2015-10-08",
+        "Generator": "KIICONF 0.2",
+        "Variant": ""
     },
+    "defines": [
+
+    ],
     "matrix": [
         {
             "code": "0x02",
@@ -24,6 +28,10 @@
                 "1": {
                     "key": "Y",
                     "label": "Y"
+                },
+                "2": {
+                    "key": "#:flashMode()",
+                    "label": "FLASH"
                 },
                 "3": {
                     "key": "#:flashMode()",
@@ -513,6 +521,10 @@
                 "0": {
                     "key": "HOME",
                     "label": "HOME"
+                },
+                "1": {
+                    "key": "#:ledControl( 1, 15 )",
+                    "label": "LED+"
                 }
             }
         },
@@ -527,9 +539,9 @@
                     "key": "END",
                     "label": "END"
                 },
-                "2": {
-                    "key": "#:flashMode()",
-                    "label": "FLASH"
+                "1": {
+                    "key": "#:ledControl( 0, 15 )",
+                    "label": "LED-"
                 }
             }
         },
@@ -545,8 +557,8 @@
                     "label": "DEL"
                 },
                 "1": {
-                    "key": "SPACE",
-                    "label": "[&nbsp;]"
+                    "key": "DELETE",
+                    "label": "DEL"
                 }
             }
         },
@@ -562,8 +574,8 @@
                     "label": "BKSP"
                 },
                 "1": {
-                    "key": "SPACE",
-                    "label": "[&nbsp;]"
+                    "key": "BACKSPACE",
+                    "label": "BKSP"
                 }
             }
         },
@@ -611,6 +623,10 @@
                 "0": {
                     "key": "SPACE",
                     "label": "[&nbsp;]"
+                },
+                "1": {
+                    "key": "#:ledControl( 5, 255 )",
+                    "label": "LED TOG"
                 }
             }
         },
@@ -654,6 +670,10 @@
                 "0": {
                     "key": "CONS:VOLUMEUP",
                     "label": "VOL+"
+                },
+                "2": {
+                    "key": "#:flashMode()",
+                    "label": "FLASH"
                 },
                 "3": {
                     "key": "#:flashMode()",
@@ -772,6 +792,10 @@
                 "0": {
                     "key": "EQUAL",
                     "label": "="
+                },
+                "1": {
+                    "key": "BACKSPACE",
+                    "label": "BKSP"
                 },
                 "2": {
                     "key": "ESCAPE",
@@ -1061,8 +1085,8 @@
                     "label": "="
                 },
                 "1": {
-                    "key": "UP",
-                    "label": "\u2191"
+                    "key": "EQUAL",
+                    "label": "="
                 },
                 "2": {
                     "key": "UP",
@@ -1259,8 +1283,8 @@
                     "label": "\u2190"
                 },
                 "1": {
-                    "key": "DOWN",
-                    "label": "\u2193"
+                    "key": "LEFT",
+                    "label": "\u2190"
                 },
                 "2": {
                     "key": "DOWN",
@@ -1280,8 +1304,8 @@
                     "label": "\u21b5"
                 },
                 "1": {
-                    "key": "RIGHT",
-                    "label": "\u2192"
+                    "key": "ENTER",
+                    "label": "\u21b5"
                 },
                 "2": {
                     "key": "RIGHT",
@@ -1374,5 +1398,14 @@
                 }
             }
         }
-    ]
+    ],
+    "leds": [
+
+    ],
+    "custom": {
+
+    },
+    "animations": {
+
+    }
 }
