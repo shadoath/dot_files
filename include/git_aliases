@@ -18,6 +18,7 @@ alias gsa="  git stash"
 alias gsp="  git stash pop"
 alias gr="   git rm"
 alias gu="   git reset --soft"
+alias grH="  git reset HEAD~" # undo one commit (ONLY USE IF NOT YET PUSHED)
 alias grv="  git remote -v"
 alias gb="   git branch"
 alias gba="  git branch -a"
