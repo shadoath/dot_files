@@ -498,12 +498,126 @@ let s:bundle_dir = $v.'/bundle'
   set wildignore+=vendor/rails/**,vendor/cache/**
   set wildignore+=*.gem
   set wildignore+=tmp/cache/**
+  set wildignore+=node/**,frontend/**
   set wildignore+=log/**,tmp/**
   set wildignore+=*.png,*.jpg,*.gif
   set wildignore+=*.min.css
   set wildignore+=*.min.js
   set wildignore+=*/tmp/*,*/bin/*,*/bower_components/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
+
+" Filetypes -------------------------------------------------------------
+
+" C {{{
+augroup filetype_c
+  autocmd!
+
+  " Highlight Custom C Types {{{
+  autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/types.vim'
+  autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
+  autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
+  autocmd BufRead,BufNewFile *.[ch] endif
+  " }}}
+augroup END
+" }}}
+
+" Clojure {{{
+augroup filetype_clojure
+  autocmd!
+  let g:vimclojure#ParenRainbow = 1 " Enable rainbow parens
+  let g:vimclojure#DynamicHighlighting = 1 " Dynamic highlighting
+  let g:vimclojure#FuzzyIndent = 1 " Names beginning in 'def' or 'with' to be indented as if they were included in the 'lispwords' option
+augroup END
+" }}}
+
+" Coffee {{{
+augroup filetype_coffee
+  autocmd!
+  au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+augroup END
+" }}}
+
+" Fish {{{
+augroup filetype_fish
+  autocmd!
+  au BufRead,BufNewFile *.fish set ft=fish
+augroup END
+" }}}
+
+" Handlebars {{{
+augroup filetype_hbs
+  autocmd!
+  au BufRead,BufNewFile *.hbs,*.handlebars,*.hbs.erb,*.handlebars.erb setl ft=mustache syntax=mustache
+augroup END
+" }}}
+
+" Jade {{{
+augroup filetype_jade
+  autocmd!
+  au BufRead,BufNewFile *.jade set ft=jade syntax=jade
+augroup END
+" }}}
+
+" JavaScript {{{
+augroup filetype_javascript
+  autocmd!
+  let g:javascript_conceal = 1
+augroup END
+" }}}
+
+" JSON {{{
+augroup filetype_json
+  autocmd!
+  au BufRead,BufNewFile *.json set ft=json syntax=javascript
+augroup END
+" }}}
+
+" Markdown {{{
+augroup filetype_markdown
+  autocmd!
+  let g:markdown_fenced_languages = ['ruby', 'html', 'javascript', 'css', 'erb=eruby.html', 'bash=sh']
+augroup END
+" }}}
+
+" Nu {{{
+augroup filetype_nu
+  autocmd!
+  au BufNewFile,BufRead *.nu,*.nujson,Nukefile setf nu
+augroup END
+" }}}
+
+" Ruby {{{
+augroup filetype_ruby
+  autocmd!
+
+  au BufRead,BufNewFile Rakefile,Capfile,Gemfile,.autotest,.irbrc,*.treetop,*.tt set ft=ruby syntax=ruby
+
+  " Ruby.vim {{{
+  let ruby_operators = 1
+  let ruby_space_errors = 1
+  let ruby_fold = 1
+  " }}}
+augroup END
+" }}}
+
+" }}}
+" XML {{{
+augroup filetype_xml
+  autocmd!
+  au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
+augroup END
+" }}}
+
+" ZSH {{{
+augroup filetype_zsh
+  autocmd!
+  au BufRead,BufNewFile .zsh_rc,.functions,.commonrc set ft=zsh
+augroup END
+" }}}
+
+
+  " Plugins
+  " ==============================================================================================
   "
   "- Ack ------------------------------------------------------------------------------------------
   let g:ackprg = 'ag --nogroup --color --column'
