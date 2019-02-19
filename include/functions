@@ -136,6 +136,23 @@ function build_hosts() {
   sudo sh -c "cat ~/hosts.base ~/hosts.personal > /etc/hosts"
 }
 
+# database sync
+function databaseP() {
+  RESULT=`mysql --user=root --skip-column-names -e "SHOW DATABASES LIKE '$1'"`
+  if [ "$RESULT" == $1 ]; then
+    mysqldump --user=root --databases $1 | gzip > ~/$1.sql.gz
+    aws s3 cp ~/$1.sql.gz s3://ballantine-dev/databases/$1.sql.gz
+    rm ~/$1.sql.gz
+  else
+    echo "Database does not exist"
+  fi
+}
+function database() {
+  aws s3 cp s3://ballantine-dev/databases/$1.sql.gz ~/$1.sql.gz
+  gunzip < ~/$1.sql.gz | mysql --user=root $1
+  rm ~/$1.sql.gz
+}
+
 function rsb() {
   IP=$(ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1" | grep -m1 "")
   rails s -b $IP

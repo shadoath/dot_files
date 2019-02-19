@@ -46,7 +46,7 @@ let s:bundle_dir = $v.'/bundle'
   " Plugin 'valloric/YouCompleteMe'           " auto complete, son
 
   " Real useful
-  Plugin 'wesQ3/vim-windowswap'             " window swapping
+  Plugin 'wesQ3/vim-windowswap'             " window swapping  <leader>ww
   Plugin 'dahu/vim-fanfingtastic'           " Extend tT and fF to multiple lines
   Plugin 'garbas/vim-snipmate'              " expand code snippits with <tab>
   Plugin 'tomtom/tlib_vim'                  " Used by snipmate
@@ -91,6 +91,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'thoughtbot/vim-rspec'             " Vim RSPEC runner
   Plugin 'chriskempson/base16-vim'          " base 16 colorscheme
   Plugin 'vim-scripts/nginx.vim'            " Nginx files
+  Plugin '2072/PHP-Indenting-for-VIm'       " PHP indentation
   " Plugin 'elixir-lang/vim-elixir'
   " Plugin 'hdima/python-syntax'
 
@@ -112,6 +113,8 @@ let s:bundle_dir = $v.'/bundle'
   " Plugin 'mattn/emmet-vim'                  " emmet stuff for vim [http://emmet.io/]
   " Plugin 'Rykka/InstantRst'                 " RST instant preview
   " Plugin 'terryma/vim-multiple-cursors'     " multiple cursors
+  " Odballs
+  Plugin 'uguu-org/vim-matrix-screensaver'    " Type :Matrix
 
   " The great tpope
   Plugin 'tpope/vim-abolish'                " Search replace with a touch of magic
@@ -495,12 +498,126 @@ let s:bundle_dir = $v.'/bundle'
   set wildignore+=vendor/rails/**,vendor/cache/**
   set wildignore+=*.gem
   set wildignore+=tmp/cache/**
+  set wildignore+=node/**,frontend/**
   set wildignore+=log/**,tmp/**
   set wildignore+=*.png,*.jpg,*.gif
   set wildignore+=*.min.css
   set wildignore+=*.min.js
   set wildignore+=*/tmp/*,*/bin/*,*/bower_components/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
+
+" Filetypes -------------------------------------------------------------
+
+" C {{{
+augroup filetype_c
+  autocmd!
+
+  " Highlight Custom C Types {{{
+  autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/types.vim'
+  autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
+  autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
+  autocmd BufRead,BufNewFile *.[ch] endif
+  " }}}
+augroup END
+" }}}
+
+" Clojure {{{
+augroup filetype_clojure
+  autocmd!
+  let g:vimclojure#ParenRainbow = 1 " Enable rainbow parens
+  let g:vimclojure#DynamicHighlighting = 1 " Dynamic highlighting
+  let g:vimclojure#FuzzyIndent = 1 " Names beginning in 'def' or 'with' to be indented as if they were included in the 'lispwords' option
+augroup END
+" }}}
+
+" Coffee {{{
+augroup filetype_coffee
+  autocmd!
+  au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
+augroup END
+" }}}
+
+" Fish {{{
+augroup filetype_fish
+  autocmd!
+  au BufRead,BufNewFile *.fish set ft=fish
+augroup END
+" }}}
+
+" Handlebars {{{
+augroup filetype_hbs
+  autocmd!
+  au BufRead,BufNewFile *.hbs,*.handlebars,*.hbs.erb,*.handlebars.erb setl ft=mustache syntax=mustache
+augroup END
+" }}}
+
+" Jade {{{
+augroup filetype_jade
+  autocmd!
+  au BufRead,BufNewFile *.jade set ft=jade syntax=jade
+augroup END
+" }}}
+
+" JavaScript {{{
+augroup filetype_javascript
+  autocmd!
+  let g:javascript_conceal = 1
+augroup END
+" }}}
+
+" JSON {{{
+augroup filetype_json
+  autocmd!
+  au BufRead,BufNewFile *.json set ft=json syntax=javascript
+augroup END
+" }}}
+
+" Markdown {{{
+augroup filetype_markdown
+  autocmd!
+  let g:markdown_fenced_languages = ['ruby', 'html', 'javascript', 'css', 'erb=eruby.html', 'bash=sh']
+augroup END
+" }}}
+
+" Nu {{{
+augroup filetype_nu
+  autocmd!
+  au BufNewFile,BufRead *.nu,*.nujson,Nukefile setf nu
+augroup END
+" }}}
+
+" Ruby {{{
+augroup filetype_ruby
+  autocmd!
+
+  au BufRead,BufNewFile Rakefile,Capfile,Gemfile,.autotest,.irbrc,*.treetop,*.tt set ft=ruby syntax=ruby
+
+  " Ruby.vim {{{
+  let ruby_operators = 1
+  let ruby_space_errors = 1
+  let ruby_fold = 1
+  " }}}
+augroup END
+" }}}
+
+" }}}
+" XML {{{
+augroup filetype_xml
+  autocmd!
+  au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
+augroup END
+" }}}
+
+" ZSH {{{
+augroup filetype_zsh
+  autocmd!
+  au BufRead,BufNewFile .zsh_rc,.functions,.commonrc set ft=zsh
+augroup END
+" }}}
+
+
+  " Plugins
+  " ==============================================================================================
   "
   "- Ack ------------------------------------------------------------------------------------------
   let g:ackprg = 'ag --nogroup --color --column'
@@ -537,7 +654,6 @@ let s:bundle_dir = $v.'/bundle'
 
   let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
   " let g:webdevicons_enable_nerdtree = 1
-
   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rake'] = 'ƛ'
   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bash'] = ''
@@ -556,6 +672,9 @@ let s:bundle_dir = $v.'/bundle'
   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = 'M'
   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['diff'] = ''
 
+  " To enter hex into [] use `ctrl-k` + u + four diget hex
+  " http://www.endmemo.com/unicode/unicodeconverter.php
+  " https://nerdfonts.com/#cheat-sheet
   let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
   let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 
@@ -568,9 +687,19 @@ let s:bundle_dir = $v.'/bundle'
   let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
   let g:NERDTreeExtensionHighlightColor['rake'] = s:orange " sets the color of css files to blue
 
-
-  "= Airline ========================================================================================
-  let g:airline_powerline_fonts = 1
+"= Airline ----------------------------------------------------------------------------------------
+  " Airline.vim {{{
+  augroup airline_config
+    autocmd!
+    let g:airline_powerline_fonts = 1
+    let g:airline_enable_syntastic = 1
+    let g:airline#extensions#tabline#buffer_nr_format = '%s '
+    let g:airline#extensions#tabline#buffer_nr_show = 1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#fnamecollapse = 0
+    let g:airline#extensions#tabline#fnamemod = ':t'
+  augroup END
+  " }}}
 
 "= Language Specific Settings======================================================================
 
@@ -641,6 +770,59 @@ let s:bundle_dir = $v.'/bundle'
   endfunction
 
   :nnoremap <cr> :call MapCR()<cr>
+
+
+" Highlight Interesting Words {{{
+augroup highlight_interesting_word
+  autocmd!
+  " This mini-plugin provides a few mappings for highlighting words temporarily.
+  "
+  " Sometimes you're looking at a hairy piece of code and would like a certain
+  " word or two to stand out temporarily.  You can search for it, but that only
+  " gives you one color of highlighting.  Now you can use <leader>N where N is
+  " a number from 1-6 to highlight the current word in a specific color.
+  function! HiInterestingWord(n) " {{{
+    " Save our location.
+    normal! mz
+
+    " Yank the current word into the z register.
+    normal! "zyiw
+
+    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
+    let mid = 86750 + a:n
+
+    " Clear existing matches, but don't worry if they don't exist.
+    silent! call matchdelete(mid)
+
+    " Construct a literal pattern that has to match at boundaries.
+    let pat = '\V\<' . escape(@z, '\') . '\>'
+
+    " Actually match the words.
+    call matchadd("InterestingWord" . a:n, pat, 1, mid)
+
+    " Move back to our original location.
+    normal! `z
+  endfunction " }}}
+
+  " Mappings {{{
+  nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
+  nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
+  nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
+  nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
+  nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
+  nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
+  " }}}
+
+  " Default Highlights {{{
+  hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
+  hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
+  hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
+  hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
+  hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
+  hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
+  " }}}
+augroup END
+" }}}
 
 "= For running commands in a new window ========================================================
 function! s:ExecuteInShell(command)
