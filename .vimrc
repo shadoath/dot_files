@@ -687,9 +687,19 @@ augroup END
   let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
   let g:NERDTreeExtensionHighlightColor['rake'] = s:orange " sets the color of css files to blue
 
-
-  "= Airline ========================================================================================
-  let g:airline_powerline_fonts = 1
+"= Airline ----------------------------------------------------------------------------------------
+  " Airline.vim {{{
+  augroup airline_config
+    autocmd!
+    let g:airline_powerline_fonts = 1
+    let g:airline_enable_syntastic = 1
+    let g:airline#extensions#tabline#buffer_nr_format = '%s '
+    let g:airline#extensions#tabline#buffer_nr_show = 1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#fnamecollapse = 0
+    let g:airline#extensions#tabline#fnamemod = ':t'
+  augroup END
+  " }}}
 
 "= Language Specific Settings======================================================================
 
