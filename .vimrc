@@ -654,7 +654,6 @@ augroup END
 
   let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
   " let g:webdevicons_enable_nerdtree = 1
-
   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rake'] = 'ƛ'
   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bash'] = ''
@@ -673,6 +672,9 @@ augroup END
   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = 'M'
   let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['diff'] = ''
 
+  " To enter hex into [] use `ctrl-k` + u + four diget hex
+  " http://www.endmemo.com/unicode/unicodeconverter.php
+  " https://nerdfonts.com/#cheat-sheet
   let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
   let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 
