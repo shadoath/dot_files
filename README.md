@@ -14,6 +14,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 From your `~/` home directory, symlink the dot_files:
 ```bash
+mv .bash_profile .bash_profile_original
 ln -s dot_files/.bash_profile
 ln -s dot_files/.vimrc
 ln -s dot_files/.gitconfig
@@ -23,13 +24,13 @@ ln -s dot_files/.git-completion.bash
 ln -s dot_files/.pryrc
 ln -s dot_files/.agignore
 
-cd ~/.vim/bundle/YouCompleteMe
-./install.py
-
 brew install the_silver_searcher
 or
 sudo apt-get install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
 sudo apt-get install silversearcher-ag
+or
+sudo yum install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
+sudo yum install silversearcher-ag
 or
 [manual](https://gist.github.com/rkaneko/988c3964a3177eb69b75)
 ```
