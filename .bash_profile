@@ -1,3 +1,5 @@
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session
+
 if [ `hostname` == 'mbp-42' ]
 then
   echo "Macbook setup"
@@ -14,7 +16,6 @@ else
   echo "Server setup"
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 fi
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session
 
 
 
@@ -116,4 +117,9 @@ source ~/.git-prompt.sh
 # PS1 uses [] so it doesn't overwrite long command lines and now does word wrap
 export PS1="\[$cyan\]`whoami`\[$yellow\]@\[$purple\]`hostname` \[$red\]\W\[\e[m\]\[$green\]\$(__git_ps1)\[$yellow\]\$ \[$white\]"
 
-# cd "/data"
+if [ `hostname` == 'mbp-42' ]
+then
+  cd "/code"
+else
+  cd "/data"
+fi
