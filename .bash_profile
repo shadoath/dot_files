@@ -1,6 +1,22 @@
+if [ `hostname` == 'mbp-42' ]
+then
+  echo "Macbook setup"
+  export PATH="/Users/sbolton/.rvm/rubies/ruby-2.4.2/bin/:$PATH"
+  # export PATH="/Users/sbolton/.rvm/rubies/ruby-2.5.0/bin/:$PATH"
+  export PATH="/usr/local/bin/vim:$PATH"
+  export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+  export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+  export PATH="$PATH:/usr/local/etc/profile.d/z.sh"
+  if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
+    export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
+  fi
+else
+  echo "Server setup"
+  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth

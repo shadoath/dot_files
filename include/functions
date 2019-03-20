@@ -188,16 +188,28 @@ tab-color() {
 tab-reset() {
   echo -ne "\033]6;1;bg;*;default\a"
 }
-#apro-push-files() {
-#  tar -czvf /code/apro.bdmedia.com.tar.gz /code/apro.bdmedia.com/ && aws s3 cp /code/apro.bdmedia.com.tar.gz s3://ballantine-dev/apps/apro.bdmedia.com.tar.gz && rm -rf /code/apro.bdmedia.com.tar.gz
-#}
-#apro-pull-files() {
-#  aws s3 cp s3://ballantine-dev/apps/apro.bdmedia.com.tar.gz /code/apro.bdmedia.com.tar.gz && tar -xzvf /code/apro.bdmedia.com.tar.gz -C /code/ && rm -rf /code/apro.bdmedia.com.tar.gz
-#}
+color-ssh() {
+   if [[ -n "$ITERM_SESSION_ID" ]]; then
+     if [[ "$*" == *"dev"* ]] || [[ "$*" == *"35.162.254.200"* ]] || [[ "$*" == *"34.209.33.85"* ]]; then
+       tab-color  0 128 255 # BLUE
+     elif [[ "$*" == *"db"* ]]; then
+       tab-color 255 51 255 #HOT PINK
+     elif [[ "$*" == *"news"* ]] || [[ "$*" == *"nsr"* ]]; then
+       tab-color 255 51 51 # RED
+     else
+       tab-color  0 255 0 # GREEN
+     fi
+     ssh $*
+   fi
+}
 apro-push-db() {
   databaseP adventurepro
 }
 apro-pull-db() {
   database adventurepro
 }
+if [ `hostname` == 'mbp-42' ]
+  then
+  alias ssh=color-ssh
+fi
 alias noc="tab-reset"
