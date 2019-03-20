@@ -58,6 +58,11 @@ Load your profile settings:
 source ~/.bash_profile
 ```
 
+Have git save user/pass
+```bash
+git config credential.helper store
+```
+
 View the /includes folder for extended functionality.
 * Functions --------- New terminals, Pull requests, YML/hosts s3 sync, tab-color, and IP binding.
   * Aliases
