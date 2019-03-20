@@ -202,17 +202,14 @@ color-ssh() {
      ssh $*
    fi
 }
-#apro-push-files() {
-#  tar -czvf /code/apro.bdmedia.com.tar.gz /code/apro.bdmedia.com/ && aws s3 cp /code/apro.bdmedia.com.tar.gz s3://ballantine-dev/apps/apro.bdmedia.com.tar.gz && rm -rf /code/apro.bdmedia.com.tar.gz
-#}
-#apro-pull-files() {
-#  aws s3 cp s3://ballantine-dev/apps/apro.bdmedia.com.tar.gz /code/apro.bdmedia.com.tar.gz && tar -xzvf /code/apro.bdmedia.com.tar.gz -C /code/ && rm -rf /code/apro.bdmedia.com.tar.gz
-#}
 apro-push-db() {
   databaseP adventurepro
 }
 apro-pull-db() {
   database adventurepro
 }
-alias ssh=color-ssh
+if [ `hostname` == 'mbp-42' ]
+  then
+  alias ssh=color-ssh
+fi
 alias noc="tab-reset"

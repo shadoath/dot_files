@@ -15,17 +15,17 @@ section: screens
 		switchCornerSize = 0
 end
 
-section: aliases
+ section: aliases
 end
 
-section: links
+ section: links
 	DESKTOP-KVTH3AD:
 		left(0,100) = BCIs-MacBook-Pro-Skylar-2.local(0,100)
 	BCIs-MacBook-Pro-Skylar-2.local:
 		right(0,100) = DESKTOP-KVTH3AD(0,100)
 end
 
-section: options
+ section: options
 	relativeMouseMoves = false
 	screenSaverSync = true
 	win32KeepForeground = false
@@ -33,4 +33,3 @@ section: options
 	switchCorners = none
 	switchCornerSize = 0
 end
-

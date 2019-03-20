@@ -1,16 +1,24 @@
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session
-export PATH="/Users/sbolton/.rvm/rubies/ruby-2.4.2/bin/:$PATH"
-# export PATH="/Users/sbolton/.rvm/rubies/ruby-2.5.0/bin/:$PATH"
-export PATH="/usr/local/bin/vim:$PATH"
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
-export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
-export PATH="$PATH:/usr/local/etc/profile.d/z.sh"
-# eval "$(pyenv init -)"
 
-# Show folder in tabs
-if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
-  export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
+if [ `hostname` == 'mbp-42' ]
+then
+  echo "Macbook setup"
+  export PATH="/Users/sbolton/.rvm/rubies/ruby-2.4.2/bin/:$PATH"
+  # export PATH="/Users/sbolton/.rvm/rubies/ruby-2.5.0/bin/:$PATH"
+  export PATH="/usr/local/bin/vim:$PATH"
+  export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+  export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+  export PATH="$PATH:/usr/local/etc/profile.d/z.sh"
+  if [ $ITERM_SESSION_ID -a -z "$PROMPT_COMMAND" ]; then
+    export PROMPT_COMMAND='echo -ne "\033];${PWD##*/}\007"; ':"$PROMPT_COMMAND";
+  fi
+else
+  echo "Server setup"
+  [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 fi
+
+
+
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
 shopt -s histappend dotglob
@@ -44,6 +52,7 @@ alias opry=" vim ~/.pryrc"
 
 # Servers
 alias ssnr="sudo service nginx restart"
+alias ssmr="sudo service mysql restart"
 alias ssrn="sudo systemctl restart nginx"
 alias sshr="sudo service httpd restart"
 alias ssar="sudo service apache2 restart"
@@ -97,14 +106,20 @@ alias ls="ls -la"
 #[[ -s "$HOME/dot_files/include/_aliases" ]] && source "$HOME/dot_files/include/_aliases"
 
 # Better terminal output
-cyan=$(tput setaf 6) #36
-white=$(tput setaf 7) #37
-red=$(tput setaf 1)  #31
-green=$(tput setaf 2) #32
-yellow=$(tput setaf 3) #33
+cyan=$(tput setaf 6)
+white=$(tput setaf 7)
+red=$(tput setaf 1)
+green=$(tput setaf 2)
+yellow=$(tput setaf 3)
+purple=$(tput setaf 5)
 
 source ~/.git-prompt.sh
 # PS1 uses [] so it doesn't overwrite long command lines and now does word wrap
-export PS1="\[$cyan\]`whoami` \[$red\]\W\[\e[m\]\[$green\]\$(__git_ps1)\[$yellow\]\$ \[$white\]"
+export PS1="\[$cyan\]`whoami`\[$yellow\]@\[$purple\]`hostname` \[$red\]\W\[\e[m\]\[$green\]\$(__git_ps1)\[$yellow\]\$ \[$white\]"
 
-cd "code"
+if [ `hostname` == 'mbp-42' ]
+then
+  cd "/code"
+else
+  cd "/data"
+fi

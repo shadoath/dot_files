@@ -18,7 +18,6 @@ let s:bundle_dir = $v.'/bundle'
 
   " initialize Vundle and rebuild helptags
   set rtp+=~/.vim/bundle/Vundle.vim
-  " set rtp+=/usr/local/opt/fzf
   set rtp+=~/.fzf
 
   call vundle#begin()
@@ -411,8 +410,8 @@ let s:bundle_dir = $v.'/bundle'
   let g:hardtime_ignore_quickfix = 1
   let g:hardtime_timeout = 600
   let g:hardtime_allow_different_key = 1
-  let g:list_of_normal_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
-  let g:list_of_visual_keys = ["h", "j", "k", "l", "<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+  let g:list_of_normal_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
+  let g:list_of_visual_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 
 
   " if exists(":Tabularize")

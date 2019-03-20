@@ -15,44 +15,44 @@ section: screens
 		switchCornerSize = 0
 end
 
-section: aliases
+ section: aliases
 end
 
-section: links
+ section: links
 # Display (Mental)
 # Mac(1) | PC(2) | Mac(3) | PC(4)
 
-#Display (Physical)
+ #Display (Physical)
 #
 #
 
-# Display (Settings)
+ # Display (Settings)
 # Mac(3)
 # Mac(1)-Laptop
 # PC(2)
 # PC(4)
 
-	DESKTOP-KVTH3AD:
+ 	DESKTOP-KVTH3AD:
 		up(0,100) = DESKTOP-KVTH3AD(0,100)  #Portals
 		down(0,100) = DESKTOP-KVTH3AD(0,100)  #Portals
 
-		left(0,50) = BCIs-MacBook-Pro-Skylar-2.local(51,100)
+ 		left(0,50) = BCIs-MacBook-Pro-Skylar-2.local(51,100)
 		left(51,100) = BCIs-MacBook-Pro-Skylar-2.local(0,55)
 
-		right(0,50) = BCIs-MacBook-Pro-Skylar-2.local(0,55)
+ 		right(0,50) = BCIs-MacBook-Pro-Skylar-2.local(0,55)
 		right(51,100) = BCIs-MacBook-Pro-Skylar-2.local(55,100)
 	BCIs-MacBook-Pro-Skylar-2.local:
 		up(0,100) = BCIs-MacBook-Pro-Skylar-2.local(0,100)   #Portals
 		down(0,100) = BCIs-MacBook-Pro-Skylar-2.local(0,100)  #Portals
 
-		left(0,55) = DESKTOP-KVTH3AD(0,50)
+ 		left(0,55) = DESKTOP-KVTH3AD(0,50)
 		left(55,100) = DESKTOP-KVTH3AD(51,100)
 
-		right(0,55) = DESKTOP-KVTH3AD(51,100)
+ 		right(0,55) = DESKTOP-KVTH3AD(51,100)
 		right(55,100) = DESKTOP-KVTH3AD(0,50)
 end
 
-section: options
+ section: options
 	relativeMouseMoves = false
 	screenSaverSync = true
 	win32KeepForeground = false
@@ -60,5 +60,3 @@ section: options
 	switchCorners = none
 	switchCornerSize = 0
 end
-
-

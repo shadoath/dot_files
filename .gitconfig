@@ -5,7 +5,7 @@
 [push]
   default = simple
 [core]
-  editor = /usr/local/bin/vim
+  editor = /usr/bin/vim
   mergeoptions = --no-edit
 [alias]
   c = checkout
