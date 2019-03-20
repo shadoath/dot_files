@@ -34,10 +34,10 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'scrooloose/nerdtree'              " file menu
   Plugin 'Xuyuanp/nerdtree-git-plugin'      " Changes via git
   " Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
-  Plugin 'airblade/vim-gitgutter'           " git diff in gutter
+  " Plugin 'airblade/vim-gitgutter'           " git diff in gutter
   Plugin 'andrewRadev/switch.vim'           " Swap true for false and MUCH more
-  Plugin 'bling/vim-airline'                " nice looking footer bar
-  Plugin 'mileszs/ack.vim'                  " searching via :Ack
+  " Plugin 'bling/vim-airline'                " nice looking footer bar
+  " Plugin 'mileszs/ack.vim'                  " searching via :Ack
   Plugin 'rking/ag.vim'                     " Project search
   Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
   Plugin 'junegunn/fzf.vim'                 " Fuzzy search https://github.com/junegunn/fzf#search-syntax
@@ -50,11 +50,11 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'garbas/vim-snipmate'              " expand code snippits with <tab>
   Plugin 'tomtom/tlib_vim'                  " Used by snipmate
   Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
-  Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
+  " Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
   Plugin 'ervandew/supertab'                " The best autocompletion based on words in file
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
-  Plugin 'statox/GOD.vim'                   " Get vim doc link in markdown => :GOD mark
+  " Plugin 'statox/GOD.vim'                   " Get vim doc link in markdown => :GOD mark
   Plugin 'moll/vim-bbye'                    " Buffers are not so finicky when being closed
   " Plugin 'maxbrunsfeld/vim-yankstack'       " Turns p and y into [stacks], nav with meta-p and meta-shift-p
 
@@ -63,15 +63,15 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'nathanaelkane/vim-indent-guides'  " Indent guides to keep your code aligned
   Plugin 'tommcdo/vim-lion'                 " For more better indentation use gl and gL, gl to add space before, gL to add space after. glip= add space before = around paragraph
   Plugin 'scrooloose/syntastic'             " syntax checker
-  Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
+  " Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
   " Plugin 'guns/vim-sexp'                    " precision editing to S-expressions
 
   " Nice to have
   Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
   Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
   Plugin 'tommcdo/vim-exchange'             " Exchange text with Visual and X
-  Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
-  Plugin 'tyru/open-browser.vim'            " Open url from vim use: gx while on URL
+  " Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
+  " Plugin 'tyru/open-browser.vim'            " Open url from vim use: gx while on URL
   Plugin 'wellle/targets.vim'               " Additional usage for: Pair text objects, Quote text objects, Separator text objects, Argument text objects https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
   " Plugin 'severin-lemaignan/vim-minimap'    " Minimap
 
@@ -79,17 +79,17 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'jordwalke/flatlandia'
   " Plugin 'ryanoasis/vim-devicons'
   " Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'  "Slows Vim WAY down
-  Plugin 'KabbAmine/vCoolor.vim'                   " Color Picker, find with <leader>g
+  " Plugin 'KabbAmine/vCoolor.vim'                   " Color Picker, find with <leader>g
 
   " Language specific
-  Plugin 'nelstrom/vim-textobj-rubyblock'   " Expands upon 'ir' 'ar' to be used in repatition
+  " Plugin 'nelstrom/vim-textobj-rubyblock'   " Expands upon 'ir' 'ar' to be used in repatition
   Plugin 'vim-ruby/vim-ruby'                " ruby syntax & indent
   Plugin 'othree/html5.vim'                 " html5 syntax & indent
   Plugin 'pangloss/vim-javascript'          " javascript syntax & indent
-  Plugin 'Rykka/riv.vim'                    " RST text formtting
+  " Plugin 'Rykka/riv.vim'                    " RST text formtting
   Plugin 'thoughtbot/vim-rspec'             " Vim RSPEC runner
   Plugin 'chriskempson/base16-vim'          " base 16 colorscheme
-  Plugin 'vim-scripts/nginx.vim'            " Nginx files
+  " Plugin 'vim-scripts/nginx.vim'            " Nginx files
   Plugin '2072/PHP-Indenting-for-VIm'       " PHP indentation
   " Plugin 'elixir-lang/vim-elixir'
   " Plugin 'hdima/python-syntax'
@@ -203,8 +203,11 @@ let s:bundle_dir = $v.'/bundle'
     set foldmethod=indent   "fold based on indent
     set foldnestmax=10      "deepest fold is 10 levels
     set nofoldenable        "dont fold by default
-    set foldlevel=1         "this is just what i use
+    set foldlevel=1
     " set nofoldenable             " disable folding
+    "
+    " Notes: zM to fold all, zR to open all folds zO to open current fold
+    " completly
 
     :au FocusLost *   :set norelativenumber<cr>:set number<cr>
     :au FocusGained * :set relativenumber
@@ -356,7 +359,7 @@ let s:bundle_dir = $v.'/bundle'
   nnoremap <leader>np :set nopaste!<cr>
 
   " Select the last pasted text
-  nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
+  " nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . '`]'
 
   " quick edit VIMRC
   nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -432,7 +435,7 @@ let s:bundle_dir = $v.'/bundle'
   let g:syntastic_javascript_checkers = ['eslint']
 
   "- Markdown ------------------------------------------------------------------------------------
-  let g:markdown_fenced_languages = ['coffee', 'css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass']
+  let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass']
 
   "- NerdTree ----------------------Use ? for info-------------------------------------------------
   " toggle NerdTree (ControlK + ControlB)
@@ -507,53 +510,10 @@ let s:bundle_dir = $v.'/bundle'
 
 " Filetypes -------------------------------------------------------------
 
-" C {{{
-augroup filetype_c
-  autocmd!
-
-  " Highlight Custom C Types {{{
-  autocmd BufRead,BufNewFile *.[ch] let fname = expand('<afile>:p:h') . '/types.vim'
-  autocmd BufRead,BufNewFile *.[ch] if filereadable(fname)
-  autocmd BufRead,BufNewFile *.[ch]   exe 'so ' . fname
-  autocmd BufRead,BufNewFile *.[ch] endif
-  " }}}
-augroup END
-" }}}
-
-" Clojure {{{
-augroup filetype_clojure
-  autocmd!
-  let g:vimclojure#ParenRainbow = 1 " Enable rainbow parens
-  let g:vimclojure#DynamicHighlighting = 1 " Dynamic highlighting
-  let g:vimclojure#FuzzyIndent = 1 " Names beginning in 'def' or 'with' to be indented as if they were included in the 'lispwords' option
-augroup END
-" }}}
-
-" Coffee {{{
-augroup filetype_coffee
-  autocmd!
-  au BufNewFile,BufReadPost *.coffee setl foldmethod=indent nofoldenable
-augroup END
-" }}}
-
-" Fish {{{
-augroup filetype_fish
-  autocmd!
-  au BufRead,BufNewFile *.fish set ft=fish
-augroup END
-" }}}
-
 " Handlebars {{{
 augroup filetype_hbs
   autocmd!
   au BufRead,BufNewFile *.hbs,*.handlebars,*.hbs.erb,*.handlebars.erb setl ft=mustache syntax=mustache
-augroup END
-" }}}
-
-" Jade {{{
-augroup filetype_jade
-  autocmd!
-  au BufRead,BufNewFile *.jade set ft=jade syntax=jade
 augroup END
 " }}}
 
@@ -578,26 +538,6 @@ augroup filetype_markdown
 augroup END
 " }}}
 
-" Nu {{{
-augroup filetype_nu
-  autocmd!
-  au BufNewFile,BufRead *.nu,*.nujson,Nukefile setf nu
-augroup END
-" }}}
-
-" Ruby {{{
-augroup filetype_ruby
-  autocmd!
-
-  au BufRead,BufNewFile Rakefile,Capfile,Gemfile,.autotest,.irbrc,*.treetop,*.tt set ft=ruby syntax=ruby
-
-  " Ruby.vim {{{
-  let ruby_operators = 1
-  let ruby_space_errors = 1
-  let ruby_fold = 1
-  " }}}
-augroup END
-" }}}
 
 " }}}
 " XML {{{
@@ -606,14 +546,6 @@ augroup filetype_xml
   au FileType xml exe ":silent 1,$!xmllint --format --recover - 2>/dev/null"
 augroup END
 " }}}
-
-" ZSH {{{
-augroup filetype_zsh
-  autocmd!
-  au BufRead,BufNewFile .zsh_rc,.functions,.commonrc set ft=zsh
-augroup END
-" }}}
-
 
   " Plugins
   " ==============================================================================================
@@ -651,25 +583,25 @@ augroup END
   "= File Icons =====================================================================================
   " let g:WebDevIconsNerdTreeGitPluginForceVAlign on
 
-  let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
-  " let g:webdevicons_enable_nerdtree = 1
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rake'] = 'ƛ'
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bash'] = ''
-  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['DS_Store'] = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico']  = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['eot']  = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['svg']  = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ttf']  = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['woff'] = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['otf']  = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico']  = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['yml']  = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css']  = ''
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gitignore']  = ''
-  " to enter Unicode: (in insert mode) <ctrl-v>u(uncode)
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = 'M'
-  let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['diff'] = ''
+" let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+  " " let g:webdevicons_enable_nerdtree = 1
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['rake'] = 'ƛ'
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['bash'] = ''
+  " " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['DS_Store'] = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico']  = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['eot']  = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['svg']  = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ttf']  = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['woff'] = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['otf']  = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['ico']  = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['yml']  = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css']  = ''
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['gitignore']  = ''
+  " " to enter Unicode: (in insert mode) <ctrl-v>u(uncode)
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = 'M'
+  " let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['diff'] = ''
 
   " To enter hex into [] use `ctrl-k` + u + four diget hex
   " http://www.endmemo.com/unicode/unicodeconverter.php
@@ -688,157 +620,28 @@ augroup END
 
 "= Airline ----------------------------------------------------------------------------------------
   " Airline.vim {{{
-  augroup airline_config
-    autocmd!
-    let g:airline_powerline_fonts = 1
-    let g:airline_enable_syntastic = 1
-    let g:airline#extensions#tabline#buffer_nr_format = '%s '
-    let g:airline#extensions#tabline#buffer_nr_show = 1
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#fnamecollapse = 0
-    let g:airline#extensions#tabline#fnamemod = ':t'
-  augroup END
+  " augroup airline_config
+  "   autocmd!
+  "   let g:airline_powerline_fonts = 1
+  "   let g:airline_enable_syntastic = 1
+  "   let g:airline#extensions#tabline#buffer_nr_format = '%s '
+  "   let g:airline#extensions#tabline#buffer_nr_show = 1
+  "   let g:airline#extensions#tabline#enabled = 1
+  "   let g:airline#extensions#tabline#fnamecollapse = 0
+  "   let g:airline#extensions#tabline#fnamemod = ':t'
+  " augroup END
   " }}}
 
 "= Language Specific Settings======================================================================
-
-  "- Golang ---------------------------------------------------------------------------------------
-  let g:go_fmt_command = 'goimports'     " use gofmt on save w/ go commands (from go plugin)
-
-  " com -nargs=1 H call WebHeader(<f-args>)
-  " function! WebHeader(size)
-  "   exe ':s/\(.*\)/<H' . a:size . '>\1<\/H' . a:size . '>/'
-  " endfunction
-
-  function! ExecuteGoCode()              " for running Golang on enter
-    exec ":!clear && go run " . @%
-  endfunction
-
-  "- C ---------------------------------------------------------------------------------------
-  function! ExecuteCCode()
-    exec ':Shell gcc ' . @% . ' -o file && ./file'
-  endfunction
-
-  "- Rust-------------------------------------------------------------------------------------
-  function! ExecuteRustCode()
-    exec ':Shell rustc ' . @% . ' -o file && ./file'
-  endfunction
 
   "- MD
   "Markdown-----------------------------------------------------------------------------------
   autocmd BufNewFile,BufReadPost *.md set filetype=ghmarkdown
 
-  "- ES6---------------------------------------------------------------------------------------
-  autocmd BufRead,BufNewFile *.es6 setfiletype javascript
-
   "- JavaScript
   autocmd FileType javascript inoremap {<CR> {<CR>}<Esc><S-o>
   autocmd FileType javascript inoremap (; ();<Esc>hi
 
-  "- J Builder ------------------------------------------------------------------------------------
-  au BufNewFile,BufRead *.json.jbuilder set ft=ruby       " set syntax to ruby for jBuilder files
-
-  "- HBARS ------------------------------------------------------------------------------------
-  au BufNewFile,BufRead *.hbars set ft=haml       " set syntax to haml, even tho it's not ruby, for hbars files
-
   "- SnipMate------------------------------------------------------------------------------------
   imap <tab> <Plug>snipMateNextOrTrigger
   " inoremap <expr> pumvisible() ? "\<C-N>" : "\<C-R>=snipMate#TriggerSnippet()\<CR>"
-
-"= Enter Key ======================================================================================
-
-  function! MapCR()
-    if (&ft=='c')
-      :call ExecuteCCode()
-    endif
-    if (&ft=='go')
-      :call ExecuteGoCode()
-    endif
-    if (&ft=='ruby')
-      :call RunLastSpec()
-    endif
-    if (&ft=='haml')
-      :call RunLastSpec()
-    endif
-    if (&ft=='html')
-      :call RunLastSpec()
-    endif
-    if (&ft=='rust')
-      :call ExecuteRustCode()
-    endif
-  endfunction
-
-  :nnoremap <cr> :call MapCR()<cr>
-
-
-" Highlight Interesting Words {{{
-augroup highlight_interesting_word
-  autocmd!
-  " This mini-plugin provides a few mappings for highlighting words temporarily.
-  "
-  " Sometimes you're looking at a hairy piece of code and would like a certain
-  " word or two to stand out temporarily.  You can search for it, but that only
-  " gives you one color of highlighting.  Now you can use <leader>N where N is
-  " a number from 1-6 to highlight the current word in a specific color.
-  function! HiInterestingWord(n) " {{{
-    " Save our location.
-    normal! mz
-
-    " Yank the current word into the z register.
-    normal! "zyiw
-
-    " Calculate an arbitrary match ID.  Hopefully nothing else is using it.
-    let mid = 86750 + a:n
-
-    " Clear existing matches, but don't worry if they don't exist.
-    silent! call matchdelete(mid)
-
-    " Construct a literal pattern that has to match at boundaries.
-    let pat = '\V\<' . escape(@z, '\') . '\>'
-
-    " Actually match the words.
-    call matchadd("InterestingWord" . a:n, pat, 1, mid)
-
-    " Move back to our original location.
-    normal! `z
-  endfunction " }}}
-
-  " Mappings {{{
-  nnoremap <silent> <leader>1 :call HiInterestingWord(1)<cr>
-  nnoremap <silent> <leader>2 :call HiInterestingWord(2)<cr>
-  nnoremap <silent> <leader>3 :call HiInterestingWord(3)<cr>
-  nnoremap <silent> <leader>4 :call HiInterestingWord(4)<cr>
-  nnoremap <silent> <leader>5 :call HiInterestingWord(5)<cr>
-  nnoremap <silent> <leader>6 :call HiInterestingWord(6)<cr>
-  " }}}
-
-  " Default Highlights {{{
-  hi def InterestingWord1 guifg=#000000 ctermfg=16 guibg=#ffa724 ctermbg=214
-  hi def InterestingWord2 guifg=#000000 ctermfg=16 guibg=#aeee00 ctermbg=154
-  hi def InterestingWord3 guifg=#000000 ctermfg=16 guibg=#8cffba ctermbg=121
-  hi def InterestingWord4 guifg=#000000 ctermfg=16 guibg=#b88853 ctermbg=137
-  hi def InterestingWord5 guifg=#000000 ctermfg=16 guibg=#ff9eb8 ctermbg=211
-  hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
-  " }}}
-augroup END
-" }}}
-
-"= For running commands in a new window ========================================================
-function! s:ExecuteInShell(command)
-  let command = join(map(split(a:command), 'expand(v:val)'))
-  let winnr = bufwinnr('^' . command . '$')
-  silent! execute  winnr < 0 ? 'botright new ' . fnameescape(command) : winnr . 'wincmd w'
-  setlocal buftype=nowrite bufhidden=wipe nobuflisted noswapfile nowrap number
-  echo 'Execute ' . command . '...'
-  silent! execute 'silent %!'. command
-  silent! execute 'resize ' . line('$')
-  silent! redraw
-  silent! execute 'au BufUnload <buffer> execute bufwinnr(' . bufnr('#') . ') . ''wincmd w'''
-  silent! execute 'nnoremap <silent> <buffer> <LocalLeader>r :call <SID>ExecuteInShell(''' . command . ''')<CR>'
-  echo 'Shell command ' . command . ' executed.'
-  wincmd k
-endfunction
-command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
-" if exists("g:loaded_webdevicons")
-"   call webdevicons#refresh()
-" endif
