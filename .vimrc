@@ -34,7 +34,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'scrooloose/nerdtree'              " file menu
   Plugin 'Xuyuanp/nerdtree-git-plugin'      " Changes via git
   " Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
-  " Plugin 'airblade/vim-gitgutter'           " git diff in gutter
+  Plugin 'airblade/vim-gitgutter'           " git diff in gutter
   Plugin 'andrewRadev/switch.vim'           " Swap true for false and MUCH more
   " Plugin 'bling/vim-airline'                " nice looking footer bar
   " Plugin 'mileszs/ack.vim'                  " searching via :Ack
@@ -54,7 +54,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'ervandew/supertab'                " The best autocompletion based on words in file
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
-  " Plugin 'statox/GOD.vim'                   " Get vim doc link in markdown => :GOD mark
+  Plugin 'statox/GOD.vim'                   " Get vim doc link in markdown => :GOD mark
   Plugin 'moll/vim-bbye'                    " Buffers are not so finicky when being closed
   " Plugin 'maxbrunsfeld/vim-yankstack'       " Turns p and y into [stacks], nav with meta-p and meta-shift-p
 
@@ -63,6 +63,9 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'nathanaelkane/vim-indent-guides'  " Indent guides to keep your code aligned
   Plugin 'tommcdo/vim-lion'                 " For more better indentation use gl and gL, gl to add space before, gL to add space after. glip= add space before = around paragraph
   Plugin 'scrooloose/syntastic'             " syntax checker
+  Plugin 'jwalton512/vim-blade'             " Support Blade syntax
+  Plugin 'kchmck/vim-coffee-script'        " Coffee support
+
   " Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
   " Plugin 'guns/vim-sexp'                    " precision editing to S-expressions
 
@@ -205,7 +208,7 @@ let s:bundle_dir = $v.'/bundle'
     set nofoldenable        "dont fold by default
     set foldlevel=1
     " set nofoldenable             " disable folding
-    "
+    "url_for
     " Notes: zM to fold all, zR to open all folds zO to open current fold
     " completly
 
@@ -306,6 +309,11 @@ let s:bundle_dir = $v.'/bundle'
 
   " un/comment line and next line (Gemfile, fury => local)
   nmap gC gcc<ESC>j<ESC>gcc
+
+
+  " Convert all " => ' or vise versa
+  nmap <leader>"' :%s/"/'/g
+  nmap <leader>'" :%s/'/"/g
 
   imap <leader>end <% end %>
   imap <leader>con console.log(": ");

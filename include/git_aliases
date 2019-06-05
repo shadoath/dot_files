@@ -1,5 +1,6 @@
 # vim: set filetype=bash
 
+# NO LONGER USED
 alias gs="   git status"
 alias gd="   clear && git diff"
 alias gc="   git commit"

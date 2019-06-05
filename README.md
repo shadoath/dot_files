@@ -9,13 +9,14 @@ Using Vundle https://github.com/VundleVim/Vundle.vim
 cd $HOME
 git clone https://github.com/shadoath/dot_files
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+sh -c "$(curl -fsSL https://raw.github.com/shadoath/oh-my-zsh/master/tools/install.sh)"
 ```
 
 
 From your `~/` home directory, symlink the dot_files:
 ```bash
 mv .bash_profile .bash_profile_original
-ln -s dot_files/.bash_profile
+ln -s dot_files/.zshrc
 ln -s dot_files/.vimrc
 ln -s dot_files/.gitconfig
 ln -s dot_files/.gitignore_global
@@ -67,7 +68,6 @@ View the /includes folder for extended functionality.
 * Functions --------- New terminals, Pull requests, YML/hosts s3 sync, tab-color, and IP binding.
   * Aliases
     * Capistrano ---- Deploying Rails.
-    * Git ----------- Short and sweet is the way to git. Also auto complete branch names.
     * Rails --------- ENV, custom ports, bake and more.
     * Solr ---------- Tell the sun what to do.
 
