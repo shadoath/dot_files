@@ -208,7 +208,7 @@ apro-push-db() {
 apro-pull-db() {
   database adventurepro
 }
-if [ `hostname` == 'mbp-42' ]
+if [ $HOST=='mbp-42' ]
   then
   alias ssh=color-ssh
 fi
