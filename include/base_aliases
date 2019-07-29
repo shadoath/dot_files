@@ -18,12 +18,18 @@ alias ohp='  sudo vim ~/hosts.personal && build_hosts'
 alias bh='   build_hosts'
 alias ossh=' sudo vim ~/.ssh/config'
 alias ovim=" vim ~/.vimrc"
+alias ozsh=" vim ~/.zshrc"
 alias obash="vim ~/.bash_profile"
+alias oalias="vim ~/.bash_profile"
 alias ofunc="vim ~/dot_files/include/functions"
-alias ogit="vim ~/dot_files/include/git_aliases"
+alias ogit=" vim ~/.oh-my-zsh/plugins/git/git.plugin.zsh"
 alias sbash="source ~/.bash_profile; clear"
+alias zbash="source ~/.zshrc; clear"
 alias bog="  bundle open"
 alias opry=" vim ~/.pryrc"
+
+# Laravel
+alias phps="php artisan serve"
 
 # Servers
 alias ssnr="sudo service nginx restart"
@@ -59,14 +65,6 @@ alias fixtime="sudo timedatectl set-timezone America/Denver"
 # Mac OS 10.12.6 (16G29)
 alias clear_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
 
-# Movement
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ......="cd ../../../../.."
-alias .......="cd ../../../../../.."
-alias ........="cd ../../../../../../.."
 alias cdd="  cd ~/dot_files"
 alias nsr="  cd ~/code/nsr"
 

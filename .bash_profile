@@ -1,3 +1,4 @@
+# OBSOLETE
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 

@@ -9,8 +9,12 @@ Using Vundle https://github.com/VundleVim/Vundle.vim
 cd $HOME
 git clone https://github.com/shadoath/dot_files
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-sh -c "$(curl -fsSL https://raw.github.com/shadoath/oh-my-zsh/master/tools/install.sh)"
 ```
+`sudo apt install zsh` OR `brew install zsh zsh-completions`
+Make zsh the default shell:
+`chsh -s $(which zsh)`
+
+`sh -c "$(curl -fsSL https://raw.github.com/shadoath/oh-my-zsh/master/tools/install.sh)"`
 
 
 From your `~/` home directory, symlink the dot_files:

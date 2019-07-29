@@ -64,7 +64,8 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'tommcdo/vim-lion'                 " For more better indentation use gl and gL, gl to add space before, gL to add space after. glip= add space before = around paragraph
   Plugin 'scrooloose/syntastic'             " syntax checker
   Plugin 'jwalton512/vim-blade'             " Support Blade syntax
-  Plugin 'kchmck/vim-coffee-script'        " Coffee support
+  Plugin 'kchmck/vim-coffee-script'         " Coffee support
+  Plugin 'mustache/vim-mustache-handlebars' " Mustache JS
 
   " Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
   " Plugin 'guns/vim-sexp'                    " precision editing to S-expressions
