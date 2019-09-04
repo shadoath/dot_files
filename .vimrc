@@ -144,6 +144,8 @@ let s:bundle_dir = $v.'/bundle'
 
     filetype plugin on           " enable loading plugins for filetypes
     filetype indent on           " enable loading 'indent files' for filetypes
+    set ffs=unix,dos
+    set ff=unix
 
     set synmaxcol=266            " no syntax highlighting for lines longer than 266 cols
     set titlestring   =VIM:\ %f
