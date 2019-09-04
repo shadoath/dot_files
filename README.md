@@ -20,14 +20,15 @@ Make zsh the default shell:
 From your `~/` home directory, symlink the dot_files:
 ```bash
 mv .bash_profile .bash_profile_original
-ln -s dot_files/.zshrc
-ln -s dot_files/.vimrc
-ln -s dot_files/.gitconfig
-ln -s dot_files/.gitignore_global
-ln -s dot_files/.git-prompt.sh
-ln -s dot_files/.git-completion.bash
-ln -s dot_files/.pryrc
-ln -s dot_files/.agignore
+ln -s ~/dot_files/.zshrc
+ln -s /Users/sbolton/dot_files/shadoath.zsh-theme /Users/sbolton/.oh-my-zsh/themes/shadoath.zsh-theme
+ln -s ~/dot_files/.vimrc
+ln -s ~/dot_files/.gitconfig
+ln -s ~/dot_files/.gitignore_global
+ln -s ~/dot_files/.git-prompt.sh
+ln -s ~/dot_files/.git-completion.bash
+ln -s ~/dot_files/.pryrc
+ln -s ~/dot_files/.agignore
 
 brew install the_silver_searcher
 or
