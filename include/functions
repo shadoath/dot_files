@@ -37,60 +37,6 @@ function pr(){
   fi
 }
 
-# yml sync
-function ymlP() {
-  REPO=$(basename -s .git `git config --get remote.origin.url`)
-  cur_version=$(sed -n '2p' config/application.yml | egrep -o '[0-9]+\.[0-9]+')
-  cloud_version=$(aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml - | sed -n '2p' | egrep -o '[0-9]+\.[0-9]+')
-  if (( $(echo "$cur_version > $cloud_version" | bc -l))) || [[ $@ == "--force" ]]; then
-    echo "Uploading:" $cur_version
-    aws s3 cp config/application.yml s3://ballantine-dev/YMLs/$REPO/application.yml --sse
-  else
-    if (( $(echo "$cur_version == $cloud_version" | bc -l))); then
-      echo "The cloud already has your version."
-    else
-      echo "You are behind the times."
-    fi
-    echo "Local:" $cur_version
-    echo "Cloud:" $cloud_version
-  fi
-}
-function yml() {
-  REPO=$(basename -s .git `git config --get remote.origin.url`)
-  cur_version=$(sed -n '2p' config/application.yml | egrep -o '[0-9]+\.[0-9]+')
-  cloud_version=$(aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml - | sed -n '2p' | egrep -o '[0-9]+\.[0-9]+')
-  if [[ $@ == "--version" ]] || [[ $@ == "-v" ]]; then
-    if (( $(echo "$cur_version < $cloud_version" | bc -l))); then
-      echo "You are behind the times."
-    else
-      if (( $(echo "$cur_version == $cloud_version" | bc -l))); then
-        echo "You are up to date."
-      else
-        echo "You have a newer version."
-      fi
-    fi
-    echo "Local:" $cur_version
-    echo "Cloud:" $cloud_version
-  elif [[ $@ == "--diff" ]] || [[ $@ == "-d" ]]; then
-    aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml yml.tmp
-    git --no-pager diff --color=auto --no-ext-diff --no-index yml.tmp config/application.yml
-    rm yml.tmp
-  else
-    if (( $(echo "$cur_version < $cloud_version" | bc -l))) || [[ $@ == "--force" ]]; then
-      echo "Downloading:" $cloud_version
-      aws s3 cp s3://ballantine-dev/YMLs/$REPO/application.yml config/application.yml
-    else
-      if (( $(echo "$cur_version == $cloud_version" | bc -l))); then
-        echo "You are up to date."
-      else
-        echo "You have a newer version."
-      fi
-      echo "Local:" $cur_version
-      echo "Cloud:" $cloud_version
-    fi
-  fi
-}
-
 # hosts sync
 function hostsP() {
   build_hosts
