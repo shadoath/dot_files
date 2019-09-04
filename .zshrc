@@ -89,7 +89,6 @@ source $HOME/dot_files/include/rails_aliases
 source $HOME/dot_files/include/capistrano_aliases
 source $HOME/dot_files/include/functions
 
-cd ~/code
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
