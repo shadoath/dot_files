@@ -159,14 +159,16 @@ let s:bundle_dir = $v.'/bundle'
 
     " undo settings
     set undofile
-    set history    =9999          " History is important.
-    set undolevels =9999          " Oops saftey
+    set undolevels =501            " Oops safety
+    set history    =801            " History is important.
     set undodir    =$v/files/undo
     set viewdir    =$v/files/view
 
     " Vim settings between close and open
-    set viminfo ='100,<50,s10,h,n$v/files/info/viminfo
+    set viminfo ='100,:100,@100,s10,\"100,h,n$v/files/info/viminfo
     " https://stackoverflow.com/a/23036077/1418337
+    " https://stackoverflow.com/a/2833376/1418337
+    " https://vi.stackexchange.com/a/22035/8493
 
     set laststatus=2             " show status bar
 
