@@ -45,19 +45,16 @@ alias glm="  git log --author='$(git config user.name)' --pretty=format:'%C(yell
 alias overview='open "https://github.com/shadoath?tab=overview&from='$(date '+%Y-%m-%d')'"'
 alias {gPf,gPfm}="git push fury master"
 
-if [ `hostname` == 'mbp-42' ]
-  then
-  # GemFury
-
-  # Git autocomplete
-  if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . ~/.git-completion.bash
-    . $(brew --prefix)/etc/bash_completion
-    __git_complete gco _git_checkout
-    __git_complete gm  _git_checkout
-    __git_complete gPo _git_checkout
-    __git_complete gpo _git_checkout
-    __git_complete gpn _git_checkout
-    __git_complete gbd _git_checkout
-  fi
-fi
+# if [  `hostname` = mbp-42 ]; then
+#   # Git autocomplete
+#   if [ -f $(brew --prefix)/etc/bash_completion ]; then
+#   . ~/.git-completion.bash
+#     . $(brew --prefix)/etc/bash_completion
+#     __git_complete gco _git_checkout
+#     __git_complete gm  _git_checkout
+#     __git_complete gPo _git_checkout
+#     __git_complete gpo _git_checkout
+#     __git_complete gpn _git_checkout
+#     __git_complete gbd _git_checkout
+#   fi
+# fi

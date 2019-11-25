@@ -87,6 +87,7 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/dot_files/include/base_aliases
 source $HOME/dot_files/include/rails_aliases
 source $HOME/dot_files/include/capistrano_aliases
+source $HOME/dot_files/include/git_aliases
 source $HOME/dot_files/include/functions
 
 # User configuration

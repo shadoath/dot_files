@@ -21,7 +21,7 @@ From your `~/` home directory, symlink the dot_files:
 ```bash
 mv .bash_profile .bash_profile_original
 ln -s ~/dot_files/.zshrc
-ln -s /Users/sbolton/dot_files/shadoath.zsh-theme /Users/sbolton/.oh-my-zsh/themes/shadoath.zsh-theme
+ln -s /Users/sbolton/dot_files/shadoath.zsh-theme /Users/sbolton/.oh-my-zsh/custom/themes/shadoath.zsh-theme
 ln -s ~/dot_files/.vimrc
 ln -s ~/dot_files/.gitconfig
 ln -s ~/dot_files/.gitignore_global
@@ -29,7 +29,10 @@ ln -s ~/dot_files/.git-prompt.sh
 ln -s ~/dot_files/.git-completion.bash
 ln -s ~/dot_files/.pryrc
 ln -s ~/dot_files/.agignore
+```
 
+
+```bash
 brew install the_silver_searcher
 or
 sudo apt-get install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
@@ -40,6 +43,7 @@ sudo yum install silversearcher-ag
 or
 [manual](https://gist.github.com/rkaneko/988c3964a3177eb69b75)
 ```
+
 You will also need `cmake` installed.
 
 
