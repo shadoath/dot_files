@@ -10,17 +10,21 @@ cd $HOME
 git clone https://github.com/shadoath/dot_files
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ```
+
 Set up vim folders:
 `mkdir ~/.vim/files && mkdir ~/.vim/files/{backup,info,swap,undo}`
 
 ### Install ZSH
-`sudo apt install zsh` OR `brew install zsh zsh-completions` OR `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+`sudo apt install zsh` **OR** `brew install zsh zsh-completions` **OR** `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
+
 Make zsh the default shell:
 `chsh -s $(which zsh)`
 
 Custom ZSH plugins
-`git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions`
-`git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`
+```
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
 
 ### Customization
 From your `~/` home directory, symlink the dot_files:
