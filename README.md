@@ -16,12 +16,14 @@ Make zsh the default shell:
 
 `sh -c "$(curl -fsSL https://raw.github.com/shadoath/oh-my-zsh/master/tools/install.sh)"`
 
+Install OhMyZsh
+`sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
 
 From your `~/` home directory, symlink the dot_files:
 ```bash
-mv .bash_profile .bash_profile_original
+mv .zshrc .zshrc_original
 ln -s ~/dot_files/.zshrc
-ln -s /Users/sbolton/dot_files/shadoath.zsh-theme /Users/sbolton/.oh-my-zsh/custom/themes/shadoath.zsh-theme
+ln -s ~/dot_files/shadoath.zsh-theme ~/.oh-my-zsh/custom/themes/shadoath.zsh-theme
 ln -s ~/dot_files/.vimrc
 ln -s ~/dot_files/.gitconfig
 ln -s ~/dot_files/.gitignore_global
@@ -40,9 +42,9 @@ sudo apt-get install silversearcher-ag
 or
 sudo yum install -y automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
 sudo yum install silversearcher-ag
+```
 or
 [manual](https://gist.github.com/rkaneko/988c3964a3177eb69b75)
-```
 
 You will also need `cmake` installed.
 
@@ -65,7 +67,7 @@ vim +PluginInstall +qall
 
 Load your profile settings:
 ```bash
-source ~/.bash_profile
+source ~/.zshrc
 ```
 
 Have git save user/pass

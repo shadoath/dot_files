@@ -67,7 +67,7 @@ alias fixtime="sudo timedatectl set-timezone America/Denver"
 alias clear_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
 
 alias cdd="  cd ~/dot_files"
-alias bw="  cd ~/code/biteworthy"
+alias bw="  cd ~/personal-code/biteworthy"
 alias dgo="  cd ~/code/dgo"
 alias nsr="  cd ~/code/nsr"
 alias saxo="  cd ~/code/saxotech_importer"
