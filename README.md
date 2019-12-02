@@ -10,15 +10,19 @@ cd $HOME
 git clone https://github.com/shadoath/dot_files
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ```
-`sudo apt install zsh` OR `brew install zsh zsh-completions`
+Set up vim folders:
+`mkdir ~/.vim/files && mkdir ~/.vim/files/{backup,info,swap,undo}`
+
+### Install ZSH
+`sudo apt install zsh` OR `brew install zsh zsh-completions` OR `sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
 Make zsh the default shell:
 `chsh -s $(which zsh)`
 
-`sh -c "$(curl -fsSL https://raw.github.com/shadoath/oh-my-zsh/master/tools/install.sh)"`
+Custom ZSH plugins
+`git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions`
+`git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`
 
-Install OhMyZsh
-`sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
-
+### Customization
 From your `~/` home directory, symlink the dot_files:
 ```bash
 mv .zshrc .zshrc_original
@@ -33,7 +37,7 @@ ln -s ~/dot_files/.pryrc
 ln -s ~/dot_files/.agignore
 ```
 
-
+### Better search with Ag
 ```bash
 brew install the_silver_searcher
 or
@@ -46,15 +50,9 @@ sudo yum install silversearcher-ag
 or
 [manual](https://gist.github.com/rkaneko/988c3964a3177eb69b75)
 
-You will also need `cmake` installed.
+You will need `cmake` installed and possibly: `yum groupinstall "Development Tools"`.
 
-
-Set up vim folders:
-```
-mkdir ~/.vim/files && mkdir ~/.vim/files/{backup,info,swap,undo}
-```
-
-Install fzf (fuzzy find)
+### Install fzf (fuzzy find)
 ```bash
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
@@ -75,12 +73,16 @@ Have git save user/pass
 git config credential.helper store
 ```
 
+## Notes
 View the /includes folder for extended functionality.
-* Functions --------- New terminals, Pull requests, YML/hosts s3 sync, tab-color, and IP binding.
-  * Aliases
-    * Capistrano ---- Deploying Rails.
-    * Rails --------- ENV, custom ports, bake and more.
-    * Solr ---------- Tell the sun what to do.
+```
+* Functions ------- New terminals, Pull requests, YML/hosts s3 sync, tab-color, and IP binding.
+* Aliases
+  * Base ---------- Quick commands for all things.
+  * Rails --------- ENV, custom ports, bake and more.
+  * Capistrano ---- Deploying Rails apps with complicated enviroments.
+  * Git ----------- Make git quick.
+```
 
 ## Additional Files
 ### [ErgoDocs keyboard](https://input.club/configurator-ergodox/) layout using [Colemak](https://colemak.com/Learn)

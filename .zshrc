@@ -84,11 +84,11 @@ plugins=(
 #
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/dot_files/include/base_aliases
-source $HOME/dot_files/include/rails_aliases
-source $HOME/dot_files/include/capistrano_aliases
-source $HOME/dot_files/include/git_aliases
-source $HOME/dot_files/include/functions
+source $HOME/dot_files/include/functions.zsh
+source $HOME/dot_files/include/base_aliases.zsh
+source $HOME/dot_files/include/rails_aliases.zsh
+source $HOME/dot_files/include/capistrano_aliases.zsh
+source $HOME/dot_files/include/git_aliases.zsh
 
 # User configuration
 
