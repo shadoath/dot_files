@@ -279,12 +279,13 @@ let s:bundle_dir = $v.'/bundle'
   " More options: http://vimcolors.com/
   " More colors: https://vignette.wikia.nocookie.net/vim/images/1/16/Xterm-color-table.png/revision/latest?cb=20110121055231
 
-    set background=dark      " dark background
     syntax enable
     colorscheme flatlandia   " flatlandia colorscheme
-    hi Comment guifg=#005969 guibg=NONE guisp=NONE gui=NONE ctermfg=105 ctermbg=NONE cterm=NONE
-    hi LineNr  guifg=#515253 guibg=NONE guisp=NONE gui=NONE ctermfg=107 ctermbg=237  cterm=NONE
-    hi Todo    guifg=#798188 guibg=NONE guisp=NONE gui=bold ctermfg=15  ctermbg=2    cterm=bold
+    hi Comment guifg=#005969 guibg=NONE guisp=NONE gui=NONE ctermfg=105  ctermbg=NONE cterm=NONE
+    hi LineNr  guifg=#515253 guibg=NONE guisp=NONE gui=NONE ctermfg=107  ctermbg=237  cterm=NONE
+    hi Todo    guifg=#798188 guibg=NONE guisp=NONE gui=bold ctermfg=15   ctermbg=2    cterm=bold
+    hi Normal  guifg=NONE    guibg=NONE guisp=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+    hi NonText guifg=NONE    guibg=NONE guisp=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
 
     " Color picker
     let g:vcoolor_map = '<leader>g'
