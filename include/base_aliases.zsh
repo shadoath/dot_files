@@ -52,7 +52,9 @@ alias swp=" ssh ec2-user@52.25.237.216" #WP client
 alias rsp=" ssh ubuntu@rails"
 alias rsp2=" ssh ubuntu@18.237.143.24"
 alias swowza=" ssh ec2-user@54.191.120.51"
+alias siola=" ssh sbolton@iolaregister"
 alias sbwd=" ssh ubuntu@bwd"
+alias sbw=" ssh ubuntu@bw"
 
 # Max Ave
 alias smaxwp=" ssh -t root@198.58.126.101"

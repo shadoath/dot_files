@@ -282,7 +282,7 @@ let s:bundle_dir = $v.'/bundle'
     syntax enable
     colorscheme flatlandia   " flatlandia colorscheme
     hi Comment guifg=#005969 guibg=NONE guisp=NONE gui=NONE ctermfg=105  ctermbg=NONE cterm=NONE
-    hi LineNr  guifg=#515253 guibg=NONE guisp=NONE gui=NONE ctermfg=107  ctermbg=237  cterm=NONE
+    hi LineNr  guifg=#515253 guibg=NONE guisp=NONE gui=NONE ctermfg=241  ctermbg=NONE cterm=NONE
     hi Todo    guifg=#798188 guibg=NONE guisp=NONE gui=bold ctermfg=15   ctermbg=2    cterm=bold
     hi Normal  guifg=NONE    guibg=NONE guisp=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
     hi NonText guifg=NONE    guibg=NONE guisp=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
@@ -490,7 +490,7 @@ let s:bundle_dir = $v.'/bundle'
   let g:fzf_buffers_jump = 1
 
   " Open FZF
-  noremap <C-p> :Files<CR>
+  noremap <C-p> :GFiles<CR>
 
   " Default fzf layout
   " - down / up / left / right
@@ -507,6 +507,7 @@ let s:bundle_dir = $v.'/bundle'
   set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
   "
   " stuff to ignore when tab completing
+  set path+=**
   set wildignore=*.o,*.obj,*~
   set wildignore+=*vim/backups*    " History files
   set wildignore+=*sass-cache*     " Sass
@@ -519,6 +520,8 @@ let s:bundle_dir = $v.'/bundle'
   set wildignore+=*.png,*.jpg,*.gif
   set wildignore+=*.min.css
   set wildignore+=*.min.js
+  set wildignore+=node_modules/**
+  set wildignore+=**/node_modules/**
   set wildignore+=*/tmp/*,*/bin/*,*/bower_components/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
 
