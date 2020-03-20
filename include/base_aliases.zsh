@@ -20,13 +20,16 @@ alias ossh=' sudo vim ~/.ssh/config'
 alias ovim=" vim ~/.vimrc"
 alias ozsh=" vim ~/.zshrc"
 alias obash="vim ~/.bash_profile"
-alias oalias="vim ~/.bash_profile"
+alias oalias="vim ~/dot_files/includes/base_aliases.zsh"
 alias ofunc="vim ~/dot_files/include/functions"
 alias ogit=" vim ~/dot_files/include/git_aliases"
 alias sbash="source ~/.bash_profile; clear"
 alias zbash="source ~/.zshrc; clear"
 alias bog="  bundle open"
 alias opry=" vim ~/.pryrc"
+
+# Special commands
+alias no_ds="find . -type f -name '._*' -exec rm {} +"
 
 # Laravel
 alias phps="php artisan serve"
@@ -48,7 +51,7 @@ alias sp="  ssh ubuntu@aws_news"
 alias spt=" ssh ubuntu@52.11.165.25"
 alias jsp=" ssh ubuntu@aws_tj"
 alias tsp=" ssh ec2-user@test"
-alias swp=" ssh ec2-user@52.25.237.216" #WP client
+alias swp=" ssh sbolton@wp" #WP client
 alias rsp=" ssh ubuntu@rails"
 alias rsp2=" ssh ubuntu@18.237.143.24"
 alias swowza=" ssh ec2-user@54.191.120.51"

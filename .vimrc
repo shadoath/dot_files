@@ -490,12 +490,12 @@ let s:bundle_dir = $v.'/bundle'
   let g:fzf_buffers_jump = 1
 
   " Open FZF
-  noremap <C-p> :GFiles<CR>
+  noremap <C-p> :Files<CR>
 
   " Default fzf layout
   " - down / up / left / right
   let g:fzf_layout = { 'down': '~25%' }
-  let $FZF_DEFAULT_COMMAND= 'ag -U -g ""'
+  let $FZF_DEFAULT_COMMAND= 'ag -U --ignore node_modules -g ""'
 
   let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
