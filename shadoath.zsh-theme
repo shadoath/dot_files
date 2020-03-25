@@ -1,5 +1,8 @@
 local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-PROMPT='${ret_status}$HOST %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
+local who_where="`whoami`%{$fg[white]%}@%{$fg[green]%}$HOST"
+local my_path="%{$fg[cyan]%}%c%{$reset_color%}"
+
+PROMPT='${ret_status}${who_where} ${my_path} $(git_prompt_info)'
 RPROMPT="[%D{%Y/%m/%f}|%T]"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[white]%} %{$fg[green]%}"
