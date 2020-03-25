@@ -20,15 +20,20 @@ alias ossh=' sudo vim ~/.ssh/config'
 alias ovim=" vim ~/.vimrc"
 alias ozsh=" vim ~/.zshrc"
 alias obash="vim ~/.bash_profile"
-alias oalias="vim ~/dot_files/includes/base_aliases.zsh"
+alias oalias="vim ~/dot_files/include/base_aliases.zsh"
 alias ofunc="vim ~/dot_files/include/functions"
 alias ogit=" vim ~/dot_files/include/git_aliases"
 alias sbash="source ~/.bash_profile; clear"
 alias zbash="source ~/.zshrc; clear"
 alias bog="  bundle open"
 alias opry=" vim ~/.pryrc"
+alias myhttp="vim /usr/local/etc/httpd/extra/httpd-vhosts.conf"
+alias oprompt="vim ~/dot_files/shadoath.zsh-theme"
+# Server quick edit
+alias ohttp="sudo vim /etc/httpd/conf.d/http-vhosts.conf"
 
 # Special commands
+## delete all files starting with ._
 alias no_ds="find . -type f -name '._*' -exec rm {} +"
 
 # Laravel
@@ -42,35 +47,31 @@ alias ssrn="sudo systemctl restart nginx"
 alias sshr="sudo service httpd restart"
 alias ssar="sudo service apache2 restart"
 
-# SSH to AWS
-alias saws="ssh sbolton@dragonborn"
-alias saws2="ssh ec2-user@52.27.43.136"
-alias sawsold="ssh ec2-user@aws"
-alias sd="  ssh ubuntu@34.209.33.85"
-alias sp="  ssh ubuntu@aws_news"
-alias spt=" ssh ubuntu@52.11.165.25"
-alias jsp=" ssh ubuntu@aws_tj"
-alias tsp=" ssh ec2-user@test"
-alias swp=" ssh sbolton@wp" #WP client
-alias rsp=" ssh ubuntu@rails"
-alias rsp2=" ssh ubuntu@18.237.143.24"
-alias swowza=" ssh ec2-user@54.191.120.51"
-alias siola=" ssh sbolton@iolaregister"
-alias sbwd=" ssh ubuntu@bwd"
-alias sbw=" ssh ubuntu@bw"
+# Quick ssh commands
+alias saws="ssh sbolton@dragonborn"     # New Internal WordPress
+alias sd="  ssh ubuntu@dev"             # Staging
+alias sp="  ssh ubuntu@aws_news"        # DH Production
+alias jsp=" ssh ubuntu@aws_tj"          # Journal Production
+alias tsp=" ssh ec2-user@test"          # Jenkins
+alias swp=" ssh sbolton@wp"             # WordPress client
+alias rsp=" ssh ubuntu@rails"           # Rails Production
+alias sbw=" ssh ubuntu@bw"              # Biteworthy
+alias siola=" ssh sbolton@iolaregister" # Iola
+alias swowza="ssh ec2-user@wowza"       # Wowza webcams
 
 # Max Ave
-alias smaxwp=" ssh -t root@198.58.126.101"
-alias smaxapi="ssh -t root@45.79.108.188"
+alias smaxwp=" ssh -t root@maxavenuewp"
+alias smaxapi="ssh -t root@maxavenueapi"
 
 # Time
 alias retime="sudo ntpdate time.nist.gov"
 alias msttime="sudo rm /etc/localtime; sudo ln -s /usr/share/zoneinfo/America/Denver /etc/localtime"
 alias fixtime="sudo timedatectl set-timezone America/Denver"
 
-# Mac OS 10.12.6 (16G29)
+# Mac OS 10.12.6
 alias clear_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
 
+# Quick jumps
 alias cdd="  cd ~/dot_files"
 alias bw="  cd ~/personal-code/biteworthy"
 alias dgo="  cd ~/code/dgo"
