@@ -27,10 +27,10 @@ alias sbash="source ~/.bash_profile; clear"
 alias zbash="source ~/.zshrc; clear"
 alias bog="  bundle open"
 alias opry=" vim ~/.pryrc"
-alias myhttp="vim /usr/local/etc/httpd/extra/httpd-vhosts.conf"
+alias myvhost="vim /usr/local/etc/httpd/extra/httpd-vhosts.conf"
 alias oprompt="vim ~/dot_files/shadoath.zsh-theme"
 # Server quick edit
-alias ohttp="sudo vim /etc/httpd/conf.d/http-vhosts.conf"
+alias vhost="sudo vim /etc/httpd/conf.d/http-vhosts.conf"
 
 # Special commands
 ## delete all files starting with ._

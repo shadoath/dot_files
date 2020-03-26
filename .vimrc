@@ -206,6 +206,7 @@ let s:bundle_dir = $v.'/bundle'
     set clipboard=unnamed        " set default yank register to machine clipboard
 
     set updatetime=750          " How often vim writes to swap and 'cursorhold' event is fired
+    set timeoutlen=750          " Key maping timeout
 
     "folding settings
     set foldmethod=indent   "fold based on indent
