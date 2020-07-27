@@ -5,7 +5,7 @@ alias h="history|grep "
 alias f="find . |grep "
 alias p="ps aux |grep "
 alias a="alias  |grep "
-alias g="grep -rnw . -e "
+alias g="grep -rnw . -e " # Go find me some text [info](https://explainshell.com/explain?cmd=grep+-rnw+.+-e+text)
 alias c="clear"
 alias {:q,:Q,:qa}="exit"
 alias bs="bundle show |grep "
@@ -26,6 +26,7 @@ alias ogit=" vim ~/dot_files/include/git_aliases.zsh"
 alias sbash="source ~/.bash_profile; clear"
 alias zbash="source ~/.zshrc; clear"
 alias bog="  bundle open"
+alias psd="open -a /Applications/Adobe\ Photoshop\ 2020/Adobe\ Photoshop\ 2020.app"
 alias opry=" vim ~/.pryrc"
 alias myvhost="vim /usr/local/etc/httpd/extra/httpd-vhosts.conf"
 alias oprompt="vim ~/dot_files/shadoath.zsh-theme"
@@ -54,10 +55,12 @@ alias sp="  ssh ubuntu@aws_news"        # DH Production
 alias jsp=" ssh ubuntu@aws_tj"          # Journal Production
 alias tsp=" ssh ec2-user@test"          # Jenkins
 alias swp=" ssh sbolton@wp"             # WordPress client
+alias swp2=" ssh sbolton@wp2"           # WordPress client
 alias rsp=" ssh ubuntu@rails"           # Rails Production
 alias sbw=" ssh ubuntu@bw"              # Biteworthy
 alias siola=" ssh sbolton@iolaregister" # Iola
 alias swowza="ssh ec2-user@wowza"       # Wowza webcams
+alias sjw="ssh ec2-user@jw"             # Jenkins & Wowza webcams
 
 # Max Ave
 alias smaxwp=" ssh -t root@maxavenuewp"
@@ -72,13 +75,14 @@ alias fixtime="sudo timedatectl set-timezone America/Denver"
 alias clear_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
 
 # Quick jumps
-alias cdd="  cd ~/dot_files"
-alias bw="  cd ~/personal-code/biteworthy"
-alias dgo="  cd ~/code/dgo"
-alias nsr="  cd ~/code/nsr"
+alias cdd="   cd ~/dot_files"
+alias bw="    cd ~/personal-code/biteworthy"
+alias dgo="   cd ~/code/dgo"
+alias nsr="   cd ~/code/nsr"
 alias saxo="  cd ~/code/saxotech_importer"
 alias iola="  cd ~/code/iolaregister/FoundationPress"
-alias insight="  cd ~/code/insight"
+alias kogan=" cd ~/code/koganbuilders/bci-ignition"
+alias insight="cd ~/code/insight"
 
 # ls aliases
 alias ll="ls -lh"
