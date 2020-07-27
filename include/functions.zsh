@@ -90,6 +90,30 @@ function build_hosts() {
   sudo sh -c "cat ~/hosts.base ~/hosts.personal > /etc/hosts"
 }
 
+# bash completion for the `wp` command
+_wp_complete() {
+  local OLD_IFS="$IFS"
+  local cur=${COMP_WORDS[COMP_CWORD]}
+
+  IFS=$'\n';  # want to preserve spaces at the end
+  local opts="$(wp cli completions --line="$COMP_LINE" --point="$COMP_POINT")"
+
+  if [[ "$opts" =~ \<file\>\s* ]]
+  then
+    COMPREPLY=( $(compgen -f -- $cur) )
+  elif [[ $opts = "" ]]
+  then
+    COMPREPLY=( $(compgen -f -- $cur) )
+  else
+    COMPREPLY=( ${opts[*]} )
+  fi
+
+  IFS="$OLD_IFS"
+  return 0
+}
+complete -o nospace -F _wp_complete wp
+
+
 # database sync
 function databaseP() {
   RESULT=`mysql --user=root --skip-column-names -e "SHOW DATABASES LIKE '$1'"`
@@ -127,26 +151,26 @@ symlink() {
 }
 
 tab-color() {
-   echo -ne "\033]6;1;bg;red;brightness;$1\a"
-   echo -ne "\033]6;1;bg;green;brightness;$2\a"
-   echo -ne "\033]6;1;bg;blue;brightness;$3\a"
+  echo -ne "\033]6;1;bg;red;brightness;$1\a"
+  echo -ne "\033]6;1;bg;green;brightness;$2\a"
+  echo -ne "\033]6;1;bg;blue;brightness;$3\a"
 }
 tab-reset() {
   echo -ne "\033]6;1;bg;*;default\a"
 }
 color-ssh() {
-   if [[ -n "$ITERM_SESSION_ID" ]]; then
-     if [[ "$*" == *"dev"* ]] || [[ "$*" == *"35.162.254.200"* ]] || [[ "$*" == *"34.209.33.85"* ]]; then
-       tab-color  0 128 255 # BLUE
-     elif [[ "$*" == *"db"* ]]; then
-       tab-color 255 51 255 #HOT PINK
-     elif [[ "$*" == *"news"* ]] || [[ "$*" == *"nsr"* ]]; then
-       tab-color 255 51 51 # RED
-     else
-       tab-color  0 255 0 # GREEN
-     fi
-     ssh $*
-   fi
+  if [[ -n "$ITERM_SESSION_ID" ]]; then
+    if [[ "$*" == *"dev"* ]] || [[ "$*" == *"35.162.254.200"* ]] || [[ "$*" == *"34.209.33.85"* ]]; then
+      tab-color  0 128 255 # BLUE
+    elif [[ "$*" == *"db"* ]]; then
+      tab-color 255 51 255 #HOT PINK
+    elif [[ "$*" == *"news"* ]] || [[ "$*" == *"nsr"* ]]; then
+      tab-color 255 51 51 # RED
+    else
+      tab-color  0 255 0 # GREEN
+    fi
+    ssh $*
+  fi
 }
 apro-push-db() {
   databaseP adventurepro

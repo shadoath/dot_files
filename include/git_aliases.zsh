@@ -1,6 +1,7 @@
 # vim: set filetype=bash
+# Notes https://dev.to/g_abud/advanced-git-reference-1o9j
 
-# NO LONGER USED
+# Overrides settings in ~/.oh-my-zsh/plugins/git/git.plugin.zsh
 alias gs="   git status"
 alias gd="   clear && git diff"
 alias gc="   git commit"
@@ -58,3 +59,14 @@ alias {gPf,gPfm}="git push fury master"
 #     __git_complete gbd _git_checkout
 #   fi
 # fi
+
+function gh() {(
+  set -e
+  git remote -v | grep push
+  remote=${1:-origin}
+  echo "Using remote $remote"
+
+  URL=$(git config remote.$remote.url | sed "s/git@\(.*\):\(.*\).git/https:\/\/\1\/\2/")
+  echo "Opening $URL..."
+  open $URL
+)}
