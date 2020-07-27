@@ -57,6 +57,9 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'statox/GOD.vim'                   " Get vim doc link in markdown => :GOD mark
   Plugin 'moll/vim-bbye'                    " Buffers are not so finicky when being closed
   " Plugin 'maxbrunsfeld/vim-yankstack'       " Turns p and y into [stacks], nav with meta-p and meta-shift-p
+  Plugin 'mattn/emmet-vim'                  " Turns .grid>div*5>img into html structure <c-y><leader>
+
+
 
   " Syntax
   Plugin 'martinda/Jenkinsfile-vim-syntax'  " Jenkins
@@ -66,13 +69,17 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'jwalton512/vim-blade'             " Support Blade syntax
   Plugin 'kchmck/vim-coffee-script'         " Coffee support
   Plugin 'mustache/vim-mustache-handlebars' " Mustache JS
+  Plugin 'captbaritone/better-indent-support-for-php-with-html' "Format PHP & HTML more better
 
   " Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
   " Plugin 'guns/vim-sexp'                    " precision editing to S-expressions
 
   " Nice to have
   Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
-  Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
+  " Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
+  Plugin 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }   }
+  Plugin 'ashisha/image.vim'                " Preview images with python, install with pip install Pillow
+
   Plugin 'tommcdo/vim-exchange'             " Exchange text with Visual and X
   " Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
   " Plugin 'tyru/open-browser.vim'            " Open url from vim use: gx while on URL
