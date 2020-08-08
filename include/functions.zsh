@@ -4,6 +4,9 @@
 function nt() {
   open . -a "iterm"
 }
+function gi() {
+  curl -sL https://www.toptal.com/developers/gitignore/api/\$@ ;
+}
 # open git directory on github
 function gg() {
   URL=$(cat .git/config | grep github | sed -E "s/^.*(github\.com):(.*)(\.git)?/http:\/\/\1\/\2/")
