@@ -33,6 +33,9 @@ alias oprompt="vim ~/dot_files/shadoath.zsh-theme"
 # Server quick edit
 alias vhost="sudo vim /etc/httpd/conf.d/http-vhosts.conf"
 
+# rails
+alias rake='noglob rake'
+
 # Special commands
 ## delete all files starting with ._
 alias no_ds="find . -type f -name '._*' -exec rm {} +"
@@ -63,8 +66,10 @@ alias swowza="ssh ec2-user@wowza"       # Wowza webcams
 alias sjw="ssh ec2-user@jw"             # Jenkins & Wowza webcams
 
 # Max Ave
+alias maxwp=" cd /code/maxavenue/maxavenue.com/bones-master/"
+alias maxapi=" cd /code/maxavenue/docker-api/app"
 alias smaxwp=" ssh -t root@maxavenuewp"
-alias smaxapi="ssh -t root@maxavenueapi"
+alias smaxapi="ssh -t root@maxapi"
 
 # Time
 alias retime="sudo ntpdate time.nist.gov"
@@ -83,6 +88,7 @@ alias saxo="  cd ~/code/saxotech_importer"
 alias iola="  cd ~/code/iolaregister/FoundationPress"
 alias kogan=" cd ~/code/koganbuilders/bci-ignition"
 alias insight="cd ~/code/insight"
+alias tools="cd ~/code/tools"
 
 # ls aliases
 alias ll="ls -lh"
