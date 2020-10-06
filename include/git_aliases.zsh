@@ -2,6 +2,7 @@
 # Notes https://dev.to/g_abud/advanced-git-reference-1o9j
 
 # Overrides settings in ~/.oh-my-zsh/plugins/git/git.plugin.zsh
+alias lg="   lazygit"
 alias gs="   git status"
 alias gd="   clear && git diff"
 alias gc="   git commit"
