@@ -20,9 +20,10 @@ function lpr() {
 }
 # Open Pull Request for Github/Bitbucket
 function pr(){
+  DIR=$(git rev-parse --show-toplevel)
   BRANCH=$(__git_ps1 | tr -d "()" | tr -d "[:space:]")
-  if [ -f .git/config ]; then
-    CONFIG=".git/config"
+  if [ -f $DIR/.git/config ]; then
+    CONFIG="$DIR/.git/config"
   else
     CONFIG=$(cat .git | sed -e 's/\(gitdir: \)//g')
     CONFIG+='/config'
@@ -34,8 +35,8 @@ function pr(){
     REPO=$(cat $CONFIG | grep bitbucket -m 1 | sed -E "s/^.*(bitbucket\.org)\/(.*)\/(.*)\.git?/\3/")
     open "https://bitbucket.org/$USER/$REPO/pull-requests/new?source=$USER/$REPO%3A%3A$BRANCH&event_source=branch_list"
   else
-    USER=$(cat $CONFIG | grep github -m 1 | sed -E "s/^.*(github\.com):(.*)\/(.*)\.git?/\2/")
-    REPO=$(cat $CONFIG | grep github -m 1 | sed -E "s/^.*(github\.com):(.*)\/(.*)\.git?/\3/")
+    USER=$(cat $CONFIG | grep github -m 1 | sed -E "s/^.*(github\.com)[:\/](.*)\/(.*)\.git?/\2/")
+    REPO=$(cat $CONFIG | grep github -m 1 | sed -E "s/^.*(github\.com)[:\/](.*)\/(.*)\.git?/\3/")
     open "https://github.com/$USER/$REPO/compare/$BRANCH?expand=1"
   fi
 }
@@ -91,6 +92,10 @@ function hosts() {
 }
 function build_hosts() {
   sudo sh -c "cat ~/hosts.base ~/hosts.personal > /etc/hosts"
+}
+# cat out specified lines for copy pasta
+function catb() {
+ cat $1 | awk "{if (NR>=$2 && NR<=$3) print}"
 }
 
 # bash completion for the `wp` command
