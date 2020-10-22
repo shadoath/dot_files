@@ -132,6 +132,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'tpope/vim-commentary'             " easily use comments
   Plugin 'tpope/vim-endwise'                " auto end addition in ruby
   Plugin 'tpope/vim-fugitive'               " Git in vim
+  Plugin 'tpope/vim-haml'                   " ERB now HAML code
   Plugin 'tpope/vim-markdown'               " markdown syntax & indent
   Plugin 'tpope/vim-rails'                  " Rails in Vim
   Plugin 'tpope/vim-repeat'                 " Repeat plugin commands

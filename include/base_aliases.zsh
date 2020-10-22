@@ -57,7 +57,7 @@ alias sd="  ssh ubuntu@dev"             # Staging
 alias sp="  ssh ubuntu@aws_news"        # DH Production
 alias jsp=" ssh ubuntu@aws_tj"          # Journal Production
 alias tsp=" ssh ec2-user@test"          # Jenkins
-alias swp=" ssh sbolton@wp"             # WordPress client
+alias swp1=" ssh sbolton@wp"            # WordPress client
 alias swp2=" ssh sbolton@wp2"           # WordPress client
 alias rsp=" ssh ubuntu@rails"           # Rails Production
 alias sbw=" ssh ubuntu@bw"              # Biteworthy
@@ -86,7 +86,7 @@ alias dgo="   cd ~/code/dgo"
 alias nsr="   cd ~/code/nsr"
 alias saxo="  cd ~/code/saxotech_importer"
 alias iola="  cd ~/code/iolaregister/FoundationPress"
-alias kogan=" cd ~/code/koganbuilders/bci-ignition"
+alias kbi=" cd ~/code/koganbuilders/bci-ignition"
 alias insight="cd ~/code/insight"
 alias tools="cd ~/code/tools"
 
