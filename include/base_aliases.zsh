@@ -34,7 +34,7 @@ alias oprompt="vim ~/dot_files/shadoath.zsh-theme"
 alias vhost="sudo vim /etc/httpd/conf.d/http-vhosts.conf"
 
 # rails
-alias rake='noglob rake'
+# alias rake='noglob rake'
 
 # Special commands
 ## delete all files starting with ._
@@ -57,10 +57,13 @@ alias sd="  ssh ubuntu@dev"             # Staging
 alias sp="  ssh ubuntu@aws_news"        # DH Production
 alias jsp=" ssh ubuntu@aws_tj"          # Journal Production
 alias tsp=" ssh ec2-user@test"          # Jenkins
-alias swp1=" ssh sbolton@wp"            # WordPress client
-alias swp2=" ssh sbolton@wp2"           # WordPress client
+alias swp=" ssh sbolton@wp"            # WordPress client 1
+alias swp1="ssh sbolton@wp1"            # WordPress client 1
+alias swp2="ssh sbolton@wp2"           # WordPress client 2
+alias swp3="ssh sbolton@wp3"           # WordPress client 3
 alias rsp=" ssh ubuntu@rails"           # Rails Production
 alias sbw=" ssh ubuntu@bw"              # Biteworthy
+alias ssfs=" ssh ubuntu@sfs"              # Biteworthy
 alias siola=" ssh sbolton@iolaregister" # Iola
 alias swowza="ssh ec2-user@wowza"       # Wowza webcams
 alias sjw="ssh ec2-user@jw"             # Jenkins & Wowza webcams
@@ -83,6 +86,8 @@ alias clear_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
 alias cdd="   cd ~/dot_files"
 alias bw="    cd ~/personal-code/biteworthy"
 alias dgo="   cd ~/code/dgo"
+alias apro="  cd ~/code/adventurepro.us"
+
 alias nsr="   cd ~/code/nsr"
 alias saxo="  cd ~/code/saxotech_importer"
 alias iola="  cd ~/code/iolaregister/FoundationPress"
