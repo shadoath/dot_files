@@ -12,8 +12,3 @@ alias jcpd=" date && cap journal_production deploy && date"
 alias jcpdl="date && cap journal_production deploy launch=true && date"
 alias jcpdL="cap journal_production deploy:symlink:launch_release resque:stop deploy:restart_nginx deploy:cleanup"
 
-# Pine River Times
-alias pcsd=" cap prt_staging deploy"
-alias pcpd=" date && cap prt_production deploy && date"
-alias pcpdl="date && cap prt_production deploy launch=true && date"
-alias pcpdL="cap prt_production deploy:symlink:launch_release resque:stop deploy:restart_nginx deploy:cleanup"

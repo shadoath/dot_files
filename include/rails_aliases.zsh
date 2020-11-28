@@ -24,9 +24,4 @@ alias JRS=" RAILS_ENV=journal_staging"
 alias JRP=" RAILS_ENV=journal_production"
 alias jrs=" JRD rails s -p 3001 -P 42342"
 
-alias PRD=" RAILS_ENV=prt_dev"
-alias PRS=" RAILS_ENV=prt_staging"
-alias PRP=" RAILS_ENV=prt_production"
-alias prs=" PRD rails s -p 3002 -P 42344"
-
 alias saxo_m="bundle exec rake saxotech_importer_engine:install:migrations"
