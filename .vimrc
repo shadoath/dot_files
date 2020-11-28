@@ -59,8 +59,6 @@ let s:bundle_dir = $v.'/bundle'
   " Plugin 'maxbrunsfeld/vim-yankstack'       " Turns p and y into [stacks], nav with meta-p and meta-shift-p
   Plugin 'mattn/emmet-vim'                  " Turns .grid>div*5>img into html structure <c-y><leader>
 
-
-
   " Syntax
   Plugin 'martinda/Jenkinsfile-vim-syntax'  " Jenkins
   Plugin 'nathanaelkane/vim-indent-guides'  " Indent guides to keep your code aligned
@@ -70,6 +68,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'kchmck/vim-coffee-script'         " Coffee support
   Plugin 'mustache/vim-mustache-handlebars' " Mustache JS
   Plugin 'captbaritone/better-indent-support-for-php-with-html' "Format PHP & HTML more better
+  Plugin 'MaxMEllon/vim-jsx-pretty'
 
   " Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
   " Plugin 'guns/vim-sexp'                    " precision editing to S-expressions
