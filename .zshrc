@@ -132,3 +132,4 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 export PATH="/usr/local/sbin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/usr/local/opt/libpq/bin:$PATH"

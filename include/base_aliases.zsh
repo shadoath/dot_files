@@ -68,11 +68,8 @@ alias siola=" ssh sbolton@iolaregister" # Iola
 alias swowza="ssh ec2-user@wowza"       # Wowza webcams
 alias sjw="ssh ec2-user@jw"             # Jenkins & Wowza webcams
 
-# Max Ave
-alias maxwp=" cd /code/maxavenue/maxavenue.com/bones-master/"
-alias maxapi=" cd /code/maxavenue/docker-api/app"
-alias smaxwp=" ssh -t root@maxavenuewp"
-alias smaxapi="ssh -t root@maxapi"
+# Prenda
+alias prenda="cd /code/pendaworld/pendaworld"
 
 # Time
 alias retime="sudo ntpdate time.nist.gov"

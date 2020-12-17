@@ -40,6 +40,8 @@ alias gPo="  git push origin -u"
 alias gPoN=" git push origin --no-verify"
 alias gPn="  git push --set-upstream origin --no-verify" # Use this when remote tracking is not set
 alias gm="   git merge"
+alias gmd="  git merge develop"
+alias gmod=" git merge develop"
 alias gms="  git merge staging"
 alias gmm="  git merge master"
 alias gl="   git log --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'"
