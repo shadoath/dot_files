@@ -12,7 +12,7 @@ alias gcN="  git commit --no-verify"
 alias gco="  git checkout"
 alias gcm="  git commit -m"
 alias gcom=" git checkout master"
-alias gcos=" git checkout staging"
+alias gcod=" git checkout develop"
 alias ga="   git add"
 alias gap="  git add --patch"
 alias gaa="  git add ."
@@ -25,9 +25,9 @@ alias gu="   git reset --soft"
 alias grH="  git reset HEAD~" # undo one commit (ONLY USE IF NOT YET PUSHED)
 alias grv="  git remote -v"
 alias gb="   git branch"
-alias gba="  git branch -a"
+alias gba="  git branch -a" #Git branch ALL
 alias gbd="  git branch -d"
-alias gbdm=' git branch --merged | egrep -v "(^\*|master|staging)" | xargs git branch -d && gbp'
+alias gbdm=' git branch --merged | egrep -v "(^\*|master|develop)" | xargs git branch -d && gbp'
 alias gbD="  git branch -D"
 alias gbp="  git fetch origin --prune"
 alias gbn="  git pull origin && git checkout -b"
@@ -36,7 +36,7 @@ alias gpom=" git pull origin master"
 alias gpos=" git pull origin staging"
 alias gPom=" git push origin master"
 alias gPos=" git push origin staging"
-alias gPo="  git push origin -u"
+alias gPo="  git push -u origin"
 alias gPoN=" git push origin --no-verify"
 alias gPn="  git push --set-upstream origin --no-verify" # Use this when remote tracking is not set
 alias gm="   git merge"
@@ -46,6 +46,8 @@ alias gms="  git merge staging"
 alias gmm="  git merge master"
 alias gl="   git log --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'"
 alias glm="  git log --author='$(git config user.name)' --pretty=format:'%C(yellow)%h%C(reset) [%C(green)%ar%C(reset)] %s'"
+alias rn='   git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%an - %s"'
+alias rns='   git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s"'
 alias overview='open "https://github.com/shadoath?tab=overview&from='$(date '+%Y-%m-%d')'"'
 alias {gPf,gPfm}="git push fury master"
 

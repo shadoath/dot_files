@@ -1,9 +1,8 @@
-
 [user]
   name = Skylar Bolton
-  email = sbolton@bcimedia.com
+  email = skylar@prenda.co
 [push]
-  default = simple
+	default = current
 [core]
   editor = /usr/bin/vim
   mergeoptions = --no-edit

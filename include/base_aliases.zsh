@@ -1,10 +1,10 @@
 # vim: set filetype=bash
 
 alias vi=vim
-alias h="history|grep "
-alias f="find . |grep "
-alias p="ps aux |grep "
-alias a="alias  |grep "
+alias h="history | grep "
+alias f="find . | grep "
+alias p="ps aux | grep "
+alias a="alias  | grep "
 alias g="grep -rnw . -e " # Go find me some text [info](https://explainshell.com/explain?cmd=grep+-rnw+.+-e+text)
 alias c="clear"
 alias {:q,:Q,:qa}="exit"
@@ -52,24 +52,13 @@ alias sshr="sudo service httpd restart"
 alias ssar="sudo service apache2 restart"
 
 # Quick ssh commands
-alias saws="ssh sbolton@dragonborn"     # New Internal WordPress
-alias sd="  ssh ubuntu@dev"             # Staging
-alias sp="  ssh ubuntu@aws_news"        # DH Production
-alias jsp=" ssh ubuntu@aws_tj"          # Journal Production
-alias tsp=" ssh ec2-user@test"          # Jenkins
-alias swp=" ssh sbolton@wp"            # WordPress client 1
-alias swp1="ssh sbolton@wp1"            # WordPress client 1
-alias swp2="ssh sbolton@wp2"           # WordPress client 2
-alias swp3="ssh sbolton@wp3"           # WordPress client 3
-alias rsp=" ssh ubuntu@rails"           # Rails Production
-alias sbw=" ssh ubuntu@bw"              # Biteworthy
-alias ssfs=" ssh ubuntu@sfs"              # Biteworthy
-alias siola=" ssh sbolton@iolaregister" # Iola
-alias swowza="ssh ec2-user@wowza"       # Wowza webcams
-alias sjw="ssh ec2-user@jw"             # Jenkins & Wowza webcams
+alias ssfs=" ssh skyfox@sfs"              # SkyFoxStudios
 
 # Prenda
-alias prenda="cd /code/pendaworld/pendaworld"
+alias prenda="cd /code/prendaworld/prendaworld"
+alias meteor-dev="meteor run --settings dev-settings.json"
+### Must have `brew services start mongodb-community@4.4` running
+alias meteor-test="MONGO_URL=mongodb://127.0.0.1:27017/meteor-test meteor --settings dev-settings.json"
 
 # Time
 alias retime="sudo ntpdate time.nist.gov"

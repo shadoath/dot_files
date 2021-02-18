@@ -50,32 +50,32 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'garbas/vim-snipmate'              " expand code snippits with <tab>
   Plugin 'tomtom/tlib_vim'                  " Used by snipmate
   Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
-  " Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
   Plugin 'ervandew/supertab'                " The best autocompletion based on words in file
   Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
   Plugin 'statox/GOD.vim'                   " Get vim doc link in markdown => :GOD mark
   Plugin 'moll/vim-bbye'                    " Buffers are not so finicky when being closed
-  " Plugin 'maxbrunsfeld/vim-yankstack'       " Turns p and y into [stacks], nav with meta-p and meta-shift-p
   Plugin 'mattn/emmet-vim'                  " Turns .grid>div*5>img into html structure <c-y><leader>
+  " Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
+  " Plugin 'maxbrunsfeld/vim-yankstack'       " Turns p and y into [stacks], nav with meta-p and meta-shift-p
 
   " Syntax
-  Plugin 'martinda/Jenkinsfile-vim-syntax'  " Jenkins
   Plugin 'nathanaelkane/vim-indent-guides'  " Indent guides to keep your code aligned
   Plugin 'tommcdo/vim-lion'                 " For more better indentation use gl and gL, gl to add space before, gL to add space after. glip= add space before = around paragraph
   Plugin 'scrooloose/syntastic'             " syntax checker
-  Plugin 'jwalton512/vim-blade'             " Support Blade syntax
   Plugin 'kchmck/vim-coffee-script'         " Coffee support
   Plugin 'mustache/vim-mustache-handlebars' " Mustache JS
   Plugin 'captbaritone/better-indent-support-for-php-with-html' "Format PHP & HTML more better
   Plugin 'MaxMEllon/vim-jsx-pretty'
 
+  " Plugin 'jwalton512/vim-blade'             " Support Blade syntax
+  " Plugin 'martinda/Jenkinsfile-vim-syntax'  " Jenkins
   " Plugin 'tfnico/vim-gradle'                " gradle syntax highlighting
   " Plugin 'guns/vim-sexp'                    " precision editing to S-expressions
 
   " Nice to have
   Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
-  " Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
+  Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
   Plugin 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }   }
   Plugin 'ashisha/image.vim'                " Preview images with python, install with pip install Pillow
 
@@ -131,6 +131,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'tpope/vim-commentary'             " easily use comments
   Plugin 'tpope/vim-endwise'                " auto end addition in ruby
   Plugin 'tpope/vim-fugitive'               " Git in vim
+
   Plugin 'tpope/vim-haml'                   " ERB now HAML code
   Plugin 'tpope/vim-markdown'               " markdown syntax & indent
   Plugin 'tpope/vim-rails'                  " Rails in Vim
@@ -320,6 +321,8 @@ let s:bundle_dir = $v.'/bundle'
 
   " map escape key to jj -- much faster, comments above b/c of Vim's interpretation of them jumping my cursor
   imap jj <Esc>:w<cr>
+   "Dont Write
+  " imap jj <Esc>
 
   " un/comment line and next line (Gemfile, fury => local)
   nmap gC gcc<ESC>j<ESC>gcc
@@ -330,7 +333,7 @@ let s:bundle_dir = $v.'/bundle'
   nmap <leader>'" :%s/'/"/g
 
   imap <leader>end <% end %>
-  imap <leader>con console.log(": ");
+  imap <leader>con console.log(": ")
   " stupid save
   " imap :w <Esc>xx:w<cr>
 

@@ -92,6 +92,8 @@ source $HOME/dot_files/include/git_aliases.zsh
 
 # User configuration
 
+#Cypress testing
+export CYPRESS_MONGO_URL="mongodb://localhost:27017/meteor-test"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
