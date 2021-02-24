@@ -12,10 +12,10 @@ function gg() {
   URL=$(cat .git/config | grep github | sed -E "s/^.*(github\.com):(.*)(\.git)?/http:\/\/\1\/\2/")
   open $URL
 }
-#List Pull Requests for {USER}, default BCIMedia
+#List Pull Requests for {USER}, default prenda-school
 function lpr() {
   USER=$1
-  : ${USER:="BCIMedia"}
+  : ${USER:="prenda-school"}
   open "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+user%3A"$USER
 }
 # Open Pull Request for Github/Bitbucket
@@ -27,7 +27,7 @@ function pr(){
   else
     CONFIG=$(cat .git | sed -e 's/\(gitdir: \)//g')
     CONFIG+='/config'
-    BRANCH="staging...BCIMedia:$BRANCH"
+    BRANCH="staging...prenda-school:$BRANCH"
   fi
   SERVICE_URL=$(cat $CONFIG | grep url\ = -m 1)
   if [[ "${SERVICE_URL}" == *"bitbucket"* ]]; then
