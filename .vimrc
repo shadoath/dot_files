@@ -152,17 +152,17 @@ let s:bundle_dir = $v.'/bundle'
 
     filetype plugin on           " enable loading plugins for filetypes
     filetype indent on           " enable loading 'indent files' for filetypes
-    set ffs=unix,dos
-    set ff=unix
+    set ffs=unix,dos             " File formats
+    set ff=unix                  " File format
 
-    set synmaxcol=266            " no syntax highlighting for lines longer than 266 cols
-    set titlestring   =VIM:\ %f
+    set synmaxcol=256            " no syntax highlighting for lines longer than 256 cols
+    set titlestring   =VIM:\ %f  " Show filename as title of buffer
 
 
     " backup settings
     set backup
     set backupext =-vimbackup
-    set backupdir =$v/files/backup
+    set backupdir =$v/files/backup " This folder must be created for backups
     set directory =$v/files/swap// " Adding two // tells vim to use % stucture: %code%4flag%config%deploy.rb
 
     " undo settings
@@ -179,11 +179,12 @@ let s:bundle_dir = $v.'/bundle'
     " https://vi.stackexchange.com/a/22035/8493
 
     set laststatus=2             " show status bar
+    set autoread                 " If file is changed outside of vim reload it
 
     set showcmd                  " Show (partial) command in status line.
-    set noerrorbells             " No beeps
-    set vb t_vb=                 " Disable all bells.  I hate ringing/flashing.
-    set visualbell               " use visual bell
+    set noerrorbells             " No beeps, cause I don't need that to tell me I did something wrong
+    set vb t_vb=                 " Disable all bells.  No ringing either
+    set visualbell               " Use visual bell, that's ok feedback
     set number                   " display line numbers
     set relativenumber           " display relative line numbers
 
@@ -264,10 +265,10 @@ let s:bundle_dir = $v.'/bundle'
 
   "- Searching ------------------------------------------------------------------------------------
 
-    set hlsearch                 " highlight searching
-    set ignorecase               " case insensitive search
-    set smartcase                " case insensitive search Unless using Capital Letters
-    set incsearch                " incremental search
+  set hlsearch                 " highlight searching after search complete
+  set ignorecase               " case insensitive search
+  set smartcase                " case insensitive search Unless using Capital Letters
+  set incsearch                " incremental search
 
   "- Movement
   nnoremap 0 ^
@@ -283,6 +284,9 @@ let s:bundle_dir = $v.'/bundle'
   " Unsudo my screen
   nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
 
+  nnoremap <silent>
+      \ <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+
 
   "- Theme ----------------------------------------------------------------------------------------
   " More options: http://vimcolors.com/
@@ -295,6 +299,7 @@ let s:bundle_dir = $v.'/bundle'
     hi Todo    guifg=#798188 guibg=NONE guisp=NONE gui=bold ctermfg=15   ctermbg=2    cterm=bold
     hi Normal  guifg=NONE    guibg=NONE guisp=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
     hi NonText guifg=NONE    guibg=NONE guisp=NONE gui=NONE ctermfg=NONE ctermbg=NONE cterm=NONE
+
 
     " Color picker
     let g:vcoolor_map = '<leader>g'
@@ -646,19 +651,19 @@ augroup END
   let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
   let g:NERDTreeExtensionHighlightColor['rake'] = s:orange " sets the color of css files to blue
 
-"= Airline ----------------------------------------------------------------------------------------
-  " Airline.vim {{{
-  " augroup airline_config
-  "   autocmd!
-  "   let g:airline_powerline_fonts = 1
-  "   let g:airline_enable_syntastic = 1
-  "   let g:airline#extensions#tabline#buffer_nr_format = '%s '
-  "   let g:airline#extensions#tabline#buffer_nr_show = 1
-  "   let g:airline#extensions#tabline#enabled = 1
-  "   let g:airline#extensions#tabline#fnamecollapse = 0
-  "   let g:airline#extensions#tabline#fnamemod = ':t'
-  " augroup END
-  " }}}
+" = Airline ----------------------------------------------------------------------------------------
+   " Airline.vim {{{
+   augroup airline_config
+     autocmd!
+     let g:airline_powerline_fonts = 1
+     let g:airline_enable_syntastic = 1
+     let g:airline#extensions#tabline#buffer_nr_format = '%s '
+     let g:airline#extensions#tabline#buffer_nr_show = 1
+     let g:airline#extensions#tabline#enabled = 1
+     let g:airline#extensions#tabline#fnamecollapse = 0
+     let g:airline#extensions#tabline#fnamemod = ':t'
+   augroup END
+   " }}}
 
 "= Language Specific Settings======================================================================
 
