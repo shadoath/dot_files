@@ -28,7 +28,7 @@ let s:bundle_dir = $v.'/bundle'
   " Level 11 Vim skillz
   " Plugin 'wikitopian/hardmode'              " No arrow keys, +, _, or hjkl
   " Level 9 Vim skills
-  Plugin 'takac/vim-hardtime'               " Can't use a key twice in X time
+  " Plugin 'takac/vim-hardtime'               " Can't use a key twice in X time
 
   " Most important
   Plugin 'scrooloose/nerdtree'              " file menu
@@ -36,10 +36,9 @@ let s:bundle_dir = $v.'/bundle'
   " Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
   Plugin 'airblade/vim-gitgutter'           " git diff in gutter
   Plugin 'andrewRadev/switch.vim'           " Swap true for false and MUCH more
-  " Plugin 'bling/vim-airline'                " nice looking footer bar
+  Plugin 'bling/vim-airline'                " nice looking footer bar
   " Plugin 'mileszs/ack.vim'                  " searching via :Ack
   Plugin 'rking/ag.vim'                     " Project search
-  Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
   Plugin 'junegunn/fzf.vim'                 " Fuzzy search https://github.com/junegunn/fzf#search-syntax
   " Plugin 'm-kat/aws-vim'                    " AWS Cloudformation
   " Plugin 'valloric/YouCompleteMe'           " auto complete, son
@@ -51,11 +50,11 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'tomtom/tlib_vim'                  " Used by snipmate
   Plugin 'honza/vim-snippets'               " Snippets to autocomplete from
   Plugin 'ervandew/supertab'                " The best autocompletion based on words in file
-  Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
+  " Plugin 'kana/vim-textobj-user'            " Allows ruby 'ir' 'ar' commands for method selection
   Plugin 'marcWeber/vim-addon-mw-utils'     " support tab completion snipmate functionality
-  Plugin 'statox/GOD.vim'                   " Get vim doc link in markdown => :GOD mark
+  " Plugin 'statox/GOD.vim'                   " Get vim doc link in markdown => :GOD mark
   Plugin 'moll/vim-bbye'                    " Buffers are not so finicky when being closed
-  Plugin 'mattn/emmet-vim'                  " Turns .grid>div*5>img into html structure <c-y><leader>
+  " Plugin 'mattn/emmet-vim'                  " Turns .grid>div*5>img into html structure <c-y><leader>
   " Plugin 'idbrii/vim-mark'                  " Allow for multiple marks
   " Plugin 'maxbrunsfeld/vim-yankstack'       " Turns p and y into [stacks], nav with meta-p and meta-shift-p
 
@@ -131,11 +130,12 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'tpope/vim-commentary'             " easily use comments
   Plugin 'tpope/vim-endwise'                " auto end addition in ruby
   Plugin 'tpope/vim-fugitive'               " Git in vim
-
   Plugin 'tpope/vim-haml'                   " ERB now HAML code
   Plugin 'tpope/vim-markdown'               " markdown syntax & indent
-  Plugin 'tpope/vim-rails'                  " Rails in Vim
+  Plugin 'tpope/vim-rsi'                    " Rails in Vim
+  " Plugin 'tpope/vim-rails'                  " Rails in Vim
   Plugin 'tpope/vim-repeat'                 " Repeat plugin commands
+  Plugin 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, times, and more
   Plugin 'tpope/vim-surround'               " Change Surrounding tags
   Plugin 'tpope/vim-unimpaired'             " Short normal mode aliases for commonly used ex commands ([<SPACE> will add space above)
 
