@@ -1,4 +1,4 @@
-name: Check for included files
+name: Manually pass
 on:
   workflow_dispatch:
 
