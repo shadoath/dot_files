@@ -1,6 +1,5 @@
 # .files
 You know, the basic files under `~/` that begin with a `.`
-
 Used to keep my computers and mind in sync.
 
 ## Setup for Vim 8
