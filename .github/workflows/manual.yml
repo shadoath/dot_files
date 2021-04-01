@@ -1,7 +1,5 @@
 name: Manually pass
-on:
-  label:
-    types: ['skip-tests']
+on: [workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
