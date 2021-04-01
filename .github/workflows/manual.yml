@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       name: Manual Reason?
-        discription: 'Why skip?'
+        description: 'Why skip'
         required: true
         default: ''
 
