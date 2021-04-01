@@ -1,8 +1,8 @@
-name: Vim tests
+name: Check for included files
 on:
   push:
     paths:
-      - ".vimrc"
+      - "include/**"
 
 jobs:
   build:
