@@ -1,0 +1,14 @@
+name: Dummy
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do nothing
+        run: exit 0
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do nothing
+        run: exit 0

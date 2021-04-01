@@ -33,7 +33,7 @@ let s:bundle_dir = $v.'/bundle'
   " Most important
   Plugin 'scrooloose/nerdtree'              " file menu
   Plugin 'Xuyuanp/nerdtree-git-plugin'      " Changes via git
-  " Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
+  Plugin 'ctrlpvim/ctrlp.vim'               " fuzzy file finder
   Plugin 'airblade/vim-gitgutter'           " git diff in gutter
   Plugin 'andrewRadev/switch.vim'           " Swap true for false and MUCH more
   Plugin 'bling/vim-airline'                " nice looking footer bar
@@ -66,6 +66,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'mustache/vim-mustache-handlebars' " Mustache JS
   Plugin 'captbaritone/better-indent-support-for-php-with-html' "Format PHP & HTML more better
   Plugin 'MaxMEllon/vim-jsx-pretty'
+  Plugin 'prettier/vim-prettier', { 'do' : 'npm install' }
 
   " Plugin 'jwalton512/vim-blade'             " Support Blade syntax
   " Plugin 'martinda/Jenkinsfile-vim-syntax'  " Jenkins
@@ -127,7 +128,7 @@ let s:bundle_dir = $v.'/bundle'
   " The great tpope
   Plugin 'tpope/vim-abolish'                " Search replace with a touch of magic
   Plugin 'tpope/vim-characterize'           " Advanced Character info with ga
-  Plugin 'tpope/vim-commentary'             " easily use comments
+  Plugin 'tpope/vim-commentary'             " easily use comments => gcc
   Plugin 'tpope/vim-endwise'                " auto end addition in ruby
   Plugin 'tpope/vim-fugitive'               " Git in vim
   Plugin 'tpope/vim-haml'                   " ERB now HAML code
@@ -222,6 +223,7 @@ let s:bundle_dir = $v.'/bundle'
     set foldnestmax=10      "deepest fold is 10 levels
     set nofoldenable        "dont fold by default
     set foldlevel=1
+    " set foldnestmax=2
     " set nofoldenable             " disable folding
     "url_for
     " Notes: zM to fold all, zR to open all folds zO to open current fold
@@ -278,6 +280,8 @@ let s:bundle_dir = $v.'/bundle'
 
   " Write to the write protected files
   " command W w !sudo tee % > /dev/null
+  " noremap <Leader>W :w !sudo tee % > /dev/null
+
   "- Lazy command mode
   " nnoremap ; :
   "
