@@ -1,7 +1,7 @@
-name: Check for included files
+name: Manually pass
 on:
-  workflow_dispatch:
-
+  label:
+    types: ['skip-tests']
 jobs:
   build:
     runs-on: ubuntu-latest
