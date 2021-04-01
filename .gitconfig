@@ -1,8 +1,9 @@
 [user]
   name = Skylar Bolton
   email = skylar@prenda.co
+  signingkey = 094F8CE8842A45C8
 [push]
-	default = current
+  default = current
 [core]
   editor = /usr/bin/vim
   mergeoptions = --no-edit

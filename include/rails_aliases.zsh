@@ -18,10 +18,4 @@ alias fixdb="rails db:drop db:create db:migrate db:seed"
 alias adubs="bundle exec rspec; rubocop ."
 alias cop="  rubocop"
 
-# Newsites
-alias JRD=" RAILS_ENV=journal_dev"
-alias JRS=" RAILS_ENV=journal_staging"
-alias JRP=" RAILS_ENV=journal_production"
-alias jrs=" JRD rails s -p 3001 -P 42342"
-
 alias saxo_m="bundle exec rake saxotech_importer_engine:install:migrations"

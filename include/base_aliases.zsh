@@ -70,15 +70,6 @@ alias clear_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
 # Quick jumps
 alias cdd="   cd ~/dot_files"
 alias bw="    cd ~/personal-code/biteworthy"
-alias dgo="   cd ~/code/dgo"
-alias apro="  cd ~/code/adventurepro.us"
-
-alias nsr="   cd ~/code/nsr"
-alias saxo="  cd ~/code/saxotech_importer"
-alias iola="  cd ~/code/iolaregister/FoundationPress"
-alias kbi=" cd ~/code/koganbuilders/bci-ignition"
-alias insight="cd ~/code/insight"
-alias tools="cd ~/code/tools"
 
 # ls aliases
 alias ll="ls -lh"
