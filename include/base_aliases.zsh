@@ -1,5 +1,4 @@
 # vim: set filetype=bash
-
 alias vi=vim
 alias h="history | grep "
 alias f="find . | grep "
