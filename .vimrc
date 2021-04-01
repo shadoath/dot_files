@@ -1,5 +1,4 @@
 " OS setup
-
 let s:is_win = has('win32')
 let $v = $HOME.(s:is_win ? '\vimfiles' : '/.vim')
 
