@@ -2,7 +2,7 @@ name: Manually pass
 on:
   workflow_dispatch:
     inputs:
-      name: Manual Reason?
+      reason:
         description: 'Why skip'
         required: true
         default: ''
@@ -12,6 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-        echo "Hello ${{ github.event.inputs.name }}!"
+        echo "Hello ${{ github.event.inputs.reason }}!"
       - name: Doing nothing
         run: exit 0
