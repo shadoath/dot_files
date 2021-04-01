@@ -1,7 +1,7 @@
 name: Manually pass
 on:
   label:
-    types: [skip-tests]
+    types: ['skip-tests']
 jobs:
   build:
     runs-on: ubuntu-latest
