@@ -1,0 +1,10 @@
+name: Manually pass
+on:
+  label:
+    types: ['skip-tests']
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do nothing
+        run: exit 0
