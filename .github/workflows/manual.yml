@@ -1,0 +1,10 @@
+name: Check for included files
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do nothing
+        run: exit 0
