@@ -20,7 +20,6 @@ let s:bundle_dir = $v.'/bundle'
   set rtp+=~/.fzf
 
   call vundle#begin()
-
   " Required
   Plugin 'gmarik/Vundle.vim'                " let Vundle manage Vundle, required
 
