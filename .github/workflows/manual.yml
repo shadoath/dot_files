@@ -1,7 +1,11 @@
 name: Manually pass
 on:
-  label:
-    types: ['skip-tests']
+  workflow_dispatch:
+    inputs:
+      name:
+        discription: 'Why'
+        required: true
+        default: 'because'
 jobs:
   build:
     runs-on: ubuntu-latest
