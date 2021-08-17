@@ -30,3 +30,5 @@
   tool = bc3
 [mergetool "bc3"]
   trustExitCode = true
+[pull]
+  rebase = false
