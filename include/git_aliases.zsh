@@ -13,10 +13,12 @@ alias gaA="  git add . --all"
 alias gaa="  git add ."
 alias gap="  git add --patch"
 alias gb="   git branch"
+alias gbg="  git branch -a | grep"
 alias gbD="  git branch -D"
 alias gba="  git branch -a" #Git branch ALL
 alias gbd="  git branch -d"
 alias gbdm=' git branch --merged | egrep -v "(^\*|master|develop)" | xargs git branch -d && gbp'
+alias gbDm=" git branch --v | grep "\[gone\]" | awk '{print $1}' | xargs git branch -D"
 alias gbn="  git pull origin && git checkout -b"
 alias gbp="  git fetch origin --prune"
 alias gc="   git commit"
@@ -65,13 +67,13 @@ alias {gPf,gPfm}="git push fury master"
 #   fi
 # fi
 
-function gh() {(
-  set -e
-  git remote -v | grep push
-  remote=${1:-origin}
-  echo "Using remote $remote"
+# function gh() {(
+#   set -e
+#   git remote -v | grep push
+#   remote=${1:-origin}
+#   echo "Using remote $remote"
 
-  URL=$(git config remote.$remote.url | sed "s/git@\(.*\):\(.*\).git/https:\/\/\1\/\2/")
-  echo "Opening $URL..."
-  open $URL
-)}
+#   URL=$(git config remote.$remote.url | sed "s/git@\(.*\):\(.*\).git/https:\/\/\1\/\2/")
+#   echo "Opening $URL..."
+#   open $URL
+# )}
