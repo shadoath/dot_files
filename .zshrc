@@ -45,7 +45,6 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/dot_files/include/functions.zsh
 source $HOME/dot_files/include/base_aliases.zsh
 source $HOME/dot_files/include/rails_aliases.zsh
-source $HOME/dot_files/include/capistrano_aliases.zsh
 source $HOME/dot_files/include/git_aliases.zsh
 
 # User configuration
@@ -93,3 +92,8 @@ export PATH="/usr/local/sbin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export GPG_TTY=$(tty)
