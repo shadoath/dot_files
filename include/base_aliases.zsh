@@ -31,9 +31,8 @@ alias myvhost="vim /usr/local/etc/httpd/extra/httpd-vhosts.conf"
 alias oprompt="vim ~/dot_files/shadoath.zsh-theme"
 # Server quick edit
 alias vhost="sudo vim /etc/httpd/conf.d/http-vhosts.conf"
+alias ctags="`brew --prefix`/bin/ctags"
 
-# rails
-# alias rake='noglob rake'
 
 # Special commands
 ## delete all files starting with ._
@@ -51,13 +50,18 @@ alias sshr="sudo service httpd restart"
 alias ssar="sudo service apache2 restart"
 
 # Quick ssh commands
-alias ssfs=" ssh skyfox@sfs"              # SkyFoxStudios
+alias ssfs="ssh skyfox@sfs"              # SkyFoxStudios
 
 # Prenda
-alias prenda="cd /code/prendaworld/prendaworld"
-alias meteor-dev="meteor run --settings dev-settings.json"
-### Must have `brew services start mongodb-community@4.4` running
-alias meteor-test="MONGO_URL=mongodb://127.0.0.1:27017/meteor-test meteor --settings dev-settings.json"
+alias shub="ssh -N ubuntu@prenda-hub"
+alias pw="cd /code/prenda-verse/prendaworld"
+alias m="meteor-dev"
+alias mt="meteor-test"
+alias mp="meteor-prod"
+alias meteor-dev="METEOR_OFFLINE_CATALOG=1 meteor run --settings credentials.json  --no-release-check  --exclude-archs web.browser.legacy"
+alias meteor-test="METEOR_OFFLINE_CATALOG=1 MONGO_URL=mongodb://127.0.0.1:27017/meteor-test meteor --settings dev-settings.json  --no-release-check --exclude-archs web.browser.legacy"
+alias meteor-prod="MONGO_URL=mongodb://localhost:27017/prendacoins meteor  --settings settings.json --no-release-check --exclude-archs web.browser.legacy"
+alias mni="meteor npm ci"
 
 # Time
 alias retime="sudo ntpdate time.nist.gov"
@@ -69,7 +73,6 @@ alias clear_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
 
 # Quick jumps
 alias cdd="   cd ~/dot_files"
-alias bw="    cd ~/personal-code/biteworthy"
 
 # ls aliases
 alias ll="ls -lh"

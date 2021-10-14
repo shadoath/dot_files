@@ -1,6 +1,6 @@
 [user]
   name = Skylar Bolton
-  email = skylar@prenda.co
+  email = skylar.bolton@gmail.com
   signingkey = 094F8CE8842A45C8
 [push]
   default = current
@@ -32,3 +32,7 @@
   trustExitCode = true
 [pull]
   rebase = false
+[commit]
+	gpgsign = true
+[init]
+	defaultBranch = main
