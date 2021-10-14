@@ -47,6 +47,7 @@ source $HOME/dot_files/include/functions.zsh
 source $HOME/dot_files/include/base_aliases.zsh
 source $HOME/dot_files/include/rails_aliases.zsh
 source $HOME/dot_files/include/git_aliases.zsh
+source $HOME/dot_files/include/prenda_aliases.zsh # not tracked in version control
 
 # User configuration
 

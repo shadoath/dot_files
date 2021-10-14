@@ -52,15 +52,12 @@ alias ssar="sudo service apache2 restart"
 # Quick ssh commands
 alias ssfs="ssh skyfox@sfs"              # SkyFoxStudios
 
-# Prenda
-alias shub="ssh -N ubuntu@prenda-hub"
-alias pw="cd /code/prenda-verse/prendaworld"
+# Meteor aliases
 alias m="meteor-dev"
 alias mt="meteor-test"
 alias mp="meteor-prod"
 alias meteor-dev="METEOR_OFFLINE_CATALOG=1 meteor run --settings credentials.json  --no-release-check  --exclude-archs web.browser.legacy"
 alias meteor-test="METEOR_OFFLINE_CATALOG=1 MONGO_URL=mongodb://127.0.0.1:27017/meteor-test meteor --settings dev-settings.json  --no-release-check --exclude-archs web.browser.legacy"
-alias meteor-prod="MONGO_URL=mongodb://localhost:27017/prendacoins meteor  --settings settings.json --no-release-check --exclude-archs web.browser.legacy"
 alias mni="meteor npm ci"
 
 # Time
