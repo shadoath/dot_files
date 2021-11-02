@@ -1,0 +1,231 @@
+{
+  "editor.formatOnPaste": true,
+  "editor.fontLigatures": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "explorer.confirmDragAndDrop": false,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.codeLens.enabled": false,
+  "gitlens.defaultDateFormat": "YYYY-MM-D h:mm a",
+  "gitlens.defaultDateShortFormat": null,
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.lineNumbers": "relative",
+
+  "vim.vimrc.enable": false,
+  "vim.vimrc.path": "",
+  "vim.surround": true,
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "j"],
+      "after": ["<Esc>", ":", "w", "<Enter>"]
+    }
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["dd"],
+      "after": ["\"", "_", "d", "d"]
+    },
+    {
+      "before": ["<leader>", "v"],
+      "after": [],
+      "commands": [{ "command": "workbench.action.splitEditor" }]
+    },
+    {
+      "before": ["<leader>", "h"],
+      "after": [],
+      "commands": [{ "command": "workbench.action.splitEditorOrthogonal" }]
+    },
+    {
+      "before": ["<leader>", "."],
+      "after": ["@", "@"]
+    },
+    {
+      "before": ["<leader>", "d"],
+      "after": ["d", "d"]
+    },
+    {
+      "before": ["ctrl+n"],
+      "after": [":", "n", "o", "h", "l", "<Enter>"]
+    },
+    {
+      "before": ["x"],
+      "after": ["\"", "_", "x"]
+    },
+    {
+      "before": ["u"],
+      "after": [],
+      "commands": [{ "command": "undo" }]
+    },
+    {
+      "before": ["<C-r>"],
+      "after": [],
+      "commands": [{ "command": "redo" }]
+    },
+    {
+      "before": ["0"],
+      "after": ["^"]
+    },
+    {
+      "before": ["<leader>", "m"],
+      "commands": ["bookmarks.toggle"]
+    },
+    {
+      "before": ["<leader>", "b"],
+      "commands": ["bookmarks.list"]
+    }
+  ],
+  "vim.visualModeKeyBindingsNonRecursive": [
+    {
+      "before": ["x"],
+      "after": ["\"", "_", "x"]
+    },
+    {
+      "before": ["0"],
+      "after": ["^"]
+    }
+  ],
+  "vim.leader": ",",
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "typescript.format.insertSpaceAfterConstructor": true,
+  "gitlens.statusBar.reduceFlicker": true,
+  "workbench.activityBar.visible": true,
+  "editor.minimap.enabled": false,
+  "json.maxItemsComputed": 10000,
+  "editor.formatOnSave": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+
+  // "workbench.colorCustomizations": {
+  // "editorLineNumber.foreground": "#bbb",
+  // "editorLineNumber.activeForeground": "#fff",
+  // "terminal.ansiGreen": "#73daca"
+  // "editor.selectionBackground": "#13559975", //background for visual select
+  // "editor.selectionHighlightBackground": "#00cc3355", //highlight on current context
+  // "editor.findMatchBackground": "#00cc44FF", //Current SEARCH MATCH
+  // "editor.findMatchHighlightBackground": "#ff990075" //Other SEARCH MATCHES
+  // "sideBar.background": "#111"
+  // "editor.selectionBackground": "#135564",
+  // "editor.selectionHighlightBackground": "#135564"
+  // },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  // "editor.autoClosingBrackets": "never",
+  // "editor.autoSurround": "never",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
+  "editor.cursorStyle": "line",
+  "editor.insertSpaces": false,
+  "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
+  "editor.wordWrap": "off",
+  "search.showLineNumbers": true,
+  "vim.smartRelativeLine": true,
+  "editor.fontFamily": "Fira Code",
+  "bookmarks.useWorkaroundForFormatters": true,
+  "[ruby]": {
+    "editor.defaultFormatter": "jnbt.vscode-rufo",
+    "editor.formatOnSave": true
+  },
+  "ruby.useBundler": true, //run non-lint commands with bundle exec
+  "ruby.useLanguageServer": true, // use the internal language server (see below)
+  "ruby.lint": {
+    "rubocop": {
+      "useBundler": true // enable rubocop via bundler
+    },
+    "reek": {
+      "useBundler": true // enable reek via bundler
+    }
+  },
+  "files.exclude": {
+    "**/vendor/**": true
+  },
+  "security.workspace.trust.untrustedFiles": "open",
+  "redhat.telemetry.enabled": false,
+  "window.zoomLevel": 2,
+
+  "todohighlight.isEnable": true,
+  "todohighlight.isCaseSensitive": true,
+  "todohighlight.keywords": [
+    "DEBUG:",
+    "REVIEW:",
+    "FIXME:",
+    {
+      "text": "NOTE:",
+      "color": "#ff0000",
+      "backgroundColor": "yellow"
+    },
+    {
+      "text": "HACK:",
+      "color": "white"
+    },
+    {
+      "text": "TODO:",
+      "color": "white",
+      "border": "none",
+      "borderRadius": "2px",
+      "backgroundColor": "rgba(72,248,115,.4)",
+      "overviewRulerColor": "rgba(72,248,115,.8)"
+    },
+    {
+      "text": "console.log",
+      "color": "yellow",
+      "border": "1px solid red",
+      "borderRadius": "2px",
+      "backgroundColor": "rgba(0,0,0,.2)",
+      "isWholeLine": true,
+      "overviewRulerColor": "yellow"
+    }
+  ],
+  "todohighlight.defaultStyle": {
+    "color": "red",
+    "backgroundColor": "rgba(0,0,0,.2)",
+    "overviewRulerColor": "rgba(0,0,0,0)",
+    "border": "1px solid #666",
+    "borderRadius": "2px",
+    "isWholeLine": false
+    //other styling properties goes here ...
+  },
+  "todohighlight.include": [
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.html",
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "todohighlight.exclude": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/.meteor/**",
+    "**/.vscode/**",
+    "**/.github/**",
+    "**/_output/**",
+    "**/*.min.*",
+    "**/*.map",
+    "**/.next/**"
+  ],
+  "todohighlight.maxFilesForSearch": 5120,
+  "todohighlight.toggleURI": false,
+  "color-highlight.markRuler": false,
+  "color-highlight.markerType": "underline",
+  "color-highlight.matchWords": true,
+  "react-native-tools.networkInspector.consoleLogsColorTheme": "Dark"
+}
