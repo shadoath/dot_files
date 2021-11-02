@@ -51,8 +51,6 @@ source $HOME/dot_files/include/prenda_aliases.zsh # not tracked in version contr
 
 # User configuration
 
-#Cypress testing
-export CYPRESS_MONGO_URL="mongodb://localhost:27017/meteor-test"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -64,6 +62,8 @@ export CYPRESS_MONGO_URL="mongodb://localhost:27017/meteor-test"
 # else
 #   export EDITOR='mvim'
 # fi
+
+eval "$(jump shell)"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
