@@ -31,7 +31,7 @@ plugins=(
   gitignore
   gitfast
   colorize
-  osx
+  macos
   # custom
   npm
   zsh-autosuggestions
