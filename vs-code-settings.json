@@ -156,7 +156,7 @@
   },
   "security.workspace.trust.untrustedFiles": "open",
   "redhat.telemetry.enabled": false,
-  "window.zoomLevel": 2,
+  "window.zoomLevel": 1,
 
   "todohighlight.isEnable": true,
   "todohighlight.isCaseSensitive": true,
@@ -227,5 +227,8 @@
   "color-highlight.markRuler": false,
   "color-highlight.markerType": "underline",
   "color-highlight.matchWords": true,
-  "react-native-tools.networkInspector.consoleLogsColorTheme": "Dark"
+  "react-native-tools.networkInspector.consoleLogsColorTheme": "Dark",
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  }
 }

@@ -32,6 +32,8 @@ alias oprompt="vim ~/dot_files/shadoath.zsh-theme"
 # Server quick edit
 alias vhost="sudo vim /etc/httpd/conf.d/http-vhosts.conf"
 alias ctags="`brew --prefix`/bin/ctags"
+alias bssp="brew services start postgresql"
+alias bsSp="brew services stop postgresql"
 
 
 # Special commands

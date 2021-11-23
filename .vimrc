@@ -75,7 +75,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'christoomey/vim-sort-motion'      " Sort lines with gs, ie: gs20j => sort 20 lines, gsip => Sort the current paragraph, gsi( => Sort within parenthesis. (b, c, a) would become (a, b, c)
   Plugin 'jtratner/vim-flavored-markdown'   " Markdown display good
   Plugin 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }   }
-  Plugin 'ashisha/image.vim'                " Preview images with python, install with pip install Pillow
+  " Plugin 'ashisha/image.vim'                " Preview images with python, install with pip install Pillow
 
   Plugin 'tommcdo/vim-exchange'             " Exchange text with Visual and X
   " Plugin 'tyru/open-browser-github.vim'     " Open current file location on github
