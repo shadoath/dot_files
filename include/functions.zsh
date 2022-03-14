@@ -13,11 +13,11 @@ function gg() {
   open $URL
 }
 #List Pull Requests for {USER}, default prenda-school
-function lpr() {
-  USER=$1
-  : ${USER:="prenda-school"}
-  open "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+user%3A"$USER
-}
+# function lpr() {
+#   USER=$1
+#   : ${USER:="prenda-school"}
+#   open "https://github.com/pulls?utf8=%E2%9C%93&q=is%3Aopen+is%3Apr+user%3A"$USER
+# }
 # Open Pull Request for Github/Bitbucket
 function pr(){
   DIR=$(git rev-parse --show-toplevel)

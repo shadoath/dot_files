@@ -77,3 +77,6 @@ alias cdd="   cd ~/dot_files"
 alias ll="ls -lh"
 alias la="ls -lah"
 alias ls="ls -la"
+
+# Docker
+alias ds="docker-compose"
