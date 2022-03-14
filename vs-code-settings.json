@@ -5,11 +5,6 @@
   "explorer.confirmDragAndDrop": false,
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "gitlens.currentLine.enabled": false,
-  "gitlens.hovers.currentLine.over": "line",
-  "gitlens.codeLens.enabled": false,
-  "gitlens.defaultDateFormat": "YYYY-MM-D h:mm a",
-  "gitlens.defaultDateShortFormat": null,
   "editor.cursorSmoothCaretAnimation": true,
   "editor.lineNumbers": "relative",
 
@@ -28,10 +23,10 @@
     }
   ],
   "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": ["dd"],
-      "after": ["\"", "_", "d", "d"]
-    },
+    // {
+    //   "before": ["d", "d"],
+    //   "after": ["\"", "_", "d", "d"]
+    // },
     {
       "before": ["<leader>", "v"],
       "after": [],
@@ -111,18 +106,6 @@
   "prettier.singleQuote": true,
   "prettier.semi": false,
 
-  // "workbench.colorCustomizations": {
-  // "editorLineNumber.foreground": "#bbb",
-  // "editorLineNumber.activeForeground": "#fff",
-  // "terminal.ansiGreen": "#73daca"
-  // "editor.selectionBackground": "#13559975", //background for visual select
-  // "editor.selectionHighlightBackground": "#00cc3355", //highlight on current context
-  // "editor.findMatchBackground": "#00cc44FF", //Current SEARCH MATCH
-  // "editor.findMatchHighlightBackground": "#ff990075" //Other SEARCH MATCHES
-  // "sideBar.background": "#111"
-  // "editor.selectionBackground": "#135564",
-  // "editor.selectionHighlightBackground": "#135564"
-  // },
   "typescript.updateImportsOnFileMove.enabled": "always",
   // "editor.autoClosingBrackets": "never",
   // "editor.autoSurround": "never",
@@ -156,7 +139,6 @@
   },
   "security.workspace.trust.untrustedFiles": "open",
   "redhat.telemetry.enabled": false,
-  "window.zoomLevel": 1,
 
   "todohighlight.isEnable": true,
   "todohighlight.isCaseSensitive": true,
@@ -230,5 +212,40 @@
   "react-native-tools.networkInspector.consoleLogsColorTheme": "Dark",
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
-  }
+  },
+  "indentRainbow.updateDelay": 250,
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": false
+  },
+  "window.zoomLevel": 4,
+  "explorer.confirmDelete": false,
+  "workbench.colorCustomizations": {
+    "terminal.ansiGreen": "#73daca",
+    "editor.lineHighlightBackground": "#1073cf4d",
+    "editor.lineHighlightBorder": "#9fced11f",
+    "editorLineNumber.foreground": "#bbb",
+    "editorLineNumber.activeForeground": "#fff",
+    "editor.findMatchBackground": "#43c5da7e", //Current SEARCH MATCH
+    "editor.findMatchHighlightBackground": "#ff990075", //Other SEARCH MATCHES
+    "editor.selectionBackground": "#135564",
+    "editor.selectionHighlightBackground": "#135564",
+    "sideBar.background": "#000",
+    "sideBar.foreground": "#fffFFFd2",
+    "sideBar.dropBackground": "#fcfacb01",
+    "list.inactiveSelectionBackground": "#ffffff62" // Search Selection inactive
+  },
+  "diffEditor.wordWrap": "off",
+  "editor.guides.indentation": false,
+  "editor.guides.bracketPairs": false,
+  "editor.inlayHints.enabled": false,
+  "blockman.n33A01B2FromDepth0ToInwardForAllBackgrounds": "45,0,0,2; none",
+  "blockman.n03MaxDepth": 11,
+  "autoimport.doubleQuotes": true
 }
