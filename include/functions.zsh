@@ -168,11 +168,11 @@ tab-reset() {
 }
 color-ssh() {
   if [[ -n "$ITERM_SESSION_ID" ]]; then
-    if [[ "$*" == *"dev"* ]] || [[ "$*" == *"35.162.254.200"* ]] || [[ "$*" == *"34.209.33.85"* ]]; then
+    if [[ "$*" == *"dev"* ]]; then
       tab-color  0 128 255 # BLUE
-    elif [[ "$*" == *"db"* ]]; then
+    elif [[ "$*" == *"db-jump"* ]]; then
       tab-color 255 51 255 #HOT PINK
-    elif [[ "$*" == *"news"* ]] || [[ "$*" == *"nsr"* ]]; then
+    elif [[ "$*" == *"prenda-hub"* ]] || [[ "$*" == *"sfs"* ]]; then
       tab-color 255 51 51 # RED
     else
       tab-color  0 255 0 # GREEN
@@ -190,4 +190,3 @@ if [ $HOST=='mbp-42' ]
   then
   alias ssh=color-ssh
 fi
-alias noc="tab-reset"

@@ -22,6 +22,7 @@ alias obash="vim ~/.bash_profile"
 alias oalias="vim ~/dot_files/include/base_aliases.zsh"
 alias ofunc="vim ~/dot_files/include/functions.zsh"
 alias ogit=" vim ~/dot_files/include/git_aliases.zsh"
+alias orails=" vim ~/dot_files/include/rails_aliases.zsh"
 alias sbash="source ~/.bash_profile; clear"
 alias zbash="source ~/.zshrc; clear"
 alias bog="  bundle open"
@@ -35,6 +36,15 @@ alias ctags="`brew --prefix`/bin/ctags"
 alias bssp="brew services start postgresql"
 alias bsSp="brew services stop postgresql"
 
+# Nix
+alias nix="noglob nix"
+
+# Colors/tabs
+alias noc="tab-reset"
+alias tred="tab-color 255 51 51" # RED
+alias tblue="tab-color 0 128 255" # Blue
+alias tpink="tab-color 255 51 255" # HOT PINK
+alias tgreen="tab-color 34 118 47" # Forest green
 
 # Special commands
 ## delete all files starting with ._
@@ -79,4 +89,5 @@ alias la="ls -lah"
 alias ls="ls -la"
 
 # Docker
-alias ds="docker-compose"
+alias dc="docker-compose"
+alias dcb="dc build --no-cache"

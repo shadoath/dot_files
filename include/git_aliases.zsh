@@ -20,6 +20,7 @@ alias gbd="  git branch -d"
 alias gbdm=' git branch --merged | egrep -v "(^\*|master|develop)" | xargs git branch -d && gbp'
 alias gbDm=" git branch --v | grep "\[gone\]" | awk '{print $1}' | xargs git branch -D"
 alias gbn="  git pull origin && git checkout -b"
+alias gbN="  git checkout -b"
 alias gbp="  git fetch origin --prune"
 alias gc="   git commit"
 alias gcN="  git commit --no-verify"

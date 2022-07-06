@@ -6,6 +6,8 @@ alias RT="   RAILS_ENV=test"
 alias b="    bundle"
 alias rs="   rails s"
 alias rc="   rails c"
+alias rdc="  DATABASE_HOST=127.0.0.1 DATABASE_USERNAME=postgres DATABASE_PASSWORD=password DATABASE_NAME=light-tracker-api_postgres"
+alias rcd="  railsd && rails c"
 alias rr="   bake routes"
 alias bake=" bundle exec rake"
 alias rgm="  rails g migration "
@@ -19,3 +21,4 @@ alias adubs="bundle exec rspec; rubocop ."
 alias cop="  rubocop"
 
 alias saxo_m="bundle exec rake saxotech_importer_engine:install:migrations"
+

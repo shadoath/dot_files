@@ -678,5 +678,7 @@ augroup END
   autocmd FileType javascript inoremap (; ();<Esc>hi
 
   "- SnipMate------------------------------------------------------------------------------------
+  let g:snipMate = { 'snippet_version' : 1 }
   imap <tab> <Plug>snipMateNextOrTrigger
   " inoremap <expr> pumvisible() ? "\<C-N>" : "\<C-R>=snipMate#TriggerSnippet()\<CR>"
+

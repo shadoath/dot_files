@@ -1,13 +1,20 @@
 {
-  "editor.formatOnPaste": true,
+  // STOP vs code following all links and freezing up computer
+  "search.followSymlinks": false,
   "editor.fontLigatures": true,
-  "workbench.iconTheme": "material-icon-theme",
+  "workbench.iconTheme": "vscode-icons",
   "explorer.confirmDragAndDrop": false,
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "editor.cursorSmoothCaretAnimation": true,
-  "editor.lineNumbers": "relative",
+  "editor.lineNumbers": "on",
 
+  "vim.cursorStylePerMode.insert": "line",
+  "vim.cursorStylePerMode.normal": "block",
+  "vim.cursorStylePerMode.replace": "block-outline",
+  "vim.cursorStylePerMode.visual": "block-outline",
+  "vim.cursorStylePerMode.visualblock": "block-outline",
+  "vim.cursorStylePerMode.visualline": "block-outline",
   "vim.vimrc.enable": false,
   "vim.vimrc.path": "",
   "vim.surround": true,
@@ -84,6 +91,10 @@
     {
       "before": ["0"],
       "after": ["^"]
+    },
+    {
+      "before": ["$"],
+      "after": ["$", "<Left>"]
     }
   ],
   "vim.leader": ",",
@@ -107,12 +118,6 @@
   "prettier.semi": false,
 
   "typescript.updateImportsOnFileMove.enabled": "always",
-  // "editor.autoClosingBrackets": "never",
-  // "editor.autoSurround": "never",
-  "workbench.editorAssociations": {
-    "*.ipynb": "jupyter.notebook.ipynb"
-  },
-  "editor.cursorStyle": "line",
   "editor.insertSpaces": false,
   "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
   "editor.wordWrap": "off",
@@ -135,7 +140,10 @@
     }
   },
   "files.exclude": {
-    "**/vendor/**": true
+    "**/node_modules/**": true,
+    "**/vendor/**": true,
+    "**/.meteor/local/**": true,
+    "dist/**": true
   },
   "security.workspace.trust.untrustedFiles": "open",
   "redhat.telemetry.enabled": false,
@@ -161,16 +169,17 @@
       "border": "none",
       "borderRadius": "2px",
       "backgroundColor": "rgba(72,248,115,.4)",
+      "isWholeLine": false,
       "overviewRulerColor": "rgba(72,248,115,.8)"
     },
     {
       "text": "console.log",
-      "color": "yellow",
-      "border": "1px solid red",
+      "color": "rgb(167, 33, 0)",
+      "border": "2px solid #f7d2da",
       "borderRadius": "2px",
-      "backgroundColor": "rgba(0,0,0,.2)",
-      "isWholeLine": true,
-      "overviewRulerColor": "yellow"
+      "backgroundColor": "#f7d2da",
+      // "isWholeLine": true
+      "overviewRulerColor": "#f7d2da"
     }
   ],
   "todohighlight.defaultStyle": {
@@ -213,7 +222,6 @@
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
   },
-  "indentRainbow.updateDelay": 250,
   "[dart]": {
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
@@ -222,11 +230,16 @@
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "editor.suggestSelection": "first",
     "editor.tabCompletion": "onlySnippets",
-    "editor.wordBasedSuggestions": false
+    "editor.wordBasedSuggestions": false,
+    "editor.defaultFormatter": "Dart-Code.dart-code"
   },
-  "window.zoomLevel": 4,
   "explorer.confirmDelete": false,
   "workbench.colorCustomizations": {
+    // "vim.cursor": "rgb(255, 255, 255)",
+    // "vim.cursorStylePerMode.normal": "block",
+    // "editorCursor.foreground": "#ffff00",
+    // "terminalCursor.foreground": "#ffff00",
+
     "terminal.ansiGreen": "#73daca",
     "editor.lineHighlightBackground": "#1073cf4d",
     "editor.lineHighlightBorder": "#9fced11f",
@@ -239,13 +252,34 @@
     "sideBar.background": "#000",
     "sideBar.foreground": "#fffFFFd2",
     "sideBar.dropBackground": "#fcfacb01",
-    "list.inactiveSelectionBackground": "#ffffff62" // Search Selection inactive
+    "list.inactiveSelectionBackground": "#ffffff62", // Search Selection inactive
+    "tab.activeBorder": "#fff",
+    "tab.activeBackground": "#000"
   },
   "diffEditor.wordWrap": "off",
   "editor.guides.indentation": false,
   "editor.guides.bracketPairs": false,
-  "editor.inlayHints.enabled": false,
-  "blockman.n33A01B2FromDepth0ToInwardForAllBackgrounds": "45,0,0,2; none",
-  "blockman.n03MaxDepth": 11,
-  "autoimport.doubleQuotes": true
+  "editor.inlayHints.enabled": "off",
+  "autoimport.doubleQuotes": true,
+  "search.exclude": {
+    "**/node_modules/**": true,
+    "node_modules/**": true
+  },
+  "editor.inlineSuggest.enabled": true,
+  "javascript.suggest.enabled": false,
+  "typescript.suggest.enabled": false,
+  "editor.accessibilitySupport": "off",
+  "window.zoomLevel": 2,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "[sql]": {
+    "editor.defaultFormatter": "mtxr.sqltools"
+  },
+  "sql-formatter.uppercase": true,
+  "sql-formatter.dialect": "mysql",
+  "markdown-preview-enhanced.enableEmojiSyntax": false,
+  "typescript.suggest.includeCompletionsWithSnippetText": false,
+  "autoimport.autoComplete": false,
+  "Prettier-SQL.denseOperators": true,
+  "Prettier-SQL.ignoreTabSettings": false
 }
