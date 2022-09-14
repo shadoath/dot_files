@@ -7,8 +7,9 @@
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "editor.cursorSmoothCaretAnimation": true,
-  "editor.lineNumbers": "on",
+  "editor.lineNumbers": "relative",
 
+  // "vim.statusBarColorControl": true,
   "vim.cursorStylePerMode.insert": "line",
   "vim.cursorStylePerMode.normal": "block",
   "vim.cursorStylePerMode.replace": "block-outline",
@@ -107,6 +108,9 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "typescript.format.insertSpaceAfterConstructor": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.suggest.includeCompletionsWithSnippetText": false,
+  "typescript.suggest.enabled": false,
   "gitlens.statusBar.reduceFlicker": true,
   "workbench.activityBar.visible": true,
   "editor.minimap.enabled": false,
@@ -117,14 +121,12 @@
   "prettier.singleQuote": true,
   "prettier.semi": false,
 
-  "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.insertSpaces": false,
   "editor.wordSeparators": "/\\()\"':,.;<>~!@#$%^&*|+=[]{}`?-",
   "editor.wordWrap": "off",
   "search.showLineNumbers": true,
   "vim.smartRelativeLine": true,
   "editor.fontFamily": "Fira Code",
-  "bookmarks.useWorkaroundForFormatters": true,
   "[ruby]": {
     "editor.defaultFormatter": "jnbt.vscode-rufo",
     "editor.formatOnSave": true
@@ -233,28 +235,30 @@
     "editor.wordBasedSuggestions": false,
     "editor.defaultFormatter": "Dart-Code.dart-code"
   },
+
   "explorer.confirmDelete": false,
   "workbench.colorCustomizations": {
-    // "vim.cursor": "rgb(255, 255, 255)",
-    // "vim.cursorStylePerMode.normal": "block",
-    // "editorCursor.foreground": "#ffff00",
-    // "terminalCursor.foreground": "#ffff00",
-
+    "vim.cursor": "rgb(255, 255, 255)",
+    // "vim.lineHighlightColorControl": true,
+    "editorGutter.background": "#2b2b2b",
     "terminal.ansiGreen": "#73daca",
     "editor.lineHighlightBackground": "#1073cf4d",
     "editor.lineHighlightBorder": "#9fced11f",
-    "editorLineNumber.foreground": "#bbb",
+    "editorLineNumber.foreground": "#afafaf",
     "editorLineNumber.activeForeground": "#fff",
-    "editor.findMatchBackground": "#43c5da7e", //Current SEARCH MATCH
-    "editor.findMatchHighlightBackground": "#ff990075", //Other SEARCH MATCHES
+    "editor.findMatchBackground": "#43c5da7e",
+    "editor.findMatchHighlightBackground": "#ff990075",
     "editor.selectionBackground": "#135564",
     "editor.selectionHighlightBackground": "#135564",
     "sideBar.background": "#000",
     "sideBar.foreground": "#fffFFFd2",
     "sideBar.dropBackground": "#fcfacb01",
-    "list.inactiveSelectionBackground": "#ffffff62", // Search Selection inactive
+    "list.inactiveSelectionBackground": "#ffffff62",
     "tab.activeBorder": "#fff",
-    "tab.activeBackground": "#000"
+    "tab.activeBackground": "#000",
+    "statusBar.background": "#005f5f",
+    "statusBar.noFolderBackground": "#005f5f",
+    "statusBar.debuggingBackground": "#005f5f"
   },
   "diffEditor.wordWrap": "off",
   "editor.guides.indentation": false,
@@ -267,19 +271,27 @@
   },
   "editor.inlineSuggest.enabled": true,
   "javascript.suggest.enabled": false,
-  "typescript.suggest.enabled": false,
   "editor.accessibilitySupport": "off",
   "window.zoomLevel": 2,
   "editor.bracketPairColorization.enabled": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "[sql]": {
-    "editor.defaultFormatter": "mtxr.sqltools"
+    "editor.defaultFormatter": "arniu.sql-formatter-vscode"
   },
   "sql-formatter.uppercase": true,
   "sql-formatter.dialect": "mysql",
   "markdown-preview-enhanced.enableEmojiSyntax": false,
-  "typescript.suggest.includeCompletionsWithSnippetText": false,
-  "autoimport.autoComplete": false,
   "Prettier-SQL.denseOperators": true,
-  "Prettier-SQL.ignoreTabSettings": false
+  "Prettier-SQL.ignoreTabSettings": false,
+  "vim.showMarksInGutter": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": false,
+    "jsonc": false
+  },
+  "vsicons.dontShowNewVersionMessage": true,
+  "editor.cursorSurroundingLines": 3,
+  "search.searchEditor.defaultNumberOfContextLines": 2
 }
