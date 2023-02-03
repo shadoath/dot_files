@@ -36,9 +36,6 @@ alias ctags="`brew --prefix`/bin/ctags"
 alias bssp="brew services start postgresql"
 alias bsSp="brew services stop postgresql"
 
-# Nix
-alias nix="noglob nix"
-
 # Colors/tabs
 alias noc="tab-reset"
 alias tred="tab-color 255 51 51" # RED
@@ -81,7 +78,8 @@ alias fixtime="sudo timedatectl set-timezone America/Denver"
 alias clear_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
 
 # Quick jumps
-alias cdd="   cd ~/dot_files"
+alias cdd="cd ~/dot_files"
+alias pc="cd /personal-code"
 
 # ls aliases
 alias ll="ls -lh"
