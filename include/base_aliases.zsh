@@ -4,12 +4,15 @@ alias h="history | grep "
 alias f="find . | grep "
 alias p="ps aux | grep "
 alias a="alias  | grep "
+# todo --exclude-dir=node_modules
 alias g="grep -rnw . -e " # Go find me some text [info](https://explainshell.com/explain?cmd=grep+-rnw+.+-e+text)
 alias c="clear"
 alias {:q,:Q,:qa}="exit"
 alias bs="bundle show |grep "
 alias fing="sudo"
 alias Kill="sudo kill -s SIGTERM "
+alias fing-dots="find . -type f -name '._DS_Store' -exec rm {} +"
+
 
 # Quick edit
 alias oh='   sudo vim ~/hosts.base && build_hosts'
@@ -47,10 +50,26 @@ alias tgreen="tab-color 34 118 47" # Forest green
 ## delete all files starting with ._
 alias no_ds="find . -type f -name '._*' -exec rm {} +"
 
-# Laravel
+## Prisma with pnpm
+alias pn=pnpm
+alias pnrd="npg && pnpm run dev"
+alias pnps="pnpm npx run prisma studio"
+
+# Prisma with npm
+alias nrd="npg && npm run dev"
+alias nps="npm run prisma-studio"
+
+# Prisma npx commands
+alias npg="npx prisma generate"
+alias npdp="npx prisma db push"
+alias npmr="npx prisma migrate reset"
+alias npmrS="npx prisma migrate reset --skip-generate"
+
+
+## Laravel
 alias phps="php artisan serve"
 
-# Servers
+## Servers
 alias sql=" mysql.server start"
 alias ssnr="sudo service nginx restart"
 alias ssmr="sudo service mysql restart"
@@ -58,18 +77,10 @@ alias ssrn="sudo systemctl restart nginx"
 alias sshr="sudo service httpd restart"
 alias ssar="sudo service apache2 restart"
 
-# Quick ssh commands
+## Quick ssh commands
 alias ssfs="ssh skyfox@sfs"              # SkyFoxStudios
 
-# Meteor aliases
-alias m="meteor-dev"
-alias mt="meteor-test"
-alias mp="meteor-prod"
-alias meteor-dev="METEOR_OFFLINE_CATALOG=1 meteor run --settings credentials.json  --no-release-check  --exclude-archs web.browser.legacy"
-alias meteor-test="METEOR_OFFLINE_CATALOG=1 MONGO_URL=mongodb://127.0.0.1:27017/meteor-test meteor --settings dev-settings.json  --no-release-check --exclude-archs web.browser.legacy"
-alias mni="meteor npm ci"
-
-# Time
+## Time
 alias retime="sudo ntpdate time.nist.gov"
 alias msttime="sudo rm /etc/localtime; sudo ln -s /usr/share/zoneinfo/America/Denver /etc/localtime"
 alias fixtime="sudo timedatectl set-timezone America/Denver"
@@ -77,15 +88,17 @@ alias fixtime="sudo timedatectl set-timezone America/Denver"
 # Mac OS 10.12.6
 alias clear_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
 
-# Quick jumps
-alias cdd="cd ~/dot_files"
+## Quick jumps
+alias cdd="   cd ~/dot_files"
 alias pc="cd /personal-code"
 
-# ls aliases
-alias ll="ls -lh"
-alias la="ls -lah"
-alias ls="ls -la"
+## ls aliases
+alias ll="ls --color=auto -lh"
+alias la="ls --color=auto -lah"
+alias ls="ls --color=auto -la"
+# alias llm="ls  --color=auto -llm"
 
-# Docker
+## Docker
 alias dc="docker-compose"
 alias dcb="dc build --no-cache"
+alias dc-reset="dc down && dc build --no-cache && dc up"

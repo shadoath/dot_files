@@ -4,8 +4,8 @@
 function nt() {
   open . -a "iterm"
 }
-function gi() {
-  curl -sL https://www.toptal.com/developers/gitignore/api/\$@ ;
+function common_cmds() {
+  history | awk '{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n11
 }
 # open git directory on github
 function gg() {
@@ -41,103 +41,12 @@ function pr(){
   fi
 }
 
-# hosts sync
-function hostsP() {
-  build_hosts
-  cur_version=$(sed -n '1p' ~/hosts.base | egrep -o '[0-9]+\.[0-9]+')
-  cloud_version=$(aws s3 cp s3://ballantine-dev/hosts.base - | sed -n '1p' | egrep -o '[0-9]+\.[0-9]+')
-  if (( $(echo "$cur_version > $cloud_version" | bc -l))) || [[ $@ == "--force" ]]; then
-    echo "Uploading:" $cur_version
-    aws s3 cp ~/hosts.base s3://ballantine-dev/hosts.base --sse
-  else
-    if (( $(echo "$cur_version == $cloud_version" | bc -l))); then
-      echo "The cloud already has your version."
-    else
-      echo "You are behind the times."
-    fi
-    echo "Local:" $cur_version
-    echo "Cloud:" $cloud_version
-  fi
-}
-function hosts() {
-  cur_version=$(sed -n '1p' ~/hosts.base | egrep -o '[0-9]+\.[0-9]+')
-  cloud_version=$(aws s3 cp s3://ballantine-dev/hosts.base - | sed -n '1p' | egrep -o '[0-9]+\.[0-9]+')
-  if [[ $@ == "--version" ]] || [[ $@ == "-v" ]]; then
-    if (( $(echo "$cur_version < $cloud_version" | bc -l))); then
-      echo "You are behind the times."
-    else
-      if (( $(echo "$cur_version == $cloud_version" | bc -l))); then
-        echo "You are up to date."
-      else
-        echo "You have a newer version."
-      fi
-    fi
-    echo "Local:" $cur_version
-    echo "Cloud:" $cloud_version
-  else
-    if (( $(echo "$cur_version < $cloud_version" | bc -l))) || [[ $@ == "--force" ]]; then
-      echo "Downloading:" $cloud_version
-      aws s3 cp s3://ballantine-dev/hosts.base ~/hosts.base
-      build_hosts
-    else
-      if (( $(echo "$cur_version == $cloud_version" | bc -l))); then
-        echo "You are up to date."
-      else
-        echo "You have a newer version."
-      fi
-      echo "Local:" $cur_version
-      echo "Cloud:" $cloud_version
-    fi
-  fi
-}
-function build_hosts() {
-  sudo sh -c "cat ~/hosts.base ~/hosts.personal > /etc/hosts"
-}
 # cat out specified lines for copy pasta
+# example: catb 1 5  (show lines 1 through 5  of the file)
 function catb() {
  cat $1 | awk "{if (NR>=$2 && NR<=$3) print}"
 }
 
-# bash completion for the `wp` command
-_wp_complete() {
-  local OLD_IFS="$IFS"
-  local cur=${COMP_WORDS[COMP_CWORD]}
-
-  IFS=$'\n';  # want to preserve spaces at the end
-  local opts="$(wp cli completions --line="$COMP_LINE" --point="$COMP_POINT")"
-
-  if [[ "$opts" =~ \<file\>\s* ]]
-  then
-    COMPREPLY=( $(compgen -f -- $cur) )
-  elif [[ $opts = "" ]]
-  then
-    COMPREPLY=( $(compgen -f -- $cur) )
-  else
-    COMPREPLY=( ${opts[*]} )
-  fi
-
-  IFS="$OLD_IFS"
-  return 0
-}
-complete -o nospace -F _wp_complete wp
-
-
-# database sync
-function databaseP() {
-  RESULT=`mysql --user=root --skip-column-names -e "SHOW DATABASES LIKE '$1'"`
-  if [ "$RESULT" == $1 ]; then
-    mysqldump --user=root --databases $1 | gzip > ~/$1.sql.gz
-    aws s3 cp ~/$1.sql.gz s3://ballantine-dev/databases/$1.sql.gz
-    rm ~/$1.sql.gz
-  else
-    echo "Database does not exist"
-  fi
-}
-function database() {
-  aws s3 cp s3://ballantine-dev/databases/$1.sql.gz ~/$1.sql.gz
-  gunzip < ~/$1.sql.gz | mysql --user=root $1
-  rm ~/$1.sql.gz
-}
 
 function rsb() {
   IP=$(ifconfig | grep -Eo "inet (addr:)?([0-9]*\.){3}[0-9]*" | grep -Eo "([0-9]*\.){3}[0-9]*" | grep -v "127.0.0.1" | grep -m1 "")
@@ -145,11 +54,6 @@ function rsb() {
 }
 function speedtest() {
   curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -
-}
-function GO() {
-  open . -a "iterm 2" | rs
-  open . -a "iterm 2" | vim
-  open . -a "iterm 2" | gba && gpo
 }
 
 symlink() {
@@ -179,12 +83,6 @@ color-ssh() {
     fi
     ssh $*
   fi
-}
-apro-push-db() {
-  databaseP adventurepro
-}
-apro-pull-db() {
-  database adventurepro
 }
 if [ $HOST=='mbp-42' ]
   then
