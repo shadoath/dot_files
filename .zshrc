@@ -53,6 +53,7 @@ source $HOME/dot_files/include/base_aliases.zsh
 source $HOME/dot_files/include/rails_aliases.zsh
 source $HOME/dot_files/include/git_aliases.zsh
 source $HOME/dot_files/include/prenda_aliases.zsh # not tracked in version control
+source $HOME/dot_files/include/personal_aliases.zsh # not tracked in version control
 
 # User configuration
 
@@ -107,3 +108,5 @@ export GPG_TTY=$(tty)
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+export PATH=/Users/skylar/.meteor:$PATH
+export GPG_TTY=$(tty)
