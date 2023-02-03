@@ -66,6 +66,7 @@ alias nps="npm run prisma-studio"
 alias npg="npx prisma generate"
 alias npdp="npx prisma db push"
 alias npmr="npx prisma migrate reset"
+alias npmrS="npx prisma migrate reset --skip-generate"
 
 
 ## Laravel
@@ -82,14 +83,6 @@ alias ssar="sudo service apache2 restart"
 ## Quick ssh commands
 alias ssfs="ssh skyfox@sfs"              # SkyFoxStudios
 
-## Meteor aliases
-alias m="meteor-dev"
-alias mt="meteor-test"
-alias mp="meteor-prod"
-alias meteor-dev="METEOR_OFFLINE_CATALOG=1 meteor run --settings credentials.json  --no-release-check  --exclude-archs web.browser.legacy"
-alias meteor-test="METEOR_OFFLINE_CATALOG=1 MONGO_URL=mongodb://127.0.0.1:27017/meteor-test meteor --settings dev-settings.json  --no-release-check --exclude-archs web.browser.legacy"
-alias mni="meteor npm ci"
-
 ## Time
 alias retime="sudo ntpdate time.nist.gov"
 alias msttime="sudo rm /etc/localtime; sudo ln -s /usr/share/zoneinfo/America/Denver /etc/localtime"
@@ -100,6 +93,7 @@ alias clear_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
 
 ## Quick jumps
 alias cdd="   cd ~/dot_files"
+alias pc="cd /personal-code"
 
 ## ls aliases
 alias ll="ls --color=auto -lh"

@@ -21,7 +21,7 @@ ZSH_THEME="shadoath"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-HIST_STAMPS="yyyy-mm-dd"
+# HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -53,6 +53,7 @@ source $HOME/dot_files/include/functions.zsh
 source $HOME/dot_files/include/base_aliases.zsh
 source $HOME/dot_files/include/rails_aliases.zsh
 source $HOME/dot_files/include/git_aliases.zsh
+source $HOME/dot_files/include/personal_aliases.zsh # not tracked in version control
 source $HOME/dot_files/include/prenda_aliases.zsh # not tracked in version control
 
 # User configuration

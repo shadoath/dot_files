@@ -21,7 +21,6 @@
   "vim.surround": true,
   "vim.easymotion": true,
   "vim.incsearch": true,
-  "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
   "vim.hlsearch": true,
   "vim.insertModeKeyBindings": [
@@ -35,6 +34,10 @@
     //   "before": ["d", "d"],
     //   "after": ["\"", "_", "d", "d"]
     // },
+    {
+      "before": ["<C-n>"],
+      "commands": [":nohl"]
+    },
     {
       "before": ["<leader>", "v"],
       "after": [],
@@ -53,6 +56,7 @@
       "before": ["<leader>", "d"],
       "after": ["d", "d"]
     },
+
     {
       "before": ["ctrl+n"],
       "after": [":", "n", "o", "h", "l", "<Enter>"]
@@ -96,6 +100,11 @@
     {
       "before": ["$"],
       "after": ["$", "<Left>"]
+    },
+    {
+      "before": ["<C-r>"],
+      "after": [],
+      "commands": [{ "command": "editor.action.startFindReplaceAction" }]
     }
   ],
   "vim.leader": ",",
@@ -110,12 +119,10 @@
   "typescript.format.insertSpaceAfterConstructor": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.suggest.includeCompletionsWithSnippetText": false,
-  "typescript.suggest.enabled": false,
   "gitlens.statusBar.reduceFlicker": true,
   "workbench.activityBar.visible": true,
   "editor.minimap.enabled": false,
   "json.maxItemsComputed": 10000,
-  "editor.formatOnSave": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "prettier.jsxSingleQuote": true,
   "prettier.singleQuote": true,
@@ -126,7 +133,6 @@
   "editor.wordWrap": "off",
   "search.showLineNumbers": true,
   "vim.smartRelativeLine": true,
-  "editor.fontFamily": "Fira Code",
   "[ruby]": {
     "editor.defaultFormatter": "jnbt.vscode-rufo",
     "editor.formatOnSave": true
@@ -272,7 +278,6 @@
   "editor.inlineSuggest.enabled": true,
   "javascript.suggest.enabled": false,
   "editor.accessibilitySupport": "off",
-  "window.zoomLevel": 2,
   "editor.bracketPairColorization.enabled": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "[sql]": {
@@ -286,12 +291,36 @@
   "vim.showMarksInGutter": true,
   "github.copilot.enable": {
     "*": true,
-    "yaml": false,
+    "yaml": true,
     "plaintext": false,
     "markdown": false,
-    "jsonc": false
+    "jsonc": false,
+    "typescriptreact": true,
+    "typescript": true,
+    "prisma": true,
+    "sql": true,
+    "javascript": true
   },
   "vsicons.dontShowNewVersionMessage": true,
   "editor.cursorSurroundingLines": 3,
-  "search.searchEditor.defaultNumberOfContextLines": 2
+  "search.searchEditor.defaultNumberOfContextLines": 2,
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "vetur.completion.autoImport": false,
+  "editor.maxTokenizationLineLength": 200000,
+  "autoimport.autoComplete": false,
+  "vsintellicode.java.completionsEnabled": false,
+  "vsintellicode.python.completionsEnabled": false,
+  "vsintellicode.sql.completionsEnabled": false,
+  "vsintellicode.typescript.completionsEnabled": false,
+  "typescript.suggest.enabled": false,
+  "editor.wordBasedSuggestions": false,
+  "javascript.suggest.autoImports": false,
+  "html.autoClosingTags": false,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "window.zoomLevel": 1,
+  "editor.formatOnSave": true,
+  "gitlens.codeLens.scopes": ["document", "containers"],
+  "vim.useSystemClipboard": true,
+  "workbench.startupEditor": "none"
 }
