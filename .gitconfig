@@ -1,7 +1,7 @@
 [user]
   name = Skylar Bolton
   email = skylar.bolton@gmail.com
-	signingkey = 094F8CE8842A45C8
+ signingkey = 094F8CE8842A45C8
 [push]
   default = current
 [core]

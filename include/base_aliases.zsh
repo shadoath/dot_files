@@ -50,16 +50,20 @@ alias tgreen="tab-color 34 118 47" # Forest green
 ## delete all files starting with ._
 alias no_ds="find . -type f -name '._*' -exec rm {} +"
 
+# NPM stuff
+alias ns="npm start"
+
 ## Prisma with pnpm
 alias pn=pnpm
 alias pnrd="npg && pnpm run dev"
 alias pnps="pnpm npx run prisma studio"
 
-# Prisma with npm
-alias nrd="npg && npm run dev"
+## Prisma with npm
+alias nrd="npm run dev"
 alias nps="npm run prisma-studio"
+alias nrb="npm run build"
 
-# Prisma npx commands
+## Prisma npx commands
 alias npg="npx prisma generate"
 alias npdp="npx prisma db push"
 alias npmr="npx prisma migrate reset"
