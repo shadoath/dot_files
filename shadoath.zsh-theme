@@ -3,7 +3,7 @@ local who_where="%{$fg[magenta]%}`whoami`%{$fg[white]%}@%{$fg[green]%}$HOST"
 local my_path="%{$fg[cyan]%}%c%{$reset_color%}"
 
 PROMPT='${ret_status}${who_where} ${my_path} $(git_prompt_info)'
-RPROMPT="[%D{%Y/%m/%f}|%T]"
+RPROMPT="[%D{%Y/%m/%f}|%*]"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[white]%} %{$fg[green]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
