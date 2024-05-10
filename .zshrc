@@ -55,7 +55,6 @@ source $HOME/dot_files/include/rails_aliases.zsh
 source $HOME/dot_files/include/git_aliases.zsh
 source $HOME/dot_files/include/personal_aliases.zsh # not tracked in version control
 source $HOME/dot_files/include/prenda_aliases.zsh # not tracked in version control
-source $HOME/dot_files/include/personal_aliases.zsh # not tracked in version control
 
 # User configuration
 
@@ -72,6 +71,9 @@ source $HOME/dot_files/include/personal_aliases.zsh # not tracked in version con
 # fi
 
 eval "$(jump shell)"
+
+# Python for osx
+eval "$(pyenv init --path)"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -128,9 +130,11 @@ load-nvmrc() {
 
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+export NODE_OPTIONS=--max-old-space-size=8192
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH=/Users/skylar/.meteor:$PATH
 export PATH=/Users/skylar/.rover/bin:$PATH
 export GPG_TTY=$(tty)
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
