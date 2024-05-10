@@ -1,0 +1,7 @@
+.split-view-view > .sidebar > .content > .viewlet {
+  font-family: 'Menlo' !important;
+}
+.explorer-viewlet {
+  font-family: 'Menlo';
+  font-weight: bold;
+}
