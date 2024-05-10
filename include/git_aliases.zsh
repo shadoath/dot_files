@@ -28,13 +28,13 @@ alias gca="  git commit -am"
 alias gcam=" git commit --amend"
 alias gcm="  git commit -m"
 alias gco="  git checkout"
-alias gcod=" git checkout develop"
+alias gcod=" git checkout develop && gpo && gbdm"
 alias gcom=" git checkout master"
 alias gcoM=" git checkout main"
-alias gd="   clear && git diff"
-alias gds="  clear && git diff --staged"
+alias gcos=" git checkout staging"
 alias gf="   git fetch"
 alias gl="   git log --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'"
+alias glv="  git log --pretty=format:'%C(yellow)%H%C(reset) - %an [%C(green)%ar%C(reset)] %s'"
 alias glm="  git log --author='$(git config user.name)' --pretty=format:'%C(yellow)%h%C(reset) [%C(green)%ar%C(reset)] %s'"
 alias gm="   git merge"
 alias gmd="  git merge develop"
@@ -44,18 +44,21 @@ alias gms="  git merge staging"
 alias gpo="  git pull origin"
 alias gpom=" git pull origin master"
 alias gpos=" git pull origin staging"
-alias grm="   git rm"
-alias gRC="git rm --cached -r ." # remove those pesky cached files where the case changes
+alias grm="  git rm"
+alias gRC="  git rm --cached -r ." # remove those pesky cached files where the case changes
 alias grH="  git reset HEAD~" # undo one commit (ONLY USE IF NOT YET PUSHED)
 alias grv="  git remote -v"
 alias gs="   git status"
 alias gst="  git stash"
 alias gsp="  git stash pop"
 alias gu="   git reset --soft"
-alias overview='open "https://github.com/shadoath?tab=overview&from='$(date '+%Y-%m-%d')'"'
 alias rn='   git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%an - %s"'
-alias rns='   git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s"'
+alias rns='  git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s"'
+alias overview='open "https://github.com/shadoath?tab=overview&from='$(date '+%Y-%m-%d')'"'
 alias {gPf,gPfm}="git push fury master"
+alias gd="   clear && git diff"
+alias gds="  clear && git diff --staged"
+alias gbb="!git for-each-ref --color --sort=-committerdate --format=$'%(color:red)%(ahead-behind:HEAD)\t%(color:blue)%(refname:short)\t%(color:yellow)%(committerdate:relative)\t%(color:default)%(describe)' refs/heads/ --no-merged | sed 's/ /\t/' | column -s=$'\t' -t -c 'Ahead,Behind,Branch Name,Last Commit,Description'"
 
 # if [  `hostname` = mbp-42 ]; then
 #   # Git autocomplete

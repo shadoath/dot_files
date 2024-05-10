@@ -1,4 +1,5 @@
 # vim: set filetype=bash
+#
 alias vi=vim
 alias h="history | grep "
 alias f="find . | grep "
@@ -7,11 +8,13 @@ alias a="alias  | grep "
 # todo --exclude-dir=node_modules
 alias g="grep -rnw . -e " # Go find me some text [info](https://explainshell.com/explain?cmd=grep+-rnw+.+-e+text)
 alias c="clear"
+alias c.="code ."
 alias {:q,:Q,:qa}="exit"
 alias bs="bundle show |grep "
 alias fing="sudo"
 alias Kill="sudo kill -s SIGTERM "
 alias fing-dots="find . -type f -name '._DS_Store' -exec rm {} +"
+#alias k4 ="kill \$(lsof -t -i:4000)"
 
 
 # Quick edit
@@ -66,12 +69,12 @@ alias nrb="npm run build"
 ## Prisma npx commands
 alias npg="npx prisma generate"
 alias npdp="npx prisma db push"
+alias npmd="npx prisma migrate dev"
+alias npmdS="npx prisma migrate dev --skip-generate"
+alias npmdSS="npx prisma migrate dev --skip-generate --skip-seed"
 alias npmr="npx prisma migrate reset"
 alias npmrS="npx prisma migrate reset --skip-generate"
-
-
-## Laravel
-alias phps="php artisan serve"
+alias npds="npx prisma db seed"
 
 ## Servers
 alias sql=" mysql.server start"
@@ -106,3 +109,4 @@ alias ls="ls --color=auto -la"
 alias dc="docker-compose"
 alias dcb="dc build --no-cache"
 alias dc-reset="dc down && dc build --no-cache && dc up"
+alias dsa='docker stop $(docker ps -q)'
