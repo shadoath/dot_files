@@ -108,7 +108,7 @@ View the /includes folder for extended functionality.
 
 ### [Moonlander ZSA keyboard](https://configure.zsa.io/moonlander/layouts/EnmMA/latest/0) layout using [Colemak+](https://colemak.com/Learn)
 
-![layout](https://github.com/shadoath/dot_files/blob/master/images/moonlander-layer-1.jpg?raw=true)
+![layout](https://github.com/shadoath/dot_files/blob/master/images/moonlander-layer-1.png?raw=true)
 
 ### OTF [Font kit](https://github.com/shadoath/dot_files/blob/master/include/Droid%20Sans%20Mono%20for%20Powerline%20Nerd%20Font%20Complete.otf) for [nerd fonts](https://github.com/ryanoasis/nerd-fonts)
 
