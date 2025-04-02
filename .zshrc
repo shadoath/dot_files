@@ -133,8 +133,13 @@ load-nvmrc
 export NODE_OPTIONS=--max-old-space-size=8192
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-export PATH=/Users/skylar/.meteor:$PATH
+# export PATH="$PATH:$HOME/.rvm/bin"
 export PATH=/Users/skylar/.rover/bin:$PATH
 export GPG_TTY=$(tty)
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
+eval "$(rbenv init -)"
+
+
+# Added by Windsurf
+export PATH="/Users/skylar/.codeium/windsurf/bin:$PATH"

@@ -9,12 +9,16 @@ alias a="alias  | grep "
 alias g="grep -rnw . -e " # Go find me some text [info](https://explainshell.com/explain?cmd=grep+-rnw+.+-e+text)
 alias c="clear"
 alias c.="code ."
+alias ws="windsurf ."
 alias {:q,:Q,:qa}="exit"
 alias bs="bundle show |grep "
 alias fing="sudo"
 alias Kill="sudo kill -s SIGTERM "
 alias fing-dots="find . -type f -name '._DS_Store' -exec rm {} +"
 #alias k4 ="kill \$(lsof -t -i:4000)"
+
+# Ruby
+
 
 
 # Quick edit
@@ -98,6 +102,8 @@ alias clear_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
 ## Quick jumps
 alias cdd="   cd ~/dot_files"
 alias pc="cd /personal-code"
+alias nra="cd /personal-code/niche-research-assistant"
+alias ca="cd /personal-code/callrise-assistant"
 
 ## ls aliases
 alias ll="ls --color=auto -lh"

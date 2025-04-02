@@ -17,6 +17,7 @@ alias gbg="  gb -a | grep"
 alias gbD="  git branch -D"
 alias gba="  gb -a" #Git branch ALL
 alias gbd="  git branch -d"
+alias grb="  git branch -m" # Git rename branch
 alias gbdm=' git branch --merged | egrep -v "(^\*|master|develop)" | xargs git branch -d && gbp'
 alias gbDm=" git branch --v | grep "\[gone\]" | awk '{print $1}' | xargs git branch -D"
 alias gbn="  git pull origin && git checkout -b"
