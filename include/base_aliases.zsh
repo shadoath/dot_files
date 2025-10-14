@@ -102,8 +102,8 @@ alias clear_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
 ## Quick jumps
 alias cdd="   cd ~/dot_files"
 alias pc="cd /personal-code"
-alias nra="cd /personal-code/niche-research-assistant"
-alias ca="cd /personal-code/callrise-assistant"
+alias nra="cd /personal-code/nfp/niche-research-assistant"
+alias ca="cd /personal-code/nfp/callrise-assistant"
 
 ## ls aliases
 alias ll="ls --color=auto -lh"

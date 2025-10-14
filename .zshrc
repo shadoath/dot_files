@@ -139,7 +139,4 @@ export GPG_TTY=$(tty)
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
 eval "$(rbenv init -)"
-
-
-# Added by Windsurf
-export PATH="/Users/skylar/.codeium/windsurf/bin:$PATH"
+eval "$(~/.local/bin/mise activate)"
