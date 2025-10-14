@@ -35,7 +35,7 @@
 [mergetool "bc3"]
   trustExitCode = true
 [pull]
-  rebase = false
+	rebase = false
 [commit]
 	gpgsign = true
 [init]
@@ -44,3 +44,7 @@
 	program = /opt/homebrew/bin/gpg
 [rerere]
 	enabled = true
+[remote "origin"]
+	prune = true
+[fetch]
+	prune = true

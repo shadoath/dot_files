@@ -47,14 +47,13 @@ plugins=(
 # git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 #
+export PATH="/opt/homebrew/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/dot_files/include/functions.zsh
 source $HOME/dot_files/include/base_aliases.zsh
 source $HOME/dot_files/include/rails_aliases.zsh
 source $HOME/dot_files/include/git_aliases.zsh
-source $HOME/dot_files/include/personal_aliases.zsh # not tracked in version control
-source $HOME/dot_files/include/prenda_aliases.zsh # not tracked in version control
 
 # User configuration
 
@@ -69,11 +68,6 @@ source $HOME/dot_files/include/prenda_aliases.zsh # not tracked in version contr
 # else
 #   export EDITOR='mvim'
 # fi
-
-eval "$(jump shell)"
-
-# Python for osx
-eval "$(pyenv init --path)"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -140,3 +134,4 @@ export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
 eval "$(rbenv init -)"
 eval "$(~/.local/bin/mise activate)"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

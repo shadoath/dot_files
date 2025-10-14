@@ -7,7 +7,7 @@ alias p="ps aux | grep "
 alias a="alias  | grep "
 # todo --exclude-dir=node_modules
 alias g="grep -rnw . -e " # Go find me some text [info](https://explainshell.com/explain?cmd=grep+-rnw+.+-e+text)
-alias c="clear"
+alias cl="clear"
 alias c.="code ."
 alias ws="windsurf ."
 alias {:q,:Q,:qa}="exit"
@@ -101,6 +101,7 @@ alias clear_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
 
 ## Quick jumps
 alias cdd="   cd ~/dot_files"
+alias c="cd ~/code"
 alias pc="cd /personal-code"
 alias nra="cd /personal-code/nfp/niche-research-assistant"
 alias ca="cd /personal-code/nfp/callrise-assistant"
