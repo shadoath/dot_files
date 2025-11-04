@@ -9,6 +9,7 @@ alias a="alias  | grep "
 alias g="grep -rnw . -e " # Go find me some text [info](https://explainshell.com/explain?cmd=grep+-rnw+.+-e+text)
 alias cl="clear"
 alias c.="code ."
+alias ws="windsurf ."
 alias {:q,:Q,:qa}="exit"
 alias bs="bundle show |grep "
 alias fing="sudo"
@@ -28,6 +29,9 @@ pb() {
     pbpaste | "$@" | pbcopy
   fi
 }
+
+# Ruby
+
 
 
 # Quick edit
@@ -112,6 +116,8 @@ alias clear_dns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;"
 alias cdd="   cd ~/dot_files"
 alias c="cd ~/code"
 alias pc="cd /personal-code"
+alias nra="cd /personal-code/nfp/niche-research-assistant"
+alias ca="cd /personal-code/nfp/callrise-assistant"
 
 ## ls aliases
 alias ll="ls --color=auto -lh"

@@ -133,6 +133,10 @@ export NODE_OPTIONS=--openssl-legacy-provider
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH=/Users/skylar/.rover/bin:$PATH
 export GPG_TTY=$(tty)
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export PATH="$HOME/.rbenv/shims:$PATH"
+eval "$(rbenv init -)"
+eval "$(~/.local/bin/mise activate)"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - zsh)"
