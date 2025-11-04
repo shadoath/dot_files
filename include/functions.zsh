@@ -22,13 +22,7 @@ function gg() {
 function pr(){
   DIR=$(git rev-parse --show-toplevel)
   BRANCH=$(__git_ps1 | tr -d "()" | tr -d "[:space:]")
-  if [ -f $DIR/.git/config ]; then
-    CONFIG="$DIR/.git/config"
-  else
-    CONFIG=$(cat .git | sed -e 's/\(gitdir: \)//g')
-    CONFIG+='/config'
-    BRANCH="staging...prenda-school:$BRANCH"
-  fi
+  CONFIG="$DIR/.git/config"
   SERVICE_URL=$(cat $CONFIG | grep url\ = -m 1)
   if [[ "${SERVICE_URL}" == *"bitbucket"* ]]; then
     USER=$(cat $CONFIG | grep bitbucket -m 1 | sed -E "s/^.*(bitbucket\.org)\/(.*)\/(.*)\.git?/\2/")
@@ -38,6 +32,14 @@ function pr(){
     USER=$(cat $CONFIG | grep github -m 1 | sed -E "s/^.*(github\.com)[:\/](.*)\/(.*)\.git?/\2/")
     REPO=$(cat $CONFIG | grep github -m 1 | sed -E "s/^.*(github\.com)[:\/](.*)\/(.*)\.git?/\3/")
     open "https://github.com/$USER/$REPO/compare/$BRANCH?expand=1"
+  fi
+}
+
+rspecf() {
+  if [ -z "$1" ]; then
+    echo "Usage: rspecf <folder_name>"
+  else
+    bundle exec rspec spec/**/"$1"/**/*_spec.rb
   fi
 }
 
@@ -74,9 +76,9 @@ color-ssh() {
   if [[ -n "$ITERM_SESSION_ID" ]]; then
     if [[ "$*" == *"dev"* ]]; then
       tab-color  0 128 255 # BLUE
-    elif [[ "$*" == *"db-jump"* ]]; then
-      tab-color 255 51 255 #HOT PINK
-    elif [[ "$*" == *"prenda-hub"* ]] || [[ "$*" == *"sfs"* ]]; then
+    elif [[ "$*" == *"jumpbox"* ]]; then
+      tab-color 255 51 255 # HOT PINK
+    elif [ "$*" == *"sfs"* ]]; then
       tab-color 255 51 51 # RED
     else
       tab-color  0 255 0 # GREEN

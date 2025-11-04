@@ -1,1 +1,2 @@
-include/prenda_aliases.zsh
+include/personal_aliases.zsh
+include/rinsed.zsh

@@ -54,6 +54,8 @@ source $HOME/dot_files/include/functions.zsh
 source $HOME/dot_files/include/base_aliases.zsh
 source $HOME/dot_files/include/rails_aliases.zsh
 source $HOME/dot_files/include/git_aliases.zsh
+source $HOME/dot_files/include/git_recent.zsh
+source $HOME/dot_files/include/rinsed.zsh
 
 # User configuration
 
@@ -125,10 +127,15 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 export NODE_OPTIONS=--max-old-space-size=8192
+export NODE_OPTIONS=--openssl-legacy-provider
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-export PATH=/Users/skylar/.meteor:$PATH
 export PATH=/Users/skylar/.rover/bin:$PATH
 export GPG_TTY=$(tty)
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - zsh)"
+export PATH="/opt/homebrew/sbin:$PATH"
+
+# export PATH="/Users/skylar/bin:$PATH"

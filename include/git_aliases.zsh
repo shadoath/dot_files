@@ -5,6 +5,7 @@
 alias lg="   lazygit"
 alias gPn="  git push --set-upstream origin --no-verify" # Use this when remote tracking is not set
 alias gPo="  git push -u origin"
+alias gPoc=" RINSED_CLAUDE_REVIEW=true gPo"
 alias gPoN=" git push origin --no-verify"
 alias gPom=" git push origin master"
 alias gPos=" git push origin staging"
@@ -18,7 +19,7 @@ alias gbD="  git branch -D"
 alias gba="  gb -a" #Git branch ALL
 alias gbd="  git branch -d"
 alias gbdm=' git branch --merged | egrep -v "(^\*|master|develop)" | xargs git branch -d && gbp'
-alias gbDm=" git branch --v | grep "\[gone\]" | awk '{print $1}' | xargs git branch -D"
+alias gbDm='git branch -v | grep "\\[gone\\]" | awk "{print \$1}" | xargs git branch -D'
 alias gbn="  git pull origin && git checkout -b"
 alias gbN="  git checkout -b"
 alias gbp="  git fetch origin --prune"
@@ -29,13 +30,14 @@ alias gcam=" git commit --amend"
 alias gcm="  git commit -m"
 alias gco="  git checkout"
 alias gcod=" git checkout develop && gpo && gbdm"
-alias gcom=" git checkout master"
+alias gcom=" git checkout master && gpo && gbdm"
 alias gcoM=" git checkout main"
 alias gcos=" git checkout staging"
 alias gf="   git fetch"
 alias gl="   git log --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'"
 alias glv="  git log --pretty=format:'%C(yellow)%H%C(reset) - %an [%C(green)%ar%C(reset)] %s'"
 alias glm="  git log --author='$(git config user.name)' --pretty=format:'%C(yellow)%h%C(reset) [%C(green)%ar%C(reset)] %s'"
+alias glcred="git log --oneline -- config/credentials.yml.enc" # Check for any changes to this file
 alias gm="   git merge"
 alias gmd="  git merge develop"
 alias gmm="  git merge master"

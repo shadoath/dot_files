@@ -1,12 +1,13 @@
 [user]
 	name = Skylar Bolton
-	email = skylar.bolton@animalfarm.inc
-	signingkey = A870E1B5
+	email = skylar.bolton@gmail.com
+	signingkey = 5F5301CEC706F8FF
 [push]
   default = current
 [core]
   editor = /usr/bin/vim
   mergeoptions = --no-edit
+	excludesfile = /Users/skylar/.gitignore_global
 [alias]
   c = checkout
   pretty = log --pretty=format:'%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s'
@@ -27,13 +28,6 @@
   # ATTENTION: All aliases prefixed with ! run in /bin/sh make sure you use sh syntax, not bash/zsh or whatever
   recentb = "!r() { refbranch=$1 count=$2; git for-each-ref --sort=-committerdate refs/heads --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' --color=always --count=${count:-20} | while read line; do branch=$(echo \"$line\" | awk 'BEGIN { FS = \"|\" }; { print $1 }' | tr -d '*'); ahead=$(git rev-list --count \"${refbranch:-origin/develop}..${branch}\"); behind=$(git rev-list --count \"${branch}..${refbranch:-origin/develop}\"); colorline=$(echo \"$line\" | sed 's/^[^|]*|//'); echo \"$ahead|$behind|$colorline\" | awk -F'|' -vOFS='|' '{$5=substr($5,1,70)}1' ; done | ( echo \"ahead|behind||branch|lastcommit|message|author\\n\" && cat) | column -ts'|';}; r"
 	bb = !~/dot_files/include/better-git-branch.sh
-
-[diff]
-  external = difft
-[merge]
-  tool = bc3
-[mergetool "bc3"]
-  trustExitCode = true
 [pull]
 	rebase = false
 [commit]
@@ -48,3 +42,5 @@
 	prune = true
 [fetch]
 	prune = true
+[tag]
+	gpgSign = true
