@@ -82,14 +82,29 @@ git-recent() {
   )
 
   if [[ $INTERACTIVE = '1' ]]; then
-    PS3="Choose a branch: "
+    if [ "${#BRANCHES[@]}" -le 1 ]; then
+      echo "Only one branch!"
+      return 0
+    fi
 
-    select d in "${BRANCHES[@]}"; do
-      test -n "$d" && break;
-      echo ">>> Invalid Selection";
+    # display branches in a single column
+    i=1
+    for branch in "${BRANCHES[@]}"; do
+      printf '%d) %s\n' "$i" "$branch"
+      i=$((i+1))
     done
 
-    git checkout "$d"
+    printf 'Choose a branch: '
+    read choice
+
+    # validate input is a number and within range
+    if [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -ge 1 ] && [ "$choice" -le "${#BRANCHES[@]}" ]; then
+      d="${BRANCHES[$choice]}"
+      git checkout "$d"
+    else
+      echo ">>> Invalid Selection"
+      return 1
+    fi
   else
     printf '%s\n' "${BRANCHES[@]}"
   fi
@@ -97,5 +112,3 @@ git-recent() {
 
 # Uncomment the following line if you want to test or execute immediately
 # git-recent "$@"
-
-
