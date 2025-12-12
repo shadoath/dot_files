@@ -74,8 +74,8 @@ git-recent() {
       awk '{ print $3 }' | # extract 3rd column
       awk ' !x[$0]++' | # Removes duplicates.  See http://stackoverflow.com/questions/11532157
       egrep -v '^[a-f0-9]{40}$' | # remove hash results
-      while read line; do # verify existence
-        ([[ $CHECK_EXISTENCE = '0' ]] || git rev-parse --verify "$line" &>/dev/null) && echo "$line"
+      while read line; do # verify local branch existence
+        git show-ref --verify --quiet "refs/heads/$line" &>/dev/null && echo "$line"
       done |
       head -n "$NUM"
     )
