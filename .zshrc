@@ -143,3 +143,7 @@ eval "$(rbenv init - zsh)"
 export PATH="/opt/homebrew/sbin:$PATH"
 
 # export PATH="/Users/skylar/bin:$PATH"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+source /Users/skylar/.config/op/plugins.sh
