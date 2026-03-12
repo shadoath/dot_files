@@ -20,19 +20,11 @@ function gg() {
 # }
 # Open Pull Request for Github/Bitbucket
 function pr(){
-  DIR=$(git rev-parse --show-toplevel)
-  BRANCH=$(__git_ps1 | tr -d "()" | tr -d "[:space:]")
-  CONFIG="$DIR/.git/config"
-  SERVICE_URL=$(cat $CONFIG | grep url\ = -m 1)
-  if [[ "${SERVICE_URL}" == *"bitbucket"* ]]; then
-    USER=$(cat $CONFIG | grep bitbucket -m 1 | sed -E "s/^.*(bitbucket\.org)\/(.*)\/(.*)\.git?/\2/")
-    REPO=$(cat $CONFIG | grep bitbucket -m 1 | sed -E "s/^.*(bitbucket\.org)\/(.*)\/(.*)\.git?/\3/")
-    open "https://bitbucket.org/$USER/$REPO/pull-requests/new?source=$USER/$REPO%3A%3A$BRANCH&event_source=branch_list"
-  else
-    USER=$(cat $CONFIG | grep github -m 1 | sed -E "s/^.*(github\.com)[:\/](.*)\/(.*)\.git?/\2/")
-    REPO=$(cat $CONFIG | grep github -m 1 | sed -E "s/^.*(github\.com)[:\/](.*)\/(.*)\.git?/\3/")
-    open "https://github.com/$USER/$REPO/compare/$BRANCH?expand=1"
-  fi
+  BRANCH=$(git branch --show-current)
+  REMOTE_URL=$(git remote get-url origin)
+  USER=$(echo "$REMOTE_URL" | sed -E "s/^.*(github\.com)[:\/](.*)\/(.*)\.git?/\2/")
+  REPO=$(echo "$REMOTE_URL" | sed -E "s/^.*(github\.com)[:\/](.*)\/(.*)\.git?/\3/")
+  open "https://github.com/$USER/$REPO/compare/$BRANCH?expand=1"
 }
 
 rspecf() {

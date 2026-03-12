@@ -21,7 +21,7 @@ alias gba="  gb -a" #Git branch ALL
 alias gbd="  git branch -d"
 alias grb="  git branch -m" # Git rename branch
 alias gbdm='git branch --merged | egrep -v "(^\*|master|main|develop)" | xargs -r git branch -d && git fetch -p'
-alias gbDm='git branch -vv | grep ": gone]" | awk "{print \$1}" | xargs -r git branch -D'
+alias gbDm='git branch -vv | grep ": gone]" | awk "{print (\$1 == \"+\" || \$1 == \"*\") ? \$2 : \$1}" | xargs -r git branch -D'
 alias gbn="  git pull origin && git checkout -b"
 alias gbN="  git checkout -b"
 alias gbp="  git fetch origin --prune"
@@ -31,8 +31,8 @@ alias gca="  git commit -am"
 alias gcam=" git commit --amend"
 alias gcm="  git commit -m"
 alias gco="  git checkout"
-alias gcod=" git checkout develop && gpo && gbdm"
-alias gcom=" git checkout master && gpo && gbdm"
+alias gcod=" git checkout develop && gpo && gbDm"
+alias gcom=" git checkout master && gpo && gbDm"
 alias gcoM=" git checkout main"
 alias gcos=" git checkout staging"
 alias gr="   git-recent"
@@ -89,3 +89,27 @@ alias gbb="!git for-each-ref --color --sort=-committerdate --format=$'%(color:re
 #   echo "Opening $URL..."
 #   open $URL
 # )}
+
+GBN() {
+  local branch="${1:-$(git branch --show-current)}"
+  if [ -z "$branch" ]; then
+    echo "Error: not on a branch and no branch name provided"
+    return 1
+  fi
+
+  local message
+  message=$(echo "Generate a concise git commit message in conventional commit format (type(scope): description) based on this branch name: $branch. Output ONLY the commit message, no quotes or explanation." | claude -p)
+
+  if [ -z "$message" ]; then
+    echo "Error: failed to generate commit message"
+    return 1
+  fi
+
+  echo "Commit message: $message"
+  read "confirm?Proceed with commit? [y/N] "
+  if [[ "$confirm" =~ ^[Yy]$ ]]; then
+    git commit -m "$message"
+  else
+    echo "Aborted"
+  fi
+}
