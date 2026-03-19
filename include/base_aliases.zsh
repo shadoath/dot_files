@@ -7,7 +7,7 @@ alias p="ps aux | grep "
 alias a="alias  | grep "
 # todo --exclude-dir=node_modules
 alias g="grep -rnw . -e " # Go find me some text [info](https://explainshell.com/explain?cmd=grep+-rnw+.+-e+text)
-alias cl="clear"
+alias C="clear"
 alias c.="code ."
 alias ws="windsurf ."
 alias {:q,:Q,:qa}="exit"
@@ -15,7 +15,20 @@ alias bs="bundle show |grep "
 alias fing="sudo"
 alias Kill="sudo kill -s SIGTERM "
 alias fing-dots="find . -type f -name '._DS_Store' -exec rm {} +"
-#alias k4 ="kill \$(lsof -t -i:4000)"
+#alias k4 ="kill \$(lsof -t -i:4000)"o
+
+# Rinsed custom
+alias orinsed="vim ~/dot_files/include/rinsed.zsh"
+alias web='cd ~/code/web'
+alias rebuild-test-js="rm -rf public/packs-test && NODE_OPTIONS=--openssl-legacy-provider RAILS_ENV=test bin/webpack"
+alias sqlf="pg_format -"
+alias pbsql="pb pg_format -"
+
+pb() {
+  if [ $# -gt 0 ]; then
+    pbpaste | "$@" | pbcopy
+  fi
+}
 
 # Ruby
 alias cl='claude'

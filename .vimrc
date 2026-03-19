@@ -40,6 +40,7 @@ let s:bundle_dir = $v.'/bundle'
   Plugin 'junegunn/fzf.vim'                 " Fuzzy search https://github.com/junegunn/fzf#search-syntax
   " Plugin 'm-kat/aws-vim'                    " AWS Cloudformation
   " Plugin 'valloric/YouCompleteMe'           " auto complete, son
+  Plugin 'mbbill/undotree'                  " undo tree, it's magic undo flows
 
   " Real useful
   Plugin 'wesQ3/vim-windowswap'             " window swapping  <leader>ww
