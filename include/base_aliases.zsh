@@ -18,6 +18,8 @@ alias fing-dots="find . -type f -name '._DS_Store' -exec rm {} +"
 #alias k4 ="kill \$(lsof -t -i:4000)"
 
 # Ruby
+alias cl='claude'
+alias clc='claude --continue'
 
 
 
@@ -105,6 +107,7 @@ alias c="cd ~/code"
 alias pc="cd /personal-code"
 alias nra="cd /personal-code/nfp/niche-research-assistant"
 alias ca="cd /personal-code/nfp/callrise-assistant"
+alias wbw="cd /personal-code/whiteboard-works"
 
 ## ls aliases
 alias ll="ls --color=auto -lh"
