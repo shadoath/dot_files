@@ -1,7 +1,7 @@
 [user]
 	name = Skylar Bolton
 	email = skylar.bolton@gmail.com
-	signingkey = 5F5301CEC706F8FF
+	signingkey = BA9706CC4A756338
 [push]
   default = current
 [core]
@@ -35,7 +35,7 @@
 [init]
 	defaultBranch = main
 [gpg]
-	program = /opt/homebrew/bin/gpg
+	program = gpg
 [rerere]
 	enabled = true
 [remote "origin"]
