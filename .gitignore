@@ -1,2 +1,4 @@
 include/personal_aliases.zsh
 include/rinsed.zsh
+.gitconfig
+include/*.otf

@@ -131,7 +131,7 @@ export NODE_OPTIONS=--openssl-legacy-provider
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-export PATH=/Users/skylar/.rover/bin:$PATH
+export PATH=$HOME/.rover/bin:$PATH
 export GPG_TTY=$(tty)
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
@@ -146,4 +146,4 @@ export PATH="/opt/homebrew/sbin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-source /Users/skylar/.config/op/plugins.sh
+source $HOME/.config/op/plugins.sh
