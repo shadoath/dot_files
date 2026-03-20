@@ -9,7 +9,6 @@ alias a="alias  | grep "
 alias g="grep -rnw . -e " # Go find me some text [info](https://explainshell.com/explain?cmd=grep+-rnw+.+-e+text)
 alias C="clear"
 alias c.="code ."
-alias ws="windsurf ."
 alias {:q,:Q,:qa}="exit"
 alias bs="bundle show |grep "
 alias fing="sudo"
@@ -30,11 +29,10 @@ pb() {
   fi
 }
 
-# Ruby
+# AI
 alias cl='claude'
 alias clc='claude --continue'
-
-
+alias ocd='openclaw dashboard'
 
 # Quick edit
 alias oh='   sudo vim ~/hosts.base && build_hosts'
