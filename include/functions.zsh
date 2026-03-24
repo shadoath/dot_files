@@ -70,7 +70,7 @@ color-ssh() {
       tab-color  0 128 255 # BLUE
     elif [[ "$*" == *"jumpbox"* ]]; then
       tab-color 255 51 255 # HOT PINK
-    elif [ "$*" == *"sfs"* ]]; then
+    elif [[ "$*" == *"sfs"* ]]; then
       tab-color 255 51 51 # RED
     else
       tab-color  0 255 0 # GREEN
