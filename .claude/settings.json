@@ -1,0 +1,22 @@
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "~/dot_files/.claude/notify.sh" }]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "~/dot_files/.claude/notify.sh" }]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "~/dot_files/.claude/notify.sh" }]
+      }
+    ]
+  }
+}
