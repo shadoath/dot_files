@@ -47,6 +47,8 @@ ln -s ~/dot_files/.git-prompt.sh
 ln -s ~/dot_files/.git-completion.bash
 ln -s ~/dot_files/.pryrc
 ln -s ~/dot_files/.agignore
+mkdir -p ~/bin
+ln -s ~/dot_files/commit-velocity ~/bin/commit-velocity
 ```
 
 ### Better search with Ag

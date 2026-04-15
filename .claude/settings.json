@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "~/dot_files/.claude/notify.sh" }]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          { "type": "command", "command": "~/dot_files/.claude/notify.sh" },
+          { "type": "command", "command": "$HOME/.claude/hooks/sync-tab-color.sh", "timeout": 5, "async": true }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "*",
+        "hooks": [{ "type": "command", "command": "~/dot_files/.claude/notify.sh" }]
+      }
+    ]
+  }
+}

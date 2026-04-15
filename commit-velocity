@@ -1,0 +1,250 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Commit Velocity Visualizer
+# Shows commit count by month with trend analysis, anomaly detection,
+# and contributor breakdown.
+#
+# Credit: https://piechowski.io/post/git-commands-before-reading-code/
+#
+# Usage:
+#   commit-velocity              # full history
+#   commit-velocity --last 24    # last 24 months
+#   commit-velocity --by-author  # include top contributor breakdown
+#   commit-velocity --quarterly  # show quarterly rollups too
+#   commit-velocity --author "Jane Doe"  # single author month-by-month
+#   commit-velocity --weekly             # weekly instead of monthly buckets
+
+require "date"
+require "optparse"
+
+options = { last: nil, by_author: false, quarterly: false, author: nil, weekly: false }
+OptionParser.new do |opts|
+  opts.banner = "Usage: commit-velocity [options]"
+  opts.on("--last N", Integer, "Show only the last N periods") { |n| options[:last] = n }
+  opts.on("--by-author", "Show top contributors per period") { options[:by_author] = true }
+  opts.on("--quarterly", "Show quarterly rollup summary") { options[:quarterly] = true }
+  opts.on("--author NAME", "Show period-by-period for a single author") { |n| options[:author] = n }
+  opts.on("--weekly", "Use weekly buckets instead of monthly") { options[:weekly] = true }
+end.parse!
+
+# --- Gather data ---
+
+date_fmt = options[:weekly] ? "%G-W%V" : "%Y-%m"
+period_label = options[:weekly] ? "Week" : "Month"
+
+if options[:author]
+  # Find matching author name (case-insensitive substring match)
+  all_authors = `git log --format='%aN'`.lines.map(&:strip).reject(&:empty?).uniq
+  matched = all_authors.select { |a| a.downcase.include?(options[:author].downcase) }.uniq
+  if matched.empty?
+    puts "No author matching '#{options[:author]}' found."
+    exit 1
+  elsif matched.size > 1
+    puts "Multiple authors match '#{options[:author]}':"
+    matched.each { |a| puts "  - #{a}" }
+    puts "Be more specific."
+    exit 1
+  end
+  author_name = matched.first
+  raw = `git log --author='#{author_name}' --format='%ad' --date=format:'#{date_fmt}'`.lines.map(&:strip).reject(&:empty?)
+
+  # Also get total repo counts for comparison
+  raw_total = `git log --format='%ad' --date=format:'#{date_fmt}'`.lines.map(&:strip).reject(&:empty?)
+  total_counts = raw_total.tally
+else
+  raw = `git log --format='%ad' --date=format:'#{date_fmt}'`.lines.map(&:strip).reject(&:empty?)
+  total_counts = nil
+  author_name = nil
+end
+counts = raw.tally.sort_by { |period, _| period }
+
+if options[:last]
+  counts = counts.last(options[:last])
+end
+
+if counts.empty?
+  puts "No commit data found."
+  exit
+end
+
+months = counts.map(&:first)
+values = counts.map(&:last)
+max_val = values.max
+min_val = values.min
+avg_val = values.sum.to_f / values.size
+
+# --- Colors ---
+
+def color(code, text)
+  "\e[#{code}m#{text}\e[0m"
+end
+
+def bar_color(val, avg, prev)
+  if prev && val < prev * 0.6
+    "31" # red — sharp drop
+  elsif val > avg * 1.3
+    "32" # green — well above average
+  elsif val < avg * 0.7
+    "33" # yellow — below average
+  else
+    "36" # cyan — normal
+  end
+end
+
+def trend_arrow(val, prev)
+  return " " if prev.nil?
+  delta = ((val - prev).to_f / prev * 100).round(0)
+  if delta > 20
+    "\e[32m▲+#{delta}%\e[0m"
+  elsif delta < -20
+    "\e[31m▼#{delta}%\e[0m"
+  elsif delta > 0
+    "\e[32m↑+#{delta}%\e[0m"
+  elsif delta < 0
+    "\e[33m↓#{delta}%\e[0m"
+  else
+    "  →0%"
+  end
+end
+
+# --- 3-month moving average ---
+
+def moving_avg(values, window = 3)
+  values.each_with_index.map do |_, i|
+    start = [0, i - window + 1].max
+    slice = values[start..i]
+    slice.sum.to_f / slice.size
+  end
+end
+
+ma = moving_avg(values)
+
+# --- Render chart ---
+
+bar_width = 50
+puts
+if author_name
+  puts color("1", "  COMMIT VELOCITY — #{author_name}")
+  puts color("90", "  #{months.first} → #{months.last}  •  #{values.sum} commits by this author")
+else
+  puts color("1", "  COMMIT VELOCITY")
+  puts color("90", "  #{months.first} → #{months.last}  •  #{values.sum} total commits")
+end
+puts
+
+# Header
+if author_name
+  puts color("90", "  #{period_label.ljust(10)} Count  Share   #{' ' * (bar_width - 4)}  Trend       3mo avg")
+else
+  puts color("90", "  #{period_label.ljust(10)} Count  #{' ' * (bar_width - 4)}  Trend       3mo avg")
+end
+puts color("90", "  #{'─' * (10 + 6 + bar_width + 30)}")
+
+values.each_with_index do |val, i|
+  month = months[i]
+  prev = i > 0 ? values[i - 1] : nil
+  bc = bar_color(val, avg_val, prev)
+
+  filled = (val.to_f / max_val * bar_width).round
+  bar = color(bc, "█" * filled) + color("90", "░" * (bar_width - filled))
+
+  trend = trend_arrow(val, prev)
+  ma_str = ma[i].round(0).to_s.rjust(5)
+
+  count_str = val.to_s.rjust(5)
+  month_str = month.ljust(10)
+
+  if author_name
+    total_for_month = total_counts[month] || 1
+    share = (val.to_f / total_for_month * 100).round(1)
+    share_str = "#{share.to_s.rjust(5)}%"
+    puts "  #{month_str} #{count_str}  #{share_str}  #{bar}  #{trend.ljust(20)} #{color('90', ma_str)}"
+  else
+    puts "  #{month_str} #{count_str}  #{bar}  #{trend.ljust(20)} #{color('90', ma_str)}"
+  end
+end
+
+puts color("90", "  #{'─' * (10 + 6 + bar_width + 30)}")
+summary = "  #{color('90', 'avg')}: #{avg_val.round(0)}   " \
+          "#{color('32', 'max')}: #{max_val} (#{months[values.index(max_val)]})   " \
+          "#{color('31', 'min')}: #{min_val} (#{months[values.index(min_val)]})"
+if author_name
+  overall_share = (values.sum.to_f / months.sum { |m| total_counts[m] || 0 } * 100).round(1)
+  summary += "   #{color('90', 'overall share')}: #{overall_share}%"
+end
+puts summary
+puts
+
+# Also flag if current (partial) period is on pace to drop
+current_period = Date.today.strftime(date_fmt)
+if months.last == current_period
+  if options[:weekly]
+    day_of_week = Date.today.cwday # 1=Mon, 7=Sun
+    days_elapsed = day_of_week
+    days_in_period = 7
+  else
+    days_elapsed = Date.today.day
+    days_in_period = Date.civil(Date.today.year, Date.today.month, -1).day
+  end
+  projected = (values.last.to_f / days_elapsed * days_in_period).round(0)
+  if values.size > 1
+    prev_full = values[-2]
+    proj_delta = ((projected - prev_full).to_f / prev_full * 100).round(0)
+    puts color("90", "  ℹ #{months.last} is partial (#{days_elapsed}/#{days_in_period} days). " \
+               "Projected: ~#{projected} commits (#{proj_delta > 0 ? '+' : ''}#{proj_delta}% vs #{months[-2]})")
+    puts
+  end
+end
+
+# --- Quarterly rollup ---
+
+if options[:quarterly]
+  puts color("1", "  QUARTERLY ROLLUP")
+  puts
+
+  quarters = counts.group_by { |month, _|
+    y, m = month.split("-").map(&:to_i)
+    q = ((m - 1) / 3) + 1
+    "#{y}-Q#{q}"
+  }
+
+  q_data = quarters.map { |q, entries|
+    total = entries.sum { |_, c| c }
+    [q, total, entries.size]
+  }
+
+  q_max = q_data.map { |_, t, _| t }.max
+
+  q_data.each_with_index do |(q, total, month_count), i|
+    filled = (total.to_f / q_max * 40).round
+    bar = color("36", "█" * filled) + color("90", "░" * (40 - filled))
+    avg = (total.to_f / month_count).round(0)
+    partial = month_count < 3 ? color("90", " (partial)") : ""
+    puts "  #{q.ljust(8)} #{total.to_s.rjust(5)}  #{bar}  avg #{avg}/mo#{partial}"
+  end
+  puts
+end
+
+# --- Top contributors ---
+
+if options[:by_author]
+  puts color("1", "  TOP CONTRIBUTORS (last 6 months)")
+  puts
+
+  since = (Date.today << 6).strftime("%Y-%m-%d")
+  author_raw = `git log --since='#{since}' --format='%aN'`.lines.map(&:strip).reject(&:empty?)
+  author_counts = author_raw.tally.sort_by { |_, c| -c }.first(10)
+  total_recent = author_raw.size
+  a_max = author_counts.first&.last || 1
+
+  author_colors = %w[36 32 35 33 34 31 96 92 95 93]
+  author_counts.each_with_index do |(name, count), i|
+    pct = (count.to_f / total_recent * 100).round(1)
+    filled = (count.to_f / a_max * 30).round
+    c = author_colors[i % author_colors.size]
+    bar = color(c, "█" * filled) + color("90", "░" * (30 - filled))
+    puts "  #{color(c, name.ljust(25))} #{count.to_s.rjust(5)} (#{pct.to_s.rjust(5)}%)  #{bar}"
+  end
+  puts
+end
