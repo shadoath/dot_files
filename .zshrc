@@ -126,20 +126,17 @@ load-nvmrc() {
 
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
-export NODE_OPTIONS=--max-old-space-size=8192
-export NODE_OPTIONS=--openssl-legacy-provider
+export NODE_OPTIONS="--max-old-space-size=8192 --openssl-legacy-provider"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH=$HOME/.rover/bin:$PATH
-export GPG_TTY=$(tty)
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
-eval "$(rbenv init -)"
+eval "$(rbenv init - zsh)"
 eval "$(~/.local/bin/mise activate)"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init - zsh)"
 export PATH="/opt/homebrew/sbin:$PATH"
 
 # export PATH="/Users/skylar/bin:$PATH"
