@@ -82,6 +82,9 @@ alias pnps="pnpm npx run prisma studio"
 alias nrd="npm run dev"
 alias nps="npm run prisma-studio"
 alias nrb="npm run build"
+alias nrbf="npm run build:firefox"
+alias nrz="npm run zip"
+alias nrzf="npm run zip:firefox"
 
 ## Prisma npx commands
 alias npg="npx prisma generate"
@@ -119,6 +122,8 @@ alias pc="cd /personal-code"
 alias nra="cd /personal-code/nfp/niche-research-assistant"
 alias ca="cd /personal-code/nfp/callrise-assistant"
 alias wbw="cd /personal-code/whiteboard-works"
+alias fred="cd /personal-code/whiteboard-works/fred"
+alias pf="cd /personal-code/whiteboard-works/play-faster"
 
 ## ls aliases
 alias ll="ls --color=auto -lh"
