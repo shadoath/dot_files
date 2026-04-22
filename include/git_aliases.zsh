@@ -63,7 +63,7 @@ alias overview='open "https://github.com/shadoath?tab=overview&from='$(date '+%Y
 alias {gPf,gPfm}="git push fury master"
 alias gd="   clear && git diff"
 alias gds="  clear && git diff --staged"
-alias gbb="!git for-each-ref --color --sort=-committerdate --format=$'%(color:red)%(ahead-behind:HEAD)\t%(color:blue)%(refname:short)\t%(color:yellow)%(committerdate:relative)\t%(color:default)%(describe)' refs/heads/ --no-merged | sed 's/ /\t/' | column -s=$'\t' -t -c 'Ahead,Behind,Branch Name,Last Commit,Description'"
+alias gbb="git for-each-ref --color --sort=-committerdate --format=$'%(color:red)%(ahead-behind:HEAD)\t%(color:blue)%(refname:short)\t%(color:yellow)%(committerdate:relative)\t%(color:default)%(describe)' refs/heads/ --no-merged | sed 's/ /\t/' | column -s=$'\t' -t"
 
 # if [  `hostname` = mbp-42 ]; then
 #   # Git autocomplete
