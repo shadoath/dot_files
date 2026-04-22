@@ -51,6 +51,18 @@ mkdir -p ~/bin
 ln -s ~/dot_files/commit-velocity ~/bin/commit-velocity
 ```
 
+### Claude Code Hooks
+
+Symlink hook scripts so Claude Code's global settings can reference them:
+
+```bash
+mkdir -p ~/.claude/hooks
+ln -sf ~/dot_files/sync-tab-color.sh ~/.claude/hooks/sync-tab-color.sh
+ln -sf ~/dot_files/spending-tracker.sh ~/.claude/hooks/spending-tracker.sh
+```
+
+`notify.sh` is referenced directly from the repo (`$HOME/dot_files/notify.sh`) so no symlink is needed.
+
 ### Better search with Ag
 
 ```bash
