@@ -44,8 +44,6 @@ ln -s ~/dot_files/.vimrc
 ln -s ~/dot_files/.gitconfig
 ln -s ~/dot_files/.gitignore_global
 ln -s ~/dot_files/.git-prompt.sh
-ln -s ~/dot_files/.git-completion.bash
-ln -s ~/dot_files/.pryrc
 ln -s ~/dot_files/.agignore
 mkdir -p ~/bin
 ln -s ~/dot_files/commit-velocity ~/bin/commit-velocity

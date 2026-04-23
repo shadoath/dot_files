@@ -65,32 +65,12 @@ alias gd="   clear && git diff"
 alias gds="  clear && git diff --staged"
 alias gbb="git for-each-ref --color --sort=-committerdate --format=$'%(color:red)%(ahead-behind:HEAD)\t%(color:blue)%(refname:short)\t%(color:yellow)%(committerdate:relative)\t%(color:default)%(describe)' refs/heads/ --no-merged | sed 's/ /\t/' | column -s=$'\t' -t"
 
-# if [  `hostname` = mbp-42 ]; then
-#   # Git autocomplete
-#   if [ -f $(brew --prefix)/etc/bash_completion ]; then
-#   . ~/.git-completion.bash
-#     . $(brew --prefix)/etc/bash_completion
-#     __git_complete gco _git_checkout
-#     __git_complete gm  _git_checkout
-#     __git_complete gPo _git_checkout
-#     __git_complete gpo _git_checkout
-#     __git_complete gpn _git_checkout
-#     __git_complete gbd _git_checkout
-#   fi
-# fi
-
-# function gh() {(
-#   set -e
-#   git remote -v | grep push
-#   remote=${1:-origin}
-#   echo "Using remote $remote"
-
-#   URL=$(git config remote.$remote.url | sed "s/git@\(.*\):\(.*\).git/https:\/\/\1\/\2/")
-#   echo "Opening $URL..."
-#   open $URL
-# )}
-
 GBN() {
+  if ! command -v claude >/dev/null 2>&1; then
+    echo "Error: claude CLI not found on PATH" >&2
+    return 1
+  fi
+
   local branch="${1:-$(git branch --show-current)}"
   if [ -z "$branch" ]; then
     echo "Error: not on a branch and no branch name provided"
