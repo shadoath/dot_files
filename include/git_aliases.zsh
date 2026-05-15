@@ -20,7 +20,7 @@ alias gbD="  git branch -D"
 alias gba="  gb -a" #Git branch ALL
 alias gbd="  git branch -d"
 alias grb="  git branch -m" # Git rename branch
-alias gbdm='git branch --merged | egrep -v "(^\*|master|main|develop)" | xargs -r git branch -d && git fetch -p'
+alias gbdm='git branch --merged | awk "\$1 != \"*\" && \$1 != \"+\" && \$1 !~ /^(master|main|develop)\$/ { print \$1 }" | xargs -r git branch -d && git fetch -p'
 alias gbDm='git branch -vv | grep ": gone]" | awk "{print (\$1 == \"+\" || \$1 == \"*\") ? \$2 : \$1}" | xargs -r git branch -D'
 alias gbn="  git pull origin && git checkout -b"
 alias gbN="  git checkout -b"
