@@ -27,9 +27,6 @@ copy-on-select = clipboard
 confirm-close-surface = true
 quit-after-last-window-closed = true
 
-# --- Quick terminal (dropdown, like iTerm2's hotkey window) ---
-keybind = global:cmd+grave_accent=toggle_quick_terminal
-
 # --- Splits: your workflow is 3-4 dev-server panes ---
 keybind = cmd+d=new_split:right
 keybind = cmd+shift+d=new_split:down
@@ -50,13 +47,19 @@ keybind = cmd+shift+right=next_tab
 
 # --- Transition comforts (iTerm2 muscle memory) ---
 # Dim inactive splits so the active dev-server pane is obvious at a glance.
-unfocused-split-opacity = 0.7
+unfocused-split-opacity = 0.5
+unfocused-split-fill = #11111b
+# Bright white divider line between splits so panes are clearly separated.
+split-divider-color = #cdd6f4
 # iTerm2-style clear; Ghostty's default cmd+k only clears the visible screen.
 keybind = cmd+k=clear_screen
 keybind = cmd+w=close_surface
 keybind = cmd+shift+w=close_window
 cursor-style = block
 cursor-style-blink = true
+# Bright cursor doubles as a focus indicator — only renders in the active split.
+cursor-color = #fab387
+cursor-text = #1e1e2e
 mouse-hide-while-typing = true
 window-padding-x = 4
 window-padding-y = 4
@@ -67,6 +70,5 @@ macos-non-native-fullscreen = visible-menu
 # Slightly bolder glyphs — closer to iTerm2's rendering weight.
 font-thicken = true
 resize-overlay = never
-quick-terminal-position = top
 # Let OSC52 copies from remote ssh sessions reach your local clipboard.
 clipboard-read = allow
