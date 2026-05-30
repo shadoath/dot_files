@@ -106,8 +106,8 @@ export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
 
 # mise manages node, ruby, etc. — respects .nvmrc, .ruby-version, .tool-versions
-# eval "$(~/.local/bin/mise activate zsh)"
-eval "$(mise activate zsh)"
+# Use shims so non-interactive shells, including Cursor agent commands, resolve project versions.
+# eval "$(mise activate zsh --shims)"
 
 # export PATH="/Users/skylar/bin:$PATH"
 
@@ -115,8 +115,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 source $HOME/.config/op/plugins.sh
 
-# >>> bin/mise-setup managed: shims-on-PATH for Claude desktop <<<
-if [ -n "${CLAUDE_DESKTOP_RESOLVING_ENVIRONMENT:-}" ]; then
-  eval "$(mise activate zsh --shims)"
-fi
 export PATH="$HOME/.local/bin:$PATH"
