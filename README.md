@@ -75,6 +75,15 @@ ln -sf ~/dot_files/spending-tracker.sh ~/.claude/hooks/spending-tracker.sh
 
 `notify.sh` is referenced directly from the repo (`$HOME/dot_files/notify.sh`) so no symlink is needed.
 
+### Claude Code Commands
+
+Symlink the slash-command directory so Claude Code picks up the `sb-*` commands:
+
+```bash
+mkdir -p ~/.claude
+ln -s ~/dot_files/claude-commands ~/.claude/commands
+```
+
 ### Better search with Ag
 
 macOS:

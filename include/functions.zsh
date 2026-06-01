@@ -67,19 +67,13 @@ tab-reset() {
 }
 color-ssh() {
   if [[ -n "$ITERM_SESSION_ID" ]]; then
-    if [[ "$*" == *"dev"* ]]; then
-      tab-color  0 128 255 # BLUE
-    elif [[ "$*" == *"jumpbox"* ]]; then
-      tab-color 255 51 255 # HOT PINK
-    elif [[ "$*" == *"sfs"* ]]; then
-      tab-color 255 51 51 # RED
-    else
-      tab-color  0 255 0 # GREEN
-    fi
-    ssh $*
+    case "$*" in
+      *dev*)     tab-color   0 128 255 ;; # BLUE
+      *jumpbox*) tab-color 255  51 255 ;; # HOT PINK
+      *sfs*)     tab-color 255  51  51 ;; # RED
+      *)         tab-color   0 255   0 ;; # GREEN
+    esac
   fi
+  ssh "$@"
 }
-if [ $HOST=='mbp-42' ]
-  then
-  alias ssh=color-ssh
-fi
+alias ssh=color-ssh

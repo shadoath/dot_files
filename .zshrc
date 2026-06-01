@@ -98,8 +98,8 @@ export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 export PATH="/opt/homebrew/sbin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
-# mise manages ruby — respects .ruby-version and .tool-versions
-eval "$(~/.local/bin/mise activate zsh)"
+# mise manages node, ruby, etc. — respects .nvmrc, .ruby-version, .tool-versions
+[ -x "$HOME/.local/bin/mise" ] && eval "$($HOME/.local/bin/mise activate zsh)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
