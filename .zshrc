@@ -103,4 +103,4 @@ eval "$(~/.local/bin/mise activate zsh)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-source $HOME/.config/op/plugins.sh
+test -e "$HOME/.config/op/plugins.sh" && source "$HOME/.config/op/plugins.sh"
