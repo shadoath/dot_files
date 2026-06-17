@@ -29,13 +29,19 @@ a thread won't change its mind — only a code change or a resolved thread will.
    (step 2). Codex lags a push by a commit fairly often.
 
 5. **Triage findings** — inline comments from codex on the current commit, excluding ids you've already
-   handled (track them). For each:
-   - **Verify the claim against the actual code first** (`file:line`). Codex is wrong or already-addressed
-     often enough that blind compliance is a mistake.
-   - **Valid** → make the smallest targeted fix. Don't delete existing behavior, rescue paths, or
-     per-case handling unless the comment is specifically about that.
-   - **Invalid / already-addressed** → don't change; explain why in the reply.
-   - **Ambiguous or large** → ask me before changing.
+   handled (track them). Codex prefixes each finding with a priority badge (P1–P4).
+   - **Skip P4 entirely.** Don't make code changes for P4 (nit/cosmetic) findings — reply once that it's
+     out of scope for this loop and resolve the thread so it stops resurfacing. Don't push a commit for it.
+   - **Don't let low-priority items drive the loop.** P3s and contrived edge-cases are usually not worth a
+     code change either; default to resolve-with-a-note unless the fix is trivial and clearly right, or I've
+     said otherwise. The loop exists to clear *real* (P1/P2) findings, not to chase nits to zero.
+   - For the findings worth handling:
+     - **Verify the claim against the actual code first** (`file:line`). Codex is wrong or already-addressed
+       often enough that blind compliance is a mistake.
+     - **Valid** → make the smallest targeted fix. Don't delete existing behavior, rescue paths, or
+       per-case handling unless the comment is specifically about that.
+     - **Invalid / already-addressed** → don't change; explain why in the reply.
+     - **Ambiguous or large** → ask me before changing.
 
 6. **Test + commit + push.** Run the affected specs and `bundle exec rubocop` on changed files *before*
    pushing. Commit with a message naming what codex raised; push. Never `--no-verify` / `--amend`;
@@ -49,9 +55,14 @@ a thread won't change its mind — only a code change or a resolved thread will.
 
 8. **Re-trigger** `@codex review` and return to step 3 with the new baseline (review count +1).
 
-9. **Stop when** codex 👍s and there are no unresolved findings → success. Also stop after **~6 iterations**,
-   or if codex keeps re-flagging something you've deliberately rejected — summarize and hand back to me
-   rather than looping forever.
+9. **Stop when** codex 👍s and there are no unresolved findings → success. Also stop — summarize and hand
+   back to me rather than looping forever — when any of these hold:
+   - only P3/P4 / nit / contrived edge-case findings remain (resolve them with a note, then stop; don't
+     re-trigger just to chase low-priority items to zero);
+   - codex keeps re-flagging something you've deliberately rejected;
+   - you've hit **~6 iterations**.
+   Each re-trigger should be justified by an unresolved P1/P2 — if the last round produced no real findings,
+   stop instead of spinning.
 
 10. **Final report.** Verify and report: codex verdict; CI (`gh pr checks <N>` — all green?); `mergeable`;
     `reviewDecision` (note: a codex 👍 is a reaction, *not* a GitHub approval — a human approval is still
