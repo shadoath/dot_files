@@ -121,9 +121,12 @@ alias c="cd ~/code"
 alias pc="cd /personal-code"
 alias nra="cd /personal-code/nfp/niche-research-assistant"
 alias ca="cd /personal-code/nfp/callrise-assistant"
+alias nfp="cd /personal-code/nfp"
 alias wbw="cd /personal-code/whiteboard-works"
 alias fred="cd /personal-code/whiteboard-works/fred"
 alias pf="cd /personal-code/whiteboard-works/play-faster"
+alias nn="cd /personal-code/whiteboard-works/nodus-nexus"
+alias delve="cd /personal-code/delve"
 
 ## ls aliases
 alias ll="ls --color=auto -lh"
