@@ -43,11 +43,6 @@ source $HOME/dot_files/include/git_recent.zsh
 # Preferred editor for local and remote sessions
 export EDITOR='vim'
 
-eval "$(jump shell)"
-
-# Python
-eval "$(pyenv init --path)"
-
 # Customize Less
 export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=2 --no-init --window=-4'
 
