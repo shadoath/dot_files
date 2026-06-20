@@ -84,6 +84,15 @@ mkdir -p ~/.claude
 ln -s ~/dot_files/claude-commands ~/.claude/commands
 ```
 
+### Claude Code Global Instructions
+
+Symlink the global `CLAUDE.md` so it's version-tracked in this repo:
+
+```bash
+mkdir -p ~/.claude
+ln -sf ~/dot_files/claude-global.md ~/.claude/CLAUDE.md
+```
+
 ### Better search with Ag
 
 macOS:
