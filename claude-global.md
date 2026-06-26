@@ -2,6 +2,20 @@
 
 This file provides guidance to Claude Code across all projects.
 
+## Default Session Workflow
+
+Unless I say otherwise, every unit of work follows this sequence by default — I should not have to ask for it:
+
+1. **Plan first.** Start in plan mode. Present the approach and wait for my confirmation before editing. (See *Interaction Style*.)
+2. **Ask questions if needed.** Resolve ambiguity up front, before writing code — not after.
+3. **Build.** Branch off `master` before the first edit, then implement. (See *Branch Before Editing*.)
+4. **Open a PR.** Never merge directly to `master`. (See *Definition of Done*.)
+5. **Run a code review.** Drive a `/review` loop on the PR.
+6. **Address findings.** Loop until no **major** findings remain. (See *Definition of Done* for the major/minor distinction.)
+7. **Enable auto-merge.** Let the PR merge itself when CI is green, then `gcom` back to `master`.
+
+The sections below carry the detail and edge cases for each step; this is the canonical order. If a repo can't support part of it (no PR/CI/auto-merge), say so and propose the closest equivalent rather than silently skipping.
+
 ## General Workflow
 
 When working across multiple repositories, always confirm the current file structure and organization before making edits. Files may have been reorganized since last session.
