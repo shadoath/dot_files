@@ -8,7 +8,7 @@ alias a="alias  | grep "
 # todo --exclude-dir=node_modules
 alias g="grep -rnw . -e " # Go find me some text [info](https://explainshell.com/explain?cmd=grep+-rnw+.+-e+text)
 alias C="clear"
-alias c.="code ."
+alias .="cursor ."
 alias {:q,:Q,:qa}="exit"
 alias bs="bundle show |grep "
 alias fing="sudo"
