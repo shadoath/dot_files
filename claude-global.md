@@ -61,10 +61,6 @@ Keep PR descriptions SHORT. A brief summary of what changed and why is enough.
 - Do **not** add a `## Test plan` section (or any equivalent test-plan/checklist boilerplate).
 - Skip filler sections; prefer a few tight sentences or a short bullet list over long templated write-ups.
 
-## TypeScript
-
-This project uses TypeScript extensively. When editing TS files, respect existing tsconfig paths, baseUrl settings, and import conventions. Always check tsconfig.json before modifying import paths.
-
 ## Code Review
 
 When asked to review code or PRs, provide the review first and wait for user direction before making any code changes. Do not combine review and implementation unless explicitly asked.
