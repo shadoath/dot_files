@@ -54,6 +54,13 @@ Unless I say otherwise, treat "the work is done" as a workflow, not a stopping p
 
 This is the default so I don't have to restate it per project. If a repo lacks PR/CI/auto-merge support, or the situation clearly calls for something else, say so and propose the closest equivalent rather than silently skipping it.
 
+## PR Descriptions — Keep Them Short
+
+Keep PR descriptions SHORT. A brief summary of what changed and why is enough.
+
+- Do **not** add a `## Test plan` section (or any equivalent test-plan/checklist boilerplate).
+- Skip filler sections; prefer a few tight sentences or a short bullet list over long templated write-ups.
+
 ## TypeScript
 
 This project uses TypeScript extensively. When editing TS files, respect existing tsconfig paths, baseUrl settings, and import conventions. Always check tsconfig.json before modifying import paths.
