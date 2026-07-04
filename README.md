@@ -71,6 +71,7 @@ Symlink hook scripts so Claude Code's global settings can reference them:
 mkdir -p ~/.claude/hooks
 ln -sf ~/dot_files/sync-tab-color.sh ~/.claude/hooks/sync-tab-color.sh
 ln -sf ~/dot_files/spending-tracker.sh ~/.claude/hooks/spending-tracker.sh
+ln -sf ~/dot_files/pr-created-reminder.sh ~/.claude/hooks/pr-created-reminder.sh
 ```
 
 `notify.sh` is referenced directly from the repo (`$HOME/dot_files/notify.sh`) so no symlink is needed.
@@ -146,7 +147,7 @@ git config credential.helper store
 ## Tools
 
 - **`commit-velocity`** — Ruby CLI for per-author commit analytics with moving averages, quarterly rollups, and trend arrows. Run `commit-velocity --help` for options.
-- **`sync-tab-color.sh` / `spending-tracker.sh` / `notify.sh`** — Claude Code hooks (see above) for iTerm tab coloring per session, token-spend alerts, and terminal notifications.
+- **`sync-tab-color.sh` / `spending-tracker.sh` / `notify.sh` / `pr-created-reminder.sh`** — Claude Code hooks (see above) for iTerm tab coloring per session, token-spend alerts, terminal notifications, and reminding to run `/review` before enabling auto-merge after a `gh pr create`.
 - **`workflow-remover.sh`** — deletes runs of disabled GitHub Actions workflows. Usage: `workflow-remover.sh <org> <repo>`.
 
 ## Keyboard
