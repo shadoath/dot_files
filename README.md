@@ -94,6 +94,17 @@ mkdir -p ~/.claude
 ln -sf ~/dot_files/claude-global.md ~/.claude/CLAUDE.md
 ```
 
+### Claude Code Global Settings
+
+Symlink the global `settings.json` (permissions, hooks, plugins, defaults) so it's
+version-tracked in this repo. Machine-local overrides go in `~/.claude/settings.local.json`,
+which is intentionally left untracked.
+
+```bash
+mkdir -p ~/.claude
+ln -sf ~/dot_files/claude-settings.json ~/.claude/settings.json
+```
+
 ### Better search with Ag
 
 macOS:
