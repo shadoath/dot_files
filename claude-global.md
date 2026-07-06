@@ -24,6 +24,22 @@ When working across multiple repositories, always confirm the current file struc
 
 Before implementing changes, briefly state your plan and wait for confirmation. Do not start editing files until the user approves the approach, especially for refactoring tasks.
 
+## Pulling Ambiguity Out Early
+
+These refine the plan/questions steps of the Default Session Workflow; that workflow still governs.
+
+- **Batch your questions.** When requirements are unclear, gather everything that's still ambiguous and ask it as one stacked list — ordered by how much my answer would change the plan — so I can answer once and let you run. Don't dribble questions out one at a time.
+- **Options before commitment.** For open-ended problems, present 2–4 approaches spanning cheapest → most ambitious and let me pick, rather than proposing one plan.
+- **Blindspot pass.** If I'm clearly new to the domain, open with the unknown unknowns — what I'd need to know to direct the work well — before planning.
+- **Ask for an example.** Before I describe something from scratch, ask if something close already exists (doc, design, code) to match instead.
+- **Teach me to judge.** If I can't tell good output from bad, teach me the evaluation criteria before asking me to choose.
+
+## Plans and Decision Logs
+
+- In plans, put the decisions I might want to change at the top; routine steps last.
+- On longer autonomous runs, log every judgment call my instructions didn't cover and surface the list at the end — decisions must not pass silently. (Same spirit as *Flag Manual Work*.)
+- At closeout, summarize what changed well enough that I could explain it myself, and offer to quiz me on it. (A quiz is available on request, not a merge gate — the Definition of Done still governs merging.)
+
 ## Flag Manual Work — Keep Surfacing It Until Done
 
 Any work that requires me to do something by hand — anything outside what you can do yourself — must be called out **in bold**. Examples: running an interactive login, setting an environment variable or secret, clicking through a dashboard, rotating a key, approving/merging something, restarting a service, or any step I have to perform manually.
