@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code across all projects.
 
+I work in a tight, PR-driven Rails loop: investigate → implement → test → push → iterate on review comments. Match that rhythm. Keep responses terse — I read diffs, I don't need recaps.
+
 ## Default Session Workflow
 
 Unless I say otherwise, every unit of work follows this sequence by default — I should not have to ask for it:
@@ -16,13 +18,11 @@ Unless I say otherwise, every unit of work follows this sequence by default — 
 
 The sections below carry the detail and edge cases for each step; this is the canonical order. If a repo can't support part of it (no PR/CI/auto-merge), say so and propose the closest equivalent rather than silently skipping.
 
-## General Workflow
-
-When working across multiple repositories, always confirm the current file structure and organization before making edits. Files may have been reorganized since last session.
-
 ## Interaction Style
 
 Before implementing changes, briefly state your plan and wait for confirmation. Do not start editing files until the user approves the approach, especially for refactoring tasks.
+
+When you see a real choice between approaches, present numbered or lettered options (1/2/3 or A/B) and wait for me to pick. I reply with "Option 2" or "A" — make that easy.
 
 ## Pulling Ambiguity Out Early
 
@@ -58,6 +58,21 @@ When starting new work, create a branch before making the first file change — 
 - If already on a non-default branch (or detached HEAD), do not branch — keep working where you are.
 - Read-only exploration does not trigger this — only an actual edit does.
 
+## Git & PRs
+
+- **Verify worktree before any git operation.** Run `git worktree list` and `git branch --show-current`. Feature branches are often checked out in a separate worktree (see `gbdm`); don't commit on the wrong one.
+- **Draft PRs by default.** Use `gh pr create --draft` unless I explicitly say otherwise.
+- **Never `--no-verify`, never `--amend`** unless I ask.
+- **Don't wrap commit message lines.** No fixed line-length limit — write each line in full and let it run long rather than inserting hard line breaks. These messages land in production history and forced wrapping makes them annoying to read.
+- **Write `gh pr create` / `gh pr edit` bodies via a temp file or HEREDOC**, not inline strings — backticks in descriptions break inline quoting.
+
+## PR Descriptions — Keep Them Short
+
+Keep PR descriptions SHORT.
+
+- Structure: `## Summary` (1–3 bullets, the *why*) and `## Test plan` (a checklist). No "Testing" section, no generic testing prose — the checklist is enough.
+- Skip filler sections; prefer a few tight bullets over long templated write-ups.
+
 ## Definition of Done — Open PR, Review to Green, Auto-Merge
 
 Unless I say otherwise, treat "the work is done" as a workflow, not a stopping point. When a unit of work is complete:
@@ -70,16 +85,33 @@ Unless I say otherwise, treat "the work is done" as a workflow, not a stopping p
 
 This is the default so I don't have to restate it per project. If a repo lacks PR/CI/auto-merge support, or the situation clearly calls for something else, say so and propose the closest equivalent rather than silently skipping it.
 
-## PR Descriptions — Keep Them Short
+## Code Review & Iteration
 
-Keep PR descriptions SHORT. A brief summary of what changed and why is enough.
+When asked to review code or a PR cold, provide the review first and wait for my direction before making any code changes. Do not combine review and implementation unless explicitly asked.
 
-- Do **not** add a `## Test plan` section (or any equivalent test-plan/checklist boilerplate).
-- Skip filler sections; prefer a few tight sentences or a short bullet list over long templated write-ups.
+Iterating on my own PR is different — that loop is expected:
 
-## Code Review
+- **After pushing any PR, run the review loop.** Once a PR is pushed/opened: (1) run the `/code-review` slash command on it and triage + address the findings (applying judgment, not blindly), then (2) check the PR for comments left by the other review bots (codex, etc.) and address any real issues they raise too. Don't consider the PR done until both the slash review and the bot comments have been worked through.
+- **Run tests and rubocop locally before pushing**, not after CI catches it. For Ruby changes: `bundle exec rspec <touched specs>` and `bundle exec rubocop <modified files>`.
+- **Don't over-consolidate.** When addressing review comments, make minimal targeted edits. Don't delete per-type descriptions, `rescue` paths, or existing behavior unless I explicitly ask.
+- **Codex suggestions aren't gospel.** Apply judgment — if a codex comment is wrong or already addressed, push back rather than complying.
+- **Check CI history before assuming a failing test is a real regression.** Known flakes are common; `gh run list` on the same spec across recent runs.
+- **When changing shared code, audit all callers.** Before committing a change to a method or schema used elsewhere, grep for every call site and confirm their assumptions still hold. (Past pain: a `build_customer` tweak broke `purchase_orders` specs because nil-membership callers weren't checked.)
 
-When asked to review code or PRs, provide the review first and wait for user direction before making any code changes. Do not combine review and implementation unless explicitly asked.
+## Implementation Defaults
+
+- **Investigate before implementing.** For non-trivial bugs or ambiguous reports, trace the code path and confirm the hypothesis before writing a fix. Don't open a PR until you can name the root cause.
+- **Probe before building when evidence is weak.** When a fix rests on an unconfirmed theory about the root cause — especially for production failures, integration/proxy issues, or "I think X is happening" hunches — validate it with the cheapest probe first (a console snippet, log/Datadog/Rollbar query, grep, or tiny script) before writing the fix. If the load-bearing assumption is unverified, run `/sb-hc` to prove or kill the hypothesis, then implement. (Past pain: built a full Ferrum transport and proposed an Oxylabs failover before probes showed neither was needed.)
+- **Default to the simplest viable approach**, especially for one-off tasks. Backfills, rake tasks, and migration scripts should be serial unless I ask for concurrency.
+- **Keep comments short, or better, let the code explain itself.** Prefer self-documenting names and structure over comments; add a comment only when the *why* isn't obvious from the code. Don't narrate the *what*.
+- **Verify third-party APIs exist before building on them.** Don't invent methods or properties that "feel right" — check the SDK docs, grep the codebase for existing usage, or write a tiny probe first. (Past pain: built against a non-existent Unlayer rows API before pivoting to native page anchors.)
+- **For multi-tenant Rails work, use `Tenant.switch_each`.** Any query touching tenant-scoped data needs to iterate tenants, not run once against the public schema.
+- **Per-tenant loops need per-iteration `rescue`.** When iterating with `Tenant.switch_each`, wrap the body so one bad tenant doesn't kill the whole audit — log the tenant and the error, then continue. Aggregate failures at the end.
+- **Read-only by default for production console snippets.** No `update`/`destroy`/`delete_all`/job enqueues without an explicit `dry_run` gate.
+
+## General Workflow
+
+When working across multiple repositories, always confirm the current file structure and organization before making edits. Files may have been reorganized since last session.
 
 ## Data & Content Updates
 
