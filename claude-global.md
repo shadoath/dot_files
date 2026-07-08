@@ -68,9 +68,10 @@ When starting new work, create a branch before making the first file change — 
 
 ## PR Descriptions — Keep Them Short
 
-Keep PR descriptions SHORT.
+Keep PR descriptions SHORT and minimal.
 
-- Structure: `## Summary` (1–3 bullets, the *why*) and `## Test plan` (a checklist). No "Testing" section, no generic testing prose — the checklist is enough.
+- Structure: a `## Summary` with 1–3 bullets on the *why*. That's it.
+- **Never include a `## Test plan` section** — no test plan, no test checklist, no "Testing" section, no generic testing prose. I really don't want it.
 - Skip filler sections; prefer a few tight bullets over long templated write-ups.
 
 ## Definition of Done — Open PR, Review to Green, Auto-Merge
