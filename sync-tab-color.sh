@@ -1,18 +1,36 @@
 #!/bin/bash
-# Reads the current agent color from the session JSONL and syncs it to iTerm2 tab color.
-# Invoked as a Stop hook — receives JSON on stdin with session_id, transcript_path, etc.
+# Syncs the iTerm2 tab color to the current session's context.
+# Invoked as a SessionStart and Stop hook — receives JSON on stdin with
+# session_id, transcript_path, cwd, etc.
+#
+# Precedence:
+#   1. If the session runs in a `web-<color>` worktree, force that color so the
+#      tab reliably signals which worktree you're in.
+#   2. Otherwise fall back to the session's agentColor from the transcript.
 
 INPUT=$(cat)
-TRANSCRIPT=$(echo "$INPUT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('transcript_path',''))" 2>/dev/null)
 
-if [ -z "$TRANSCRIPT" ] || [ ! -f "$TRANSCRIPT" ]; then
-  exit 0
-fi
+# 1. Worktree-based color wins — check cwd before consulting the transcript.
+CWD=$(echo "$INPUT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('cwd',''))" 2>/dev/null)
+case "$CWD" in
+  */code/web-blue*)   COLOR=blue   ;;
+  */code/web-green*)  COLOR=green  ;;
+  */code/web-yellow*) COLOR=yellow ;;
+esac
 
-COLOR=$(grep -o '"agentColor":"[^"]*"' "$TRANSCRIPT" | tail -1 | cut -d'"' -f4)
-
+# 2. Fall back to the session's agent color from the transcript.
 if [ -z "$COLOR" ]; then
-  exit 0
+  TRANSCRIPT=$(echo "$INPUT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('transcript_path',''))" 2>/dev/null)
+
+  if [ -z "$TRANSCRIPT" ] || [ ! -f "$TRANSCRIPT" ]; then
+    exit 0
+  fi
+
+  COLOR=$(grep -o '"agentColor":"[^"]*"' "$TRANSCRIPT" | tail -1 | cut -d'"' -f4)
+
+  if [ -z "$COLOR" ]; then
+    exit 0
+  fi
 fi
 
 # Map color names to R G B (0-255)
