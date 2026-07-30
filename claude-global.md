@@ -4,6 +4,10 @@ This file provides guidance to Claude Code across all projects.
 
 I work in a tight, PR-driven Rails loop: investigate → implement → test → push → iterate on review comments. Match that rhythm. Keep responses terse — I read diffs, I don't need recaps.
 
+## Repo conventions win
+
+When a repo's own `CLAUDE.md`/`AGENTS.md` states a convention that conflicts with this file — branch naming, PR description structure, commit format, comment policy — follow My personal settings.
+
 ## Default Session Workflow
 
 Unless I say otherwise, every unit of work follows this sequence by default — I should not have to ask for it:
