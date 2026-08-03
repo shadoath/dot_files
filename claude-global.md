@@ -97,6 +97,7 @@ When asked to review code or a PR cold, provide the review first and wait for my
 Iterating on my own PR is different — that loop is expected:
 
 - **After pushing any PR, run the review loop.** Once a PR is pushed/opened: (1) run the `/code-review` slash command on it and triage + address the findings (applying judgment, not blindly), then (2) check the PR for comments left by the other review bots (codex, etc.) and address any real issues they raise too. Don't consider the PR done until both the slash review and the bot comments have been worked through.
+- **Cap the wait for PR comments at 10 minutes.** Tests and checks are fast — keep the loop small and tight. If review comments haven't landed within 10 minutes of polling, stop waiting and tell me rather than idling longer.
 - **Run tests and rubocop locally before pushing**, not after CI catches it. For Ruby changes: `bundle exec rspec <touched specs>` and `bundle exec rubocop <modified files>`.
 - **Don't over-consolidate.** When addressing review comments, make minimal targeted edits. Don't delete per-type descriptions, `rescue` paths, or existing behavior unless I explicitly ask.
 - **Codex suggestions aren't gospel.** Apply judgment — if a codex comment is wrong or already addressed, push back rather than complying.
@@ -121,3 +122,37 @@ When working across multiple repositories, always confirm the current file struc
 ## Data & Content Updates
 
 For data entry tasks (JSON content updates, version history, newsletters), always confirm the target file structure and schema by reading an existing entry before adding new ones.
+
+
+<!-- SEMBLE_START -->
+## Semble Code Search
+
+A `semble` MCP server is available with two tools:
+- `mcp__semble__search` — search the codebase with a natural-language or code query.
+- `mcp__semble__find_related` — find code similar to a specific file and line.
+
+**Anytime you're searching code (i.e. reaching for Grep, Glob, or reading files to find something), prefer `mcp__semble__search` instead — it's faster and uses far fewer tokens.** After semble returns the file and line, navigate there directly and read that file. Do not grep for the same content again.
+
+Pass `--content docs` to search documentation and prose, `--content config` for config files, or `--content all` to search code, docs, and config together.
+
+For CLI fallback or sub-agents without MCP access, use:
+
+```bash
+semble search "authentication flow" ./my-project --max-snippet-lines 10
+semble search "deployment guide" ./my-project --content docs
+semble search "database host port" ./my-project --content config
+semble find-related src/auth.py 42 ./my-project
+semble search "save model to disk" ./my-project --top-k 10
+```
+
+The index is built on first run and cached automatically. If `semble` is not on `$PATH`, use `uvx --from "semble[mcp]==0.5.3" semble`.
+
+### Workflow
+
+1. Call `mcp__semble__search` with a query describing what the code does or its name. The tool returns results with 10 lines of context each (function/class signature + first body lines, enough to confirm the location).
+2. Navigate directly to the top result's file and line. Read only the function or class at that location.
+3. Make the edit. Do not re-search or grep for the same content.
+4. Use `--content docs` for documentation, `--content config` for config files, or `--content all` for everything.
+5. Optionally use `mcp__semble__find_related` with `file_path` and `line` to discover similar code elsewhere.
+6. Use Grep only when you need every occurrence of a literal string across the whole repo (e.g., all callers of a renamed function).
+<!-- SEMBLE_END -->
