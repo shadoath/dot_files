@@ -16,6 +16,7 @@ case "$CWD" in
   */code/web-blue*)   COLOR=blue   ;;
   */code/web-green*)  COLOR=green  ;;
   */code/web-yellow*) COLOR=yellow ;;
+  */code/web-orange*) COLOR=orange ;;
 esac
 
 # 2. Fall back to the session's agent color from the transcript.
