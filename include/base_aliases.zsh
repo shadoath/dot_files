@@ -127,6 +127,7 @@ alias fred="cd /personal-code/whiteboard-works/fred"
 alias pf="cd /personal-code/whiteboard-works/play-faster"
 alias nn="cd /personal-code/whiteboard-works/nodus-nexus"
 alias delve="cd /personal-code/delve"
+alias bw="cd /personal-code/biteworthy"
 
 ## ls aliases
 alias ll="ls --color=auto -lh"
