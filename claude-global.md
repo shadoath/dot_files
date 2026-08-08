@@ -15,10 +15,11 @@ Unless I say otherwise, every unit of work follows this sequence by default — 
 1. **Plan first.** Start in plan mode. Present the approach and wait for my confirmation before editing. (See *Interaction Style*.)
 2. **Ask questions if needed.** Resolve ambiguity up front, before writing code — not after.
 3. **Build.** Branch off `master` before the first edit, then implement. (See *Branch Before Editing*.)
-4. **Open a PR.** Never merge directly to `master`. (See *Definition of Done*.)
-5. **Run a code review.** Drive a `/review` loop on the PR.
-6. **Address findings.** Loop until no **major** findings remain. (See *Definition of Done* for the major/minor distinction.)
+4. **Open a PR — ready for review, never draft.** Never merge directly to `master`. (See *Definition of Done*.)
+5. **Run both reviews.** `/code-review` locally; Codex fires on its own when the PR opens ready (comment `@codex review` to re-trigger after pushing fixes).
+6. **Address findings.** Loop until both reviews are clear of **major** findings. (See *Definition of Done* for the major/minor distinction.)
 7. **Enable auto-merge.** Let the PR merge itself when CI is green, then `gcom` back to `master`.
+8. **Bump the version.** Once the work has landed, open the version-bump PR so the shipped/deployed version isn't stale.
 
 The sections below carry the detail and edge cases for each step; this is the canonical order. If a repo can't support part of it (no PR/CI/auto-merge), say so and propose the closest equivalent rather than silently skipping.
 
@@ -65,7 +66,7 @@ When starting new work, create a branch before making the first file change — 
 ## Git & PRs
 
 - **Verify worktree before any git operation.** Run `git worktree list` and `git branch --show-current`. Feature branches are often checked out in a separate worktree (see `gbdm`); don't commit on the wrong one.
-- **Draft PRs by default.** Use `gh pr create --draft` unless I explicitly say otherwise.
+- **Ready PRs by default — never draft.** Use plain `gh pr create` (no `--draft`) unless I explicitly ask for a draft. Draft PRs rot: I go to a repo and find weeks-old drafts that should have merged long ago, and shipped versions that never got bumped. If a branch is worth pushing, it's worth opening ready and driving to merge. Anything already sitting in draft gets flipped ready (`gh pr ready <n>`) or closed — don't leave it.
 - **Never `--no-verify`, never `--amend`** unless I ask.
 - **Don't wrap commit message lines.** No fixed line-length limit — write each line in full and let it run long rather than inserting hard line breaks. These messages land in production history and forced wrapping makes them annoying to read.
 - **Write `gh pr create` / `gh pr edit` bodies via a temp file or HEREDOC**, not inline strings — backticks in descriptions break inline quoting.
@@ -78,17 +79,23 @@ Keep PR descriptions SHORT and minimal.
 - **Never include a `## Test plan` section** — no test plan, no test checklist, no "Testing" section, no generic testing prose. I really don't want it.
 - Skip filler sections; prefer a few tight bullets over long templated write-ups.
 
-## Definition of Done — Open PR, Review to Green, Auto-Merge
+## Definition of Done — Ready PR, Two Reviews to Green, Auto-Merge, Version Bump
 
 Unless I say otherwise, treat "the work is done" as a workflow, not a stopping point. When a unit of work is complete:
 
-- Open a pull request for the branch (do not merge directly to `master`).
-- Run a `/review` loop on that PR: address findings, re-run review, repeat. Keep looping until no **major** findings remain that need to be addressed.
+- **Open a ready-for-review pull request** for the branch — not a draft (do not merge directly to `master`).
+- **Run both review passes:**
+  1. `/code-review` on the PR — triage and address the findings.
+  2. Codex — it reviews automatically when a PR opens ready or a draft is marked ready, so opening ready is itself the trigger. Comment `@codex review` to re-trigger after pushing fixes. Address what it raises with judgment (see *Codex suggestions aren't gospel*).
+- Loop both until no **major** findings remain from either.
   - "Major" = correctness bugs, security issues, broken/missing tests, or anything that would block a careful human reviewer. Minor/nitpick/stylistic findings do not need to block the loop — note them but don't keep cycling on them.
-- Once the review loop is clean of major findings, enable auto-merge so the PR merges itself when CI passes and required checks are green.
+- Once both reviews are clean of major findings, enable auto-merge so the PR merges itself when CI passes and required checks are green.
 - After the merge completes, if I'm still on the merged branch, run the `gcom` alias to return to `master`. This pulls the merged changes into local `master` and deletes the now-stale branch, leaving me ready for the next unit of work. (`gcom` = `git checkout master && gpo && gbDm` — only for `master`-based repos without a `develop` branch.)
+- **Then bump the version.** Once all the work for the release has landed, open a version-bump PR through the same loop. A merged fix that never ships is the same as no fix — never leave the deployed/published version stale behind merged work.
 
 This is the default so I don't have to restate it per project. If a repo lacks PR/CI/auto-merge support, or the situation clearly calls for something else, say so and propose the closest equivalent rather than silently skipping it.
+
+**Never park work in a draft PR and walk away.** If something genuinely blocks merging, say so explicitly in the response and keep surfacing it (see *Flag Manual Work*) — don't let a stalled PR sit silently in a repo.
 
 ## Code Review & Iteration
 
@@ -96,7 +103,9 @@ When asked to review code or a PR cold, provide the review first and wait for my
 
 Iterating on my own PR is different — that loop is expected:
 
-- **After pushing any PR, run the review loop.** Once a PR is pushed/opened: (1) run the `/code-review` slash command on it and triage + address the findings (applying judgment, not blindly), then (2) check the PR for comments left by the other review bots (codex, etc.) and address any real issues they raise too. Don't consider the PR done until both the slash review and the bot comments have been worked through.
+- **After pushing any PR, run the review loop.** Once a PR is pushed/opened: (1) run the `/code-review` slash command on it and triage + address the findings (applying judgment, not blindly), then (2) comment `@codex review` on the PR to trigger Codex, and address any real issues it (or another review bot) raises. Don't consider the PR done until both the slash review and the bot comments have been worked through.
+- **Default `/code-review` to `medium`. Never run `xhigh`, `max`, or the workflow-backed multi-agent mode unless I ask for it by name.** One `xhigh` run spawns 30–50 subagents; a six-loop session on three small perf PRs burned ~220 agents and ~15M subagent tokens. `high` is the ceiling for ordinary work, and only when the change is genuinely risky — correctness-critical logic, security, data migrations, or something that reaches production silently. Start at `medium` and escalate only if it comes back thin.
+- **Quote the cost before escalating a review.** If a level implies a large fan-out, say roughly how many agents that means and let me choose, rather than escalating on my behalf. Same for re-reviewing after each fix round — prefer scoping the re-review to the changed hunks over re-running the whole thing.
 - **Cap the wait for PR comments at 10 minutes.** Tests and checks are fast — keep the loop small and tight. If review comments haven't landed within 10 minutes of polling, stop waiting and tell me rather than idling longer.
 - **Run tests and rubocop locally before pushing**, not after CI catches it. For Ruby changes: `bundle exec rspec <touched specs>` and `bundle exec rubocop <modified files>`.
 - **Don't over-consolidate.** When addressing review comments, make minimal targeted edits. Don't delete per-type descriptions, `rescue` paths, or existing behavior unless I explicitly ask.
