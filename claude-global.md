@@ -12,7 +12,7 @@ When a repo's own `CLAUDE.md`/`AGENTS.md` states a convention that conflicts wit
 
 Unless I say otherwise, every unit of work follows this sequence by default — I should not have to ask for it:
 
-1. **Plan first.** Start in plan mode. Present the approach and wait for my confirmation before editing. (See *Interaction Style*.)
+1. **Spec first, then plan.** Before proposing an approach, nail down the desired end result — expected behavior, inputs/outputs, acceptance criteria — and work backward from it (see *Spec/Test-First Development*). Only after the result is defined, start in plan mode: present the approach and wait for my confirmation before editing. (See *Interaction Style*.)
 2. **Ask questions if needed.** Resolve ambiguity up front, before writing code — not after.
 3. **Build.** Branch off `master` before the first edit, then implement. (See *Branch Before Editing*.)
 4. **Open a PR — ready for review, never draft.** Never merge directly to `master`. (See *Definition of Done*.)
@@ -38,6 +38,14 @@ These refine the plan/questions steps of the Default Session Workflow; that work
 - **Blindspot pass.** If I'm clearly new to the domain, open with the unknown unknowns — what I'd need to know to direct the work well — before planning.
 - **Ask for an example.** Before I describe something from scratch, ask if something close already exists (doc, design, code) to match instead.
 - **Teach me to judge.** If I can't tell good output from bad, teach me the evaluation criteria before asking me to choose.
+
+## Spec/Test-First Development
+
+These refine step 1 of the Default Session Workflow (spec before plan); that workflow still governs. This exists to catch false assumptions about how the system actually behaves before they get baked into a fix.
+
+- Where the codebase and task support it, write the test(s) that encode the desired behavior first — after I've approved the plan, as the first part of *Build* — confirm they fail for the right reason, then implement until they pass.
+- If my request implies an assumption about current behavior ("X currently does Y"), verify it against code/tests/logs before planning around it — don't take it as given. (Reinforces *Investigate before implementing* and *Probe before building when evidence is weak* below.)
+- Expect this to mean more time in planning and more questions before code gets written — that's the intent, not a detour.
 
 ## Plans and Decision Logs
 
