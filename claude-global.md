@@ -133,6 +133,17 @@ Iterating on my own PR is different — that loop is expected:
 - **Per-tenant loops need per-iteration `rescue`.** When iterating with `Tenant.switch_each`, wrap the body so one bad tenant doesn't kill the whole audit — log the tenant and the error, then continue. Aggregate failures at the end.
 - **Read-only by default for production console snippets.** No `update`/`destroy`/`delete_all`/job enqueues without an explicit `dry_run` gate.
 
+## Writing Tickets
+
+When writing tickets (Linear, Asana, GitHub issues, etc.), keep them readable by anyone — not just engineers.
+
+- **No code snippets.** Describe behavior in plain language instead of pasting code.
+- Structure every ticket with three sections:
+  - **Goal** — what should be true when this is done.
+  - **Why** — the motivation or problem driving the work.
+  - **Proposed Solution** — the approach, described simply.
+- Keep each section short and plain — a non-technical reader should be able to follow it.
+
 ## General Workflow
 
 When working across multiple repositories, always confirm the current file structure and organization before making edits. Files may have been reorganized since last session.
