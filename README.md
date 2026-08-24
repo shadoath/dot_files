@@ -153,6 +153,8 @@ git config credential.helper store
 - `git_recent.zsh` — reflog-based branch picker
 - `better-git-branch.sh` — branch table with PR status and terminal links (via `gh`)
 - `dumpclipboard.rb` — clipboard image → resized PNG for AI consumption
+- `personal.zsh` — gitignored, machine-local personal config (see below)
+- `rinsed.zsh` — gitignored, machine-local work config (see below)
 
 ## Personal vs. work config
 
@@ -163,6 +165,11 @@ work- or personal-specific stays out of tracked files:
   create them locally per machine with whatever aliases, env vars, or
   secrets belong there. `.zshrc` sources each with an existence guard
   (`[[ -f ... ]] && source ...`) so a machine missing one just skips it.
+- `include/personal.zsh` was previously named `personal_aliases.zsh`. Because
+  the file is gitignored, git can't rename it for you — on a machine still
+  holding the old name, run `mv include/personal_aliases.zsh include/personal.zsh`
+  or its contents stop loading (silently, since the guard just skips a missing
+  file). Both names stay gitignored, so nothing leaks in the meantime.
 - `.gitconfig` does the same for git identity via
   `includeIf "gitdir:~/code/"` pointing at a gitignored `~/.gitconfig-work`.
 - Tracked files (`base_aliases.zsh`, `.zshrc`, etc.) should stay generic —
