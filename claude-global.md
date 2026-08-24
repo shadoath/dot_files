@@ -14,11 +14,11 @@ Unless I say otherwise, every unit of work follows this sequence by default — 
 
 1. **Spec first, then plan.** Before proposing an approach, nail down the desired end result — expected behavior, inputs/outputs, acceptance criteria — and work backward from it (see *Spec/Test-First Development*). Only after the result is defined, start in plan mode: present the approach and wait for my confirmation before editing. (See *Interaction Style*.)
 2. **Ask questions if needed.** Resolve ambiguity up front, before writing code — not after.
-3. **Build.** Branch off `master` before the first edit, then implement. (See *Branch Before Editing*.)
-4. **Open a PR — ready for review, never draft.** Never merge directly to `master`. (See *Definition of Done*.)
-5. **Run both reviews.** `/code-review` locally; Codex fires on its own when the PR opens ready (comment `@codex review` to re-trigger after pushing fixes).
+3. **Build.** Branch off the default branch (`master`, or `main` if that's what the repo uses) before the first edit, then implement. (See *Branch Before Editing*.)
+4. **Open a PR — ready for review, never draft.** Never merge directly to the default branch. (See *Definition of Done*.)
+5. **Run both reviews.** `/code-review` locally; Codex fires on its own when the PR opens ready (comment `@codex review` to re-trigger after pushing fixes). Skip Codex entirely for `rinsed-org` repos — see *Code Review & Iteration*.
 6. **Address findings.** Loop until both reviews are clear of **major** findings. (See *Definition of Done* for the major/minor distinction.)
-7. **Enable auto-merge.** Let the PR merge itself when CI is green, then `gcom` back to `master`.
+7. **Enable auto-merge.** Let the PR merge itself when CI is green, then `gcom` back to the default branch.
 8. **Bump the version.** Once the work has landed, open the version-bump PR so the shipped/deployed version isn't stale.
 
 The sections below carry the detail and edge cases for each step; this is the canonical order. If a repo can't support part of it (no PR/CI/auto-merge), say so and propose the closest equivalent rather than silently skipping.
@@ -64,15 +64,16 @@ Any work that requires me to do something by hand — anything outside what you 
 
 ## Branch Before Editing
 
-When starting new work, create a branch before making the first file change — but only if currently on `master` (the default branch). Steps:
+When starting new work, create a branch before making the first file change — but only if currently on the repo's default branch. Steps:
 
 - Before the first file mutation (Edit/Write/etc.), check the current branch.
-- If on `master`, create and switch to a well-named branch first: `feature/…` for new functionality, `fix/…` for bug fixes, `chore/…` for maintenance/docs/refactor.
+- If on the default branch, create and switch to a well-named branch first: `feature/…` for new functionality, `fix/…` for bug fixes, `chore/…` for maintenance/docs/refactor.
 - If already on a non-default branch (or detached HEAD), do not branch — keep working where you are.
 - Read-only exploration does not trigger this — only an actual edit does.
 
 ## Git & PRs
 
+- **Default branch is `master` unless the repo uses `main`.** Assume `master` first, but check (`git branch --show-current` right after clone, or `git symbolic-ref refs/remotes/origin/HEAD`) and use whichever the repo actually uses everywhere this file says "default branch" — branching, PR base, and the `gcom` return step.
 - **Verify worktree before any git operation.** Run `git worktree list` and `git branch --show-current`. Feature branches are often checked out in a separate worktree (see `gbdm`); don't commit on the wrong one.
 - **Ready PRs by default — never draft.** Use plain `gh pr create` (no `--draft`) unless I explicitly ask for a draft. Draft PRs rot: I go to a repo and find weeks-old drafts that should have merged long ago, and shipped versions that never got bumped. If a branch is worth pushing, it's worth opening ready and driving to merge. Anything already sitting in draft gets flipped ready (`gh pr ready <n>`) or closed — don't leave it.
 - **Never `--no-verify`, never `--amend`** unless I ask.
@@ -91,14 +92,14 @@ Keep PR descriptions SHORT and minimal.
 
 Unless I say otherwise, treat "the work is done" as a workflow, not a stopping point. When a unit of work is complete:
 
-- **Open a ready-for-review pull request** for the branch — not a draft (do not merge directly to `master`).
-- **Run both review passes:**
+- **Open a ready-for-review pull request** for the branch — not a draft (do not merge directly to the default branch).
+- **Run both review passes** (`rinsed-org` repos: Codex is skipped in favor of Arby, so this reduces to just #1 — see *Code Review & Iteration*):
   1. `/code-review` on the PR — triage and address the findings.
   2. Codex — it reviews automatically when a PR opens ready or a draft is marked ready, so opening ready is itself the trigger. Comment `@codex review` to re-trigger after pushing fixes. Address what it raises with judgment (see *Codex suggestions aren't gospel*).
 - Loop both until no **major** findings remain from either.
   - "Major" = correctness bugs, security issues, broken/missing tests, or anything that would block a careful human reviewer. Minor/nitpick/stylistic findings do not need to block the loop — note them but don't keep cycling on them.
 - Once both reviews are clean of major findings, enable auto-merge so the PR merges itself when CI passes and required checks are green.
-- After the merge completes, if I'm still on the merged branch, run the `gcom` alias to return to `master`. This pulls the merged changes into local `master` and deletes the now-stale branch, leaving me ready for the next unit of work. (`gcom` = `git checkout master && gpo && gbDm` — only for `master`-based repos without a `develop` branch.)
+- After the merge completes, if I'm still on the merged branch, run the `gcom` alias to return to the default branch. This pulls the merged changes into local `master`/`main` and deletes the now-stale branch, leaving me ready for the next unit of work. (`gcom` = `git checkout master && gpo && gbDm` — swap in `main` for repos that use it — only for repos without a `develop` branch.)
 - **Then bump the version.** Once all the work for the release has landed, open a version-bump PR through the same loop. A merged fix that never ships is the same as no fix — never leave the deployed/published version stale behind merged work.
 
 This is the default so I don't have to restate it per project. If a repo lacks PR/CI/auto-merge support, or the situation clearly calls for something else, say so and propose the closest equivalent rather than silently skipping it.
@@ -112,6 +113,7 @@ When asked to review code or a PR cold, provide the review first and wait for my
 Iterating on my own PR is different — that loop is expected:
 
 - **After pushing any PR, run the review loop.** Once a PR is pushed/opened: (1) run the `/code-review` slash command on it and triage + address the findings (applying judgment, not blindly), then (2) comment `@codex review` on the PR to trigger Codex, and address any real issues it (or another review bot) raises. Don't consider the PR done until both the slash review and the bot comments have been worked through.
+- **Skip Codex for `rinsed-org` repos.** Repos under the [rinsed-org](https://github.com/rinsed-org) GitHub org have Arby (Rinsed's own review bot) instead of Codex — don't comment `@codex review` or wait on Codex findings there. `/code-review` alone satisfies the review loop and *Definition of Done* for those repos; let Arby's automatic review run as it normally does.
 - **Default `/code-review` to `medium`. Never run `xhigh`, `max`, or the workflow-backed multi-agent mode unless I ask for it by name.** One `xhigh` run spawns 30–50 subagents; a six-loop session on three small perf PRs burned ~220 agents and ~15M subagent tokens. `high` is the ceiling for ordinary work, and only when the change is genuinely risky — correctness-critical logic, security, data migrations, or something that reaches production silently. Start at `medium` and escalate only if it comes back thin.
 - **Quote the cost before escalating a review.** If a level implies a large fan-out, say roughly how many agents that means and let me choose, rather than escalating on my behalf. Same for re-reviewing after each fix round — prefer scoping the re-review to the changed hunks over re-running the whole thing.
 - **Cap the wait for PR comments at 10 minutes.** Tests and checks are fast — keep the loop small and tight. If review comments haven't landed within 10 minutes of polling, stop waiting and tell me rather than idling longer.
