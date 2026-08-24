@@ -1,3 +1,5 @@
+include/personal.zsh
+# Legacy name, kept so a stale copy on a machine that hasn't renamed yet can't be committed
 include/personal_aliases.zsh
 include/rinsed.zsh
 .gitconfig
