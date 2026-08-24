@@ -71,12 +71,19 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # mise manages node, ruby, etc. — respects .nvmrc, .ruby-version, .tool-versions
 if command -v mise >/dev/null 2>&1; then
+  # mise doesn't respect .nvmrc for node by default; enable it once (preserving any
+  # tools already configured) so mise is the single source of truth for node version
+  # resolution, instead of running nvm's chpwd hook alongside mise's own.
+  idiomatic="$(mise settings get idiomatic_version_file_enable_tools 2>/dev/null | tr -d '[]" ')"
+  case ",$idiomatic," in
+    *,node,*) ;;
+    *) mise settings set idiomatic_version_file_enable_tools "node${idiomatic:+,$idiomatic}" >/dev/null 2>&1 ;;
+  esac
   eval "$(mise activate zsh)"
 fi
 
-# mise only respects .nvmrc for node if idiomatic_version_file_enable_tools includes
-# "node" (not on by default) — fall back to nvm's own .nvmrc hook whenever that's not
-# configured, whether or not mise itself is installed.
+# Fall back to nvm's own .nvmrc hook when mise isn't installed, or couldn't be
+# configured to respect .nvmrc for node (e.g. a read-only config file).
 if ! command -v mise >/dev/null 2>&1 || ! mise settings get idiomatic_version_file_enable_tools 2>/dev/null | grep -q node; then
   autoload -U add-zsh-hook
 
