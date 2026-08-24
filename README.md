@@ -167,7 +167,8 @@ work- or personal-specific stays out of tracked files:
   (`[[ -f ... ]] && source ...`) so a machine missing one just skips it.
 - `include/personal.zsh` was previously named `personal_aliases.zsh`. Because
   the file is gitignored, git can't rename it for you — on a machine still
-  holding the old name, run `mv include/personal_aliases.zsh include/personal.zsh`
+  holding the old name, run
+  `mv ~/dot_files/include/personal_aliases.zsh ~/dot_files/include/personal.zsh`
   or its contents stop loading (silently, since the guard just skips a missing
   file). Both names stay gitignored, so nothing leaks in the meantime.
 - `.gitconfig` does the same for git identity via
