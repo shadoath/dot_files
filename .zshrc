@@ -74,17 +74,19 @@ if command -v mise >/dev/null 2>&1; then
   # mise doesn't respect .nvmrc for node by default; enable it once (preserving any
   # tools already configured) so mise is the single source of truth for node version
   # resolution, instead of running nvm's chpwd hook alongside mise's own.
-  idiomatic="$(mise settings get idiomatic_version_file_enable_tools 2>/dev/null | tr -d '[]" ')"
+  # -C "$HOME" pins the read/write to the global config, ignoring any local
+  # mise.toml override in whatever directory the shell happens to start in.
+  idiomatic="$(mise settings get -C "$HOME" idiomatic_version_file_enable_tools 2>/dev/null | tr -d '[]" ')"
   case ",$idiomatic," in
     *,node,*) ;;
-    *) mise settings set idiomatic_version_file_enable_tools "node${idiomatic:+,$idiomatic}" >/dev/null 2>&1 ;;
+    *) mise settings set -C "$HOME" idiomatic_version_file_enable_tools "node${idiomatic:+,$idiomatic}" >/dev/null 2>&1 ;;
   esac
   eval "$(mise activate zsh)"
 fi
 
-# Fall back to nvm's own .nvmrc hook when mise isn't installed, or couldn't be
-# configured to respect .nvmrc for node (e.g. a read-only config file).
-if ! command -v mise >/dev/null 2>&1 || ! mise settings get idiomatic_version_file_enable_tools 2>/dev/null | grep -q node; then
+# Fall back to nvm's own .nvmrc hook when mise isn't installed, or its global config
+# genuinely couldn't be updated to respect .nvmrc for node (e.g. read-only).
+if ! command -v mise >/dev/null 2>&1 || ! mise settings get -C "$HOME" idiomatic_version_file_enable_tools 2>/dev/null | grep -q node; then
   autoload -U add-zsh-hook
 
   load-nvmrc() {
