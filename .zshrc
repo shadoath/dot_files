@@ -37,7 +37,7 @@ source $HOME/dot_files/include/rails_aliases.zsh
 source $HOME/dot_files/include/git_aliases.zsh
 source $HOME/dot_files/include/git_recent.zsh
 [[ -f $HOME/dot_files/include/rinsed.zsh ]] && source $HOME/dot_files/include/rinsed.zsh
-[[ -f $HOME/dot_files/include/personal_aliases.zsh ]] && source $HOME/dot_files/include/personal_aliases.zsh
+[[ -f $HOME/dot_files/include/personal.zsh ]] && source $HOME/dot_files/include/personal.zsh
 
 # User configuration
 
