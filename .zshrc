@@ -36,6 +36,7 @@ source $HOME/dot_files/include/base_aliases.zsh
 source $HOME/dot_files/include/rails_aliases.zsh
 source $HOME/dot_files/include/git_aliases.zsh
 source $HOME/dot_files/include/git_recent.zsh
+[[ -f $HOME/dot_files/include/rinsed.zsh ]] && source $HOME/dot_files/include/rinsed.zsh
 [[ -f $HOME/dot_files/include/personal_aliases.zsh ]] && source $HOME/dot_files/include/personal_aliases.zsh
 
 # User configuration
@@ -61,31 +62,6 @@ export NVM_DIR="$HOME/.nvm"
 
 export GPG_TTY=$(tty)
 
-# Auto-switch node version when entering a directory with .nvmrc
-autoload -U add-zsh-hook
-
-load-nvmrc() {
-  local nvmrc_path
-  nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version
-    nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
-      nvm use
-    fi
-  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-
 export NODE_OPTIONS="--max-old-space-size=8192 --openssl-legacy-provider"
 
 export PATH=/Users/skylar/.rover/bin:$PATH
@@ -94,7 +70,47 @@ export PATH="/opt/homebrew/sbin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # mise manages node, ruby, etc. — respects .nvmrc, .ruby-version, .tool-versions
-[ -x "$HOME/.local/bin/mise" ] && eval "$($HOME/.local/bin/mise activate zsh)"
+if command -v mise >/dev/null 2>&1; then
+  # mise doesn't respect .nvmrc for node by default; enable it once (preserving any
+  # tools already configured) so mise is the single source of truth for node version
+  # resolution, instead of running nvm's chpwd hook alongside mise's own.
+  # -C "$HOME" pins the read/write to the global config, ignoring any local
+  # mise.toml override in whatever directory the shell happens to start in.
+  idiomatic="$(mise settings get -C "$HOME" idiomatic_version_file_enable_tools 2>/dev/null | tr -d '[]" ')"
+  case ",$idiomatic," in
+    *,node,*) ;;
+    *) mise settings set -C "$HOME" idiomatic_version_file_enable_tools "node${idiomatic:+,$idiomatic}" >/dev/null 2>&1 ;;
+  esac
+  eval "$(mise activate zsh)"
+fi
+
+# Fall back to nvm's own .nvmrc hook when mise isn't installed, or its global config
+# genuinely couldn't be updated to respect .nvmrc for node (e.g. read-only).
+if ! command -v mise >/dev/null 2>&1 || ! mise settings get -C "$HOME" idiomatic_version_file_enable_tools 2>/dev/null | grep -q node; then
+  autoload -U add-zsh-hook
+
+  load-nvmrc() {
+    local nvmrc_path
+    nvmrc_path="$(nvm_find_nvmrc)"
+
+    if [ -n "$nvmrc_path" ]; then
+      local nvmrc_node_version
+      nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+      if [ "$nvmrc_node_version" = "N/A" ]; then
+        nvm install
+      elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+        nvm use
+      fi
+    elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+      echo "Reverting to nvm default version"
+      nvm use default
+    fi
+  }
+
+  add-zsh-hook chpwd load-nvmrc
+  load-nvmrc
+fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 

@@ -154,6 +154,20 @@ git config credential.helper store
 - `better-git-branch.sh` — branch table with PR status and terminal links (via `gh`)
 - `dumpclipboard.rb` — clipboard image → resized PNG for AI consumption
 
+## Personal vs. work config
+
+This repo is public and used on both personal and work machines, so anything
+work- or personal-specific stays out of tracked files:
+
+- `include/rinsed.zsh` and `include/personal_aliases.zsh` are gitignored —
+  create them locally per machine with whatever aliases, env vars, or
+  secrets belong there. `.zshrc` sources each with an existence guard
+  (`[[ -f ... ]] && source ...`) so a machine missing one just skips it.
+- `.gitconfig` does the same for git identity via
+  `includeIf "gitdir:~/code/"` pointing at a gitignored `~/.gitconfig-work`.
+- Tracked files (`base_aliases.zsh`, `.zshrc`, etc.) should stay generic —
+  safe to run and safe to be public on any machine.
+
 ## Tools
 
 - **`commit-velocity`** — Ruby CLI for per-author commit analytics with moving averages, quarterly rollups, and trend arrows. Run `commit-velocity --help` for options.
