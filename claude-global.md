@@ -23,7 +23,7 @@ Unless I say otherwise, every unit of work follows this sequence by default — 
 2. **Ask questions if needed.** Resolve ambiguity up front, before writing code — not after.
 3. **Build.** Branch off the default branch (`master`, or `main` if that's what the repo uses) before the first edit, then implement. (See *Branch Before Editing*.)
 4. **Open a PR — ready for review, never draft.** Never merge directly to the default branch. (See *Definition of Done*.)
-5. **Run the review loop.** `/code-review` locally, plus the repo's review bot — which bot applies and how to trigger it lives in the repo's `CLAUDE.local.md` (Codex for personal repos, Arby for rinsed-org).
+5. **Run the review loop.** `/code-review` locally, plus the repo's review bot — which bot applies and how to trigger it lives in the repo's `CLAUDE.local.md` (Codex for personal repos, Arby for rinsed-org). If no `CLAUDE.local.md` exists, flag it (run `~/dot_files/sync-claude-local.sh`) and default to the Codex flow — unless the repo is under rinsed-org, which always uses Arby.
 6. **Address findings.** Loop until both reviews are clear of **major** findings. (See *Definition of Done* for the major/minor distinction.)
 7. **Enable auto-merge.** Let the PR merge itself when CI is green, then `gcom` back to the default branch.
 8. **Bump the version.** Once the work has landed, open the version-bump PR so the shipped/deployed version isn't stale.

@@ -102,8 +102,11 @@ symlinked into each repo/worktree as `CLAUDE.local.md`:
 ~/dot_files/sync-claude-local.sh ~/other  # or pass root dirs
 ```
 
-Re-run it after cloning a repo or adding a worktree. `CLAUDE.local.md` is ignored
-everywhere via `~/.gitignore_global`.
+It links each immediate child of the root dirs (or the root itself if it's a repo);
+nested repos deeper than one level need their parent passed explicitly. Re-run it
+after cloning a repo or adding a worktree. `CLAUDE.local.md` is ignored everywhere
+via `~/.gitignore_global`, and a real (non-symlink) `CLAUDE.local.md` is never
+overwritten.
 
 ### Claude Code Global Settings
 

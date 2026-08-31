@@ -10,3 +10,4 @@ Symlinked into each non-rinsed repo as `CLAUDE.local.md` by `~/dot_files/sync-cl
 ## Workflow
 
 - The full global *Definition of Done* applies to personal repos too — ready PR, review loop, auto-merge, version bump. No lighter process unless I say so.
+- **Third-party/upstream clones are the exception.** If `origin` points at a repo I don't own (e.g. `rails/rails`, `curl-impersonate`), treat it as a read-only reference checkout — no PRs, no auto-merge, no pushes anywhere without asking first.
