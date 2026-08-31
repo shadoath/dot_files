@@ -57,6 +57,7 @@ ln -s ~/dot_files/.zshrc
 ln -s ~/dot_files/shadoath.zsh-theme ~/.oh-my-zsh/custom/themes/shadoath.zsh-theme
 ln -s ~/dot_files/.vimrc
 ln -s ~/dot_files/.gitignore_global
+git config --global core.excludesfile ~/.gitignore_global  # git won't read it otherwise
 ln -s ~/dot_files/.git-prompt.sh
 ln -s ~/dot_files/.agignore
 mkdir -p ~/bin
@@ -92,6 +93,21 @@ Symlink the global `CLAUDE.md` so it's version-tracked in this repo:
 mkdir -p ~/.claude
 ln -sf ~/dot_files/claude-global.md ~/.claude/CLAUDE.md
 ```
+
+`claude-global.md` holds the universal basics. Org-specific rules are split into
+`claude-rinsed.md` (rinsed-org repos) and `claude-personal.md` (everything else),
+symlinked into each repo/worktree as `CLAUDE.local.md`:
+
+```bash
+~/dot_files/sync-claude-local.sh          # defaults to ~/code
+~/dot_files/sync-claude-local.sh ~/other  # or pass root dirs
+```
+
+It links each immediate child of the root dirs (or the root itself if it's a repo);
+nested repos deeper than one level need their parent passed explicitly. Re-run it
+after cloning a repo or adding a worktree. `CLAUDE.local.md` is ignored everywhere
+via `~/.gitignore_global`, and a real (non-symlink) `CLAUDE.local.md` is never
+overwritten.
 
 ### Claude Code Global Settings
 
