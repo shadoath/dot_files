@@ -38,6 +38,7 @@ When you see a real choice between approaches, present numbered or lettered opti
 ## Planning
 
 - For any non-trivial change, present 2–3 approaches with tradeoffs, the files each would touch, and what's explicitly OUT of scope — then wait for me to pick one BEFORE searching the codebase broadly or editing anything. Do not expand scope beyond what was asked.
+- Targeted investigation to ground the options (tracing the relevant code path, verifying a load-bearing assumption — see *Spec/Test-First Development* and *Investigate before implementing*) still happens first; it's broad exploration and edits that wait for my pick.
 
 ## Pulling Ambiguity Out Early
 
@@ -92,8 +93,8 @@ When starting new work, create a branch before making the first file change — 
 
 ## Before Opening a PR
 
-- Run the N+1 detectors locally (Prosopite/Bullet) and Brakeman on changed files before pushing; CI has failed on N+1 and Brakeman warnings repeatedly.
-- Verify migrations include required FK indexes (the migration-check job fails otherwise).
+- For Rails repos with these tools configured (e.g. the rinsed web repo): run the N+1 detectors locally (Prosopite/Bullet) and Brakeman on changed files before pushing; CI has failed on N+1 and Brakeman warnings repeatedly.
+- Verify migrations include required FK indexes (repos with a migration-check job fail otherwise).
 - Re-read the file from disk immediately before editing after any rebase/branch switch — silent no-op edits from stale file assumptions have happened.
 
 ## PR Descriptions — Keep Them Short
@@ -180,7 +181,7 @@ For data entry tasks (JSON content updates, version history, newsletters), alway
 
 ## Communication Style
 
-- Default to plain-language summaries for reports, review write-ups, PR descriptions, and Slack blurbs. Lead with impact and decisions; put code snippets in a collapsed 'Details' section or omit them.
+- Default to plain-language summaries for reports, review write-ups, PR descriptions, and Slack blurbs. Lead with impact and decisions; put code snippets in a collapsed 'Details' section or omit them. (PR descriptions still follow *PR Descriptions — Keep Them Short* — for those, omit snippets rather than adding a Details section.)
 - Slack blurbs must be 3 sentences or fewer unless asked otherwise.
 - Never state a conclusion about production data or system behavior without citing the code path or query that proves it; flag unverified claims explicitly as hypotheses.
 
