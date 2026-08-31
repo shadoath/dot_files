@@ -93,6 +93,18 @@ mkdir -p ~/.claude
 ln -sf ~/dot_files/claude-global.md ~/.claude/CLAUDE.md
 ```
 
+`claude-global.md` holds the universal basics. Org-specific rules are split into
+`claude-rinsed.md` (rinsed-org repos) and `claude-personal.md` (everything else),
+symlinked into each repo/worktree as `CLAUDE.local.md`:
+
+```bash
+~/dot_files/sync-claude-local.sh          # defaults to ~/code
+~/dot_files/sync-claude-local.sh ~/other  # or pass root dirs
+```
+
+Re-run it after cloning a repo or adding a worktree. `CLAUDE.local.md` is ignored
+everywhere via `~/.gitignore_global`.
+
 ### Claude Code Global Settings
 
 Symlink the global `settings.json` (permissions, hooks, plugins, defaults) so it's

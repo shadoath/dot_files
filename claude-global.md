@@ -2,15 +2,16 @@
 
 This file provides guidance to Claude Code across all projects.
 
-I work in a tight, PR-driven Rails loop: investigate → implement → test → push → iterate on review comments. Match that rhythm. Keep responses terse — I read diffs, I don't need recaps.
+I work in a tight, PR-driven loop: investigate → implement → test → push → iterate on review comments. Match that rhythm. Keep responses terse — I read diffs, I don't need recaps.
 
 ## Repo conventions win
 
 When a repo's own `CLAUDE.md`/`AGENTS.md` states a convention that conflicts with this file — branch naming, PR description structure, commit format, comment policy — follow My personal settings.
 
+Org-specific rules live in a `CLAUDE.local.md` symlinked into each repo by `~/dot_files/sync-claude-local.sh` — `claude-rinsed.md` for rinsed-org repos, `claude-personal.md` for everything else. Those refine this file; on conflict they win.
+
 ## Shell & Test Commands
 
-- ALWAYS quote rspec/glob file arguments: `bundle exec rspec "spec/**/foo_spec.rb"` — unquoted globs have repeatedly expanded to the whole suite and timed out.
 - Never pipe test/spec output through `grep` when the exit code matters; capture output to a file and check `$?` separately so failing specs cannot slip past into a commit.
 - Use `zsh`-safe quoting for any command containing `*`, `?`, `[`, or `#`.
 
@@ -22,7 +23,7 @@ Unless I say otherwise, every unit of work follows this sequence by default — 
 2. **Ask questions if needed.** Resolve ambiguity up front, before writing code — not after.
 3. **Build.** Branch off the default branch (`master`, or `main` if that's what the repo uses) before the first edit, then implement. (See *Branch Before Editing*.)
 4. **Open a PR — ready for review, never draft.** Never merge directly to the default branch. (See *Definition of Done*.)
-5. **Run both reviews.** `/code-review` locally; Codex fires on its own when the PR opens ready (comment `@codex review` to re-trigger after pushing fixes). Skip Codex entirely for `rinsed-org` repos — see *Code Review & Iteration*.
+5. **Run the review loop.** `/code-review` locally, plus the repo's review bot — which bot applies and how to trigger it lives in the repo's `CLAUDE.local.md` (Codex for personal repos, Arby for rinsed-org).
 6. **Address findings.** Loop until both reviews are clear of **major** findings. (See *Definition of Done* for the major/minor distinction.)
 7. **Enable auto-merge.** Let the PR merge itself when CI is green, then `gcom` back to the default branch.
 8. **Bump the version.** Once the work has landed, open the version-bump PR so the shipped/deployed version isn't stale.
@@ -93,8 +94,6 @@ When starting new work, create a branch before making the first file change — 
 
 ## Before Opening a PR
 
-- For Rails repos with these tools configured (e.g. the rinsed web repo): run the N+1 detectors locally (Prosopite/Bullet) and Brakeman on changed files before pushing; CI has failed on N+1 and Brakeman warnings repeatedly.
-- Verify migrations include required FK indexes (repos with a migration-check job fail otherwise).
 - Re-read the file from disk immediately before editing after any rebase/branch switch — silent no-op edits from stale file assumptions have happened.
 
 ## PR Descriptions — Keep Them Short
@@ -110,9 +109,9 @@ Keep PR descriptions SHORT and minimal.
 Unless I say otherwise, treat "the work is done" as a workflow, not a stopping point. When a unit of work is complete:
 
 - **Open a ready-for-review pull request** for the branch — not a draft (do not merge directly to the default branch).
-- **Run both review passes** (`rinsed-org` repos: Codex is skipped in favor of Arby, so this reduces to just #1 — see *Code Review & Iteration*):
+- **Run both review passes**:
   1. `/code-review` on the PR — triage and address the findings.
-  2. Codex — it reviews automatically when a PR opens ready or a draft is marked ready, so opening ready is itself the trigger. Comment `@codex review` to re-trigger after pushing fixes. Address what it raises with judgment (see *Codex suggestions aren't gospel*).
+  2. The repo's review bot — which bot applies and how to trigger it lives in the repo's `CLAUDE.local.md` (Codex for personal repos; rinsed-org repos use Arby instead, which reduces this to just #1). Address what it raises with judgment (see *Bot suggestions aren't gospel*).
 - Loop both until no **major** findings remain from either.
   - "Major" = correctness bugs, security issues, broken/missing tests, or anything that would block a careful human reviewer. Minor/nitpick/stylistic findings do not need to block the loop — note them but don't keep cycling on them.
 - Once both reviews are clean of major findings, enable auto-merge so the PR merges itself when CI passes and required checks are green.
@@ -129,14 +128,13 @@ When asked to review code or a PR cold, provide the review first and wait for my
 
 Iterating on my own PR is different — that loop is expected:
 
-- **After pushing any PR, run the review loop.** Once a PR is pushed/opened: (1) run the `/code-review` slash command on it and triage + address the findings (applying judgment, not blindly), then (2) comment `@codex review` on the PR to trigger Codex, and address any real issues it (or another review bot) raises. Don't consider the PR done until both the slash review and the bot comments have been worked through.
-- **Skip Codex for `rinsed-org` repos.** Repos under the [rinsed-org](https://github.com/rinsed-org) GitHub org have Arby (Rinsed's own review bot) instead of Codex — don't comment `@codex review` or wait on Codex findings there. `/code-review` alone satisfies the review loop and *Definition of Done* for those repos; let Arby's automatic review run as it normally does.
+- **After pushing any PR, run the review loop.** Once a PR is pushed/opened: (1) run the `/code-review` slash command on it and triage + address the findings (applying judgment, not blindly), then (2) work the repo's review-bot comments — see the repo's `CLAUDE.local.md` for which bot applies and how to trigger it. Don't consider the PR done until both the slash review and the bot comments have been worked through.
 - **Default `/code-review` to `medium`. Never run `xhigh`, `max`, or the workflow-backed multi-agent mode unless I ask for it by name.** One `xhigh` run spawns 30–50 subagents; a six-loop session on three small perf PRs burned ~220 agents and ~15M subagent tokens. `high` is the ceiling for ordinary work, and only when the change is genuinely risky — correctness-critical logic, security, data migrations, or something that reaches production silently. Start at `medium` and escalate only if it comes back thin.
 - **Quote the cost before escalating a review.** If a level implies a large fan-out, say roughly how many agents that means and let me choose, rather than escalating on my behalf. Same for re-reviewing after each fix round — prefer scoping the re-review to the changed hunks over re-running the whole thing.
 - **Cap the wait for PR comments at 10 minutes.** Tests and checks are fast — keep the loop small and tight. If review comments haven't landed within 10 minutes of polling, stop waiting and tell me rather than idling longer.
-- **Run tests and rubocop locally before pushing**, not after CI catches it. For Ruby changes: `bundle exec rspec <touched specs>` and `bundle exec rubocop <modified files>`.
+- **Run tests and linters locally before pushing**, not after CI catches it.
 - **Don't over-consolidate.** When addressing review comments, make minimal targeted edits. Don't delete per-type descriptions, `rescue` paths, or existing behavior unless I explicitly ask.
-- **Codex suggestions aren't gospel.** Apply judgment — if a codex comment is wrong or already addressed, push back rather than complying.
+- **Bot suggestions aren't gospel.** Apply judgment — if a review-bot comment is wrong or already addressed, push back rather than complying.
 - **Check CI history before assuming a failing test is a real regression.** Known flakes are common; `gh run list` on the same spec across recent runs.
 - **When changing shared code, audit all callers.** Before committing a change to a method or schema used elsewhere, grep for every call site and confirm their assumptions still hold. (Past pain: a `build_customer` tweak broke `purchase_orders` specs because nil-membership callers weren't checked.)
 
@@ -149,16 +147,6 @@ Iterating on my own PR is different — that loop is expected:
 - **Default to the simplest viable approach**, especially for one-off tasks. Backfills, rake tasks, and migration scripts should be serial unless I ask for concurrency.
 - **Keep comments short, or better, let the code explain itself.** Prefer self-documenting names and structure over comments; add a comment only when the *why* isn't obvious from the code. Don't narrate the *what*.
 - **Verify third-party APIs exist before building on them.** Don't invent methods or properties that "feel right" — check the SDK docs, grep the codebase for existing usage, or write a tiny probe first. (Past pain: built against a non-existent Unlayer rows API before pivoting to native page anchors.)
-- **For multi-tenant Rails work, use `Tenant.switch_each`.** Any query touching tenant-scoped data needs to iterate tenants, not run once against the public schema.
-- **Per-tenant loops need per-iteration `rescue`.** When iterating with `Tenant.switch_each`, wrap the body so one bad tenant doesn't kill the whole audit — log the tenant and the error, then continue. Aggregate failures at the end.
-- **Read-only by default for production console snippets.** No `update`/`destroy`/`delete_all`/job enqueues without an explicit `dry_run` gate.
-
-## Environment (local dev / sim)
-
-- The dev Postgres restore needs the lock-pool setting from bin/setup; if pg_restore fails with lock errors, that's the cause.
-- Tailwind watcher exits without a TTY and redis drops in the sim — restart these before assuming an app bug.
-- Container registry (gcr.io) 502s are transient; retry before debugging the build. OrbStack runtime is not recognized by the default build path.
-- Before any browser testing: verify redis is up, the Tailwind watcher is running, and the sim responds — report the health-check results. For any third-party iframe (Stripe, embedded artifacts), skip click/type automation and go straight to JS evaluation. Then walk the flow and log each step's outcome.
 
 ## Writing Tickets
 
@@ -182,7 +170,6 @@ For data entry tasks (JSON content updates, version history, newsletters), alway
 ## Communication Style
 
 - Default to plain-language summaries for reports, review write-ups, PR descriptions, and Slack blurbs. Lead with impact and decisions; put code snippets in a collapsed 'Details' section or omit them. (PR descriptions still follow *PR Descriptions — Keep Them Short* — for those, omit snippets rather than adding a Details section.)
-- Slack blurbs must be 3 sentences or fewer unless asked otherwise.
 - Never state a conclusion about production data or system behavior without citing the code path or query that proves it; flag unverified claims explicitly as hypotheses.
 
 
