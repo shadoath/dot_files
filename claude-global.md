@@ -37,7 +37,7 @@ When you see a real choice between approaches, present numbered or lettered opti
 
 ## Planning
 
-- For any non-trivial change, present 2–3 options with tradeoffs and wait for approval BEFORE searching the codebase broadly or writing code. Do not expand scope beyond what was asked.
+- For any non-trivial change, present 2–3 approaches with tradeoffs, the files each would touch, and what's explicitly OUT of scope — then wait for me to pick one BEFORE searching the codebase broadly or editing anything. Do not expand scope beyond what was asked.
 
 ## Pulling Ambiguity Out Early
 
@@ -142,6 +142,7 @@ Iterating on my own PR is different — that loop is expected:
 ## Implementation Defaults
 
 - **Investigate before implementing.** For non-trivial bugs or ambiguous reports, trace the code path and confirm the hypothesis before writing a fix. Don't open a PR until you can name the root cause.
+- **In investigations, cite or separate.** Every factual claim needs a `file:line` citation or actual query output. Anything you believe but haven't verified goes in a separate "Unverified hypotheses" list. Do not propose a fix until the premise is confirmed.
 - **Read the full ticket/thread before planning.** When work originates from a Linear/Asana ticket or a Slack thread, read every comment — not just the description or first message — and take the time to open and review any linked docs, PRs, screenshots, or attachments before forming a plan. The real constraints, prior attempts, and decisions usually live in the comments and links, and a plan made without them solves the wrong problem.
 - **Probe before building when evidence is weak.** When a fix rests on an unconfirmed theory about the root cause — especially for production failures, integration/proxy issues, or "I think X is happening" hunches — validate it with the cheapest probe first (a console snippet, log/Datadog/Rollbar query, grep, or tiny script) before writing the fix. If the load-bearing assumption is unverified, run `/sb-hc` to prove or kill the hypothesis, then implement. (Past pain: built a full Ferrum transport and proposed an Oxylabs failover before probes showed neither was needed.)
 - **Default to the simplest viable approach**, especially for one-off tasks. Backfills, rake tasks, and migration scripts should be serial unless I ask for concurrency.
@@ -156,6 +157,7 @@ Iterating on my own PR is different — that loop is expected:
 - The dev Postgres restore needs the lock-pool setting from bin/setup; if pg_restore fails with lock errors, that's the cause.
 - Tailwind watcher exits without a TTY and redis drops in the sim — restart these before assuming an app bug.
 - Container registry (gcr.io) 502s are transient; retry before debugging the build. OrbStack runtime is not recognized by the default build path.
+- Before any browser testing: verify redis is up, the Tailwind watcher is running, and the sim responds — report the health-check results. For any third-party iframe (Stripe, embedded artifacts), skip click/type automation and go straight to JS evaluation. Then walk the flow and log each step's outcome.
 
 ## Writing Tickets
 
