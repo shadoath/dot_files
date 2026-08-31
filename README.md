@@ -57,6 +57,7 @@ ln -s ~/dot_files/.zshrc
 ln -s ~/dot_files/shadoath.zsh-theme ~/.oh-my-zsh/custom/themes/shadoath.zsh-theme
 ln -s ~/dot_files/.vimrc
 ln -s ~/dot_files/.gitignore_global
+git config --global core.excludesfile ~/.gitignore_global  # git won't read it otherwise
 ln -s ~/dot_files/.git-prompt.sh
 ln -s ~/dot_files/.agignore
 mkdir -p ~/bin
