@@ -8,6 +8,12 @@ I work in a tight, PR-driven Rails loop: investigate → implement → test → 
 
 When a repo's own `CLAUDE.md`/`AGENTS.md` states a convention that conflicts with this file — branch naming, PR description structure, commit format, comment policy — follow My personal settings.
 
+## Shell & Test Commands
+
+- ALWAYS quote rspec/glob file arguments: `bundle exec rspec "spec/**/foo_spec.rb"` — unquoted globs have repeatedly expanded to the whole suite and timed out.
+- Never pipe test/spec output through `grep` when the exit code matters; capture output to a file and check `$?` separately so failing specs cannot slip past into a commit.
+- Use `zsh`-safe quoting for any command containing `*`, `?`, `[`, or `#`.
+
 ## Default Session Workflow
 
 Unless I say otherwise, every unit of work follows this sequence by default — I should not have to ask for it:
@@ -28,6 +34,10 @@ The sections below carry the detail and edge cases for each step; this is the ca
 Before implementing changes, briefly state your plan and wait for confirmation. Do not start editing files until the user approves the approach, especially for refactoring tasks.
 
 When you see a real choice between approaches, present numbered or lettered options (1/2/3 or A/B) and wait for me to pick. I reply with "Option 2" or "A" — make that easy.
+
+## Planning
+
+- For any non-trivial change, present 2–3 options with tradeoffs and wait for approval BEFORE searching the codebase broadly or writing code. Do not expand scope beyond what was asked.
 
 ## Pulling Ambiguity Out Early
 
@@ -79,6 +89,12 @@ When starting new work, create a branch before making the first file change — 
 - **Never `--no-verify`, never `--amend`** unless I ask.
 - **Don't wrap commit message lines.** No fixed line-length limit — write each line in full and let it run long rather than inserting hard line breaks. These messages land in production history and forced wrapping makes them annoying to read.
 - **Write `gh pr create` / `gh pr edit` bodies via a temp file or HEREDOC**, not inline strings — backticks in descriptions break inline quoting.
+
+## Before Opening a PR
+
+- Run the N+1 detectors locally (Prosopite/Bullet) and Brakeman on changed files before pushing; CI has failed on N+1 and Brakeman warnings repeatedly.
+- Verify migrations include required FK indexes (the migration-check job fails otherwise).
+- Re-read the file from disk immediately before editing after any rebase/branch switch — silent no-op edits from stale file assumptions have happened.
 
 ## PR Descriptions — Keep Them Short
 
@@ -135,6 +151,12 @@ Iterating on my own PR is different — that loop is expected:
 - **Per-tenant loops need per-iteration `rescue`.** When iterating with `Tenant.switch_each`, wrap the body so one bad tenant doesn't kill the whole audit — log the tenant and the error, then continue. Aggregate failures at the end.
 - **Read-only by default for production console snippets.** No `update`/`destroy`/`delete_all`/job enqueues without an explicit `dry_run` gate.
 
+## Environment (local dev / sim)
+
+- The dev Postgres restore needs the lock-pool setting from bin/setup; if pg_restore fails with lock errors, that's the cause.
+- Tailwind watcher exits without a TTY and redis drops in the sim — restart these before assuming an app bug.
+- Container registry (gcr.io) 502s are transient; retry before debugging the build. OrbStack runtime is not recognized by the default build path.
+
 ## Writing Tickets
 
 When writing tickets (Linear, Asana, GitHub issues, etc.), keep them readable by anyone — not just engineers.
@@ -153,6 +175,12 @@ When working across multiple repositories, always confirm the current file struc
 ## Data & Content Updates
 
 For data entry tasks (JSON content updates, version history, newsletters), always confirm the target file structure and schema by reading an existing entry before adding new ones.
+
+## Communication Style
+
+- Default to plain-language summaries for reports, review write-ups, PR descriptions, and Slack blurbs. Lead with impact and decisions; put code snippets in a collapsed 'Details' section or omit them.
+- Slack blurbs must be 3 sentences or fewer unless asked otherwise.
+- Never state a conclusion about production data or system behavior without citing the code path or query that proves it; flag unverified claims explicitly as hypotheses.
 
 
 <!-- SEMBLE_START -->
