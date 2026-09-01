@@ -74,7 +74,22 @@ ln -sf ~/dot_files/sync-tab-color.sh ~/.claude/hooks/sync-tab-color.sh
 ln -sf ~/dot_files/spending-tracker.sh ~/.claude/hooks/spending-tracker.sh
 ```
 
-`notify.sh` is referenced directly from the repo (`$HOME/dot_files/notify.sh`) so no symlink is needed.
+`notify.sh` and `set-tab-color.sh` are referenced directly from the repo (`$HOME/dot_files/...`) so they need no symlink.
+`sync-tab-color.sh` finds `set-tab-color.sh` next to its own real path, so the symlink above is enough for both.
+
+### Tab colors
+
+Tab color comes from the directory: a `web-<color>` worktree forces that color, anything else hashes its repo
+root so a given directory always looks the same. The palette is iTerm's own tab-color swatch row, so an
+automatic color and one picked by right-clicking a tab are the same color. Widen the palette in
+iTerm Settings → Advanced → search "tab color" (`TabColorMenuOptions`); the hook picks up new swatches with no
+code change, and more swatches means fewer directories sharing a color.
+
+Override it by hand with `set-tab-color.sh <name|#rrggbb>` or the `/sb-tab-color` command. The choice is pinned
+for that terminal so the Stop hook won't overwrite it, and clears on `set-tab-color.sh reset` — which repaints the
+directory-derived color immediately rather than waiting for the next hook — or when the terminal exits, on
+reboot, or after half a day unused. Colour names resolve to the matching swatch, so `red` and a
+`web-red` tab render identically.
 
 ### Claude Code Commands
 
@@ -195,7 +210,7 @@ work- or personal-specific stays out of tracked files:
 ## Tools
 
 - **`commit-velocity`** — Ruby CLI for per-author commit analytics with moving averages, quarterly rollups, and trend arrows. Run `commit-velocity --help` for options.
-- **`sync-tab-color.sh` / `spending-tracker.sh` / `notify.sh`** — Claude Code hooks (see above) for iTerm tab coloring per session, token-spend alerts, and terminal notifications.
+- **`sync-tab-color.sh` / `set-tab-color.sh` / `spending-tracker.sh` / `notify.sh`** — Claude Code hooks (see above) for iTerm tab coloring per session, manual tab-color overrides, token-spend alerts, and terminal notifications.
 - **`workflow-remover.sh`** — deletes runs of disabled GitHub Actions workflows. Usage: `workflow-remover.sh <org> <repo>`.
 
 ## Keyboard
