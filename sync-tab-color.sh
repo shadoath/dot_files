@@ -6,12 +6,18 @@
 # Precedence:
 #   1. If the session runs in a `web-<color>` worktree, force that color so the
 #      tab reliably signals which worktree you're in.
-#   2. Otherwise fall back to the session's agentColor from the transcript.
+#   2. Otherwise derive a stable color by hashing the repo root, so every
+#      session gets a tab color and a given directory always looks the same.
 
 INPUT=$(cat)
 
-# 1. Worktree-based color wins — check cwd before consulting the transcript.
 CWD=$(echo "$INPUT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('cwd',''))" 2>/dev/null)
+
+if [ -z "$CWD" ]; then
+  exit 0
+fi
+
+# 1. Explicitly named worktrees win.
 case "$CWD" in
   */code/web-blue*)   COLOR=blue   ;;
   */code/web-green*)  COLOR=green  ;;
@@ -20,19 +26,17 @@ case "$CWD" in
   */code/web-red*)    COLOR=red    ;;
 esac
 
-# 2. Fall back to the session's agent color from the transcript.
+# 2. Hash the repo root so every other directory gets its own stable color.
+#    Hashing the root rather than $CWD keeps the color steady as you cd around
+#    inside a worktree. The palette deliberately omits the five reserved colors
+#    above so a hashed tab is never mistaken for a `web-<color>` worktree.
 if [ -z "$COLOR" ]; then
-  TRANSCRIPT=$(echo "$INPUT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('transcript_path',''))" 2>/dev/null)
+  ROOT=$(git -C "$CWD" rev-parse --show-toplevel 2>/dev/null)
+  [ -n "$ROOT" ] || ROOT="$CWD"
 
-  if [ -z "$TRANSCRIPT" ] || [ ! -f "$TRANSCRIPT" ]; then
-    exit 0
-  fi
-
-  COLOR=$(grep -o '"agentColor":"[^"]*"' "$TRANSCRIPT" | tail -1 | cut -d'"' -f4)
-
-  if [ -z "$COLOR" ]; then
-    exit 0
-  fi
+  HASH=$(printf '%s' "$ROOT" | cksum | cut -d' ' -f1)
+  PALETTE=(purple pink cyan magenta lime teal coral salmon gold olive indigo maroon)
+  COLOR=${PALETTE[$(( HASH % ${#PALETTE[@]} ))]}
 fi
 
 # Map color names to R G B (0-255)
