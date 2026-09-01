@@ -1,40 +1,53 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git:*)",
+      "Bash(./manage.sh:*)",
+      "Bash(./start.sh:*)",
+      "Bash(/Users/skylar/bin/dumpclipboard:*)",
+      "Bash(RAILS_ENV=test bundle exec rails db:test:prepare:*)",
+      "Bash(bin/rails routes:*)",
+      "Bash(bundle:*)",
+      "Bash(chmod:*)",
+      "Bash(cp:*)",
+      "Bash(docker:*)",
+      "Bash(find:*)",
+      "Bash(fly:*)",
+      "Bash(gem:*)",
+      "Bash(gh pr create --title \"Add GitHub Action to delete stale merged branches\" --body \"$\\(cat <<''EOF''\n## Summary\n- Adds a new `workflow_dispatch` GitHub Action that deletes branches older than 6 months that have been fully merged into the default branch\n- Skips protected branches and a safelist \\(`master`, `staging`, `production`\\)\n- Fixes existing `draft_inactive_prs.rb` script to paginate through all open PRs instead of only the first page \\(default 30\\)\n\n## Test plan\n- [ ] Trigger the `Delete Stale Merged Branches` workflow manually from the Actions tab\n- [ ] Verify it only deletes merged branches older than 6 months\n- [ ] Verify protected branches are not deleted\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\nEOF\n\\)\")",
       "Bash(gh:*)",
+      "Bash(git:*)",
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(node:*)",
       "Bash(npm:*)",
       "Bash(npx:*)",
-      "Bash(node:*)",
-      "Bash(ls:*)",
-      "Bash(cp:*)",
-      "Bash(mv:*)",
-      "Bash(mkdir:*)",
-      "Bash(rm:*)",
-      "Bash(chmod:*)",
-      "Bash(unzip:*)",
-      "Bash(sips:*)",
-      "Bash(python3:*)",
       "Bash(pip3 install:*)",
+      "Bash(python3:*)",
+      "Bash(rails:*)",
+      "Bash(rbenv:*)",
+      "Bash(redis-cli ping:*)",
+      "Bash(redis-server:*)",
+      "Bash(rm:*)",
       "Bash(ruby:*)",
+      "Bash(sips:*)",
+      "Bash(sort:*)",
+      "Bash(unzip:*)",
       "Bash(vite:*)",
       "Bash(wrangler:*)",
       "Bash(wxt:*)",
+      "Bash(xargs:*)",
+      "Bash(yarn prettier:*)",
       "Bash(yt-dlp:*)",
-      "Bash(bundle:*)",
-      "Bash(gem:*)",
-      "Bash(rbenv:*)",
-      "Bash(rails:*)",
-      "Bash(./manage.sh:*)",
-      "Bash(./start.sh:*)",
-      "Bash(docker:*)",
-      "Bash(fly:*)",
-      "WebSearch",
-      "WebFetch(domain:localhost)",
-      "WebFetch(domain:github.com)",
-      "WebFetch(domain:fly.io)",
+      "Read(~/.local/share/mise/installs/ruby/**)",
+      "Read(~/.rbenv/versions/**/gems/**)",
+      "WebFetch(domain:chromewebstore.google.com)",
       "WebFetch(domain:deepwiki.com)",
-      "WebFetch(domain:chromewebstore.google.com)"
+      "WebFetch(domain:fly.io)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:localhost)",
+      "WebSearch"
     ],
     "defaultMode": "auto"
   },
@@ -46,8 +59,7 @@
           {
             "type": "command",
             "command": "$HOME/dot_files/set-tab-color.sh --clear-pin",
-            "timeout": 5,
-            "async": true
+            "timeout": 5
           }
         ]
       }
@@ -99,14 +111,27 @@
           }
         ]
       }
+    ],
+    "Notification": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/dot_files/notify.sh"
+          }
+        ]
+      }
     ]
   },
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true,
     "ruby-lsp@claude-plugins-official": true,
-    "cloudflare@claude-plugins-official": true
+    "cloudflare@claude-plugins-official": true,
+    "linear@claude-plugins-official": false,
+    "pr-review-toolkit@claude-plugins-official": false
   },
-  "effortLevel": "xhigh",
+  "effortLevel": "high",
   "tui": "fullscreen",
   "skipDangerousModePermissionPrompt": true,
   "skipWorkflowUsageWarning": true,
@@ -114,5 +139,15 @@
   "autoCompactEnabled": true,
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "model": "fable",
+  "skillOverrides": {
+    "launch-cycle": "off",
+    "sb-cap": "off",
+    "sb-dwt": "off",
+    "sb-next-task": "off",
+    "sb-update-specs": "off",
+    "explore": "off"
+  },
+  "theme": "dark"
 }
