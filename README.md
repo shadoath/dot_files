@@ -86,8 +86,9 @@ iTerm Settings → Advanced → search "tab color" (`TabColorMenuOptions`); the 
 code change, and more swatches means fewer directories sharing a color.
 
 Override it by hand with `set-tab-color.sh <name|#rrggbb>` or the `/sb-tab-color` command. The choice is pinned
-for that terminal so the Stop hook won't overwrite it, and clears on `set-tab-color.sh reset`, at session end,
-or on reboot.
+for that terminal so the Stop hook won't overwrite it, and clears on `set-tab-color.sh reset`, when the terminal
+exits, on reboot, or after half a day unused. Colour names resolve to the matching swatch, so `red` and a
+`web-red` tab render identically.
 
 ### Claude Code Commands
 

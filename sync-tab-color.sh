@@ -29,9 +29,15 @@ TARGET=$(resolve_tty) || exit 0
 
 # 1. A pin outranks anything derived from the directory.
 PIN=$(pin_file "$TARGET")
-if [ -s "$PIN" ]; then
-  RGB=$(color_to_rgb "$(cat "$PIN")") && apply "$TARGET" $RGB
-  exit 0
+PINNED=$(read_pin "$PIN")
+if [ -n "$PINNED" ]; then
+  if RGB=$(color_to_rgb "$PINNED"); then
+    touch "$PIN"   # keep an in-use pin from ageing out
+    apply "$TARGET" $RGB
+    exit 0
+  fi
+  # A pin we can't parse would otherwise wedge the tab with no color at all.
+  rm -f "$PIN"
 fi
 
 # Resolve the repo root up front so the reserved match and the hash below agree
