@@ -60,6 +60,31 @@ hash_palette() {
   done
 }
 
+# The color a directory resolves to with no pin in play: the reserved color of a
+# `web-<color>` worktree, else a hash of the repo root against the shared palette.
+# Hashing the root rather than the path keeps the color steady as you cd around.
+derive_color() {
+  local cwd=$1 root hash palette
+  [ -n "$cwd" ] || return 1
+  root=$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null)
+  [ -n "$root" ] || root="$cwd"
+  root=${root%/}
+  [ -n "$root" ] || root=/
+
+  case "$root" in
+    */code/web-blue*)   echo "$RESERVED_BLUE"   ; return 0 ;;
+    */code/web-green*)  echo "$RESERVED_GREEN"  ; return 0 ;;
+    */code/web-yellow*) echo "$RESERVED_YELLOW" ; return 0 ;;
+    */code/web-orange*) echo "$RESERVED_ORANGE" ; return 0 ;;
+    */code/web-red*)    echo "$RESERVED_RED"    ; return 0 ;;
+  esac
+
+  hash=$(printf '%s' "$root" | cksum | cut -d' ' -f1)
+  palette=($(hash_palette))
+  [ ${#palette[@]} -gt 0 ] || return 1
+  echo "${palette[$(( hash % ${#palette[@]} ))]}"
+}
+
 # Names are a readable alias for a hex value. The ones iTerm ships a swatch for
 # resolve to that swatch, so `red` here, a `web-red` tab and right-click → red
 # are all the same color. The rest are kept from the original table for callers
@@ -166,7 +191,13 @@ PIN=$(pin_file "$TARGET")
 case "$1" in
   reset)
     rm -f "$PIN"
-    printf "\033]6;1;bg;*;default\007" > "$TARGET"
+    # Blanking the tab would leave it uncolored until the next hook fires, which
+    # in an idle shell can be a long time.
+    if COLOR=$(derive_color "$PWD") && RGB=$(color_to_rgb "$COLOR"); then
+      apply "$TARGET" $RGB
+    else
+      printf "\033]6;1;bg;*;default\007" > "$TARGET"
+    fi
     exit 0
     ;;
   '')

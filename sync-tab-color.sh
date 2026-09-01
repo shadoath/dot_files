@@ -40,31 +40,9 @@ if [ -n "$PINNED" ]; then
   rm -f "$PIN"
 fi
 
-# Resolve the repo root up front so the reserved match and the hash below agree
-# on one canonical path. This keeps the color steady as you cd around inside a
-# worktree, and lets a worktree reached through a symlink still match its
-# reserved name.
-ROOT=$(git -C "$CWD" rev-parse --show-toplevel 2>/dev/null)
-[ -n "$ROOT" ] || ROOT="$CWD"
-ROOT=${ROOT%/}
-[ -n "$ROOT" ] || ROOT=/
-
-# 2. Explicitly named worktrees win.
-case "$ROOT" in
-  */code/web-blue*)   COLOR=$RESERVED_BLUE   ;;
-  */code/web-green*)  COLOR=$RESERVED_GREEN  ;;
-  */code/web-yellow*) COLOR=$RESERVED_YELLOW ;;
-  */code/web-orange*) COLOR=$RESERVED_ORANGE ;;
-  */code/web-red*)    COLOR=$RESERVED_RED    ;;
-esac
-
-# 3. Hash the repo root against the shared swatch palette.
-if [ -z "$COLOR" ]; then
-  HASH=$(printf '%s' "$ROOT" | cksum | cut -d' ' -f1)
-  PALETTE=($(hash_palette))
-  [ ${#PALETTE[@]} -gt 0 ] || exit 0
-  COLOR=${PALETTE[$(( HASH % ${#PALETTE[@]} ))]}
-fi
+# 2/3. Reserved worktree color, else a hash of the repo root. Shared with
+# set-tab-color.sh so `reset` restores exactly what the hook would have applied.
+COLOR=$(derive_color "$CWD") || exit 0
 
 RGB=$(color_to_rgb "$COLOR") || exit 0
 apply "$TARGET" $RGB
