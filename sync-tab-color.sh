@@ -6,13 +6,30 @@
 # Precedence:
 #   1. If the session runs in a `web-<color>` worktree, force that color so the
 #      tab reliably signals which worktree you're in.
-#   2. Otherwise fall back to the session's agentColor from the transcript.
+#   2. Otherwise derive a stable color by hashing the repo root, so every
+#      session gets a tab color and a given directory always looks the same.
+#      Stable per directory, not unique: 14 slots means distinct repos can
+#      collide and share a color.
 
 INPUT=$(cat)
 
-# 1. Worktree-based color wins — check cwd before consulting the transcript.
 CWD=$(echo "$INPUT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('cwd',''))" 2>/dev/null)
-case "$CWD" in
+
+if [ -z "$CWD" ]; then
+  exit 0
+fi
+
+# Resolve the repo root up front so the reserved match and the hash below agree
+# on one canonical path. This keeps the color steady as you cd around inside a
+# worktree, and lets a worktree reached through a symlink still match its
+# reserved name.
+ROOT=$(git -C "$CWD" rev-parse --show-toplevel 2>/dev/null)
+[ -n "$ROOT" ] || ROOT="$CWD"
+ROOT=${ROOT%/}
+[ -n "$ROOT" ] || ROOT=/
+
+# 1. Explicitly named worktrees win.
+case "$ROOT" in
   */code/web-blue*)   COLOR=blue   ;;
   */code/web-green*)  COLOR=green  ;;
   */code/web-yellow*) COLOR=yellow ;;
@@ -20,19 +37,30 @@ case "$CWD" in
   */code/web-red*)    COLOR=red    ;;
 esac
 
-# 2. Fall back to the session's agent color from the transcript.
+# 2. Hash the repo root so every other directory gets its own stable color.
+#    These are hex rather than names so the palette can be tuned for contrast
+#    independently of the name table below. Every entry is chosen to sit well
+#    clear of the five reserved worktree colors — and of each other — so no
+#    hashed tab reads as a `web-<color>` worktree at a glance.
 if [ -z "$COLOR" ]; then
-  TRANSCRIPT=$(echo "$INPUT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('transcript_path',''))" 2>/dev/null)
-
-  if [ -z "$TRANSCRIPT" ] || [ ! -f "$TRANSCRIPT" ]; then
-    exit 0
-  fi
-
-  COLOR=$(grep -o '"agentColor":"[^"]*"' "$TRANSCRIPT" | tail -1 | cut -d'"' -f4)
-
-  if [ -z "$COLOR" ]; then
-    exit 0
-  fi
+  HASH=$(printf '%s' "$ROOT" | cksum | cut -d' ' -f1)
+  PALETTE=(
+    '#00b39a'  # teal
+    '#00d4d4'  # bright cyan
+    '#3fb6e8'  # sky
+    '#6a5ae0'  # indigo
+    '#a855d8'  # purple
+    '#d94fa8'  # fuchsia
+    '#8f2f5f'  # wine
+    '#9ae8c0'  # mint
+    '#4a7f5e'  # forest
+    '#7a8c30'  # olive
+    '#8a6240'  # brown
+    '#5f7d99'  # slate
+    '#b0b0b0'  # light gray
+    '#6e6e6e'  # dim gray
+  )
+  COLOR=${PALETTE[$(( HASH % ${#PALETTE[@]} ))]}
 fi
 
 # Map color names to R G B (0-255)
