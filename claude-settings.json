@@ -39,6 +39,19 @@
     "defaultMode": "auto"
   },
   "hooks": {
+    "SessionEnd": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/dot_files/set-tab-color.sh --clear-pin",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
     "SessionStart": [
       {
         "matcher": "*",
