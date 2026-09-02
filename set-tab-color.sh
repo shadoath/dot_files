@@ -39,8 +39,8 @@ swatches() {
 }
 
 # The five colors reserved for `web-<color>` worktrees, held as the hex values in
-# the swatch row so the reserved tabs match the menu exactly. The row is Claude
-# Code's dark-theme palette: red/orange/yellow/green/blue are its subagent red,
+# the swatch row so the reserved tabs match the menu exactly. The row is built from
+# Claude Code's theme tokens, mostly dark-theme: red/orange/yellow/green/blue are its subagent red,
 # claude, warning shimmer, success and ide tokens.
 RESERVED_RED='#dc2626'
 RESERVED_ORANGE='#d77757'

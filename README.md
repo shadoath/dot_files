@@ -81,8 +81,8 @@ ln -sf ~/dot_files/spending-tracker.sh ~/.claude/hooks/spending-tracker.sh
 
 Tab color comes from the directory: a `web-<color>` worktree forces that color, anything else hashes its repo
 root so a given directory always looks the same. The palette is iTerm's own tab-color swatch row, so an
-automatic color and one picked by right-clicking a tab are the same color. The row is Claude Code's dark-theme
-palette rather than iTerm's stock one, so seed it once on a new Mac (the script falls back to the same row when the
+automatic color and one picked by right-clicking a tab are the same color. The row is built from Claude Code's theme tokens
+rather than iTerm's stock swatches, so seed it once on a new Mac (the script falls back to the same row when the
 default is unset, but the right-click menu would still show iTerm's stock colors):
 
 ```sh
