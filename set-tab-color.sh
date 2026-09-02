@@ -21,7 +21,7 @@ PIN_MAX_AGE_MIN=720
 # iTerm's own tab-color swatches are the source of truth for the palette, so a
 # color picked by right-clicking a tab and one picked here are the same color.
 # Read them live on macOS; fall back to a copy for Linux boxes with no defaults.
-FALLBACK_SWATCHES='#fb6b62 #f6ac47 #f0dc4f #b5d749 #5fa3f8 #c18ed9 #787878 #ff8fd0 #4dd6c9 #7fe3a0 #a0764a #d94fa8 #8b8ff5 #ffffff #2b2b2b'
+FALLBACK_SWATCHES='#dc2626 #d77757 #ffc107 #4eba65 #4782c8 #af87ff #888888 #fd5db1 #48968c #00cccc #ca8a04 #c46686 #93a5ff #ffffff #2b2b2b'
 
 # Entries are hand-edited in iTerm's Advanced settings, so normalize case and
 # drop anything that isn't a hex triplet rather than feeding junk to the palette.
@@ -36,13 +36,15 @@ swatches() {
   done
 }
 
-# The five colors reserved for `web-<color>` worktrees, held as the hex values
-# iTerm ships in its swatch row so the reserved tabs match the menu exactly.
-RESERVED_RED='#fb6b62'
-RESERVED_ORANGE='#f6ac47'
-RESERVED_YELLOW='#f0dc4f'
-RESERVED_GREEN='#b5d749'
-RESERVED_BLUE='#5fa3f8'
+# The five colors reserved for `web-<color>` worktrees, held as the hex values in
+# the swatch row so the reserved tabs match the menu exactly. The row is Claude
+# Code's dark-theme palette: red/orange/yellow/green/blue are its subagent red,
+# claude, warning, success and ide tokens.
+RESERVED_RED='#dc2626'
+RESERVED_ORANGE='#d77757'
+RESERVED_YELLOW='#ffc107'
+RESERVED_GREEN='#4eba65'
+RESERVED_BLUE='#4782c8'
 
 is_reserved() {
   case "$1" in
@@ -96,17 +98,17 @@ color_to_hex() {
     yellow)    echo "$RESERVED_YELLOW" ;;
     green)     echo "$RESERVED_GREEN"  ;;
     blue)      echo "$RESERVED_BLUE"   ;;
-    purple)    echo '#c18ed9' ;;
-    gray|grey) echo '#787878' ;;
-    pink)      echo '#ff8fd0' ;;
-    teal)      echo '#4dd6c9' ;;
-    mint)      echo '#7fe3a0' ;;
-    brown)     echo '#a0764a' ;;
-    fuchsia)   echo '#d94fa8' ;;
-    indigo)    echo '#8b8ff5' ;;
+    purple)    echo '#af87ff' ;;
+    gray|grey) echo '#888888' ;;
+    pink)      echo '#fd5db1' ;;
+    teal)      echo '#48968c' ;;
+    cyan)      echo '#00cccc' ;;
+    brown)     echo '#ca8a04' ;;
+    fuchsia)   echo '#c46686' ;;
+    indigo)    echo '#93a5ff' ;;
     white)     echo '#ffffff' ;;
     black)     echo '#2b2b2b' ;;
-    cyan)      echo '#32c8dc' ;;
+    mint)      echo '#7fe3a0' ;;
     magenta)   echo '#c832c8' ;;
     lime)      echo '#64dc32' ;;
     coral)     echo '#ff7f50' ;;
