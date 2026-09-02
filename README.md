@@ -86,7 +86,7 @@ palette rather than iTerm's stock one, so seed it once on a new Mac (the script 
 default is unset, but the right-click menu would still show iTerm's stock colors):
 
 ```sh
-defaults write com.googlecode.iterm2 TabColorMenuOptions -string '#dc2626 #d77757 #ffdf39 #4eba65 #4782c8 #af87ff #888888 #fd5db1 #48968c #00cccc #ca8a04 #c46686 #93a5ff #ffffff #2b2b2b'
+defaults write com.googlecode.iterm2 TabColorMenuOptions -string '#dc2626 #d77757 #ffdf39 #4eba65 #4782c8 #af87ff #888888 #ff0087 #48968c #00cccc #ca8a04 #c46686 #93a5ff #ffffff #2b2b2b'
 ```
 
 Widen the palette in iTerm Settings → Advanced → search "tab color" (`TabColorMenuOptions`); the hook picks up new
