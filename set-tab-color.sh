@@ -20,7 +20,9 @@ PIN_MAX_AGE_MIN=720
 
 # iTerm's own tab-color swatches are the source of truth for the palette, so a
 # color picked by right-clicking a tab and one picked here are the same color.
-# Read them live on macOS; fall back to a copy for Linux boxes with no defaults.
+# Read them live on macOS; fall back to the intended row for Linux boxes with no
+# defaults. The README's setup step writes this same row into iTerm, so a fresh
+# Mac's right-click menu and this script agree.
 FALLBACK_SWATCHES='#dc2626 #d77757 #ffc107 #4eba65 #4782c8 #af87ff #888888 #fd5db1 #48968c #00cccc #ca8a04 #c46686 #93a5ff #ffffff #2b2b2b'
 
 # Entries are hand-edited in iTerm's Advanced settings, so normalize case and
