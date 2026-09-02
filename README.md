@@ -81,9 +81,16 @@ ln -sf ~/dot_files/spending-tracker.sh ~/.claude/hooks/spending-tracker.sh
 
 Tab color comes from the directory: a `web-<color>` worktree forces that color, anything else hashes its repo
 root so a given directory always looks the same. The palette is iTerm's own tab-color swatch row, so an
-automatic color and one picked by right-clicking a tab are the same color. Widen the palette in
-iTerm Settings → Advanced → search "tab color" (`TabColorMenuOptions`); the hook picks up new swatches with no
-code change, and more swatches means fewer directories sharing a color.
+automatic color and one picked by right-clicking a tab are the same color. The row is Claude Code's dark-theme
+palette rather than iTerm's stock one, so seed it once on a new Mac (the script falls back to the same row when the
+default is unset, but the right-click menu would still show iTerm's stock colors):
+
+```sh
+defaults write com.googlecode.iterm2 TabColorMenuOptions -string '#dc2626 #d77757 #ffdf39 #4eba65 #4782c8 #af87ff #888888 #fd5db1 #48968c #00cccc #ca8a04 #c46686 #93a5ff #ffffff #2b2b2b'
+```
+
+Widen the palette in iTerm Settings → Advanced → search "tab color" (`TabColorMenuOptions`); the hook picks up new
+swatches with no code change, and more swatches means fewer directories sharing a color.
 
 Override it by hand with `set-tab-color.sh <name|#rrggbb>` or the `/sb-tab-color` command. The choice is pinned
 for that terminal so the Stop hook won't overwrite it, and clears on `set-tab-color.sh reset` — which repaints the

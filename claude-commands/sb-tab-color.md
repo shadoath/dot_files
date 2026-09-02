@@ -6,7 +6,7 @@ description: Set the iTerm2 tab color for this terminal, or reset it back to the
 
 Run `~/dot_files/set-tab-color.sh` with the argument Skylar gave.
 
-- A color name or hex: `~/dot_files/set-tab-color.sh purple`, `~/dot_files/set-tab-color.sh '#4dd6c9'`
+- A color name or hex: `~/dot_files/set-tab-color.sh purple`, `~/dot_files/set-tab-color.sh '#48968c'`
 - `reset` restores the directory-derived color right away: `~/dot_files/set-tab-color.sh reset`
 
 Notes:
