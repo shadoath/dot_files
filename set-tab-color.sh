@@ -23,7 +23,7 @@ PIN_MAX_AGE_MIN=720
 # Read them live on macOS; fall back to the intended row for Linux boxes with no
 # defaults. The README's setup step writes this same row into iTerm, so a fresh
 # Mac's right-click menu and this script agree.
-FALLBACK_SWATCHES='#dc2626 #d77757 #ffc107 #4eba65 #4782c8 #af87ff #888888 #fd5db1 #48968c #00cccc #ca8a04 #c46686 #93a5ff #ffffff #2b2b2b'
+FALLBACK_SWATCHES='#dc2626 #d77757 #ffdf39 #4eba65 #4782c8 #af87ff #888888 #fd5db1 #48968c #00cccc #ca8a04 #c46686 #93a5ff #ffffff #2b2b2b'
 
 # Entries are hand-edited in iTerm's Advanced settings, so normalize case and
 # drop anything that isn't a hex triplet rather than feeding junk to the palette.
@@ -41,10 +41,10 @@ swatches() {
 # The five colors reserved for `web-<color>` worktrees, held as the hex values in
 # the swatch row so the reserved tabs match the menu exactly. The row is Claude
 # Code's dark-theme palette: red/orange/yellow/green/blue are its subagent red,
-# claude, warning, success and ide tokens.
+# claude, warning shimmer, success and ide tokens.
 RESERVED_RED='#dc2626'
 RESERVED_ORANGE='#d77757'
-RESERVED_YELLOW='#ffc107'
+RESERVED_YELLOW='#ffdf39'
 RESERVED_GREEN='#4eba65'
 RESERVED_BLUE='#4782c8'
 
