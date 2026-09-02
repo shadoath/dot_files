@@ -3,9 +3,10 @@
 # CLAUDE.local.md:
 #   origin under rinsed-org  -> claude-rinsed.md
 #   anything else            -> claude-personal.md
-# Covers each immediate child of the given root dirs (default: ~/code), or the
-# root itself when it is a repo. Nested repos deeper than one level are not
-# scanned — pass their parent dir explicitly.
+# Covers each immediate child of the given root dirs (default: ~/code and
+# ~/personal-code), plus any worktrees under a root's .worktrees/, or the root
+# itself when it is a repo. Nested repos deeper than one level are not scanned —
+# pass their parent dir explicitly.
 # Re-run after cloning a repo or adding a worktree. CLAUDE.local.md is ignored
 # globally via ~/.gitignore_global. A real (non-symlink) CLAUDE.local.md is
 # never overwritten.
@@ -34,13 +35,15 @@ link_repo() {
 if [ $# -gt 0 ]; then
   ROOTS=("$@")
 else
-  ROOTS=("$HOME/code")
+  ROOTS=("$HOME/code" "$HOME/personal-code")
 fi
 
 for root in "${ROOTS[@]}"; do
   root="${root%/}"
+  [ -d "$root" ] || continue
   link_repo "$root" && continue
-  for dir in "$root"/*/; do
+  for dir in "$root"/*/ "$root"/.worktrees/*/; do
+    [ -d "$dir" ] || continue
     link_repo "${dir%/}"
   done
 done
