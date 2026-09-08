@@ -103,7 +103,10 @@ gcoms() {
   fi
   git stash push -q -- "$f" || return
   gcom
-  local status=$?
-  git stash pop --index || echo "gcoms: claude-settings.json did not re-apply cleanly; resolve the conflict, then run: git stash drop" >&2
-  return $status
+  local rc=$?
+  if ! git stash pop --index; then
+    echo "gcoms: claude-settings.json did not re-apply cleanly; resolve the conflict, then run: git stash drop" >&2
+    return 1
+  fi
+  return $rc
 }
