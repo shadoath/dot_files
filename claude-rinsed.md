@@ -6,6 +6,11 @@ Symlinked into each rinsed-org repo/worktree as `CLAUDE.local.md` by `~/dot_file
 
 - **Skip Codex here.** Repos under the [rinsed-org](https://github.com/rinsed-org) GitHub org have Arby (Rinsed's own review bot) instead of Codex — don't comment `@codex review` or wait on Codex findings. `/code-review` alone satisfies the review loop and the global *Definition of Done*; let Arby's automatic review run as it normally does.
 
+## Deploy & Versioning — no version bumps
+
+- **Rinsed repos have no version-bump step.** Skip step 8 of the global *Default Session Workflow* and the "Then bump the version" part of the global *Definition of Done* — those are personal-repo conventions. Don't open version-bump PRs, don't look for a version file to bump, and don't flag a "stale version" as outstanding manual work.
+- **Merging to `master` is the deploy.** Web and pretty much every other rinsed-org repo auto-deploys once a PR merges to the default branch, so "done" here is: ready PR → review loop clean of major findings → auto-merge enabled → merged → `gcom`. Nothing else to ship.
+
 ## Shell & Test Commands
 
 - ALWAYS quote rspec/glob file arguments: `bundle exec rspec "spec/**/foo_spec.rb"` — unquoted globs have repeatedly expanded to the whole suite and timed out.
