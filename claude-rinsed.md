@@ -8,8 +8,8 @@ Symlinked into each rinsed-org repo/worktree as `CLAUDE.local.md` by `~/dot_file
 
 ## Deploy & Versioning — no version bumps
 
-- **Rinsed repos have no version-bump step.** Skip step 8 of the global *Default Session Workflow* and the "Then bump the version" part of the global *Definition of Done* — those are personal-repo conventions. Don't open version-bump PRs, don't look for a version file to bump, and don't flag a "stale version" as outstanding manual work.
-- **Merging to `master` is the deploy.** Web and pretty much every other rinsed-org repo auto-deploys once a PR merges to the default branch, so "done" here is: ready PR → review loop clean of major findings → auto-merge enabled → merged → `gcom`. Nothing else to ship.
+- **Rinsed repos have no version-bump step.** Skip the *Bump the version* step of the global *Default Session Workflow* and the "Then bump the version" part of the global *Definition of Done* — those are personal-repo conventions. Don't open version-bump PRs, don't look for a version file to bump, and don't flag a "stale version" as outstanding manual work. The only exception is a repo that ships a versioned artifact through a store or registry (an app-store build, a published gem); say so and follow the global step there.
+- **Merging to `master` is the deploy.** Web and the other rinsed-org repos auto-deploy once a PR merges to `master`, so "done" here is: ready PR → review loop clean of major findings → auto-merge enabled → merged → back to the default branch with `gcom` (`gcod` instead in a repo whose PRs base on `develop`). Nothing else to ship.
 
 ## Shell & Test Commands
 

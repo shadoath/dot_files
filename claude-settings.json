@@ -29,7 +29,6 @@
       "Bash(rbenv:*)",
       "Bash(redis-cli ping:*)",
       "Bash(redis-server:*)",
-      "Bash(rm:*)",
       "Bash(ruby:*)",
       "Bash(sips:*)",
       "Bash(sort:*)",
@@ -167,5 +166,20 @@
   "autoCompactEnabled": true,
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "Bash(bundle:*) in /Users/skylar/code/web",
+      "Bash(bin/*) in /Users/skylar/code/web",
+      "Bash(gt:*) in /Users/skylar/code/web",
+      "Bash(semble:*) in /Users/skylar/code/web",
+      "Bash(psql) read-only queries against local/dev database in /Users/skylar/code/web"
+    ],
+    "soft_deny": [
+      "$defaults",
+      "Bash(psql) destructive statements (DROP/DELETE/TRUNCATE/UPDATE without WHERE) against any non-local database",
+      "Runs of or writes to bin/diff-production-secrets, bin/get-production-credentials-key, bin/setup-dev-credentials-key, bin/remote-console against production"
+    ]
+  }
 }
