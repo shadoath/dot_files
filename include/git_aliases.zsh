@@ -93,3 +93,15 @@ GBN() {
     echo "Aborted"
   fi
 }
+
+# gcom for ~/dot_files: Claude Code rewrites the symlinked claude-settings.json live, so stash it around the pull instead of letting a dirty copy block the fast-forward.
+gcoms() {
+  local f=:/claude-settings.json
+  if git diff --quiet HEAD -- "$f"; then
+    gcom
+    return
+  fi
+  git stash push -q -- "$f" || return
+  gcom
+  git stash pop || echo "gcoms: claude-settings.json did not re-apply cleanly; resolve the conflict, then run: git stash drop" >&2
+}
