@@ -180,33 +180,6 @@
       "$defaults",
       "Bash(psql) destructive statements (DROP/DELETE/TRUNCATE/UPDATE without WHERE) against any non-local database",
       "Runs of or writes to bin/diff-production-secrets, bin/get-production-credentials-key, bin/setup-dev-credentials-key, bin/remote-console against production"
-    ],
-    "environment": [
-      "### Org-wide",
-      "**Organization**: rinsed-org (GitHub org; repo `rinsed-org/web`)",
-      "**Cloud provider(s)**: AWS (S3 buckets under `rinsed-public-images*`; AWS CLI seen in shell history)",
-      "**Repository visibility**: private (rinsed-org/web, confirmed via gh)",
-      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
-      "**Secrets management**: 1Password CLI (`op`, seen in shell history); repo-managed encrypted Rails credentials (`config/master.key`, `config/credentials/*.key`, gitignored)",
-      "**Default / protected branches**: `master` (default; protected via rulesets `Repository Protection`, `Default Branch Protection`, `Default branch protection` — active)",
-      "**CI/CD deploy targets**: CircleCI (`.circleci`, `circleci.com` contacted, `CIRCLECI_TOKEN` secret referenced)",
-      "**Network posture**: None configured",
-      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine or CI runner with open internet",
-      "**Source control**: The trusted repo `rinsed-org/web` (github.com:rinsed-org/web.git) and its remote(s) only",
-      "**Trusted internal domains**: rogersrinse.web.localhost, rinsedwash.sandbox.rinsed.dev, sandbox.rinsed.dev, web.localhost (local/sandbox dev hosts contacted in this project's transcripts)",
-      "**Trusted cloud buckets**: rinsed-public-images-sandbox.s3.amazonaws.com, rinsed-public-images.s3.amazonaws.com (usage-corroborated — contacted in this project's transcripts)",
-      "**Key internal services**: Linear (linear, linear.app — issue tracking, contacted in transcripts)",
-      "**Internal package registry**: None configured",
-      "**Sensitive data locations & audiences**: Rails encrypted credentials (`config/master.key`, `config/credentials/*.key`), `.env.development`, `.env.development.local`, `.env.test`, `.env.local`, `.envrc`; app code handling PII/credentials (e.g. `app/controllers/data_extract/credentials_controller.rb`, `app/operations/washify/validate_user_credentials.rb`, `app/operations/sitewatch/synchronize_secrets.rb`, `lambda/app/sitewatch/secrets.rb`, retention-offer and support-agent PII paths under `db/migrate/`); share only with audiences cleared at the [named+specifics] bar",
-      "**Data retention / declassification**: None configured",
-      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment",
-      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
-      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment (repo has `cdk/lib/iam-utils.js` — CDK-managed IAM in scope)",
-      "### User-specific",
-      "**Primary use of Claude Code**: software development (Rails web app, rinsed-org/web)",
-      "**Trusted repo**: /Users/skylar/code/web (github.com:rinsed-org/web.git, private) and its configured remote(s)",
-      "**Org-specific CLIs**: `gt` (graphite), `bd`, `gbDm`/`gbdm`, `gcom`, `gcoo`, `gcob`, `semble`, `bin/*` wrapper scripts, `noc`, `nexus`",
-      "**Trusted repo qualifiers**: routine actions (edits, commits, branch pushes, PR creation) under this repo's own working tree are routine; other checkouts (`web-yellow`, `web-green`, `web-orange`, `web-red`) are separate worktrees of the same remote and not automatically in scope for this session"
     ]
   }
 }
