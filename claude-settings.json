@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CLAUDE_CODE_SUBAGENT_MODEL": "sonnet"
+  },
   "permissions": {
     "allow": [
       "Bash(./manage.sh:*)",
@@ -50,7 +53,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "fable",
+  "model": "opus",
   "skillOverrides": {
     "launch-cycle": "off",
     "sb-cap": "off",
