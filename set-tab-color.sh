@@ -24,11 +24,16 @@ PIN_MAX_AGE_MIN=720
 # defaults. The README's setup step writes this same row into iTerm, so a fresh
 # Mac's right-click menu and this script agree.
 #
-# The tail four are spread colors, not Claude Code tokens. Reserving red through
+# The tail three are spread colors, not Claude Code tokens. Reserving red through
 # blue leaves the hash pool with two pinks, a purple and a periwinkle against
-# three near-neutrals, so most colored tabs read pink. Olive, forest, rust and
-# petrol fill the empty yellow-to-green band and give the pool some depth.
-FALLBACK_SWATCHES='#dc2626 #d77757 #ffdf39 #4eba65 #4782c8 #af87ff #888888 #ff0087 #48968c #00cccc #ca8a04 #c46686 #93a5ff #ffffff #2b2b2b #808000 #2f7d4f #b45309 #1f6f8b'
+# three near-neutrals, so most colored tabs read pink. Olive and chartreuse sit in
+# the empty 60-90 band between yellow and green; rust is a dark, saturated burnt
+# orange that reads apart from the soft claude orange it neighbours.
+#
+# New spread colors belong at least ~35 of hue from every reserved color, or a
+# hashed tab starts reading as a `web-<color>` worktree. That rules out the
+# 130-160 greens and the 190-200 blue-teals however dark you make them.
+FALLBACK_SWATCHES='#dc2626 #d77757 #ffdf39 #4eba65 #4782c8 #af87ff #888888 #ff0087 #48968c #00cccc #ca8a04 #c46686 #93a5ff #ffffff #2b2b2b #808000 #64a028 #b45309'
 
 # Entries are hand-edited in iTerm's Advanced settings, so normalize case and
 # drop anything that isn't a hex triplet rather than feeding junk to the palette.
@@ -124,9 +129,8 @@ color_to_hex() {
     navy)      echo '#000080' ;;
     maroon)    echo '#800000' ;;
     olive)     echo '#808000' ;;
-    forest)    echo '#2f7d4f' ;;
+    chartreuse) echo '#64a028' ;;
     rust)      echo '#b45309' ;;
-    petrol)    echo '#1f6f8b' ;;
     *)         echo "$1" ;;
   esac
 }

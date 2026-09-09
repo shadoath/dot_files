@@ -29,7 +29,6 @@
       "Bash(rbenv:*)",
       "Bash(redis-cli ping:*)",
       "Bash(redis-server:*)",
-      "Bash(rm:*)",
       "Bash(ruby:*)",
       "Bash(sips:*)",
       "Bash(sort:*)",
@@ -51,7 +50,7 @@
     ],
     "defaultMode": "auto"
   },
-  "model": "fable",
+  "model": "opus",
   "skillOverrides": {
     "launch-cycle": "off",
     "sb-cap": "off",
@@ -141,7 +140,8 @@
     "pr-review-toolkit@claude-plugins-official": false,
     "perception-first-design@perception-first-design": true,
     "impeccable@impeccable": true,
-    "datadog@claude-plugins-official": true
+    "datadog@claude-plugins-official": true,
+    "slack@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "perception-first-design": {
@@ -167,5 +167,39 @@
   "autoCompactEnabled": true,
   "remoteControlAtStartup": true,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "autoMode": {
+    "soft_deny": [
+      "$defaults",
+      "Bash(heroku pg:reset:*) in shadoath/vegetal-tracker — destructive DB reset seen adjacent to routine Heroku/psql usage",
+      "Bash(wrangler delete:*) in shadoath/vegetal-tracker — destructive Cloudflare Workers subcommand near frequent wrangler usage"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured — repo deploys to Heroku and Vercel per README, but no cloud IAM/project evidence was gathered",
+      "**Repository visibility**: Private (shadoath/vegetal-tracker, confirmed via gh)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured — CI references secret names (e.g. HEROKU_API_KEY, GOOGLE_SERVICE_KEY, STAGING_DATABASE_PASSWORD, SHADOATH_PAT) but no secrets manager was identified",
+      "**Default / protected branches**: `develop` (repo default) and `master` are protected (via gh); no rulesets listed",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine with open internet",
+      "**Source control**: The trusted repo (shadoath/vegetal-tracker on github.com) and its origin remote only (no additional orgs configured)",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: `.env`, `.env*.local` (gitignored) and any store holding regulated compliance/inventory data (DEA/FDA-related), Auth0/Reuni credentials, or the CI secrets listed (CONFIGCAT_API_PASS, CONFIGCAT_API_USER, CRON_SECRET, DB_BACKUP_FOLDER_ID, GITHUB_TOKEN, GOOGLE_SERVICE_KEY, HEROKU_API_KEY, HEROKU_APP_NAME, HEROKU_EMAIL, SHADOATH_PAT, SLACK_WEBHOOK, STAGING_DATABASE_PASSWORD, STAGING_DATABASE_URL, STAGING_DATABASE_USER); share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment; also treat Heroku production app and STAGING_DATABASE_* as sensitive per naming",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development",
+      "**Trusted repo**: /Users/skylar/personal-code/vegetal-tracker (shadoath/vegetal-tracker on github.com), private — confidential material (compliance data, credentials) is not automatically cleared for commit into this repo even though it's private; secrets are never cleared by visibility",
+      "**Org-specific CLIs**: None configured",
+      "routine under skylar/ prefix: no evidence of an org-wide personal-namespace convention was found; not adopted"
+    ]
+  }
 }
