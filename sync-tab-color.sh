@@ -6,11 +6,9 @@
 # Precedence:
 #   1. A color pinned by set-tab-color.sh wins, so a hand-picked color survives
 #      the next Stop instead of being overwritten seconds later.
-#   2. A `web-<color>` worktree forces that color, so the tab reliably signals
-#      which worktree you're in.
-#   3. Otherwise hash the repo root, so every session gets a color and a given
-#      directory always looks the same. Stable per directory, not unique:
-#      distinct repos can collide and share a color.
+#   2. A color name in the repo root's name (`web-blue`, `teal-tools`) sets that
+#      color, so the tab signals which worktree you're in.
+#   3. Anything else gets no color at all, leaving the tab at iTerm's default.
 
 SCRIPT_DIR=$(python3 -c 'import os,sys; print(os.path.dirname(os.path.realpath(sys.argv[1])))' "$0" 2>/dev/null)
 LIB="$SCRIPT_DIR/set-tab-color.sh"
@@ -40,9 +38,12 @@ if [ -n "$PINNED" ]; then
   rm -f "$PIN"
 fi
 
-# 2/3. Reserved worktree color, else a hash of the repo root. Shared with
+# 2/3. A color name in the repo root's name, else nothing. Shared with
 # set-tab-color.sh so `reset` restores exactly what the hook would have applied.
-COLOR=$(derive_color "$CWD") || exit 0
-
-RGB=$(color_to_rgb "$COLOR") || exit 0
-apply "$TARGET" $RGB
+# Clear rather than bail when nothing derives, so a color left over from an
+# earlier session in this terminal doesn't stick around.
+if COLOR=$(derive_color "$CWD") && RGB=$(color_to_rgb "$COLOR"); then
+  apply "$TARGET" $RGB
+else
+  printf "\033]6;1;bg;*;default\007" > "$TARGET"
+fi
