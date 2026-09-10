@@ -146,6 +146,26 @@ mkdir -p ~/.claude
 ln -sf ~/dot_files/claude-settings.json ~/.claude/settings.json
 ```
 
+#### `autoMode` and this being a public repo
+
+`~/.claude/settings.json` is the **only** file the auto-mode classifier reads `autoMode` from — it ignores
+`.claude/settings.json`, `.claude/settings.local.json`, and `~/.claude/settings.local.json` (it stopped reading the
+last of those in v2.1.207). So `autoMode` can't be scoped to one project by where you put it, and the one file that
+works is this symlink into a **public** repo.
+
+That means two rules:
+
+- **Keep `autoMode.environment` sanitized.** No internal hostnames, CI secret names, credential or PII file paths,
+  or vendor names. Scope entries in the prose instead (`under ~/code/web*`), and state each repo's visibility
+  rather than asserting one globally — a blanket `Repository visibility: Private` tells the classifier that *this*
+  public repo is private too.
+- **Keep `"$defaults"` as the first entry of every `autoMode` list.** Without it the array *replaces* the built-in
+  rules for that section, silently dropping the built-in trust and sensitivity entries.
+
+`/auto-mode-setup` and `/permissions` → Auto mode both write straight to this file, unsanitized and without
+`$defaults`. After running either, check `git diff claude-settings.json` before committing, and re-scope what they
+wrote. `claude auto-mode config` shows the effective result; `claude auto-mode critique` reviews custom rules.
+
 ### Better search with Ag
 
 macOS:

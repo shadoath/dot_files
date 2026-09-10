@@ -182,7 +182,14 @@
     "soft_deny": [
       "$defaults",
       "Bash(psql) destructive statements (DROP/DELETE/TRUNCATE/UPDATE without WHERE) against any non-local database",
-      "Runs of or writes to bin/diff-production-secrets, bin/get-production-credentials-key, bin/setup-dev-credentials-key, bin/remote-console against production"
+      "Runs of or writes to bin/diff-production-secrets, bin/get-production-credentials-key, bin/setup-dev-credentials-key, bin/remote-console against production",
+      "Any command run against a production environment in the web repo — `RAILS_ENV=production` or `prod`, `RACK_ENV=production`, `NODE_ENV=production`, `-e production`, `--environment production`, an `export` of any of these earlier in a chained command, or `bin/rails ... -e production`. Prohibited by that repo's CLAUDE.md.",
+      "Reading or editing Rails encrypted credentials in the web repo — `rails credentials:edit` / `credentials:show` however invoked (`bin/rails`, `bundle exec rails`, `rails`), and the `credentials:*` family generally. Prohibited by that repo's CLAUDE.md."
+    ],
+    "environment": [
+      "$defaults",
+      "**Path notation**: `~` is `/Users/skylar`. \"the web repo\" means `~/code/web` and any `~/code/web-<color>` worktree of it; rules naming either form cover all of them.",
+      "**Repository visibility**: judge per repository, never assume. `~/dot_files` is `shadoath/dot_files`, which is PUBLIC — only that repo's own work belongs in it, and nothing about an employer or its infrastructure may be written into it."
     ]
   }
 }
