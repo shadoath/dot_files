@@ -18,98 +18,38 @@ PIN_DIR="/tmp/claude-tab-color-$(id -u)"
 # stops applying after half a day.
 PIN_MAX_AGE_MIN=720
 
-# iTerm's own tab-color swatches are the source of truth for the palette, so a
-# color picked by right-clicking a tab and one picked here are the same color.
-# Read them live on macOS; fall back to the intended row for Linux boxes with no
-# defaults. The README's setup step writes this same row into iTerm, so a fresh
-# Mac's right-click menu and this script agree.
-#
-# The tail three are spread colors, not Claude Code tokens. Reserving red through
-# blue leaves the hash pool with two pinks, a purple and a periwinkle against
-# three near-neutrals, so most colored tabs read pink. Olive and chartreuse sit in
-# the empty 60-90 band between yellow and green; rust is a dark, saturated burnt
-# orange that reads apart from the soft claude orange it neighbours.
-#
-# New spread colors belong at least ~35 of hue from every reserved color, or a
-# hashed tab starts reading as a `web-<color>` worktree. That rules out the
-# 130-160 greens and the 190-200 blue-teals however dark you make them.
-FALLBACK_SWATCHES='#dc2626 #d77757 #ffdf39 #4eba65 #4782c8 #af87ff #888888 #ff0087 #48968c #00cccc #ca8a04 #c46686 #93a5ff #ffffff #2b2b2b #808000 #64a028 #b45309'
-
-# Entries are hand-edited in iTerm's Advanced settings, so normalize case and
-# drop anything that isn't a hex triplet rather than feeding junk to the palette.
-swatches() {
-  local raw c
-  raw=$(defaults read com.googlecode.iterm2 TabColorMenuOptions 2>/dev/null)
-  [ -n "$raw" ] || raw=$FALLBACK_SWATCHES
-  for c in $(echo "$raw" | tr ',' ' ' | tr 'A-Z' 'a-z'); do
-    case "$c" in
-      '#'[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]) echo "$c" ;;
-    esac
-  done
-}
-
-# The five colors reserved for `web-<color>` worktrees, held as the hex values in
-# the swatch row so the reserved tabs match the menu exactly. The row is built from
-# Claude Code's theme tokens, mostly dark-theme: red/orange/yellow/green/blue are its subagent red,
-# claude, warning shimmer, success and ide tokens.
-RESERVED_RED='#dc2626'
-RESERVED_ORANGE='#d77757'
-RESERVED_YELLOW='#ffdf39'
-RESERVED_GREEN='#4eba65'
-RESERVED_BLUE='#4782c8'
-
-is_reserved() {
-  case "$1" in
-    "$RESERVED_RED"|"$RESERVED_ORANGE"|"$RESERVED_YELLOW"|"$RESERVED_GREEN"|"$RESERVED_BLUE") return 0 ;;
-    *) return 1 ;;
-  esac
-}
-
-# Swatches minus the reserved five — the pool the directory hash draws from, so a
-# hashed tab never reads as a `web-<color>` worktree.
-hash_palette() {
-  local c
-  for c in $(swatches); do
-    is_reserved "$c" || echo "$c"
-  done
-}
-
-# The color a directory resolves to with no pin in play: the reserved color of a
-# `web-<color>` worktree, else a hash of the repo root against the shared palette.
-# Hashing the root rather than the path keeps the color steady as you cd around.
+# The color a directory resolves to with no pin in play: a color name in the repo
+# root's own name, else nothing — an unnamed directory keeps the tab uncolored.
+# Reading the root rather than the path keeps the color steady as you cd around,
+# and keeps a `blue/` parent from colouring every repo beneath it.
 derive_color() {
-  local cwd=$1 root hash palette
+  local cwd=$1 root name tok
   [ -n "$cwd" ] || return 1
   root=$(git -C "$cwd" rev-parse --show-toplevel 2>/dev/null)
   [ -n "$root" ] || root="$cwd"
   root=${root%/}
   [ -n "$root" ] || root=/
 
-  case "$root" in
-    */code/web-blue*)   echo "$RESERVED_BLUE"   ; return 0 ;;
-    */code/web-green*)  echo "$RESERVED_GREEN"  ; return 0 ;;
-    */code/web-yellow*) echo "$RESERVED_YELLOW" ; return 0 ;;
-    */code/web-orange*) echo "$RESERVED_ORANGE" ; return 0 ;;
-    */code/web-red*)    echo "$RESERVED_RED"    ; return 0 ;;
-  esac
-
-  hash=$(printf '%s' "$root" | cksum | cut -d' ' -f1)
-  palette=($(hash_palette))
-  [ ${#palette[@]} -gt 0 ] || return 1
-  echo "${palette[$(( hash % ${#palette[@]} ))]}"
+  # Split on anything that isn't alphanumeric so `web-blue` matches but
+  # `credentials` doesn't pick up the `red` buried inside it.
+  name=$(basename "$root" | tr 'A-Z' 'a-z')
+  for tok in $(printf '%s' "$name" | LC_ALL=C tr -c 'a-z0-9' ' '); do
+    color_name_to_hex "$tok" && return 0
+  done
+  return 1
 }
 
-# Names are a readable alias for a hex value. The ones iTerm ships a swatch for
-# resolve to that swatch, so `red` here, a `web-red` tab and right-click → red
-# are all the same color. The rest are kept from the original table for callers
-# that still use them.
+# Names are a readable alias for a hex value, and the only thing that colors a
+# tab automatically. The first five are Claude Code's theme tokens and the head of
+# iTerm's swatch row, so `red` here, a `web-red` tab and right-click → red are all
+# the same color.
 color_to_hex() {
   case "$1" in
-    red)       echo "$RESERVED_RED"    ;;
-    orange)    echo "$RESERVED_ORANGE" ;;
-    yellow)    echo "$RESERVED_YELLOW" ;;
-    green)     echo "$RESERVED_GREEN"  ;;
-    blue)      echo "$RESERVED_BLUE"   ;;
+    red)       echo '#dc2626' ;;
+    orange)    echo '#d77757' ;;
+    yellow)    echo '#ffdf39' ;;
+    green)     echo '#4eba65' ;;
+    blue)      echo '#4782c8' ;;
     purple)    echo '#af87ff' ;;
     gray|grey) echo '#888888' ;;
     pink)      echo '#ff0087' ;;
@@ -133,6 +73,15 @@ color_to_hex() {
     rust)      echo '#b45309' ;;
     *)         echo "$1" ;;
   esac
+}
+
+# color_to_hex passes an unknown value through, so a token is a color name only
+# when it resolves to something else.
+color_name_to_hex() {
+  local hex
+  hex=$(color_to_hex "$1")
+  [ "$hex" != "$1" ] || return 1
+  echo "$hex"
 }
 
 color_to_rgb() {
@@ -186,7 +135,7 @@ apply() {
   printf "\033]6;1;bg;blue;brightness;%d\007" "$b" > "$target"
 }
 
-# sync-tab-color.sh sources this file for the palette and tty helpers, so only
+# sync-tab-color.sh sources this file for the color table and tty helpers, so only
 # run the CLI when the script is executed directly.
 [ "${BASH_SOURCE[0]}" = "$0" ] || return 0
 
