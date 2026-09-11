@@ -12,5 +12,6 @@ Symlinked into each non-rinsed repo as `CLAUDE.local.md` by `~/dot_files/sync-cl
 ## Workflow
 
 - The full global *Definition of Done* applies to personal repos too — ready PR, review loop, auto-merge, version bump. No lighter process unless I say so.
+- **Never enable auto-merge in `~/dot_files`.** The repo has no required checks, so `gh pr merge --auto` merges the instant it is set and races the Codex review right past the finish line. Open the PR, post `@codex review`, wait for Codex to report, address any major findings, then merge by hand.
 - **In `~/dot_files`, use `gcoms` instead of `gcom`.** Claude Code rewrites the symlinked `claude-settings.json` live; `gcoms` stashes it around the pull. Commit those rewrites as their own chore PR when they pile up.
 - **Third-party/upstream clones are the exception.** If `origin` points at a repo I don't own (e.g. `rails/rails`, `curl-impersonate`), treat it as a read-only reference checkout — no PRs, no auto-merge, no pushes anywhere without asking first.
