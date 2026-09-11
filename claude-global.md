@@ -150,6 +150,11 @@ Iterating on my own PR is different — that loop is expected:
 - **Keep comments short, or better, let the code explain itself.** Prefer self-documenting names and structure over comments; add a comment only when the *why* isn't obvious from the code. Don't narrate the *what*.
 - **Verify third-party APIs exist before building on them.** Don't invent methods or properties that "feel right" — check the SDK docs, grep the codebase for existing usage, or write a tiny probe first. (Past pain: built against a non-existent Unlayer rows API before pivoting to native page anchors.)
 
+## Delegating to Subagents
+
+- **Delegate context-heavy or token-heavy work to subagents**, on a cheaper model when possible. Skip delegation if briefing the subagent and reviewing what it returns would cost more than doing the work yourself.
+- **Once a plan is very clear, consider handing implementation to a subagent** — code, tests, and test runs. It should message `main` when it's blocked rather than guessing. Consider reusing it via `SendMessage` for follow-ups so it keeps its context, and double-check its work when warranted.
+
 ## Writing Tickets
 
 When writing tickets (Linear, Asana, GitHub issues, etc.), keep them readable by anyone — not just engineers.
