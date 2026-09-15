@@ -2,6 +2,12 @@
 
 Symlinked into each rinsed-org repo/worktree as `CLAUDE.local.md` by `~/dot_files/sync-claude-local.sh`. These rules apply on top of the global `~/.claude/CLAUDE.md` and refine it for Rinsed work.
 
+## ⚠️ CODE FREEZE — CRM (2026-09-15)
+
+- **Today, 2026-09-15, is a code freeze for the CRM** because of a major product demo. Only critical updates may go through.
+- Before opening, merging, or enabling auto-merge on any PR that touches the CRM (the web repo), confirm the change is critical (a production-breaking bug, a demo blocker, or a security fix). If it isn't, stop and say so — do not push it through today.
+- Non-critical CRM work can still be investigated, branched, and pushed, but leave it un-merged and call out the freeze as the reason.
+
 ## Code Review — Arby, not Codex
 
 - **Skip Codex here.** Repos under the [rinsed-org](https://github.com/rinsed-org) GitHub org have Arby (Rinsed's own review bot) instead of Codex — don't comment `@codex review` or wait on Codex findings. `/code-review` alone satisfies the review loop and the global *Definition of Done*; let Arby's automatic review run as it normally does.
