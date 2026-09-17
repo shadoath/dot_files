@@ -148,7 +148,7 @@ Review bots surface findings a few at a time, so N problems cost N/2 serial roun
 - **Run the mechanical checks yourself.** Anything a bot can catch by pattern (file paths, exported symbols, command names, relative links, formatter) should be a script you run pre-push, and ideally a CI step. This kills a whole class of findings before review starts.
 - **Prefer pointers over restatement.** In docs and comments, link to the file that enforces a rule instead of paraphrasing its behavior; a paraphrase is a claim that can rot and that a reviewer will flag.
 - **Batch fixes, then re-request once.** Address every outstanding finding, sweep for the same class of mistake elsewhere in the diff, and only then re-trigger the bot. Never re-request after each single fix.
-- **Run reviewers in parallel, never idle-poll.** Trigger the bot and run `/code-review low` locally at the same time (escalate to `medium` only if `low` comes back thin), and do other work while they run rather than polling.
+- **Run reviewers in parallel, never idle-poll.** Trigger the bot and run the local `/code-review` at the same time rather than one after the other — at the default level set above, not a lower one — and do other work while they run rather than polling.
 - **If a round returns only nits**, note them in the PR and merge instead of cycling; keep looping only while findings are major.
 
 ## Implementation Defaults
