@@ -140,6 +140,17 @@ Iterating on my own PR is different — that loop is expected:
 - **Check CI history before assuming a failing test is a real regression.** Known flakes are common; `gh run list` on the same spec across recent runs.
 - **When changing shared code, audit all callers.** Before committing a change to a method or schema used elsewhere, grep for every call site and confirm their assumptions still hold. (Past pain: a `build_customer` tweak broke `purchase_orders` specs because nil-membership callers weren't checked.)
 
+### Make the review loop converge
+
+Review bots surface findings a few at a time, so N problems cost N/2 serial round trips. Front-load the work instead:
+
+- **Self-audit before the first review request.** Verify every factual claim and citation you added against the code. For a claim-dense diff (docs, comments, guides), fan out a subagent per file to check claims in parallel — one parallel pass beats four serial bot rounds.
+- **Run the mechanical checks yourself.** Anything a bot can catch by pattern (file paths, exported symbols, command names, relative links, formatter) should be a script you run pre-push, and ideally a CI step. This kills a whole class of findings before review starts.
+- **Prefer pointers over restatement.** In docs and comments, link to the file that enforces a rule instead of paraphrasing its behavior; a paraphrase is a claim that can rot and that a reviewer will flag.
+- **Batch fixes, then re-request once.** Address every outstanding finding, sweep for the same class of mistake elsewhere in the diff, and only then re-trigger the bot. Never re-request after each single fix.
+- **Run reviewers in parallel, never idle-poll.** Trigger the bot and run `/code-review low` locally at the same time (escalate to `medium` only if `low` comes back thin), and do other work while they run rather than polling.
+- **If a round returns only nits**, note them in the PR and merge instead of cycling; keep looping only while findings are major.
+
 ## Implementation Defaults
 
 - **Investigate before implementing.** For non-trivial bugs or ambiguous reports, trace the code path and confirm the hypothesis before writing a fix. Don't open a PR until you can name the root cause.
