@@ -58,11 +58,10 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 export PATH="/usr/local/sbin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 export GPG_TTY=$(tty)
 
-export NODE_OPTIONS="--max-old-space-size=8192 --openssl-legacy-provider"
+export NODE_OPTIONS="--max-old-space-size=8192"
 
 export PATH=/Users/skylar/.rover/bin:$PATH
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
@@ -73,43 +72,25 @@ export PATH="$HOME/.local/bin:$PATH"
 if command -v mise >/dev/null 2>&1; then
   # mise doesn't respect .nvmrc for node by default; enable it once (preserving any
   # tools already configured) so mise is the single source of truth for node version
-  # resolution, instead of running nvm's chpwd hook alongside mise's own.
-  # -C "$HOME" pins the read/write to the global config, ignoring any local
-  # mise.toml override in whatever directory the shell happens to start in.
+  # resolution. -C "$HOME" pins the read/write to the global config, ignoring any
+  # local mise.toml override in whatever directory the shell happens to start in.
   idiomatic="$(mise settings get -C "$HOME" idiomatic_version_file_enable_tools 2>/dev/null | tr -d '[]" ')"
   case ",$idiomatic," in
     *,node,*) ;;
     *) mise settings set -C "$HOME" idiomatic_version_file_enable_tools "node${idiomatic:+,$idiomatic}" >/dev/null 2>&1 ;;
   esac
+  # Expose versions installed via `nvm install` to mise.
+  mise sync node --nvm >/dev/null 2>&1
   eval "$(mise activate zsh)"
-fi
 
-# Fall back to nvm's own .nvmrc hook when mise isn't installed, or its global config
-# genuinely couldn't be updated to respect .nvmrc for node (e.g. read-only).
-if ! command -v mise >/dev/null 2>&1 || ! mise settings get -C "$HOME" idiomatic_version_file_enable_tools 2>/dev/null | grep -q node; then
-  autoload -U add-zsh-hook
-
-  load-nvmrc() {
-    local nvmrc_path
-    nvmrc_path="$(nvm_find_nvmrc)"
-
-    if [ -n "$nvmrc_path" ]; then
-      local nvmrc_node_version
-      nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-      if [ "$nvmrc_node_version" = "N/A" ]; then
-        nvm install
-      elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
-        nvm use
-      fi
-    elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
-      echo "Reverting to nvm default version"
-      nvm use default
-    fi
+  # nvm stays available for installs, loaded on first use so it never touches PATH at startup.
+  nvm() {
+    unset -f nvm
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    nvm "$@"
   }
-
-  add-zsh-hook chpwd load-nvmrc
-  load-nvmrc
+else
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
