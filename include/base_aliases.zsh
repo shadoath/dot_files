@@ -30,6 +30,7 @@ pb() {
 alias cl='claude'
 alias clc='claude --continue'
 alias ocd='openclaw dashboard'
+alias oc="opencode"
 
 # Quick edit
 alias oh='   sudo vim ~/hosts.base && build_hosts'
