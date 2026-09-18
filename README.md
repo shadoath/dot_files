@@ -181,7 +181,8 @@ ln -sf ~/dot_files/opencode/commands ~/.config/opencode/commands
 ln -sf ~/dot_files/opencode/agents ~/.config/opencode/agents
 ```
 
-- `opencode/commands/` — the `sb-*` slash commands (ported from `claude-commands/`) plus `/review`.
+- `opencode/commands/` — the `sb-*` slash commands (symlinked to `claude-commands/`, so each one is
+  edited in a single place) plus `/review`, which is opencode-only.
 - `opencode/agents/` — subagents like the read-only `review` reviewer (`edit: deny`).
 - Note: the `opencode.jsonc` here is the machine's own config (plugins/providers like the local
   Anthropic proxy). It's tracked because it's broadly generic, but keep per-machine credentials out of
