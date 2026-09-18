@@ -1,6 +1,6 @@
 ---
 description: Read-only code reviewer — analyzes diffs and files for correctness, security, and maintainability without editing anything
-mode: subagent
+mode: all
 temperature: 0
 permission:
   edit: deny

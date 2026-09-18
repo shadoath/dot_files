@@ -1,16 +1,16 @@
+#!/bin/sh
+# Global pre-commit hook (git config --global core.hooksPath ~/dot_files/git/hooks).
+# 1. Cross-model agent review of the staged diff (no-op for human commits).
+# 2. Chain to the repo's own .git/hooks/pre-commit, which core.hooksPath would otherwise hide.
 
-exec rspec spec
+here=$(cd "$(dirname "$0")" && pwd -P)
+"$here/agent-review.sh" || exit $?
 
-#Check for pry leftovers, No desert if you have leftovers
-FILES_PATTERN='\.(e?rb)(\..+)?$'
-FORBIDDEN='binding.pry'
-
-if [[ $(git diff --cached --name-only | grep -E $FILES_PATTERN) ]]; then
-  git diff --cached --name-only | \
-      grep -E $FILES_PATTERN | \
-      GREP_COLOR='4;5;37;41' xargs grep --color --with-filename -n $FORBIDDEN && \
-      echo 'COMMIT REJECTED' && \
-      exit 1
+# A repo whose local hook is a symlink or copy of this file must not re-enter it: -ef catches the
+# symlink (same inode), cmp catches a copy, and the env guard catches anything else that loops back.
+[ -n "${DOT_FILES_PRE_COMMIT_CHAINED:-}" ] && exit 0
+local_hook="$(git rev-parse --git-common-dir)/hooks/pre-commit"
+if [ -x "$local_hook" ] && ! [ "$local_hook" -ef "$here/pre-commit" ] && ! cmp -s "$local_hook" "$here/pre-commit"; then
+  DOT_FILES_PRE_COMMIT_CHAINED=1 exec "$local_hook" "$@"
 fi
-
 exit 0
