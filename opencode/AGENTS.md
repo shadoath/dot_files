@@ -36,10 +36,11 @@ production rules, version-bump policies).
 
 ## Commands & agents bundled here
 
-- Slash commands in `~/dot_files/opencode/commands/` (ported from the Claude `sb-*` suite, incl.
-  `/review`). Full inventory: `sb-cap`, `sb-daily-summary`, `sb-draft-pr`, `sb-dwt`, `sb-hc`,
+- Slash commands in `~/dot_files/opencode/commands/`: the `sb-*` suite symlinked from
+  `claude-commands/` (edit the claude copy), plus `/review` (runs the `review` subagent). Full inventory:
+  `sb-address-reviews`, `sb-cap`, `sb-daily-summary`, `sb-draft-pr`, `sb-dwt`, `sb-hc`,
   `sb-next-task`, `sb-prod-query`, `sb-rebase-master`, `sb-review-loop`, `sb-say-again`, `sb-tab-color`,
-  `sb-update-specs`, `sb-upr`, and `/review` (runs the `review` subagent).
+  `sb-update-specs`, `sb-upr`, and `/review`.
 - The `review` subagent in `~/dot_files/opencode/agents/` is a read-only reviewer: `edit: deny`,
   bash restricted to read-only git/gh. Use it for cold code review — review before implementation, then
   wait for my direction before changing anything.
