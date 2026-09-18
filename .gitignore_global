@@ -5,3 +5,10 @@
 .idea/*
 CLAUDE.local.md
 
+# Coding-agent state written into the repo root; machine-local, never committed.
+# .omo/ is oh-my-openagent (run-continuation, ulw-loop); force-add with `git add -f`
+# if a repo ever needs a tracked .omo/omo.jsonc or .omo/rules/.
+.omo/
+.claude/
+.opencode/
+
