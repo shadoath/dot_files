@@ -8,8 +8,8 @@ When you see a real choice between approaches, present numbered or lettered opti
 ## Git & PRs
 
 - **Verify worktree before any git operation.** Run `git worktree list` and `git branch --show-current`. Feature branches are often checked out in a separate worktree (see `gbdm`); don't commit on the wrong one.
-- **Draft PRs by default.** Use `gh pr create --draft` unless I explicitly say otherwise.
-- **PR descriptions are short.** `## Summary` (1–3 bullets, the *why*) and `## Test plan` (checklist). No "Testing" section, no generic testing prose — the checklist is enough.
+- **Ready PRs by default — never draft.** Use plain `gh pr create` (no `--draft`) unless I explicitly ask for a draft. Draft PRs rot; flip any existing drafts ready or close them.
+- **PR descriptions are short.** `## Summary` (1–3 bullets, the *why*). **Never include a `## Test plan` section** — the loop runs the tests, the diff is the proof.
 - **Never `--no-verify`, never `--amend`** unless I ask. Force-pushes use `--force-with-lease`, never plain `--force`.
 - **Write `gh pr create` / `gh pr edit` bodies via a temp file or HEREDOC**, not inline strings — backticks in descriptions break inline quoting.
 

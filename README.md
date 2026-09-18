@@ -166,6 +166,28 @@ That means two rules:
 `$defaults`. After running either, check `git diff claude-settings.json` before committing, and re-scope what they
 wrote. `claude auto-mode config` shows the effective result; `claude auto-mode critique` reviews custom rules.
 
+### OpenCode Global Setup
+
+OpenCode gets the same global-instruction treatment, version-tracked here and symlinked into
+`~/.config/opencode/`. It loads `claude-global.md` through the `instructions` array in
+`opencode.jsonc`, and `opencode/AGENTS.md` adds the opencode-specific layer (including a lazy-load
+instruction for each repo's `CLAUDE.local.md`, which OpenCode won't read on its own):
+
+```bash
+mkdir -p ~/.config/opencode
+ln -sf ~/dot_files/opencode/opencode.jsonc ~/.config/opencode/opencode.jsonc
+ln -sf ~/dot_files/opencode/AGENTS.md ~/.config/opencode/AGENTS.md
+ln -sf ~/dot_files/opencode/commands ~/.config/opencode/commands
+ln -sf ~/dot_files/opencode/agents ~/.config/opencode/agents
+```
+
+- `opencode/commands/` — the `sb-*` slash commands (symlinked to `claude-commands/`, so each one is
+  edited in a single place) plus `/review`, which is opencode-only.
+- `opencode/agents/` — subagents like the read-only `review` reviewer (`edit: deny`).
+- Note: the `opencode.jsonc` here is the machine's own config (plugins/providers like the local
+  Anthropic proxy). It's tracked because it's broadly generic, but keep per-machine credentials out of
+  it — use `{env:...}` substitution or `~/.config/opencode/` local edits instead.
+
 ### Better search with Ag
 
 macOS:
