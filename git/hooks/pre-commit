@@ -1,16 +1,19 @@
 #!/bin/sh
 # Global pre-commit hook (git config --global core.hooksPath ~/dot_files/git/hooks).
-# 1. Cross-model agent review of the staged diff (no-op for human commits).
-# 2. Chain to the repo's own .git/hooks/pre-commit, which core.hooksPath would otherwise hide.
+# 1. Run the repo's own .git/hooks/pre-commit first, which core.hooksPath would otherwise hide. Local
+#    hooks lint and re-stage formatted files, so the review has to see the diff that actually lands.
+# 2. Cross-model agent review of the staged diff (no-op for human commits).
 
 here=$(cd "$(dirname "$0")" && pwd -P)
-"$here/agent-review.sh" || exit $?
 
 # A repo whose local hook is a symlink or copy of this file must not re-enter it: -ef catches the
 # symlink (same inode), cmp catches a copy, and the env guard catches anything else that loops back.
-[ -n "${DOT_FILES_PRE_COMMIT_CHAINED:-}" ] && exit 0
-local_hook="$(git rev-parse --git-common-dir)/hooks/pre-commit"
-if [ -x "$local_hook" ] && ! [ "$local_hook" -ef "$here/pre-commit" ] && ! cmp -s "$local_hook" "$here/pre-commit"; then
-  DOT_FILES_PRE_COMMIT_CHAINED=1 exec "$local_hook" "$@"
+# agent-review.sh also reads the guard, so a local hook that calls it directly doesn't review twice.
+if [ -z "${DOT_FILES_PRE_COMMIT_CHAINED:-}" ]; then
+  local_hook="$(git rev-parse --git-common-dir)/hooks/pre-commit"
+  if [ -x "$local_hook" ] && ! [ "$local_hook" -ef "$here/pre-commit" ] && ! cmp -s "$local_hook" "$here/pre-commit"; then
+    DOT_FILES_PRE_COMMIT_CHAINED=1 "$local_hook" "$@" || exit $?
+  fi
 fi
-exit 0
+
+exec "$here/agent-review.sh"

@@ -20,13 +20,16 @@
 #
 # Reviewer preference per family (first available wins, own family skipped):
 #   openai    -> opencode run -m $AGENT_REVIEW_OPENAI_MODEL
-#   xai       -> grok -p, else opencode run -m $AGENT_REVIEW_XAI_MODEL
+#   xai       -> grok --prompt-file, else opencode run -m $AGENT_REVIEW_XAI_MODEL
 #   anthropic -> claude -p --model $AGENT_REVIEW_ANTHROPIC_MODEL, else opencode run -m anthropic/...
 
 set -u
 
 mode="${AGENT_REVIEW:-block}"
 [ -n "${SKIP_AGENT_REVIEW:-}" ] && mode=off
+# Set by ../pre-commit while it runs a repo's local hook; that wrapper reviews afterwards, so a local
+# hook that also calls this script (husky, overcommit) must not trigger a second paid review.
+[ -n "${DOT_FILES_PRE_COMMIT_CHAINED:-}" ] && mode=off
 timeout_secs="${AGENT_REVIEW_TIMEOUT:-180}"
 max_lines="${AGENT_REVIEW_MAX_LINES:-4000}"
 openai_model="${AGENT_REVIEW_OPENAI_MODEL:-openai/gpt-5.5}"
@@ -137,7 +140,7 @@ pick_reviewer || no_reviewer "no reviewer CLI available outside the $family fami
 script_dir=$(cd "$(dirname "$0")" && pwd -P)
 rules_file="$script_dir/../../opencode/agents/review.md"
 git_dir=$(git rev-parse --git-dir)
-tmp=$(mktemp -d "${TMPDIR:-/tmp}/agent-review.XXXXXX") || exit 0
+tmp=$(mktemp -d "${TMPDIR:-/tmp}/agent-review.XXXXXX") || no_reviewer "mktemp failed; cannot stage the review"
 trap 'rm -rf "$tmp"' EXIT
 
 rules=""
@@ -189,6 +192,9 @@ log "$agent ($family) is committing; asking $runner [$reviewer_model] for a seco
 # Runs from the temp dir with plugins off: the diff is in the prompt, and a reviewer session must never
 # be able to touch the index or litter state files in the repo being committed.
 run_reviewer() {
+  # git exports these into hooks; without unsetting them, any `git` the reviewer runs from the temp
+  # dir still resolves to the committing repo and its index.
+  unset GIT_DIR GIT_INDEX_FILE GIT_WORK_TREE GIT_PREFIX GIT_COMMON_DIR
   cd "$tmp" || exit 1
   case "$runner" in
     opencode)
@@ -206,19 +212,29 @@ export AGENT_REVIEW=off  # never let the reviewer recurse into this hook
 run_reviewer &
 reviewer_pid=$!
 # Pure-sh watchdog: macOS has no `timeout` by default, and a hung reviewer must never wedge commits.
-( sleep "$timeout_secs"; kill "$reviewer_pid" 2>/dev/null; touch "$tmp/timed_out" ) &
+# Marker before kill, or the main shell reaps the reviewer and kills us before the marker lands.
+# The trap takes the sleep down with us so a normal review doesn't leave one running.
+(
+  sleep "$timeout_secs" & sleep_pid=$!
+  trap 'kill "$sleep_pid" 2>/dev/null; exit 0' TERM
+  wait "$sleep_pid"
+  touch "$tmp/timed_out"
+  kill "$reviewer_pid" 2>/dev/null
+) &
 watchdog_pid=$!
-wait "$reviewer_pid"
+wait "$reviewer_pid" 2>/dev/null  # quiet the "Terminated" job notice when the watchdog fires
 rc=$?
 { kill "$watchdog_pid"; wait "$watchdog_pid"; } 2>/dev/null
 
 # Strip ANSI so the verdict parse and the saved copy are clean.
 sed 's/\x1b\[[0-9;]*[A-Za-z]//g' "$tmp/out" > "$git_dir/agent-review.last.md"
 
-# Only the last non-empty line counts as the verdict (minus markdown bold/backticks), so a
-# "VERDICT: BLOCK" quoted mid-review can't reject, and a stray early APPROVE can't pass.
+# Only the last non-empty line counts as the verdict, so a "VERDICT: BLOCK" quoted mid-review can't
+# reject and a stray early APPROVE can't pass. Normalize the markdown models like to wrap it in:
+# "**VERDICT: BLOCK**", "VERDICT: **BLOCK**.", "- VERDICT: BLOCK", "VERDICT:BLOCK".
 # shellcheck disable=SC2016  # the backtick is a literal to strip, not a command substitution
-verdict=$(grep -v '^[[:space:]]*$' "$git_dir/agent-review.last.md" | tail -n 1 | sed 's/^[[:space:]*`]*//; s/[[:space:]*`]*$//')
+verdict=$(grep -v '^[[:space:]]*$' "$git_dir/agent-review.last.md" | tail -n 1 \
+  | tr -d '*`_' | sed 's/^[[:space:]-]*//; s/[[:space:].!]*$//; s/[[:space:]][[:space:]]*/ /g; s/^VERDICT:[[:space:]]*/VERDICT: /')
 case "$verdict" in
   "VERDICT: APPROVE"|"VERDICT: BLOCK") ;;
   *)

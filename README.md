@@ -197,21 +197,22 @@ doesn't ship with the symlinks):
 git config --global core.hooksPath ~/dot_files/git/hooks
 ```
 
-`git/hooks/pre-commit` then runs in every repo on the machine. It calls `git/hooks/agent-review.sh`, then
-chains to the repo's own `.git/hooks/pre-commit` (which a global `hooksPath` would otherwise hide), so
-existing per-repo hooks keep working.
+`git/hooks/pre-commit` then runs in every repo on the machine. It first runs the repo's own
+`.git/hooks/pre-commit` (which a global `hooksPath` would otherwise hide, and which may lint or re-stage
+formatted files), then calls `git/hooks/agent-review.sh` on the diff that will actually land.
 
 `agent-review.sh` works out which coding agent is committing (`CLAUDECODE`/`OPENCODE` env vars, then the
 parent-process chain for `grok`/`codex`), and asks a reviewer on a *different* model family for a verdict
 on the staged diff. The reviewer shares the rulebook in `opencode/agents/review.md`; the commit is rejected
-on a `VERDICT: BLOCK`, and the full review is saved to `.git/agent-review.last.md` so the agent can read
-and fix it. Commits made by a human are not reviewed.
+on a `VERDICT: BLOCK`, and the full review is saved as `agent-review.last.md` inside the repo's git dir
+(the hook prints the exact path) so the agent can read and fix it. Commits made by a human are not
+reviewed.
 
 | committing agent | family | reviewer tried in order |
 | --- | --- | --- |
-| Claude Code, opencode | anthropic | `opencode run -m openai/gpt-5.5`, `grok -p` |
-| grok | xai | `opencode run -m openai/gpt-5.5`, `claude -p --model sonnet` |
-| codex | openai | `grok -p`, `claude -p --model sonnet` |
+| Claude Code, opencode | anthropic | `opencode run -m openai/gpt-5.5`, `grok --prompt-file`, `opencode run -m xai/…` |
+| grok | xai | `opencode run -m openai/gpt-5.5`, `claude -p --model sonnet`, `opencode run -m anthropic/…` |
+| codex | openai | `grok --prompt-file`, `opencode run -m xai/…`, `claude -p --model sonnet` |
 
 Fallbacks: no reviewer CLI, a timeout, a reviewer that never returns a verdict, or a diff over
 `AGENT_REVIEW_MAX_LINES` (never truncated, since an approval of half a change is worthless) all warn and
