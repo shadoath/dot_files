@@ -20,12 +20,11 @@ function gg() {
 # }
 # Open Pull Request for Github/Bitbucket
 function pr(){
-  local branch remote_url owner repo
+  local branch remote_url slug
   branch=$(git branch --show-current)
   remote_url=$(git remote get-url origin)
-  owner=$(echo "$remote_url" | sed -E "s/^.*(github\.com)[:\/](.*)\/(.*)\.git?/\2/")
-  repo=$(echo "$remote_url" | sed -E "s/^.*(github\.com)[:\/](.*)\/(.*)\.git?/\3/")
-  open "https://github.com/$owner/$repo/compare/$branch?expand=1"
+  slug=${${remote_url#*github.com[:/]}%.git}
+  open "https://github.com/$slug/compare/$branch?expand=1"
 }
 
 rspecf() {
